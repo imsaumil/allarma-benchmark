@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPRI - aLLarMa benchmarking efforts (v2-full)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav id="main-nav">
+    <div class="nav-title">EPRI - aLLarMa benchmarking efforts (v2-full)</div>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#retrieval">Retrieval</a>
+      <a href="#modifier">Modifier</a>
+      <a href="#about">About</a>
+      <input id="nav-search" type="text" placeholder="Search models, strategies… (Cmd-F also works)" />
+    </div>
+  </nav>
+
+  <section id="overview"><h2>Overview</h2><div id="overview-hero-container"></div></section>
+  <section id="retrieval"><h2>Part 1 &mdash; Retrieval Benchmarking</h2><div id="retrieval-section-container"></div></section>
+  <section id="modifier"><h2>Part 2 &mdash; Modifier Benchmarking</h2><div id="modifier-section-container"></div></section>
+  <section id="about"><h2>About</h2><div id="about-container"></div></section>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="js/shared-utils.js"></script>
+  <script src="js/url-state.js"></script>
+  <script src="js/data-loader.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/overview-hero.js"></script>
+  <script src="js/retrieval-section.js"></script>
+  <script src="js/modifier-section.js"></script>
+  <script src="js/provenance-popover.js"></script>
+</body>
+</html>
