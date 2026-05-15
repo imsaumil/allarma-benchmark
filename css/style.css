@@ -133,3 +133,11 @@ table tr.search-highlight {
 .anomaly-card-mechanism { font-size: 0.85rem; color: #555; margin-top: 0.5rem; line-height: 1.4; }
 .anomaly-card-actions { margin-top: 0.5rem; }
 .anomaly-card-actions a { margin-right: 0.5rem; color: #1976d2; font-size: 0.85rem; }
+
+.prov-popover {
+  background: #fff; border: 1px solid #999; border-radius: 4px;
+  padding: 0.75rem; max-width: 360px; font-size: 0.85rem; line-height: 1.5;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000;
+}
+.prov-popover > div { margin-bottom: 0.25rem; }
+.prov-link { color: #1976d2; display: block; margin-top: 0.5rem; }
