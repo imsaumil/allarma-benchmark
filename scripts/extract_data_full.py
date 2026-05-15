@@ -134,6 +134,60 @@ def walk_retrieval_llm(skorge_dir: str, dgx_dir: str) -> list[dict]:
     return rows
 
 
+def extract_retrieval_allarma_row(eval_path: str, *, machine: str) -> dict:
+    """Extract one allarma-baseline row. No model dimension (no LLM)."""
+    h = read_eval_header(eval_path)
+    eval_info = h["eval"]
+    stats = h["stats"]
+    scores_block = h["results"]["scores"][0]
+    metrics = scores_block["metrics"]
+
+    n_samples = eval_info["dataset"]["samples"]
+    accuracy = metrics.get("accuracy", {}).get("value", 0.0)
+    se = math.sqrt(accuracy * (1 - accuracy) / n_samples) if n_samples > 0 else 0.0
+
+    started = datetime.fromisoformat(stats["started_at"])
+    completed = datetime.fromisoformat(stats["completed_at"])
+    total_runtime_s = (completed - started).total_seconds()
+
+    return {
+        "benchmark": "retriever-allarma",
+        "machine": machine,
+        "model": None,
+        "model_folder": "allarma-retriever-benchmark",
+        "eval_file": os.path.basename(eval_path),
+        "strategy": eval_info["task"],
+        "scorer": scores_block["name"],
+        "samples": n_samples,
+        "metrics": {
+            "accuracy": round(accuracy, 6),
+            "accuracy_se": round(se, 6),
+            "accuracy_in_scope": round(metrics.get("accuracy_in_scope", {}).get("value", 0.0), 6),
+            "accuracy_oos": round(metrics.get("accuracy_oos", {}).get("value", 0.0), 6),
+        },
+        "total_runtime": round(total_runtime_s, 1),
+        "avg_time_per_sample": round(total_runtime_s / n_samples, 4) if n_samples > 0 else 0.0,
+        "max_tokens": None,
+        "truncation_count": 0,
+        "truncation_rate": 0.0,
+    }
+
+
+def walk_retrieval_allarma(skorge_dir: str, dgx_dir: str) -> list[dict]:
+    """Walk skorge/retriever/allarma-retriever-benchmark/ + dgx counterpart."""
+    rows: list[dict] = []
+    for machine, root in (("skorge", skorge_dir), ("dgx_spark", dgx_dir)):
+        allarma_dir = os.path.join(root, "retriever", "allarma-retriever-benchmark")
+        if not os.path.isdir(allarma_dir):
+            continue
+        for fn in sorted(os.listdir(allarma_dir)):
+            if fn.endswith(".eval"):
+                rows.append(extract_retrieval_allarma_row(
+                    os.path.join(allarma_dir, fn), machine=machine,
+                ))
+    return rows
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--skorge-dir", required=True, help="Path to APPLIED_ENERGY_WRITEUP/skorge")

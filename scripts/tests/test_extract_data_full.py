@@ -79,3 +79,18 @@ def test_extract_retrieval_llm_walker_yields_414_rows(skorge_dir, dgx_dir):
         "qwen3.5-0.8b", "qwen3.5-2b",
     }
     assert models == expected_models
+
+
+def test_walk_retrieval_allarma_yields_116_rows(skorge_dir, dgx_dir):
+    """58 strategies × 2 machines = 116 allarma rows."""
+    rows = edf.walk_retrieval_allarma(skorge_dir, dgx_dir)
+    assert len(rows) == 116, f"expected 116, got {len(rows)}"
+    for r in rows:
+        assert r["benchmark"] == "retriever-allarma"
+        assert r["model"] is None  # no model dimension
+        assert r["model_folder"] == "allarma-retriever-benchmark"
+        assert r["truncation_count"] == 0  # no LLM
+        assert r["max_tokens"] is None
+    # 58 unique strategies on each machine
+    sk_strats = {r["strategy"] for r in rows if r["machine"] == "skorge"}
+    assert len(sk_strats) == 58
