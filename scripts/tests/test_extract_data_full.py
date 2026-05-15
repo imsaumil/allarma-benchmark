@@ -143,3 +143,14 @@ def test_unbounded_variant_appears_with_distinct_strategy_label(unbounded_varian
     assert row["max_tokens"] is None  # unbounded
     # Spec says accuracy ~0.9186 (verified during spec drafting)
     assert abs(row["metrics"]["accuracy"] - 0.9186) < 0.0005
+
+
+def test_cross_machine_deltas_reproduce_audit_anomaly_1(skorge_dir, dgx_dir):
+    """Audit §3.3: gpt-oss-20b/llm_direct_match_all SK 85.51% → DGX 95.32%, Δ = +9.80 pp."""
+    llm_rows = edf.walk_retrieval_llm(skorge_dir, dgx_dir)
+    deltas = edf.compute_cross_machine_deltas(llm_rows)
+    # find the gpt-oss/direct-match cell
+    target = next(d for d in deltas
+                  if d["model_folder"] == "gpt-oss-20b" and d["strategy"] == "llm_direct_match_all")
+    delta_pp = (target["dgx_acc"] - target["sk_acc"]) * 100
+    assert 9.5 < delta_pp < 10.0, f"audit says +9.80 pp; got {delta_pp:.2f}"

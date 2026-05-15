@@ -414,6 +414,41 @@ def extract_unbounded_variant_row(unbounded_eval_path: str) -> dict:
     return row
 
 
+def compute_cross_machine_deltas(llm_rows: list[dict]) -> list[dict]:
+    """Pair (model, strategy) cells across SK and DGX → one Δ row per pair."""
+    by_key: dict[tuple, dict[str, dict]] = defaultdict(dict)
+    for r in llm_rows:
+        # exclude the unbounded variant from the pairing (it's a configuration variant)
+        if r["strategy"].endswith("_unbounded_tokens"):
+            continue
+        by_key[(r["model_folder"], r["strategy"])][r["machine"]] = r
+
+    deltas: list[dict] = []
+    for (model_folder, strategy), pair in sorted(by_key.items()):
+        sk = pair.get("skorge")
+        dgx = pair.get("dgx_spark")
+        if sk is None or dgx is None:
+            continue  # asymmetric pair (shouldn't happen for the 207 LLM-augmented pairs)
+        sk_acc = sk["metrics"]["accuracy"]
+        dgx_acc = dgx["metrics"]["accuracy"]
+        deltas.append({
+            "benchmark": "retriever-llm",
+            "model_folder": model_folder,
+            "model": sk["model"],
+            "strategy": strategy,
+            "sk_acc": sk_acc,
+            "dgx_acc": dgx_acc,
+            "delta_pp": round((dgx_acc - sk_acc) * 100, 4),
+            "sk_eval_file": sk["eval_file"],
+            "dgx_eval_file": dgx["eval_file"],
+            "sk_truncation_count": sk["truncation_count"],
+            "dgx_truncation_count": dgx["truncation_count"],
+            "sk_max_tokens": sk["max_tokens"],
+            "dgx_max_tokens": dgx["max_tokens"],
+        })
+    return deltas
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--skorge-dir", required=True, help="Path to APPLIED_ENERGY_WRITEUP/skorge")
