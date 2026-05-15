@@ -13,7 +13,16 @@ v2-full dashboard:
 See docs/superpowers/specs/2026-05-14-allarma-v2-dashboard-design.md §9.
 """
 import argparse
+import json
 import os
+import zipfile
+
+
+def read_eval_header(eval_path: str) -> dict:
+    """Read header.json from inside an InspectAI .eval (Zip) archive."""
+    with zipfile.ZipFile(eval_path) as zf:
+        with zf.open("header.json") as f:
+            return json.load(f)
 
 
 def main() -> None:
