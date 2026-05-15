@@ -54,3 +54,28 @@ def test_extract_retrieval_llm_row_for_skorge_qwen_one_strategy(skorge_dir):
     assert "accuracy" in row["metrics"]
     assert isinstance(row["truncation_count"], int)
     assert row["max_tokens"] == 8192
+
+
+def test_extract_retrieval_llm_walker_yields_414_rows(skorge_dir, dgx_dir):
+    """9 models × 23 strategies × 2 machines = 414 LLM-augmented rows.
+    The unbounded variant is added separately (Task 11) so this walker yields 414."""
+    rows = edf.walk_retrieval_llm(skorge_dir, dgx_dir)
+    assert len(rows) == 414, f"expected 414, got {len(rows)}"
+    # Spot check: gpt-oss-20b on skorge has 23 unique strategies
+    sk_gpt_strats = {r["strategy"] for r in rows
+                     if r["machine"] == "skorge" and r["model_folder"] == "gpt-oss-20b"}
+    assert len(sk_gpt_strats) == 23
+    # Same on dgx
+    dgx_gpt_strats = {r["strategy"] for r in rows
+                      if r["machine"] == "dgx_spark" and r["model_folder"] == "gpt-oss-20b"}
+    assert len(dgx_gpt_strats) == 23
+    # Unique sets match (all 9 models, both machines)
+    machines = {r["machine"] for r in rows}
+    assert machines == {"skorge", "dgx_spark"}
+    models = {r["model_folder"] for r in rows}
+    expected_models = {
+        "gemma-4-e2b-it", "gpt-oss-20b", "ministral-3-3b", "ministral-3-8b",
+        "ministral-3-14b", "nemotron-nano-9b-v2", "nemotron-nano-12b-v2",
+        "qwen3.5-0.8b", "qwen3.5-2b",
+    }
+    assert models == expected_models

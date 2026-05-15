@@ -100,6 +100,40 @@ def extract_retrieval_llm_row(eval_path: str, *, machine: str, model_folder: str
     return row
 
 
+_LLM_MODEL_FOLDERS = (
+    "gemma-4-e2b-it",
+    "gpt-oss-20b",
+    "ministral-3-3b",
+    "ministral-3-8b",
+    "ministral-3-14b",
+    "nemotron-nano-9b-v2",
+    "nemotron-nano-12b-v2",
+    "qwen3.5-0.8b",
+    "qwen3.5-2b",
+)
+
+
+def walk_retrieval_llm(skorge_dir: str, dgx_dir: str) -> list[dict]:
+    """Walk skorge/retriever/<model>/ and dgx/retriever/<model>/ trees,
+    extracting one row per .eval. Skips the allarma-retriever-benchmark folder."""
+    rows: list[dict] = []
+    for machine, root in (("skorge", skorge_dir), ("dgx_spark", dgx_dir)):
+        retriever_dir = os.path.join(root, "retriever")
+        for model_folder in sorted(os.listdir(retriever_dir)):
+            if model_folder not in _LLM_MODEL_FOLDERS:
+                continue  # skip allarma-retriever-benchmark and any others
+            model_dir = os.path.join(retriever_dir, model_folder)
+            for fn in sorted(os.listdir(model_dir)):
+                if fn.endswith(".eval"):
+                    rows.append(
+                        extract_retrieval_llm_row(
+                            os.path.join(model_dir, fn),
+                            machine=machine, model_folder=model_folder,
+                        )
+                    )
+    return rows
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--skorge-dir", required=True, help="Path to APPLIED_ENERGY_WRITEUP/skorge")
