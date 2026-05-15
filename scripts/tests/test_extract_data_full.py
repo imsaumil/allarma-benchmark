@@ -131,3 +131,15 @@ def test_walk_retrieval_llm_tiers_one_row_per_eval(skorge_dir, dgx_dir):
             assert "se" in r["tiers"][t]
             assert "correct" in r["tiers"][t]
             assert "total" in r["tiers"][t]
+
+
+def test_unbounded_variant_appears_with_distinct_strategy_label(unbounded_variant):
+    """The CIGRE-March file has task='llm_direct_match_all' inside, but the dashboard
+    must label it 'llm_direct_match_all_unbounded_tokens' to distinguish it."""
+    row = edf.extract_unbounded_variant_row(unbounded_variant)
+    assert row["strategy"] == "llm_direct_match_all_unbounded_tokens"
+    assert row["machine"] == "skorge"
+    assert row["model_folder"] == "gpt-oss-20b"
+    assert row["max_tokens"] is None  # unbounded
+    # Spec says accuracy ~0.9186 (verified during spec drafting)
+    assert abs(row["metrics"]["accuracy"] - 0.9186) < 0.0005

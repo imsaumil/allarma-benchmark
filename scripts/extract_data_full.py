@@ -398,6 +398,22 @@ def walk_retrieval_llm_tiers(skorge_dir: str, dgx_dir: str) -> list[dict]:
     return out
 
 
+def extract_unbounded_variant_row(unbounded_eval_path: str) -> dict:
+    """Extract the CIGRE-March unbounded-tokens variant for gpt-oss-20b/llm_direct_match_all.
+
+    The .eval file's header reports task='llm_direct_match_all' (same as skorge's
+    capped run); we override the strategy label here to make it distinct in the
+    dashboard while keeping the .eval file content untouched (audit-preservable).
+    """
+    row = extract_retrieval_llm_row(
+        unbounded_eval_path, machine="skorge", model_folder="gpt-oss-20b",
+    )
+    row["strategy"] = "llm_direct_match_all_unbounded_tokens"
+    # eval_file keeps the original filename for audit preservability,
+    # but the file as uploaded to HF will be renamed (per spec §5.2).
+    return row
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--skorge-dir", required=True, help="Path to APPLIED_ENERGY_WRITEUP/skorge")
