@@ -118,3 +118,16 @@ def test_walk_modifier_templates_per_template_breakdown(skorge_dir, dgx_dir):
         assert "Modification_Accuracy" in r
         assert "Neo4j_Syntactic_Validity" in r
         assert "Neo4j_Semantic_Validity" in r
+
+
+def test_walk_retrieval_llm_tiers_one_row_per_eval(skorge_dir, dgx_dir):
+    rows = edf.walk_retrieval_llm_tiers(skorge_dir, dgx_dir)
+    assert len(rows) == 414  # one row per (model, strategy, machine)
+    # Every row has the 4 tiers
+    for r in rows[:5]:
+        assert set(r["tiers"].keys()) == {"easy", "medium", "hard", "expert"}
+        for t in ("easy", "medium", "hard", "expert"):
+            assert "accuracy" in r["tiers"][t]
+            assert "se" in r["tiers"][t]
+            assert "correct" in r["tiers"][t]
+            assert "total" in r["tiers"][t]

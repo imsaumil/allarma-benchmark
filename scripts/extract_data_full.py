@@ -344,6 +344,60 @@ def walk_modifier_templates(skorge_dir: str, dgx_dir: str) -> list[dict]:
     return out
 
 
+def walk_retrieval_llm_tiers(skorge_dir: str, dgx_dir: str) -> list[dict]:
+    """Per-tier accuracy breakdown for each (model, strategy, machine)."""
+    out: list[dict] = []
+    for machine, root in (("skorge", skorge_dir), ("dgx_spark", dgx_dir)):
+        retriever_dir = os.path.join(root, "retriever")
+        for model_folder in sorted(os.listdir(retriever_dir)):
+            if model_folder not in _LLM_MODEL_FOLDERS:
+                continue
+            d = os.path.join(retriever_dir, model_folder)
+            for fn in sorted(os.listdir(d)):
+                if not fn.endswith(".eval"):
+                    continue
+                eval_path = os.path.join(d, fn)
+                with zipfile.ZipFile(eval_path) as zf:
+                    summaries = json.load(zf.open("summaries.json"))
+                h = read_eval_header(eval_path)
+                strategy = h["eval"]["task"]
+                model_name = h["eval"]["model"].split("/")[-1]
+
+                buckets: dict[str, dict] = defaultdict(lambda: {"correct": 0, "total": 0})
+                for s in summaries:
+                    # Skip samples with empty scores — matches InspectAI's own
+                    # aggregation (verified: header accuracy reproduces exactly
+                    # when these are excluded from the denominator).
+                    if not s.get("scores"):
+                        continue
+                    tier = s["metadata"].get("tier_name", "unknown")
+                    scorer_key = list(s["scores"].keys())[0]
+                    correct = s["scores"][scorer_key]["value"]
+                    buckets[tier]["total"] += 1
+                    buckets[tier]["correct"] += correct
+
+                tier_row = {
+                    "benchmark": "retriever-llm",
+                    "machine": machine,
+                    "model": model_name,
+                    "model_folder": model_folder,
+                    "strategy": strategy,
+                    "tiers": {},
+                }
+                for tname in ("easy", "medium", "hard", "expert"):
+                    b = buckets.get(tname, {"correct": 0, "total": 0})
+                    acc = b["correct"] / b["total"] if b["total"] else 0.0
+                    se = math.sqrt(acc * (1 - acc) / b["total"]) if b["total"] else 0.0
+                    tier_row["tiers"][tname] = {
+                        "accuracy": round(acc, 6),
+                        "se": round(se, 6),
+                        "correct": b["correct"],
+                        "total": b["total"],
+                    }
+                out.append(tier_row)
+    return out
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--skorge-dir", required=True, help="Path to APPLIED_ENERGY_WRITEUP/skorge")
