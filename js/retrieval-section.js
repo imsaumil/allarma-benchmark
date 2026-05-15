@@ -237,3 +237,152 @@ function exportRetCSV() {
       ];
   exportJSONToCSV(data, cols, `retrieval-${retState.subbench}.csv`);
 }
+
+function renderRetPareto(area) {
+  if (retState.subbench === 'allarma-baseline') {
+    area.innerHTML = '<p class="placeholder">Not applicable for Allarma baseline (no LLM tokens; cost axis is 0).</p>';
+    return;
+  }
+  area.innerHTML = '<div id="ret-pareto"></div>';
+  const data = getFilteredRetRows();
+  const groups = [...new Set(data.map(r => `${r.model}|${r.machine}`))];
+  const traces = groups.map(g => {
+    const [model, machine] = g.split('|');
+    const subset = data.filter(r => r.model === model && r.machine === machine);
+    return {
+      name: `${MODEL_DISPLAY[model] || model} (${MACHINE_DISPLAY[machine]})`,
+      type: 'scatter', mode: 'markers',
+      x: subset.map(r => r.metrics.avg_llm_token_usage),
+      y: subset.map(r => r.metrics.accuracy),
+      text: subset.map(r => r.strategy),
+      marker: { color: MODEL_COLORS[model] || '#999', size: 10,
+                symbol: machine === 'skorge' ? 'circle' : 'diamond' },
+      hovertemplate: '<b>%{text}</b><br>'+`${MODEL_DISPLAY[model] || model} · ${MACHINE_DISPLAY[machine]}`+'<br>Acc: %{y:.4f}<br>Tokens: %{x:.1f}<extra></extra>',
+    };
+  });
+  Plotly.react('ret-pareto', traces,
+    { xaxis: {title:'Avg Token Usage'}, yaxis:{title:'Accuracy'}, height: 450 },
+    { responsive: true });
+}
+
+function renderRetTier(area) {
+  if (retState.subbench === 'allarma-baseline') {
+    area.innerHTML = '<p class="placeholder">Tier view is not available for Allarma baseline (samples lack tier metadata).</p>';
+    return;
+  }
+  area.innerHTML = `
+    <div class="control-group">
+      <label>Strategy:</label>
+      <select id="ret-tier-strat"></select>
+    </div>
+    <div id="ret-tier"></div>
+  `;
+  const tiers = DASHBOARD_DATA.retrievalLlmTiers;
+  let pool = tiers;
+  if (retState.machine !== 'both') pool = pool.filter(r => r.machine === retState.machine);
+  if (retState.models !== 'all') {
+    const wanted = new Set(retState.models.split(','));
+    pool = pool.filter(r => wanted.has(r.model_folder));
+  }
+  const strats = [...new Set(pool.map(r => r.strategy))].sort();
+  const sel = document.getElementById('ret-tier-strat');
+  strats.forEach(s => { const o = document.createElement('option'); o.value=s; o.textContent=s; sel.appendChild(o); });
+  const draw = () => {
+    const strategy = sel.value;
+    const subset = pool.filter(r => r.strategy === strategy);
+    const tierNames = ['easy','medium','hard','expert'];
+    const tierLabels = ['T1 Easy','T2 Medium','T3 Hard','T4 Expert'];
+    const groups = [...new Set(subset.map(r => `${r.model}|${r.machine}`))];
+    const traces = groups.map(g => {
+      const [model, machine] = g.split('|');
+      const r = subset.find(x => x.model === model && x.machine === machine);
+      return {
+        name: `${MODEL_DISPLAY[model] || model} (${MACHINE_DISPLAY[machine]})`,
+        type: 'bar', x: tierLabels,
+        y: tierNames.map(t => r.tiers[t]?.accuracy ?? 0),
+        marker: { color: MODEL_COLORS[model] || '#999' },
+      };
+    });
+    Plotly.react('ret-tier', traces,
+      { barmode: 'group', yaxis:{title:'Accuracy', range:[0,1.05]}, height: 400 },
+      { responsive: true });
+  };
+  sel.addEventListener('change', draw); draw();
+}
+
+function renderRetCrossMachineDelta(area) {
+  area.innerHTML = `
+    <h4>Per-model summary</h4>
+    <table id="ret-delta-summary" class="display"></table>
+    <h4>Per-strategy detail</h4>
+    <table id="ret-delta-detail" class="display"></table>
+  `;
+  const deltas = DASHBOARD_DATA.crossMachineDeltas;
+  // Per-model: aggregate over each model's strategies
+  const byModel = {};
+  for (const d of deltas) {
+    const k = d.model_folder;
+    (byModel[k] = byModel[k] || []).push(d);
+  }
+  const summary = Object.entries(byModel).map(([model_folder, ds]) => {
+    const meanDelta = ds.reduce((a,d)=>a+d.delta_pp,0) / ds.length;
+    const maxAbs = Math.max(...ds.map(d=>Math.abs(d.delta_pp)));
+    return {
+      model: MODEL_DISPLAY[ds[0].model] || ds[0].model,
+      n_strategies: ds.length,
+      mean_delta_pp: meanDelta.toFixed(3),
+      max_abs_pp: maxAbs.toFixed(2),
+    };
+  });
+  new DataTable('#ret-delta-summary', {
+    data: summary,
+    columns: [
+      { title:'Model', data:'model' },
+      { title:'# strategies', data:'n_strategies' },
+      { title:'Mean Δ pp', data:'mean_delta_pp' },
+      { title:'Max |Δ| pp', data:'max_abs_pp' },
+    ],
+    pageLength: 10,
+  });
+  new DataTable('#ret-delta-detail', {
+    data: deltas,
+    columns: [
+      { title:'Model', data: r => MODEL_DISPLAY[r.model] || r.model },
+      { title:'Strategy', data:'strategy' },
+      { title:'SK acc', data: r => (r.sk_acc*100).toFixed(2)+'%' },
+      { title:'DGX acc', data: r => (r.dgx_acc*100).toFixed(2)+'%' },
+      { title:'Δ pp', data: r => `<span class="${Math.abs(r.delta_pp)>3 ? 'delta-bad' : ''}">${r.delta_pp.toFixed(2)}</span>` },
+      { title:'SK trunc', data:'sk_truncation_count' },
+      { title:'DGX trunc', data:'dgx_truncation_count' },
+    ],
+    pageLength: 25, order: [[4,'desc']],
+  });
+}
+
+function renderRetTruncation(area) {
+  if (retState.subbench === 'allarma-baseline') {
+    area.innerHTML = '<p class="placeholder">Allarma baseline has zero LLM calls, hence zero truncations.</p>';
+    return;
+  }
+  area.innerHTML = '<div id="ret-trunc"></div>';
+  const data = getFilteredRetRows();
+  const groups = [...new Set(data.map(r => `${r.model}|${r.machine}`))];
+  const strats = [...new Set(data.map(d => d.strategy))].sort();
+  const traces = groups.map(g => {
+    const [model, machine] = g.split('|');
+    const subset = data.filter(r => r.model === model && r.machine === machine);
+    return {
+      name: `${MODEL_DISPLAY[model] || model} (${MACHINE_DISPLAY[machine]})`,
+      type: 'bar', x: strats,
+      y: strats.map(s => {
+        const r = subset.find(x => x.strategy === s);
+        return r ? r.truncation_rate * 100 : 0;
+      }),
+      marker: { color: MODEL_COLORS[model] || '#999' },
+    };
+  });
+  Plotly.react('ret-trunc', traces,
+    { barmode:'group', xaxis:{title:'Strategy', tickangle:-45, automargin:true},
+      yaxis:{title:'Truncation %'}, height: 500, margin: { b: 150 } },
+    { responsive: true });
+}
