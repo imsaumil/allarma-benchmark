@@ -1,6 +1,7 @@
 """Tests for extract_data_full.py against actual .eval files."""
 import os
 import sys
+import statistics
 
 # Make scripts/ importable
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
@@ -94,3 +95,26 @@ def test_walk_retrieval_allarma_yields_116_rows(skorge_dir, dgx_dir):
     # 58 unique strategies on each machine
     sk_strats = {r["strategy"] for r in rows if r["machine"] == "skorge"}
     assert len(sk_strats) == 58
+
+
+def test_walk_modifier_yields_18_rows_with_three_scorers(skorge_dir, dgx_dir):
+    rows = edf.walk_modifier(skorge_dir, dgx_dir)
+    assert len(rows) == 18  # 9 models × 2 machines
+    expected_scorers = {"Modification_Accuracy", "Neo4j_Syntactic_Validity", "Neo4j_Semantic_Validity"}
+    for r in rows:
+        assert r["benchmark"] == "modifier"
+        assert set(r["metrics"].keys()) == expected_scorers
+        assert r["samples"] == 1024
+        assert r["max_tokens"] == 16384
+
+
+def test_walk_modifier_templates_per_template_breakdown(skorge_dir, dgx_dir):
+    """qwen3.5-0.8b modifier on skorge: ~63 templates × 1 model × 1 machine."""
+    rows = edf.walk_modifier_templates(skorge_dir, dgx_dir)
+    qwen_sk = [r for r in rows if r["machine"] == "skorge" and r["model_folder"] == "qwen3.5-0.8b"]
+    assert len(qwen_sk) > 0
+    # Each row has the 3 modifier scorers
+    for r in qwen_sk[:3]:
+        assert "Modification_Accuracy" in r
+        assert "Neo4j_Syntactic_Validity" in r
+        assert "Neo4j_Semantic_Validity" in r

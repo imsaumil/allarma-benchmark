@@ -18,6 +18,8 @@ import os
 import zipfile
 import math
 from datetime import datetime
+import statistics
+from collections import defaultdict
 
 
 def read_eval_header(eval_path: str) -> dict:
@@ -186,6 +188,160 @@ def walk_retrieval_allarma(skorge_dir: str, dgx_dir: str) -> list[dict]:
                     os.path.join(allarma_dir, fn), machine=machine,
                 ))
     return rows
+
+
+def _modifier_aggregate_metrics(header: dict) -> dict:
+    """Pull the 3 named modifier scorers from header['results']['scores']."""
+    out = {}
+    for sg in header["results"]["scores"]:
+        name = sg["name"]
+        m = sg["metrics"]
+        if "mean" in m:
+            out[name] = {"value": round(m["mean"]["value"], 4), "se": round(m["stderr"]["value"], 4)}
+        elif "accuracy" in m:
+            out[name] = {"value": round(m["accuracy"]["value"], 4), "se": round(m["stderr"]["value"], 4)}
+    return out
+
+
+def extract_modifier_row(eval_path: str, *, machine: str, model_folder: str) -> dict:
+    h = read_eval_header(eval_path)
+    eval_info = h["eval"]
+    stats = h["stats"]
+    started = datetime.fromisoformat(stats["started_at"])
+    completed = datetime.fromisoformat(stats["completed_at"])
+    total_runtime_s = (completed - started).total_seconds()
+
+    # walk samples for per-sample timing/tokens/scores
+    times: list[float] = []
+    input_toks: list[int] = []
+    output_toks: list[int] = []
+    total_toks: list[int] = []
+    presence_scores: list[float] = []
+    removal_scores: list[float] = []
+    with zipfile.ZipFile(eval_path) as zf:
+        with zf.open("summaries.json") as f:
+            summaries = json.load(f)
+        for s in summaries:
+            times.append(s["total_time"])
+            # A handful of samples (timeouts at 600s) record an empty model_usage
+            # dict. Keep timing/score data but skip token accounting for those.
+            mu = s.get("model_usage") or {}
+            if mu:
+                usage = list(mu.values())[0]
+                input_toks.append(usage["input_tokens"])
+                output_toks.append(usage["output_tokens"])
+                total_toks.append(usage["total_tokens"])
+            meta = s["scores"]["modifier_scorer"]["metadata"]
+            presence_scores.append(meta["presence_score"])
+            removal_scores.append(meta["removal_score"])
+
+    n = len(times)
+    n_tok = len(input_toks)
+    # Pair throughputs only with samples that have both timing and token usage.
+    paired_times = [t for s, t in zip(summaries, times) if s.get("model_usage")]
+    throughputs = [o / t for o, t in zip(output_toks, paired_times) if t > 0]
+    mt = (eval_info.get("model_generate_config") or {}).get("max_tokens")
+
+    return {
+        "benchmark": "modifier",
+        "machine": machine,
+        "model": eval_info["model"].split("/")[-1],
+        "model_folder": model_folder,
+        "eval_file": os.path.basename(eval_path),
+        "strategy": eval_info["task"],
+        "samples": n,
+        "metrics": _modifier_aggregate_metrics(h),
+        "presence_score": round(sum(presence_scores) / n, 4) if n else 0.0,
+        "removal_score": round(sum(removal_scores) / n, 4) if n else 0.0,
+        "timing": {
+            "median": round(statistics.median(times), 2) if times else 0.0,
+            "mean": round(sum(times) / n, 2) if n else 0.0,
+            "max": round(max(times), 2) if times else 0.0,
+        },
+        "tokens": {
+            "avg_input": round(sum(input_toks) / n_tok) if n_tok else 0,
+            "avg_output": round(sum(output_toks) / n_tok) if n_tok else 0,
+            "avg_total": round(sum(total_toks) / n_tok) if n_tok else 0,
+            "total_input": sum(input_toks),
+            "total_output": sum(output_toks),
+        },
+        "throughput": round(sum(throughputs) / len(throughputs)) if throughputs else 0,
+        "total_runtime": round(total_runtime_s, 1),
+        "max_tokens": mt,
+        "truncation_count": truncation_count_for_eval(eval_path),
+        "truncation_rate": 0.0,  # filled below
+    }
+
+
+def walk_modifier(skorge_dir: str, dgx_dir: str) -> list[dict]:
+    rows: list[dict] = []
+    for machine, root in (("skorge", skorge_dir), ("dgx_spark", dgx_dir)):
+        mod_dir = os.path.join(root, "modifier")
+        for model_folder in sorted(os.listdir(mod_dir)):
+            if model_folder not in _LLM_MODEL_FOLDERS:
+                continue
+            d = os.path.join(mod_dir, model_folder)
+            for fn in sorted(os.listdir(d)):
+                if fn.endswith(".eval"):
+                    row = extract_modifier_row(
+                        os.path.join(d, fn), machine=machine, model_folder=model_folder,
+                    )
+                    n = row["samples"]
+                    row["truncation_rate"] = round(row["truncation_count"] / n, 6) if n else 0.0
+                    rows.append(row)
+    return rows
+
+
+def walk_modifier_templates(skorge_dir: str, dgx_dir: str) -> list[dict]:
+    """Per-template aggregate scores for the heatmap."""
+    out: list[dict] = []
+    for machine, root in (("skorge", skorge_dir), ("dgx_spark", dgx_dir)):
+        mod_dir = os.path.join(root, "modifier")
+        for model_folder in sorted(os.listdir(mod_dir)):
+            if model_folder not in _LLM_MODEL_FOLDERS:
+                continue
+            d = os.path.join(mod_dir, model_folder)
+            for fn in sorted(os.listdir(d)):
+                if not fn.endswith(".eval"):
+                    continue
+                eval_path = os.path.join(d, fn)
+                with zipfile.ZipFile(eval_path) as zf:
+                    summaries = json.load(zf.open("summaries.json"))
+                model_name = read_eval_header(eval_path)["eval"]["model"].split("/")[-1]
+                buckets: dict[str, dict] = defaultdict(
+                    lambda: {"Modification_Accuracy": [], "Neo4j_Syntactic_Validity": [],
+                             "Neo4j_Semantic_Validity": [], "count": 0}
+                )
+                for s in summaries:
+                    tid = s["metadata"]["template_id"]
+                    sc = s["scores"]["modifier_scorer"]["value"]
+                    buckets[tid]["Modification_Accuracy"].append(sc["Modification_Accuracy"])
+                    buckets[tid]["Neo4j_Syntactic_Validity"].append(sc["Neo4j_Syntactic_Validity"])
+                    buckets[tid]["Neo4j_Semantic_Validity"].append(sc["Neo4j_Semantic_Validity"])
+                    buckets[tid]["count"] += 1
+                for tid in sorted(buckets.keys()):
+                    b = buckets[tid]
+                    n = b["count"]
+                    row = {
+                        "benchmark": "modifier",
+                        "machine": machine,
+                        "model": model_name,
+                        "model_folder": model_folder,
+                        "template_id": tid,
+                        "count": n,
+                    }
+                    for metric in ("Modification_Accuracy", "Neo4j_Syntactic_Validity", "Neo4j_Semantic_Validity"):
+                        vals = b[metric]
+                        mean_val = sum(vals) / n
+                        if metric == "Modification_Accuracy" and n > 1:
+                            variance = sum((v - mean_val) ** 2 for v in vals) / (n - 1)
+                            se_val = math.sqrt(variance / n)
+                        else:
+                            se_val = math.sqrt(mean_val * (1 - mean_val) / n) if n > 0 else 0.0
+                        row[metric] = round(mean_val, 4)
+                        row[f"{metric}_se"] = round(se_val, 4)
+                    out.append(row)
+    return out
 
 
 def main() -> None:
