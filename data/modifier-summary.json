@@ -1,0 +1,758 @@
+[
+  {
+    "benchmark": "modifier",
+    "machine": "skorge",
+    "model": "gemma-4-E2B-it",
+    "model_folder": "gemma-4-e2b-it",
+    "eval_file": "2026-04-19T15-19-11+00-00_modifier-benchmark-task_YBtJsab8eLNsfZHsaW4uQN.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.7142,
+        "se": 0.0075
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.8887,
+        "se": 0.0098
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.6074,
+        "se": 0.0153
+      }
+    },
+    "presence_score": 0.8498,
+    "removal_score": 0.585,
+    "timing": {
+      "median": 6.07,
+      "mean": 9.65,
+      "max": 41.06
+    },
+    "tokens": {
+      "avg_input": 8190,
+      "avg_output": 1274,
+      "avg_total": 9464,
+      "total_input": 8386608,
+      "total_output": 1304538
+    },
+    "throughput": 131,
+    "total_runtime": 9942.0,
+    "max_tokens": 16384,
+    "truncation_count": 0,
+    "truncation_rate": 0.0
+  },
+  {
+    "benchmark": "modifier",
+    "machine": "skorge",
+    "model": "gpt-oss-20b",
+    "model_folder": "gpt-oss-20b",
+    "eval_file": "2026-04-04T03-28-53+00-00_modifier-benchmark-task_V6cqKXBFFLVQDAdsNRoUXL.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.9594,
+        "se": 0.0032
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.9541,
+        "se": 0.0065
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.8984,
+        "se": 0.0094
+      }
+    },
+    "presence_score": 0.9681,
+    "removal_score": 0.9517,
+    "timing": {
+      "median": 4.59,
+      "mean": 6.86,
+      "max": 35.37
+    },
+    "tokens": {
+      "avg_input": 7740,
+      "avg_output": 1108,
+      "avg_total": 8848,
+      "total_input": 7925906,
+      "total_output": 1134425
+    },
+    "throughput": 158,
+    "total_runtime": 7082.0,
+    "max_tokens": 16384,
+    "truncation_count": 0,
+    "truncation_rate": 0.0
+  },
+  {
+    "benchmark": "modifier",
+    "machine": "skorge",
+    "model": "Ministral-3-14B-Instruct-2512",
+    "model_folder": "ministral-3-14b",
+    "eval_file": "2026-04-05T13-57-22+00-00_modifier-benchmark-task_WFFpkztBGDb4MuHWDz2Tod.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.9363,
+        "se": 0.0041
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.9238,
+        "se": 0.0083
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.8164,
+        "se": 0.0121
+      }
+    },
+    "presence_score": 0.9474,
+    "removal_score": 0.9353,
+    "timing": {
+      "median": 13.45,
+      "mean": 19.61,
+      "max": 88.89
+    },
+    "tokens": {
+      "avg_input": 8352,
+      "avg_output": 917,
+      "avg_total": 9270,
+      "total_input": 8552873,
+      "total_output": 939183
+    },
+    "throughput": 46,
+    "total_runtime": 20138.0,
+    "max_tokens": 16384,
+    "truncation_count": 0,
+    "truncation_rate": 0.0
+  },
+  {
+    "benchmark": "modifier",
+    "machine": "skorge",
+    "model": "Ministral-3-3B-Instruct-2512",
+    "model_folder": "ministral-3-3b",
+    "eval_file": "2026-04-05T22-49-48+00-00_modifier-benchmark-task_RpapNLQS4ippYjabGt7Yq8.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.8257,
+        "se": 0.0063
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.8477,
+        "se": 0.0112
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.6523,
+        "se": 0.0149
+      }
+    },
+    "presence_score": 0.8934,
+    "removal_score": 0.7696,
+    "timing": {
+      "median": 4.98,
+      "mean": 7.07,
+      "max": 37.82
+    },
+    "tokens": {
+      "avg_input": 8352,
+      "avg_output": 912,
+      "avg_total": 9264,
+      "total_input": 8552873,
+      "total_output": 933833
+    },
+    "throughput": 129,
+    "total_runtime": 7298.0,
+    "max_tokens": 16384,
+    "truncation_count": 0,
+    "truncation_rate": 0.0
+  },
+  {
+    "benchmark": "modifier",
+    "machine": "skorge",
+    "model": "Ministral-3-8B-Instruct-2512",
+    "model_folder": "ministral-3-8b",
+    "eval_file": "2026-04-03T11-31-15+00-00_modifier-benchmark-task_Kp6pVHobMXmpWyvfLV9b3W.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.9187,
+        "se": 0.0049
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.8799,
+        "se": 0.0102
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.7383,
+        "se": 0.0137
+      }
+    },
+    "presence_score": 0.9134,
+    "removal_score": 0.9421,
+    "timing": {
+      "median": 10.38,
+      "mean": 13.6,
+      "max": 75.03
+    },
+    "tokens": {
+      "avg_input": 8352,
+      "avg_output": 957,
+      "avg_total": 9309,
+      "total_input": 8552873,
+      "total_output": 979869
+    },
+    "throughput": 70,
+    "total_runtime": 13985.0,
+    "max_tokens": 16384,
+    "truncation_count": 0,
+    "truncation_rate": 0.0
+  },
+  {
+    "benchmark": "modifier",
+    "machine": "skorge",
+    "model": "NVIDIA-Nemotron-Nano-12B-v2",
+    "model_folder": "nemotron-nano-12b-v2",
+    "eval_file": "2026-04-03T16-11-18+00-00_modifier-benchmark-task_7PHwYqgVrjdGvqQhqLZYfX.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.9404,
+        "se": 0.0038
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.8955,
+        "se": 0.0096
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.8115,
+        "se": 0.0122
+      }
+    },
+    "presence_score": 0.9656,
+    "removal_score": 0.9175,
+    "timing": {
+      "median": 18.81,
+      "mean": 25.42,
+      "max": 287.86
+    },
+    "tokens": {
+      "avg_input": 8358,
+      "avg_output": 1418,
+      "avg_total": 9776,
+      "total_input": 8559017,
+      "total_output": 1451745
+    },
+    "throughput": 55,
+    "total_runtime": 26087.0,
+    "max_tokens": 16384,
+    "truncation_count": 4,
+    "truncation_rate": 0.003906
+  },
+  {
+    "benchmark": "modifier",
+    "machine": "skorge",
+    "model": "NVIDIA-Nemotron-Nano-9B-v2",
+    "model_folder": "nemotron-nano-9b-v2",
+    "eval_file": "2026-04-06T13-44-18+00-00_modifier-benchmark-task_SPxMLK2b2XNWGdUwwQFU3U.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.9258,
+        "se": 0.0043
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.8281,
+        "se": 0.0118
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.7363,
+        "se": 0.0138
+      }
+    },
+    "presence_score": 0.9384,
+    "removal_score": 0.917,
+    "timing": {
+      "median": 20.69,
+      "mean": 26.01,
+      "max": 209.28
+    },
+    "tokens": {
+      "avg_input": 8358,
+      "avg_output": 2012,
+      "avg_total": 10370,
+      "total_input": 8559017,
+      "total_output": 2059952
+    },
+    "throughput": 77,
+    "total_runtime": 26696.0,
+    "max_tokens": 16384,
+    "truncation_count": 13,
+    "truncation_rate": 0.012695
+  },
+  {
+    "benchmark": "modifier",
+    "machine": "skorge",
+    "model": "Qwen3.5-0.8B",
+    "model_folder": "qwen3.5-0.8b",
+    "eval_file": "2026-04-03T06-50-28+00-00_modifier-benchmark-task_Za5WaLosEZGf57UhtTQfWN.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.4163,
+        "se": 0.0074
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.7012,
+        "se": 0.0143
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.6465,
+        "se": 0.0149
+      }
+    },
+    "presence_score": 0.5448,
+    "removal_score": 0.292,
+    "timing": {
+      "median": 5.0,
+      "mean": 13.45,
+      "max": 44.68
+    },
+    "tokens": {
+      "avg_input": 7921,
+      "avg_output": 5013,
+      "avg_total": 12934,
+      "total_input": 8111265,
+      "total_output": 5132856
+    },
+    "throughput": 370,
+    "total_runtime": 13830.0,
+    "max_tokens": 16384,
+    "truncation_count": 223,
+    "truncation_rate": 0.217773
+  },
+  {
+    "benchmark": "modifier",
+    "machine": "skorge",
+    "model": "Qwen3.5-2B",
+    "model_folder": "qwen3.5-2b",
+    "eval_file": "2026-04-05T02-29-24+00-00_modifier-benchmark-task_2iyrpKqZGJRvEEgjaGbjN6.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.4692,
+        "se": 0.0076
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.9531,
+        "se": 0.0066
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.833,
+        "se": 0.0117
+      }
+    },
+    "presence_score": 0.7343,
+    "removal_score": 0.2109,
+    "timing": {
+      "median": 9.16,
+      "mean": 9.73,
+      "max": 26.04
+    },
+    "tokens": {
+      "avg_input": 7921,
+      "avg_output": 1881,
+      "avg_total": 9802,
+      "total_input": 8111265,
+      "total_output": 1925864
+    },
+    "throughput": 193,
+    "total_runtime": 10019.0,
+    "max_tokens": 16384,
+    "truncation_count": 0,
+    "truncation_rate": 0.0
+  },
+  {
+    "benchmark": "modifier",
+    "machine": "dgx_spark",
+    "model": "gemma-4-E2B-it",
+    "model_folder": "gemma-4-e2b-it",
+    "eval_file": "2026-04-29T05-33-18+00-00_modifier-benchmark-task_ELAuTDhjZUhhWbUtzr89rt.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.7114,
+        "se": 0.0075
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.8877,
+        "se": 0.0099
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.6045,
+        "se": 0.0153
+      }
+    },
+    "presence_score": 0.8471,
+    "removal_score": 0.5835,
+    "timing": {
+      "median": 23.09,
+      "mean": 35.79,
+      "max": 152.57
+    },
+    "tokens": {
+      "avg_input": 8190,
+      "avg_output": 1275,
+      "avg_total": 9465,
+      "total_input": 8386608,
+      "total_output": 1305810
+    },
+    "throughput": 35,
+    "total_runtime": 36702.0,
+    "max_tokens": 16384,
+    "truncation_count": 0,
+    "truncation_rate": 0.0
+  },
+  {
+    "benchmark": "modifier",
+    "machine": "dgx_spark",
+    "model": "gpt-oss-20b",
+    "model_folder": "gpt-oss-20b",
+    "eval_file": "2026-04-15T04-16-35+00-00_modifier-benchmark-task_jCwHEmgH9UYJgJpgqr76aq.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.9622,
+        "se": 0.0031
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.959,
+        "se": 0.0062
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.9072,
+        "se": 0.0091
+      }
+    },
+    "presence_score": 0.9706,
+    "removal_score": 0.9549,
+    "timing": {
+      "median": 18.11,
+      "mean": 27.87,
+      "max": 131.92
+    },
+    "tokens": {
+      "avg_input": 7742,
+      "avg_output": 1121,
+      "avg_total": 8863,
+      "total_input": 7927954,
+      "total_output": 1147472
+    },
+    "throughput": 40,
+    "total_runtime": 28588.0,
+    "max_tokens": 16384,
+    "truncation_count": 0,
+    "truncation_rate": 0.0
+  },
+  {
+    "benchmark": "modifier",
+    "machine": "dgx_spark",
+    "model": "Ministral-3-14B-Instruct-2512",
+    "model_folder": "ministral-3-14b",
+    "eval_file": "2026-04-13T16-15-00+00-00_modifier-benchmark-task_YUg4LhRDCcgoUuKBBrXGQL.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.939,
+        "se": 0.004
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.9189,
+        "se": 0.0085
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.8018,
+        "se": 0.0125
+      }
+    },
+    "presence_score": 0.9503,
+    "removal_score": 0.9374,
+    "timing": {
+      "median": 46.45,
+      "mean": 67.49,
+      "max": 319.35
+    },
+    "tokens": {
+      "avg_input": 8352,
+      "avg_output": 934,
+      "avg_total": 9286,
+      "total_input": 8552873,
+      "total_output": 956451
+    },
+    "throughput": 14,
+    "total_runtime": 69175.0,
+    "max_tokens": 16384,
+    "truncation_count": 0,
+    "truncation_rate": 0.0
+  },
+  {
+    "benchmark": "modifier",
+    "machine": "dgx_spark",
+    "model": "Ministral-3-3B-Instruct-2512",
+    "model_folder": "ministral-3-3b",
+    "eval_file": "2026-04-16T13-54-38+00-00_modifier-benchmark-task_Wi3VzNWwCJMzjTqwTBgbnP.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.8254,
+        "se": 0.0065
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.8428,
+        "se": 0.0114
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.6504,
+        "se": 0.0149
+      }
+    },
+    "presence_score": 0.8903,
+    "removal_score": 0.7735,
+    "timing": {
+      "median": 15.46,
+      "mean": 22.12,
+      "max": 99.47
+    },
+    "tokens": {
+      "avg_input": 8352,
+      "avg_output": 910,
+      "avg_total": 9263,
+      "total_input": 8552873,
+      "total_output": 931932
+    },
+    "throughput": 42,
+    "total_runtime": 22707.0,
+    "max_tokens": 16384,
+    "truncation_count": 0,
+    "truncation_rate": 0.0
+  },
+  {
+    "benchmark": "modifier",
+    "machine": "dgx_spark",
+    "model": "Ministral-3-8B-Instruct-2512",
+    "model_folder": "ministral-3-8b",
+    "eval_file": "2026-04-15T17-18-40+00-00_modifier-benchmark-task_cGH2xTtCEiHZFmmMgUxSCC.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.9139,
+        "se": 0.0049
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.8828,
+        "se": 0.0101
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.7402,
+        "se": 0.0137
+      }
+    },
+    "presence_score": 0.9096,
+    "removal_score": 0.9346,
+    "timing": {
+      "median": 41.68,
+      "mean": 47.9,
+      "max": 257.84
+    },
+    "tokens": {
+      "avg_input": 8352,
+      "avg_output": 1005,
+      "avg_total": 9357,
+      "total_input": 8552873,
+      "total_output": 1029129
+    },
+    "throughput": 21,
+    "total_runtime": 49110.0,
+    "max_tokens": 16384,
+    "truncation_count": 0,
+    "truncation_rate": 0.0
+  },
+  {
+    "benchmark": "modifier",
+    "machine": "dgx_spark",
+    "model": "NVIDIA-Nemotron-Nano-12B-v2",
+    "model_folder": "nemotron-nano-12b-v2",
+    "eval_file": "2026-04-20T19-10-17+00-00_modifier-benchmark-task_2bzHMAjbGhwhQ3nTeh8t52.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.9331,
+        "se": 0.0041
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.8691,
+        "se": 0.0105
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.7959,
+        "se": 0.0126
+      }
+    },
+    "presence_score": 0.9529,
+    "removal_score": 0.9159,
+    "timing": {
+      "median": 70.68,
+      "mean": 89.86,
+      "max": 350.84
+    },
+    "tokens": {
+      "avg_input": 8358,
+      "avg_output": 1404,
+      "avg_total": 9762,
+      "total_input": 8559017,
+      "total_output": 1437656
+    },
+    "throughput": 16,
+    "total_runtime": 92074.0,
+    "max_tokens": 16384,
+    "truncation_count": 0,
+    "truncation_rate": 0.0
+  },
+  {
+    "benchmark": "modifier",
+    "machine": "dgx_spark",
+    "model": "NVIDIA-Nemotron-Nano-9B-v2",
+    "model_folder": "nemotron-nano-9b-v2",
+    "eval_file": "2026-05-04T03-48-56+00-00_modifier-benchmark-task_6Yxz7TasnNgyegyXnZ3Y4g.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.9371,
+        "se": 0.0039
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.8594,
+        "se": 0.0109
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.7627,
+        "se": 0.0133
+      }
+    },
+    "presence_score": 0.9507,
+    "removal_score": 0.9277,
+    "timing": {
+      "median": 113.97,
+      "mean": 134.75,
+      "max": 600.02
+    },
+    "tokens": {
+      "avg_input": 8358,
+      "avg_output": 1846,
+      "avg_total": 10204,
+      "total_input": 8525237,
+      "total_output": 1882858
+    },
+    "throughput": 14,
+    "total_runtime": 138049.0,
+    "max_tokens": 16384,
+    "truncation_count": 0,
+    "truncation_rate": 0.0
+  },
+  {
+    "benchmark": "modifier",
+    "machine": "dgx_spark",
+    "model": "Qwen3.5-0.8B",
+    "model_folder": "qwen3.5-0.8b",
+    "eval_file": "2026-04-27T18-20-07+00-00_modifier-benchmark-task_LRhLQuKVBhfYQCM7rVYjeM.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.4154,
+        "se": 0.0074
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.6943,
+        "se": 0.0144
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.6396,
+        "se": 0.015
+      }
+    },
+    "presence_score": 0.5432,
+    "removal_score": 0.29,
+    "timing": {
+      "median": 17.82,
+      "mean": 48.67,
+      "max": 162.98
+    },
+    "tokens": {
+      "avg_input": 7921,
+      "avg_output": 5005,
+      "avg_total": 12926,
+      "total_input": 8111265,
+      "total_output": 5125416
+    },
+    "throughput": 104,
+    "total_runtime": 49895.0,
+    "max_tokens": 16384,
+    "truncation_count": 223,
+    "truncation_rate": 0.217773
+  },
+  {
+    "benchmark": "modifier",
+    "machine": "dgx_spark",
+    "model": "Qwen3.5-2B",
+    "model_folder": "qwen3.5-2b",
+    "eval_file": "2026-04-28T15-09-41+00-00_modifier-benchmark-task_caur8NNCJc3Kd6CBDdPsVF.eval",
+    "strategy": "modifier_benchmark_task",
+    "samples": 1024,
+    "metrics": {
+      "Modification_Accuracy": {
+        "value": 0.4676,
+        "se": 0.0076
+      },
+      "Neo4j_Syntactic_Validity": {
+        "value": 0.9512,
+        "se": 0.0067
+      },
+      "Neo4j_Semantic_Validity": {
+        "value": 0.834,
+        "se": 0.0116
+      }
+    },
+    "presence_score": 0.7321,
+    "removal_score": 0.21,
+    "timing": {
+      "median": 39.97,
+      "mean": 44.4,
+      "max": 120.42
+    },
+    "tokens": {
+      "avg_input": 7921,
+      "avg_output": 1879,
+      "avg_total": 9801,
+      "total_input": 8111265,
+      "total_output": 1924523
+    },
+    "throughput": 42,
+    "total_runtime": 45521.0,
+    "max_tokens": 16384,
+    "truncation_count": 0,
+    "truncation_rate": 0.0
+  }
+]

@@ -451,18 +451,47 @@ def compute_cross_machine_deltas(llm_rows: list[dict]) -> list[dict]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--skorge-dir", required=True, help="Path to APPLIED_ENERGY_WRITEUP/skorge")
-    parser.add_argument("--dgx-dir", required=True, help="Path to APPLIED_ENERGY_WRITEUP/dgx_spark")
-    parser.add_argument(
-        "--unbounded-variant",
-        required=True,
-        help="Path to the CIGRE-March unbounded-tokens .eval file for gpt-oss-20b/llm_direct_match_all",
-    )
-    parser.add_argument("--output-dir", required=True, help="Path to output data/ directory")
+    parser.add_argument("--skorge-dir", required=True)
+    parser.add_argument("--dgx-dir", required=True)
+    parser.add_argument("--unbounded-variant", required=True)
+    parser.add_argument("--output-dir", required=True)
     args = parser.parse_args()
 
     os.makedirs(args.output_dir, exist_ok=True)
-    print("extract_data_full.py CLI scaffold OK — extraction logic to follow.")
+
+    print("Extracting retrieval-LLM (414 + 1 unbounded variant rows)...")
+    llm_rows = walk_retrieval_llm(args.skorge_dir, args.dgx_dir)
+    llm_rows.append(extract_unbounded_variant_row(args.unbounded_variant))
+    _write_json(args.output_dir, "retrieval-llm-summary.json", llm_rows)
+
+    print("Extracting retrieval-Allarma (116 rows)...")
+    allarma_rows = walk_retrieval_allarma(args.skorge_dir, args.dgx_dir)
+    _write_json(args.output_dir, "retrieval-allarma-summary.json", allarma_rows)
+
+    print("Extracting retrieval-LLM tiers (414 rows)...")
+    tier_rows = walk_retrieval_llm_tiers(args.skorge_dir, args.dgx_dir)
+    _write_json(args.output_dir, "retrieval-llm-tiers.json", tier_rows)
+
+    print("Extracting modifier (18 rows)...")
+    mod_rows = walk_modifier(args.skorge_dir, args.dgx_dir)
+    _write_json(args.output_dir, "modifier-summary.json", mod_rows)
+
+    print("Extracting modifier templates (per-template heatmap rows)...")
+    tpl_rows = walk_modifier_templates(args.skorge_dir, args.dgx_dir)
+    _write_json(args.output_dir, "modifier-templates.json", tpl_rows)
+
+    print("Computing cross-machine deltas (207 retrieval-LLM pairs)...")
+    deltas = compute_cross_machine_deltas(llm_rows)
+    _write_json(args.output_dir, "cross-machine-deltas.json", deltas)
+
+    print("Done.")
+
+
+def _write_json(out_dir: str, name: str, payload) -> None:
+    path = os.path.join(out_dir, name)
+    with open(path, "w") as f:
+        json.dump(payload, f, indent=2)
+    print(f"  → {len(payload)} rows in {path}")
 
 
 if __name__ == "__main__":

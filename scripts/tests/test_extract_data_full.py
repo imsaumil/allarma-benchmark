@@ -1,4 +1,5 @@
 """Tests for extract_data_full.py against actual .eval files."""
+import json
 import os
 import sys
 import statistics
@@ -154,3 +155,26 @@ def test_cross_machine_deltas_reproduce_audit_anomaly_1(skorge_dir, dgx_dir):
                   if d["model_folder"] == "gpt-oss-20b" and d["strategy"] == "llm_direct_match_all")
     delta_pp = (target["dgx_acc"] - target["sk_acc"]) * 100
     assert 9.5 < delta_pp < 10.0, f"audit says +9.80 pp; got {delta_pp:.2f}"
+
+
+def test_main_e2e_writes_six_json_files_with_expected_counts(tmp_path, skorge_dir, dgx_dir, unbounded_variant):
+    import subprocess, sys
+    out = str(tmp_path)
+    result = subprocess.run([
+        sys.executable, "extract_data_full.py",
+        "--skorge-dir", skorge_dir,
+        "--dgx-dir", dgx_dir,
+        "--unbounded-variant", unbounded_variant,
+        "--output-dir", out,
+    ], cwd=os.path.dirname(__file__) + "/..", check=True, capture_output=True, text=True)
+    assert "Done." in result.stdout
+    counts = {fn: len(json.load(open(os.path.join(out, fn)))) for fn in (
+        "retrieval-llm-summary.json", "retrieval-allarma-summary.json",
+        "retrieval-llm-tiers.json", "modifier-summary.json",
+        "modifier-templates.json", "cross-machine-deltas.json",
+    )}
+    assert counts["retrieval-llm-summary.json"] == 415
+    assert counts["retrieval-allarma-summary.json"] == 116
+    assert counts["retrieval-llm-tiers.json"] == 414
+    assert counts["modifier-summary.json"] == 18
+    assert counts["cross-machine-deltas.json"] == 207
