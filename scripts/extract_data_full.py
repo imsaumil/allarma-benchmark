@@ -16,6 +16,8 @@ import argparse
 import json
 import os
 import zipfile
+import math
+from datetime import datetime
 
 
 def read_eval_header(eval_path: str) -> dict:
@@ -52,6 +54,50 @@ def truncation_count_for_eval(eval_path: str) -> int:
                     n_trunc += 1
                     break  # one truncation per sample
     return n_trunc
+
+
+def extract_retrieval_llm_row(eval_path: str, *, machine: str, model_folder: str) -> dict:
+    """Extract one row of retrieval-LLM data from a single .eval file."""
+    h = read_eval_header(eval_path)
+    eval_info = h["eval"]
+    stats = h["stats"]
+    scores_block = h["results"]["scores"][0]
+    metrics = scores_block["metrics"]
+
+    n_samples = eval_info["dataset"]["samples"]
+    accuracy = metrics["accuracy"]["value"]
+    se = math.sqrt(accuracy * (1 - accuracy) / n_samples) if n_samples > 0 else 0.0
+
+    started = datetime.fromisoformat(stats["started_at"])
+    completed = datetime.fromisoformat(stats["completed_at"])
+    total_runtime_s = (completed - started).total_seconds()
+
+    mt = (eval_info.get("model_generate_config") or {}).get("max_tokens")
+
+    row = {
+        "benchmark": "retriever-llm",
+        "machine": machine,
+        "model": eval_info["model"].split("/")[-1],
+        "model_folder": model_folder,
+        "eval_file": os.path.basename(eval_path),
+        "strategy": eval_info["task"],
+        "samples": n_samples,
+        "metrics": {
+            "accuracy": round(accuracy, 6),
+            "accuracy_se": round(se, 6),
+            "accuracy_in_scope": round(metrics.get("accuracy_in_scope", {}).get("value", 0.0), 6),
+            "accuracy_oos": round(metrics.get("accuracy_oos", {}).get("value", 0.0), 6),
+            "avg_llm_call_count": round(metrics.get("avg_llm_call_count", {}).get("value", 0.0), 4),
+            "avg_llm_token_usage": round(metrics.get("avg_llm_token_usage", {}).get("value", 0.0), 2),
+        },
+        "total_runtime": round(total_runtime_s, 1),
+        "avg_time_per_sample": round(total_runtime_s / n_samples, 4) if n_samples > 0 else 0.0,
+        "max_tokens": mt,
+        "truncation_count": truncation_count_for_eval(eval_path),
+        "truncation_rate": 0.0,  # filled below
+    }
+    row["truncation_rate"] = round(row["truncation_count"] / n_samples, 6) if n_samples > 0 else 0.0
+    return row
 
 
 def main() -> None:
