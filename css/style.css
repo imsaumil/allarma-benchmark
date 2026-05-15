@@ -124,3 +124,12 @@ table tr.search-highlight {
 .anomaly-summary-list { font-size: 0.85rem; line-height: 1.6; }
 .anomaly-jump { color: #1976d2; text-decoration: none; }
 .anomaly-jump:hover { text-decoration: underline; }
+
+.anomaly-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; margin: 1rem 0; }
+.anomaly-card { background: #fff8e1; border: 1px solid #ffcc80; border-radius: 6px; padding: 1rem; scroll-margin-top: 80px; }
+.anomaly-card-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+.anomaly-delta.delta-bad { color: #d32f2f; font-weight: 700; }
+.anomaly-card-body { font-family: ui-monospace, monospace; font-size: 0.9rem; }
+.anomaly-card-mechanism { font-size: 0.85rem; color: #555; margin-top: 0.5rem; line-height: 1.4; }
+.anomaly-card-actions { margin-top: 0.5rem; }
+.anomaly-card-actions a { margin-right: 0.5rem; color: #1976d2; font-size: 0.85rem; }

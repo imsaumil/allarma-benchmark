@@ -386,3 +386,59 @@ function renderRetTruncation(area) {
       yaxis:{title:'Truncation %'}, height: 500, margin: { b: 150 } },
     { responsive: true });
 }
+
+const RET_ANOMALIES = [
+  { id: 'anomaly-1', model_folder: 'gpt-oss-20b', strategy: 'llm_direct_match_all',
+    delta_pp: 9.80, mechanism: 'Audit §3.3: max_tokens=8192 on SKORGE truncated 1137/9789 samples; DGX max_tokens=None completed full outputs.' },
+  { id: 'anomaly-2', model_folder: 'qwen3.5-0.8b', strategy: 'rrf_llm_rerank_k15_all',
+    delta_pp: 12.38, mechanism: 'Audit §3.3: not max_tokens (both used 8192, zero truncation). Different commit per side; warrants follow-up.' },
+  { id: 'anomaly-3', model_folder: 'qwen3.5-2b', strategy: 'rrf_llm_rerank_k15_all',
+    delta_pp: 8.43, mechanism: 'Audit §3.3: same setup as anomaly-2; sibling at smaller k (k=3,5,7,10) shows max |Δ| 0.46 pp.' },
+  { id: 'anomaly-4', model_folder: 'nemotron-nano-12b-v2', strategy: 'llm_listwise_rerank_dense_candidate',
+    delta_pp: 3.16, mechanism: 'Audit §3.3: max_tokens differs (8192 vs None) but DGX produced no truncations; mechanism unidentified.' },
+];
+
+function renderRetAnomalies() {
+  const container = document.getElementById('ret-anomalies');
+  if (retState.subbench === 'allarma-baseline') {
+    container.innerHTML = `
+      <h3>§1.3 Anomalies</h3>
+      <p class="placeholder">No cross-machine divergences exceeded the audit threshold for Allarma baseline (max |Δ| = 2.09 pp, tied between two strategies — <code>baseline-sparse-candidate</code> and <code>bm25-sparse-candidate-w30-70</code> — both below the 3 pp callout threshold per audit §5.1).</p>
+    `;
+    return;
+  }
+  // Cards always visible for LLM-augmented
+  const deltas = DASHBOARD_DATA.crossMachineDeltas;
+  container.innerHTML = `
+    <h3>§1.3 Anomalies (4 audit-flagged divergences, |Δ| &gt; 3 pp)</h3>
+    <div class="anomaly-cards">
+      ${RET_ANOMALIES.map(a => {
+        const d = deltas.find(x => x.model_folder === a.model_folder && x.strategy === a.strategy);
+        if (!d) return '';
+        const skUrl = buildLogUrl('retriever', 'skorge', a.model_folder, d.sk_eval_file);
+        const dgxUrl = buildLogUrl('retriever', 'dgx_spark', a.model_folder, d.dgx_eval_file);
+        return `
+          <div class="anomaly-card" id="${a.id}">
+            <div class="anomaly-card-header">
+              <strong>${MODEL_DISPLAY[d.model] || d.model} / ${a.strategy}</strong>
+              <span class="anomaly-delta delta-bad">Δ ${a.delta_pp > 0 ? '+' : ''}${a.delta_pp.toFixed(2)} pp</span>
+            </div>
+            <div class="anomaly-card-body">
+              SK: ${(d.sk_acc*100).toFixed(2)}%  ·  DGX: ${(d.dgx_acc*100).toFixed(2)}%
+            </div>
+            <div class="anomaly-card-mechanism">${a.mechanism}</div>
+            <div class="anomaly-card-actions">
+              <a href="${skUrl}" target="_blank">Open SK eval</a>
+              <a href="${dgxUrl}" target="_blank">Open DGX eval</a>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+function buildLogUrl(benchmark, machine, folder, evalFile) {
+  const encoded = evalFile.replace(/\+/g, '%2B');
+  return `https://imsaumil-allarma-benchmark-logs-full.hf.space/#/logs/${benchmark}/${machine}/${folder}/${encoded}`;
+}
