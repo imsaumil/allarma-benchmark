@@ -351,7 +351,12 @@ function renderRetCrossMachineDelta(area) {
       { title:'Strategy', data:'strategy' },
       { title:'SK acc', data: r => (r.sk_acc*100).toFixed(2)+'%' },
       { title:'DGX acc', data: r => (r.dgx_acc*100).toFixed(2)+'%' },
-      { title:'Δ pp', data: r => `<span class="${Math.abs(r.delta_pp)>3 ? 'delta-bad' : ''}">${r.delta_pp.toFixed(2)}</span>` },
+      { title:'Δ pp', data: r => {
+          const arrow = r.delta_pp >= 0 ? '▲' : '▼';
+          const cls = Math.abs(r.delta_pp) > 3 ? 'delta-flag' : (r.delta_pp >= 0 ? 'delta-pos' : 'delta-neg');
+          const sign = r.delta_pp >= 0 ? '+' : '−';
+          return `<span class="delta ${cls}"><span class="delta-arrow">${arrow}</span>${sign}${Math.abs(r.delta_pp).toFixed(2)}</span>`;
+        } },
       { title:'SK trunc', data:'sk_truncation_count' },
       { title:'DGX trunc', data:'dgx_truncation_count' },
     ],
@@ -402,38 +407,47 @@ function renderRetAnomalies() {
   const container = document.getElementById('ret-anomalies');
   if (retState.subbench === 'allarma-baseline') {
     container.innerHTML = `
-      <h3>§1.3 Anomalies</h3>
-      <p class="placeholder">No cross-machine divergences exceeded the audit threshold for Allarma baseline (max |Δ| = 2.09 pp, tied between two strategies — <code>baseline-sparse-candidate</code> and <code>bm25-sparse-candidate-w30-70</code> — both below the 3 pp callout threshold per audit §5.1).</p>
+      <div class="anomaly-section">
+        <h3>Anomalies</h3>
+        <p class="anomaly-deck">No cross-machine divergences exceeded the audit threshold for the Allarma baseline. Max |Δ| = 2.09 pp, tied between <code>baseline-sparse-candidate</code> and <code>bm25-sparse-candidate-w30-70</code> — both below the 3 pp callout threshold per audit §5.1.</p>
+      </div>
     `;
     return;
   }
   // Cards always visible for LLM-augmented
   const deltas = DASHBOARD_DATA.crossMachineDeltas;
   container.innerHTML = `
-    <h3>§1.3 Anomalies (4 audit-flagged divergences, |Δ| &gt; 3 pp)</h3>
-    <div class="anomaly-cards">
-      ${RET_ANOMALIES.map(a => {
-        const d = deltas.find(x => x.model_folder === a.model_folder && x.strategy === a.strategy);
-        if (!d) return '';
-        const skUrl = buildLogUrl('retriever', 'skorge', a.model_folder, d.sk_eval_file);
-        const dgxUrl = buildLogUrl('retriever', 'dgx_spark', a.model_folder, d.dgx_eval_file);
-        return `
-          <div class="anomaly-card" id="${a.id}">
-            <div class="anomaly-card-header">
-              <strong>${MODEL_DISPLAY[d.model] || d.model} / ${a.strategy}</strong>
-              <span class="anomaly-delta delta-bad">Δ ${a.delta_pp > 0 ? '+' : ''}${a.delta_pp.toFixed(2)} pp</span>
+    <div class="anomaly-section">
+      <h3>Anomalies <span class="anomaly-count">4 cells · |Δ| &gt; 3 pp</span></h3>
+      <p class="anomaly-deck">Four (model × strategy) pairs diverge from cross-machine reproducibility by more than 3 pp. Each is documented in the audit doc with a candidate mechanism.</p>
+      <div class="anomaly-cards">
+        ${RET_ANOMALIES.map((a, i) => {
+          const d = deltas.find(x => x.model_folder === a.model_folder && x.strategy === a.strategy);
+          if (!d) return '';
+          const skUrl = buildLogUrl('retriever', 'skorge', a.model_folder, d.sk_eval_file);
+          const dgxUrl = buildLogUrl('retriever', 'dgx_spark', a.model_folder, d.dgx_eval_file);
+          const arrow = a.delta_pp >= 0 ? '▲' : '▼';
+          const sign = a.delta_pp >= 0 ? '+' : '−';
+          return `
+            <div class="anomaly-card" id="${a.id}">
+              <div class="anomaly-card-index">№ ${String(i + 1).padStart(2, '0')}</div>
+              <div class="anomaly-card-title">${MODEL_DISPLAY[d.model] || d.model}</div>
+              <div class="anomaly-card-strategy">${a.strategy}</div>
+              <div class="anomaly-card-delta ${a.delta_pp >= 0 ? 'is-pos' : ''}">
+                <span style="font-size:0.7em;vertical-align:0.18em;margin-right:0.1em;">${arrow}</span>${sign}${Math.abs(a.delta_pp).toFixed(2)}<span class="anomaly-card-delta-unit">pp</span>
+              </div>
+              <div class="anomaly-card-cells">
+                <span class="cell-label">SK</span>${(d.sk_acc*100).toFixed(2)}%&nbsp;&nbsp;&nbsp;<span class="cell-label">DGX</span>${(d.dgx_acc*100).toFixed(2)}%
+              </div>
+              <div class="anomaly-card-mechanism">${a.mechanism}</div>
+              <div class="anomaly-card-actions">
+                <a href="${skUrl}" target="_blank">SKORGE eval ↗</a>
+                <a href="${dgxUrl}" target="_blank">DGX eval ↗</a>
+              </div>
             </div>
-            <div class="anomaly-card-body">
-              SK: ${(d.sk_acc*100).toFixed(2)}%  ·  DGX: ${(d.dgx_acc*100).toFixed(2)}%
-            </div>
-            <div class="anomaly-card-mechanism">${a.mechanism}</div>
-            <div class="anomaly-card-actions">
-              <a href="${skUrl}" target="_blank">Open SK eval</a>
-              <a href="${dgxUrl}" target="_blank">Open DGX eval</a>
-            </div>
-          </div>
-        `;
-      }).join('')}
+          `;
+        }).join('')}
+      </div>
     </div>
   `;
 }

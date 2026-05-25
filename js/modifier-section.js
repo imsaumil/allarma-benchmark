@@ -149,16 +149,24 @@ function renderModCrossMachineDelta(area) {
       sem_delta: ((dgx.metrics.Neo4j_Semantic_Validity.value - sk.metrics.Neo4j_Semantic_Validity.value)*100).toFixed(2),
     };
   }).filter(Boolean);
+  const formatDelta = v => {
+    const n = parseFloat(v);
+    const abs = Math.abs(n);
+    const arrow = n >= 0 ? '▲' : '▼';
+    const sign = n >= 0 ? '+' : '−';
+    const cls = abs > 1.5 ? 'delta-warn' : (n >= 0 ? 'delta-pos' : 'delta-neg');
+    return `<span class="delta ${cls}"><span class="delta-arrow">${arrow}</span>${sign}${abs.toFixed(2)}</span>`;
+  };
   new DataTable('#mod-delta', {
     data: tableData,
     columns: [
       {title:'Model', data:'model'},
       {title:'Mod SK', data:'mod_sk'}, {title:'Mod DGX', data:'mod_dgx'},
-      {title:'Mod Δ pp', data: r => `<span class="${Math.abs(parseFloat(r.mod_delta)) > 1.5 ? 'delta-warn' : ''}">${r.mod_delta}</span>`},
+      {title:'Mod Δ pp', data: r => formatDelta(r.mod_delta)},
       {title:'Syn SK', data:'syn_sk'}, {title:'Syn DGX', data:'syn_dgx'},
-      {title:'Syn Δ pp', data: r => `<span class="${Math.abs(parseFloat(r.syn_delta)) > 1.5 ? 'delta-warn' : ''}">${r.syn_delta}</span>`},
+      {title:'Syn Δ pp', data: r => formatDelta(r.syn_delta)},
       {title:'Sem SK', data:'sem_sk'}, {title:'Sem DGX', data:'sem_dgx'},
-      {title:'Sem Δ pp', data: r => `<span class="${Math.abs(parseFloat(r.sem_delta)) > 1.5 ? 'delta-warn' : ''}">${r.sem_delta}</span>`},
+      {title:'Sem Δ pp', data: r => formatDelta(r.sem_delta)},
     ],
     pageLength: 10,
   });
@@ -183,27 +191,29 @@ function renderModAnomalies() {
   const container = document.getElementById('mod-anomalies');
   const rows = DASHBOARD_DATA.modifier;
   container.innerHTML = `
-    <h3>§2.3 Anomalies (3 cards)</h3>
-    <div class="anomaly-cards">
-      ${MOD_ANOMALIES.map(a => {
-        const sk = rows.find(r => r.model_folder === a.model_folder && r.machine === 'skorge');
-        const dgx = rows.find(r => r.model_folder === a.model_folder && r.machine === 'dgx_spark');
-        const skUrl = buildLogUrl('modifier', 'skorge', a.model_folder, sk?.eval_file);
-        const dgxUrl = buildLogUrl('modifier', 'dgx_spark', a.model_folder, dgx?.eval_file);
-        return `
-          <div class="anomaly-card" id="${a.id}">
-            <div class="anomaly-card-header">
-              <strong>${a.title}</strong>
+    <div class="anomaly-section">
+      <h3>Anomalies <span class="anomaly-count">3 cells</span></h3>
+      <p class="anomaly-deck">Three modifier cells require interpretation. Two are reasoning-model cross-machine deltas attributable to sample-level timeouts; the third is a model-deficiency failure observed identically on both machines.</p>
+      <div class="anomaly-cards">
+        ${MOD_ANOMALIES.map((a, i) => {
+          const sk = rows.find(r => r.model_folder === a.model_folder && r.machine === 'skorge');
+          const dgx = rows.find(r => r.model_folder === a.model_folder && r.machine === 'dgx_spark');
+          const skUrl = buildLogUrl('modifier', 'skorge', a.model_folder, sk?.eval_file);
+          const dgxUrl = buildLogUrl('modifier', 'dgx_spark', a.model_folder, dgx?.eval_file);
+          return `
+            <div class="anomaly-card" id="${a.id}">
+              <div class="anomaly-card-index">№ ${String(i + 1).padStart(2, '0')}</div>
+              <div class="anomaly-card-title">${a.title}</div>
+              <div class="anomaly-card-cells">${a.detail}</div>
+              <div class="anomaly-card-mechanism">${a.mechanism}</div>
+              <div class="anomaly-card-actions">
+                <a href="${skUrl}" target="_blank">SKORGE eval ↗</a>
+                <a href="${dgxUrl}" target="_blank">DGX eval ↗</a>
+              </div>
             </div>
-            <div class="anomaly-card-body">${a.detail}</div>
-            <div class="anomaly-card-mechanism">${a.mechanism}</div>
-            <div class="anomaly-card-actions">
-              <a href="${skUrl}" target="_blank">Open SK eval</a>
-              <a href="${dgxUrl}" target="_blank">Open DGX eval</a>
-            </div>
-          </div>
-        `;
-      }).join('')}
+          `;
+        }).join('')}
+      </div>
     </div>
   `;
 }
