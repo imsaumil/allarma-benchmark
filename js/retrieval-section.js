@@ -362,11 +362,48 @@
     });
   }
 
-  // Drawer payload builder — wired to window.openLogDrawer in C6. Stubbed safe.
+  // =========================================================================
+  // C6 — Drawer payload builder (all metrics for a model×strategy×machine row)
+  // =========================================================================
   function openDrawerForRow(row, model) {
-    if (typeof buildDrawerPayloadAndOpen === 'function') buildDrawerPayloadAndOpen(row, model);
+    if (!row || typeof window.openLogDrawer !== 'function') return;
+    const me = row.metrics || {};
+    const isBase = STRATEGY_FAMILY(row.strategy, row.benchmark) === 'base';
+    const machineLabel = row.machine === 'dgx_spark' ? 'DGX Spark' : 'SKORGE';
+    const f2 = (v) => (v === null || v === undefined ? '—' : Number(v).toFixed(2));
+    const pctv = (v) => (v === null || v === undefined ? '—' : (Number(v) * 100).toFixed(2) + '%');
+
+    const quality = [
+      { label: 'Accuracy', value: `${pctv(me.accuracy)}${me.accuracy_se != null ? ' ± ' + (me.accuracy_se * 100).toFixed(2) : ''}` },
+      { label: 'In-Scope Accuracy', value: pctv(me.accuracy_in_scope) },
+      { label: 'OOS Accuracy', value: pctv(me.accuracy_oos) },
+    ];
+    const cost = [];
+    if (!isBase) {
+      cost.push({ label: 'Avg LLM Calls/Sample', value: f2(me.avg_llm_call_count) });
+      cost.push({ label: 'Avg Tokens/Sample', value: me.avg_llm_token_usage != null ? Math.round(me.avg_llm_token_usage).toLocaleString() : '—' });
+    }
+    cost.push({ label: 'Avg Time/Sample', value: (row.timing && row.timing.mean != null ? row.timing.mean.toFixed(2) + ' s' : '—') });
+    cost.push({ label: 'Total Runtime', value: row.total_runtime != null ? formatRuntime(row.total_runtime) : '—' });
+
+    const completed = (row.completed_samples != null ? row.completed_samples : row.samples);
+    const reliability = [
+      { label: 'Truncation Rate', value: row.truncation_rate != null ? (row.truncation_rate * 100).toFixed(2) + '%' : '—' },
+      { label: 'max_tokens', value: row.max_tokens == null ? 'None (unbounded)' : row.max_tokens },
+      { label: 'Completed / Total', value: `${completed.toLocaleString()} / ${row.samples.toLocaleString()}` + (completed < row.samples ? ' (short run)' : '') },
+    ];
+
+    window.openLogDrawer({
+      title: row.strategy + (model ? ' — ' + modelDisplay(model) : ' — no-LLM baseline'),
+      machine: machineLabel,
+      groups: [
+        { group: 'Quality', rows: quality },
+        { group: 'Cost & efficiency', rows: cost },
+        { group: 'Reliability', rows: reliability },
+      ],
+      logUrl: buildLogUrl(row.model_folder, row.eval_file, row.benchmark),
+    });
   }
-  let buildDrawerPayloadAndOpen = null; // set in C6
 
   // =========================================================================
   // C3 — Table view: comprehensive sortable DataTable + CSV + completed/total
@@ -429,6 +466,7 @@
         calls, tok, tmean, runtime,
         trunc,
         shortRun ? `<b style="color:#c5384a" title="short run">${completed}</b>` : completed,
+        `<span class="logbtn" data-ridx="${rows.indexOf(entry)}">logs ↗</span>`,
       ];
     });
 
@@ -438,12 +476,21 @@
         { title: 'Strategy' }, { title: 'Model' },
         { title: 'Accuracy ± SE' }, { title: 'In-Scope' }, { title: 'OOS' },
         { title: 'LLM Calls' }, { title: 'Avg Tokens' }, { title: 'Avg Time/Sample (s)' }, { title: 'Total Runtime' },
-        { title: 'Trunc %' }, { title: 'Completed / Total' },
+        { title: 'Trunc %' }, { title: 'Completed / Total' }, { title: '', orderable: false },
       ],
       order: [[2, 'desc']],
       pageLength: 25,
       scrollX: true,
       deferRender: true,
+    });
+
+    // Drilldown: clicking the per-row "logs ↗" opens the drawer with all metrics.
+    document.querySelector('#retrieval-table').addEventListener('click', (ev) => {
+      const btn = ev.target.closest('.logbtn');
+      if (!btn) return;
+      const idx = Number(btn.dataset.ridx);
+      const entry = rows[idx];
+      if (entry) openDrawerForRow(entry.src, entry.model);
     });
 
     const csvBtn = document.getElementById('ret-csv');
