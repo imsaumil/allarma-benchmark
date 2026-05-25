@@ -368,7 +368,107 @@
   }
   let buildDrawerPayloadAndOpen = null; // set in C6
 
-  function renderTable(body) { body.innerHTML = '<div class="chartbox">Table view (C3).</div>'; }
+  // =========================================================================
+  // C3 — Table view: comprehensive sortable DataTable + CSV + completed/total
+  // =========================================================================
+  let retDataTable = null;
+
+  // Build the flat row list (respecting families + legend), aug/pure expanded
+  // per active model, baselines single-row. Each entry carries the source row
+  // so CSV + drawer can read every metric.
+  function tableRows() {
+    const machineJson = MACHINE_JSON[state.machine];
+    const llm = llmRows(machineJson);
+    const al = allarmaRows(machineJson);
+    const ordered = orderedStrategies(machineJson, 'accuracy'); // family-grouped order
+    const rows = [];
+    ordered.forEach((o) => {
+      if (o.fam === 'base') {
+        const r = al.find((x) => x.strategy === o.strategy);
+        if (r) rows.push({ src: r, model: null, fam: 'base' });
+      } else {
+        activeModels().forEach((m) => {
+          const r = llm.find((x) => x.strategy === o.strategy && x.model === m);
+          if (r) rows.push({ src: r, model: m, fam: o.fam });
+        });
+      }
+    });
+    return rows;
+  }
+
+  function num(v, d) { return (v === null || v === undefined) ? '—' : Number(v).toFixed(d); }
+  function pct(v, d) { return (v === null || v === undefined) ? '—' : (Number(v) * 100).toFixed(d); }
+
+  function renderTable(body) {
+    if (retDataTable) { try { retDataTable.destroy(); } catch (e) {} retDataTable = null; }
+    body.innerHTML =
+      '<div style="margin-bottom:.6rem"><button class="btn-small" id="ret-csv">Export CSV</button></div>' +
+      '<div class="tablewrap"><table id="retrieval-table" class="display" style="width:100%"></table></div>';
+
+    const rows = tableRows();
+    const m = state.machine; // for buildLogUrl benchmark/category
+    const dataset = rows.map((entry) => {
+      const r = entry.src;
+      const me = r.metrics || {};
+      const url = buildLogUrl(r.model_folder, r.eval_file, r.benchmark);
+      const stratCell = `<a href="${url}" target="_blank" rel="noopener" title="Open eval in InspectAI viewer">${r.strategy}</a>`;
+      const modelCell = entry.model ? modelDisplay(entry.model) + (isReasoning(entry.model) ? ' ✦' : '')
+        : '<span style="color:#607d8b;font-style:italic">no LLM</span>';
+      const isBase = entry.fam === 'base';
+      const accSE = `${pct(me.accuracy, 2)} ± ${me.accuracy_se != null ? (me.accuracy_se * 100).toFixed(2) : '—'}`;
+      const calls = isBase ? '—' : num(me.avg_llm_call_count, 2);
+      const tok = isBase ? '—' : (me.avg_llm_token_usage != null ? Math.round(me.avg_llm_token_usage).toLocaleString() : '—');
+      const tmean = r.timing && r.timing.mean != null ? r.timing.mean.toFixed(2) : '—';
+      const runtime = r.total_runtime != null ? formatRuntime(r.total_runtime) : '—';
+      const trunc = num(r.truncation_rate != null ? r.truncation_rate * 100 : null, 2);
+      const completed = `${(r.completed_samples != null ? r.completed_samples : r.samples).toLocaleString()} / ${r.samples.toLocaleString()}`;
+      const shortRun = (r.completed_samples != null && r.completed_samples < r.samples);
+      return [
+        stratCell, modelCell,
+        accSE, pct(me.accuracy_in_scope, 2), pct(me.accuracy_oos, 2),
+        calls, tok, tmean, runtime,
+        trunc,
+        shortRun ? `<b style="color:#c5384a" title="short run">${completed}</b>` : completed,
+      ];
+    });
+
+    retDataTable = new DataTable('#retrieval-table', {
+      data: dataset,
+      columns: [
+        { title: 'Strategy' }, { title: 'Model' },
+        { title: 'Accuracy ± SE' }, { title: 'In-Scope' }, { title: 'OOS' },
+        { title: 'LLM Calls' }, { title: 'Avg Tokens' }, { title: 'Avg Time/Sample (s)' }, { title: 'Total Runtime' },
+        { title: 'Trunc %' }, { title: 'Completed / Total' },
+      ],
+      order: [[2, 'desc']],
+      pageLength: 25,
+      scrollX: true,
+      deferRender: true,
+    });
+
+    const csvBtn = document.getElementById('ret-csv');
+    if (csvBtn) csvBtn.addEventListener('click', () => exportTableCSV(rows));
+  }
+
+  function exportTableCSV(rows) {
+    const data = rows.map((e) => e.src && Object.assign({ __model: e.model, __fam: e.fam }, e.src));
+    exportJSONToCSV(data, [
+      { label: 'Machine', accessor: 'machine' },
+      { label: 'Strategy', accessor: 'strategy' },
+      { label: 'Model', accessor: (r) => (r.__model ? modelDisplay(r.__model) : 'no-LLM-baseline') },
+      { label: 'Accuracy', accessor: (r) => (r.metrics.accuracy != null ? (r.metrics.accuracy * 100).toFixed(4) : '') },
+      { label: 'Accuracy_SE', accessor: (r) => (r.metrics.accuracy_se != null ? (r.metrics.accuracy_se * 100).toFixed(4) : '') },
+      { label: 'In_Scope', accessor: (r) => (r.metrics.accuracy_in_scope != null ? (r.metrics.accuracy_in_scope * 100).toFixed(4) : '') },
+      { label: 'OOS', accessor: (r) => (r.metrics.accuracy_oos != null ? (r.metrics.accuracy_oos * 100).toFixed(4) : '') },
+      { label: 'Avg_LLM_Calls', accessor: (r) => (r.metrics.avg_llm_call_count != null ? r.metrics.avg_llm_call_count.toFixed(4) : '') },
+      { label: 'Avg_Tokens', accessor: (r) => (r.metrics.avg_llm_token_usage != null ? r.metrics.avg_llm_token_usage.toFixed(2) : '') },
+      { label: 'Avg_Time_Per_Sample_s', accessor: (r) => (r.timing && r.timing.mean != null ? r.timing.mean.toFixed(4) : '') },
+      { label: 'Total_Runtime_s', accessor: (r) => (r.total_runtime != null ? r.total_runtime.toFixed(1) : '') },
+      { label: 'Truncation_Rate_pct', accessor: (r) => (r.truncation_rate != null ? (r.truncation_rate * 100).toFixed(4) : '') },
+      { label: 'Completed', accessor: (r) => (r.completed_samples != null ? r.completed_samples : r.samples) },
+      { label: 'Total_Samples', accessor: 'samples' },
+    ], `retrieval-${state.machine}.csv`);
+  }
   function renderCompareScatter(body) { body.innerHTML = '<div class="chartbox">Compare scatter (C4).</div>'; }
   function renderCompareTable(body) { body.innerHTML = '<div class="chartbox">Compare table (C4).</div>'; }
   function renderSubcharts() { /* C5 */ }
