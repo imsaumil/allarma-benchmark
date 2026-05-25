@@ -9520,28 +9520,5 @@
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
-  },
-  {
-    "benchmark": "retriever-llm",
-    "machine": "skorge",
-    "model": "gpt-oss-20b",
-    "model_folder": "gpt-oss-20b",
-    "eval_file": "2026-03-09T20-47-38+00-00_llm-direct-match-all_4nMPiCbiFLqLNLwBCZHSs2.eval",
-    "strategy": "llm_direct_match_all_unbounded_tokens",
-    "samples": 9789,
-    "completed_samples": 9789,
-    "metrics": {
-      "accuracy": 0.918582,
-      "accuracy_se": 0.002764,
-      "accuracy_in_scope": 0.920344,
-      "accuracy_oos": 0.136364,
-      "avg_llm_call_count": 1.0,
-      "avg_llm_token_usage": 15591.77
-    },
-    "total_runtime": 163605.0,
-    "avg_time_per_sample": 16.7131,
-    "max_tokens": null,
-    "truncation_count": 432,
-    "truncation_rate": 0.044131
   }
 ]
