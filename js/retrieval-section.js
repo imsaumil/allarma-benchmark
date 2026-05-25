@@ -214,8 +214,160 @@
     }
   }
 
-  // Placeholders filled by later sub-tasks (kept as no-ops so C1 renders cleanly).
-  function renderChart(body) { body.innerHTML = '<div class="chartbox">Chart view (C2).</div>'; }
+  // =========================================================================
+  // C2 — Chart view: Plotly multi-model grouped horizontal bars + metric select
+  // =========================================================================
+  // The metric <select> lives ATOP the chart and ONLY in Chart view (design §4.1).
+  function metricSelectHTML() {
+    const opts = METRIC_GROUPS.map((g) => {
+      const inner = g.keys.map((k) =>
+        `<option value="${k}"${k === state.metric ? ' selected' : ''}>${METRICS[k].label}</option>`).join('');
+      return `<optgroup label="${g.group}">${inner}</optgroup>`;
+    }).join('');
+    return `<div class="fg" style="margin-bottom:.6rem"><span class="lbl">Metric</span>` +
+      `<select class="ctl" id="ret-metric">${opts}</select></div>`;
+  }
+
+  // Value for (strategy, model, machine); pct metrics scaled ×100. null if missing.
+  function metricVal(row, key) {
+    const def = METRICS[key];
+    const v = def.get(row);
+    if (v === null || v === undefined) return null;
+    return def.pct ? v * 100 : v;
+  }
+
+  // Strategies in selected families, ordered by best active-model value (desc for
+  // higher-better, asc for lower-better), family-grouped (aug, pure, base) so the
+  // y-axis reads coherently. Returns [{strategy, fam}].
+  function orderedStrategies(machineJson, key) {
+    const llm = llmRows(machineJson);
+    const al = allarmaRows(machineJson);
+    const lower = LOWER_BETTER.has(key);
+    const out = [];
+
+    ['aug', 'pure'].forEach((fam) => {
+      if (!state.fams[fam]) return;
+      const strats = [...new Set(llm.filter((r) => familyOf(r) === fam).map((r) => r.strategy))];
+      const scored = strats.map((s) => {
+        const vals = activeModels()
+          .map((m) => llm.find((r) => r.strategy === s && r.model === m))
+          .filter(Boolean).map((r) => metricVal(r, key)).filter((v) => v !== null);
+        const score = vals.length ? (lower ? Math.min(...vals) : Math.max(...vals)) : (lower ? Infinity : -Infinity);
+        return { strategy: s, fam, score };
+      });
+      scored.sort((a, b) => (lower ? a.score - b.score : b.score - a.score));
+      out.push(...scored);
+    });
+
+    if (state.fams.base) {
+      const strats = [...new Set(al.map((r) => r.strategy))];
+      const scored = strats.map((s) => {
+        const r = al.find((x) => x.strategy === s);
+        return { strategy: s, fam: 'base', score: r ? metricVal(r, key) : null };
+      });
+      scored.sort((a, b) => (lower ? (a.score ?? Infinity) - (b.score ?? Infinity) : (b.score ?? -Infinity) - (a.score ?? -Infinity)));
+      out.push(...scored);
+    }
+    return out;
+  }
+
+  function renderChart(body) {
+    body.innerHTML = metricSelectHTML() + '<div id="retrieval-chart" style="min-height:480px"></div>';
+    const sel = document.getElementById('ret-metric');
+    if (sel) sel.addEventListener('change', () => { state.metric = sel.value; renderChart(body); });
+
+    const machineJson = MACHINE_JSON[state.machine];
+    const key = state.metric;
+    const ordered = orderedStrategies(machineJson, key);
+    const chartDiv = document.getElementById('retrieval-chart');
+
+    if (!ordered.length) {
+      chartDiv.innerHTML = '<p class="hint" style="padding:1rem">No strategies selected — enable a family.</p>';
+      return;
+    }
+
+    // Plotly draws horizontal bars bottom-up; reverse so the best is at the top.
+    const yCats = ordered.map((o) => o.strategy).reverse();
+    const llm = llmRows(machineJson);
+    const al = allarmaRows(machineJson);
+    const def = METRICS[key];
+    const fmt = (v) => (v === null ? '' : (def.pct ? v.toFixed(2) + '%' : (Math.abs(v) >= 1000 ? Math.round(v).toLocaleString() : v.toFixed(2))));
+
+    const traces = [];
+    // One trace per active model for aug+pure strategies.
+    activeModels().forEach((model) => {
+      const xs = [], texts = [], hovers = [];
+      yCats.forEach((strategy) => {
+        const o = ordered.find((x) => x.strategy === strategy);
+        if (!o || o.fam === 'base') { xs.push(null); texts.push(''); hovers.push(''); return; }
+        const row = llm.find((r) => r.strategy === strategy && r.model === model);
+        const v = row ? metricVal(row, key) : null;
+        xs.push(v);
+        texts.push(fmt(v));
+        hovers.push(row ? `<b>${strategy}</b><br>${modelDisplay(model)}<br>${def.label}: ${fmt(v)}` : '');
+      });
+      traces.push({
+        name: modelDisplay(model), type: 'bar', orientation: 'h',
+        x: xs, y: yCats, marker: { color: modelColor(model) },
+        text: texts, textposition: 'outside', textfont: { size: 9 },
+        hovertext: hovers, hoverinfo: 'text', cliponaxis: false,
+      });
+    });
+    // Single grey trace for baselines (no model axis).
+    if (state.fams.base) {
+      const xs = [], texts = [], hovers = [];
+      yCats.forEach((strategy) => {
+        const o = ordered.find((x) => x.strategy === strategy);
+        if (!o || o.fam !== 'base') { xs.push(null); texts.push(''); hovers.push(''); return; }
+        const row = al.find((r) => r.strategy === strategy);
+        const v = row ? metricVal(row, key) : null;
+        xs.push(v); texts.push(fmt(v));
+        hovers.push(row ? `<b>${strategy}</b><br>no LLM (baseline)<br>${def.label}: ${fmt(v)}` : '');
+      });
+      traces.push({
+        name: 'Non-LLM baseline', type: 'bar', orientation: 'h',
+        x: xs, y: yCats, marker: { color: '#90a4ae' },
+        text: texts, textposition: 'outside', textfont: { size: 9 },
+        hovertext: hovers, hoverinfo: 'text', cliponaxis: false,
+      });
+    }
+
+    const layout = {
+      barmode: 'group', bargap: 0.25, bargroupgap: 0.05,
+      height: Math.max(360, yCats.length * Math.max(activeModels().length, 1) * 9 + 120),
+      margin: { l: 230, r: 70, t: 30, b: 40 },
+      xaxis: { title: def.label, automargin: true, zeroline: true },
+      yaxis: { automargin: true, tickfont: { family: 'ui-monospace, monospace', size: 10 } },
+      legend: { orientation: 'h', y: 1.04, font: { size: 10 } },
+      font: { family: 'Manrope, sans-serif' },
+      paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+    };
+    Plotly.react('retrieval-chart', traces, layout, { responsive: true, displayModeBar: false });
+
+    // Bar click → log drawer (C6 wires openLogDrawer).
+    chartDiv.removeAllListeners && chartDiv.removeAllListeners('plotly_click');
+    chartDiv.on && chartDiv.on('plotly_click', (ev) => {
+      const pt = ev.points && ev.points[0]; if (!pt) return;
+      const strategy = pt.y;
+      const o = ordered.find((x) => x.strategy === strategy);
+      if (!o) return;
+      if (o.fam === 'base') {
+        const row = al.find((r) => r.strategy === strategy);
+        if (row) openDrawerForRow(row, null);
+      } else {
+        const model = Object.keys(MODEL_DISPLAY).find((m) => modelDisplay(m) === pt.data.name);
+        const row = llm.find((r) => r.strategy === strategy && r.model === model);
+        if (row) openDrawerForRow(row, model);
+      }
+    });
+  }
+
+  // Drawer payload builder — wired to window.openLogDrawer in C6. Stubbed safe.
+  function openDrawerForRow(row, model) {
+    if (typeof buildDrawerPayloadAndOpen === 'function') buildDrawerPayloadAndOpen(row, model);
+  }
+  let buildDrawerPayloadAndOpen = null; // set in C6
+
   function renderTable(body) { body.innerHTML = '<div class="chartbox">Table view (C3).</div>'; }
   function renderCompareScatter(body) { body.innerHTML = '<div class="chartbox">Compare scatter (C4).</div>'; }
   function renderCompareTable(body) { body.innerHTML = '<div class="chartbox">Compare table (C4).</div>'; }
