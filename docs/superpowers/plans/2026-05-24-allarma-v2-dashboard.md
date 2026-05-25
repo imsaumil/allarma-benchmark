@@ -70,10 +70,9 @@ def test_retrieval_llm_row_captures_completed_samples(dgx_gpt_oss_direct_match_e
 python scripts/extract_data_full.py \
   --skorge-dir ../../APPLIED_ENERGY_WRITEUP/skorge \
   --dgx-dir ../../APPLIED_ENERGY_WRITEUP/dgx_spark \
-  --unbounded-variant ../../CIGRE_WRITEUP/log_files/retriever/gpt_oss_20b_reasoning_low/2026-03-09T20-47-38+00-00_llm-direct-match-all_4nMPiCbiFLqLNLwBCZHSs2.eval \
   --output-dir data/
 ```
-- [ ] **Step 2: Verify counts + the short run** — expected: `retrieval-llm-summary.json` 415, `retrieval-allarma-summary.json` 116, `retrieval-llm-tiers.json` 414, `modifier-summary.json` 18, `modifier-templates.json` 378, `cross-machine-deltas.json` 207. Assert DGX gpt-oss-20b `llm_direct_match_all` row has `completed_samples==9715, samples==9789`.
+- [ ] **Step 2: Verify counts + the short run** — expected: `retrieval-llm-summary.json` 414, `retrieval-allarma-summary.json` 116, `retrieval-llm-tiers.json` 414, `modifier-summary.json` 18, `modifier-templates.json` 378, `cross-machine-deltas.json` 207. Assert DGX gpt-oss-20b `llm_direct_match_all` row has `completed_samples==9715, samples==9789`. (NOTE: Phase A is COMPLETE — extractor captures completed_samples + per-sample working_time timing; no `--unbounded-variant` (the unbounded direct-match run is canonical in the tree). See spec §2 canonical note.)
 - [ ] **Step 3: Commit** — `chore(data): regenerate JSONs with completed_samples`
 
 ---
@@ -104,7 +103,7 @@ python scripts/extract_data_full.py \
   - `MODEL_COLORS` (9 models → the prototype palette: gpt-oss `#1565c0`, nemotron-12b `#00897b`, nemotron-9b `#43a047`, ministral-14b `#6d4c41`, ministral-8b `#8e24aa`, ministral-3b `#c0ca33`, gemma-e2b `#f4511e`, qwen-2b `#fb8c00`, qwen-0.8b `#e53935`), keyed by the JSON `model` strings (e.g. `"gpt-oss-20b"`, `"NVIDIA-Nemotron-Nano-12B-v2"`, …).
   - `MODEL_DISPLAY` (short labels) and `REASONING_MODELS` set (gpt-oss-20b, both nemotrons).
   - `METRIC_LABELS` (paper vocabulary): `Modification_Accuracy`→"Modification Accuracy", `Neo4j_Syntactic_Validity`→"Execution Success (Syntactic)", `Neo4j_Semantic_Validity`→"Answer Yield (non-empty)", plus retrieval metric labels.
-  - `STRATEGY_FAMILY(strategy, benchmark)` → `'base'|'aug'|'pure'`: `benchmark==='retriever-allarma'`→`base`; strategy in `{llm_direct_match_all, llm_direct_match_candidate, *_unbounded_tokens}`→`pure`; else `aug`.
+  - `STRATEGY_FAMILY(strategy, benchmark)` → `'base'|'aug'|'pure'`: `benchmark==='retriever-allarma'`→`base`; strategy in `{llm_direct_match_all, llm_direct_match_candidate}`→`pure`; else `aug`.
   - `buildLogUrl(modelFolder, evalFile, benchmark)` — adapt CIGRE's (`js/retrieval-charts.js:162`) to the full-corpus space `https://imsaumil-allarma-benchmark-logs-full.hf.space/#/logs/<category>/<modelFolder>/<encodedFile>`, category from `benchmark` (`modifier`|`retriever`), `+`→`%2B`.
   - `formatRuntime(s)` and `exportJSONToCSV(data, columns, filename)` — copy verbatim from CIGRE.
 - [ ] **Step 2: Verify** — `node --check js/shared-utils.js`; in a quick node stub, assert `STRATEGY_FAMILY('llm_direct_match_all','retriever-llm')==='pure'` and `STRATEGY_FAMILY('rrf_llm_rerank_k5_all','retriever-llm')==='aug'` and family of an allarma row is `base`.
@@ -142,7 +141,7 @@ python scripts/extract_data_full.py \
 
 ### Task C4: Compare Δ view (scatter + delta table)
 - [ ] **Step 1:** When `machine==='cmp'`: Chart→Plotly scatter, x=`sk_acc`, y=`dgx_acc` per (model,strategy) from `cross-machine-deltas.json` (+ baseline/modifier computed client-side), y=x dashed line, points with `|delta_pp|>3` colored red + labeled; Table→DataTable of `cross-machine-deltas.json` (sk, dgx, Δpp color-coded, max_tokens SK→DGX, truncation), sortable by |Δ|. Families + legend still filter.
-- [ ] **Step 2: Verify** `node --check`; serve, Compare scatter shows the `llm_direct_match_all` point +9.80 off-diagonal in red; delta table top row by |Δ| is qwen3.5-0.8b/rrf-llm-rerank-k15-all +12.38.
+- [ ] **Step 2: Verify** `node --check`; serve, Compare scatter shows the `llm_direct_match_all` point **+3.46** off-diagonal (both unbounded) and the qwen `rrf_llm_rerank_k15_all` points furthest off; delta table top row by |Δ| is qwen3.5-0.8b/rrf-llm-rerank-k15-all +12.38.
 - [ ] **Step 3: Commit** — `feat(retrieval): Compare Δ scatter + delta table`
 
 ### Task C5: Tier-stratified + Pareto sub-charts (port CIGRE → 9 models)
@@ -199,7 +198,7 @@ python scripts/extract_data_full.py \
 
 ### Task F1: Full-page verification pass
 - [ ] **Step 1:** `for f in js/*.js; do node --check "$f"; done` all clean. Serve; `curl` 200 on `/` and all 6 `data/*.json`. Walk the spec §4–§6 checklist: per-section control bar; metric selector only in Chart view; families change strategy count; legend toggles models; Compare scatter + delta; drawer opens with InspectAI link; EPRI styling.
-- [ ] **Step 2:** Accuracy spot-checks against JSON: retrieval gpt-oss-20b SKORGE `rrf_llm_rerank_k5_all`=95.11 / DGX=95.13; the +12.38, +9.80, +8.43, +3.16 cells appear as the only >3pp in Compare; modifier gpt-oss 95.94/95.41/89.84; 7/9 within ±1.5; DGX direct-match shows 9715/9789.
+- [ ] **Step 2:** Accuracy spot-checks against JSON: retrieval gpt-oss-20b SKORGE `rrf_llm_rerank_k5_all`=95.11 / DGX=95.13; the **+12.38, +8.43, +3.46, +3.16** cells appear as the only >3pp in Compare; retrieval `T_sample` (timing.mean) matches paper (k15 SK 3.85 / DGX 13.80); modifier gpt-oss 95.94/95.41/89.84; 7/9 within ±1.5; DGX direct-match shows 9715/9789.
 - [ ] **Step 3: Commit** — `test: full-page verification pass`
 
 ### Task F2: README + deploy notes

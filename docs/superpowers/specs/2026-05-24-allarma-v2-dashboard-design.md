@@ -34,26 +34,39 @@ Readers are reviewers/researchers verifying and exploring the paper's claims.
   is the ±1–1.5 case, Answer-Yield Δ −1.46).
 - Internal consistency: all 548 production headline metrics reproduce from per-sample data.
 
+**⚠ Canonical-data decisions (verified 2026-05-25, 1-to-1 vs logs & paper v3):**
+- SKORGE `gpt-oss-20b / llm_direct_match_all` = the **unbounded** run (91.86%,
+  max_tokens=None). The earlier capped run (85.51%, 8192-cap, 1137 truncated, the old
+  +9.80 pp anomaly) was intentionally archived as `_archived_max_tokens_drift_2026-04-14`
+  and is NOT in the dashboard data. The paper already reflects this.
+- Per-sample timing = **mean of per-sample `working_time`** (the paper's `T_sample`);
+  `avg_time_per_sample` = wall/N is deflated ~5× by concurrency and is NOT displayed.
+- 414 retrieval-LLM rows (no separate "unbounded variant"; 548 production logs total).
+- **Audit docs `cross_machine_*_comparison.md` are stale on this one cell** (they still
+  describe the capped +9.80 pp run); the paper supersedes them. Flag for the user.
+
 **Spread the mean hides (do NOT understate):**
-- **Exactly 4 retriever (model,strategy) cells exceed ±3 pp**, up to **+12.38 pp**:
-  qwen3.5-0.8b/rrf-llm-rerank-k15-all +12.38 (unexplained), gpt-oss-20b/llm-direct-match-all
-  +9.80 (explained by max_tokens cap), qwen3.5-2b/rrf-llm-rerank-k15-all +8.43
-  (unexplained), nemotron-12b/llm-listwise-rerank-dense-candidate +3.16 (mechanism
-  unidentified). Per the audit, **only 1 of the 4 is fully explained; 3 are not** —
-  the 2 qwen cells are genuine run differences (commit/vLLM build), not noise.
+- **4 retriever (model,strategy) cells exceed ±3 pp**, up to **+12.38 pp**, and *none*
+  is explained by max_tokens (the capped gpt-oss run is archived):
+  qwen3.5-0.8b/rrf-llm-rerank-k15-all **+12.38**, qwen3.5-2b/rrf-llm-rerank-k15-all
+  **+8.43** (both: identical caps, zero truncation — genuine run differences, not noise),
+  gpt-oss-20b/llm-direct-match-all **+3.46** (SK 91.86 / DGX 95.32, both unbounded;
+  consistent with reasoning-model stochasticity — paper C2),
+  nemotron-12b/llm-listwise-rerank-dense-candidate **+3.16** (mechanism unidentified).
 - Modifier: the two Nemotron reasoning models exceed ±1.5 pp on Syn/Sem
   (nemotron-9b Exec-Success +3.12, Answer-Yield +2.64; nemotron-12b −2.64 / −1.56).
 
-**Honest caveats (full list in audit docs):** max_tokens cap mismatch (SKORGE 8192
-uniform; DGX None for 7 models, 8192 for the two qwen → 7/9 retriever pairs not
-identical caps); DGX gpt-oss-20b/llm-direct-match-all **9715/9789 completed (74
-short)**; the 4 material >3 pp cells; qwen3.5-0.8b repetition loops on **21.78%** of
-modifier samples on *both* machines (model failure, not machine); DGX nemotron-9b-v2
-4 modifier samples timed out at 600 s; gpt-oss +2 input tokens/sample on DGX
-(inert); differing git commits per side; llama-3.1-8b DGX-only (excluded);
-hardware/timing confound — retriever aggregate **3.92×** (per-pair 0.48×–11.90×, DGX
-faster on 4), modifier aggregate **3.94×** (SKORGE 37.5 h vs DGX 147.7 h), neither
-generalizing beyond this dataset/vLLM setup.
+**Honest caveats (paper §results_xmachine.3; full detail in audit docs):**
+- **C1** — qwen3.5-0.8b hits the 16,384-token cap on **223/1024 (21.78%)** modifier
+  samples on *both* machines (200 shared IDs; deterministic prompt repetition); its
+  ~41% Mod-Acc reflects 0.8B capability, not a benchmark artifact.
+- **C2** — the two qwen k15 divergences (+12.38, +8.43) and the +3.46 gpt-oss
+  direct-match delta (above); causes not isolated, both machine values reported.
+- DGX gpt-oss-20b/llm-direct-match-all **9715/9789 completed (74 short)**; DGX
+  nemotron-9b-v2 4 modifier samples timed out at 600 s; gpt-oss +2 input tokens/sample
+  on DGX (inert); differing git commits per side; llama-3.1-8b DGX-only (excluded).
+- Hardware/timing confound — aggregate wall **retriever 3.07× · modifier 3.94×**
+  (DGX/SKORGE), not generalizing beyond this dataset/vLLM setup.
 
 ## 3. Design principles
 
@@ -136,8 +149,8 @@ Section description: *"81 retrieval strategies (58 LLM-free · 21 LLM-augmented 
 9 models."*
 
 - **1.1 Strategy comparison** — the multi-model Chart / comprehensive Table of §4.2,
-  Families-filtered. The unbounded-tokens variant of gpt-oss-20b/llm-direct-match-all
-  appears as a distinct entry used only for the max_tokens comparison.
+  Families-filtered. (gpt-oss-20b/llm_direct_match_all is the unbounded run; there is
+  no separate "unbounded variant" row.)
 - **1.2 Tier-stratified accuracy** — per-tier accuracy for a chosen strategy.
 - **1.3 Pareto efficiency** — accuracy vs token cost.
 - Baselines (1.4 in CIGRE) are folded into the Families filter of 1.1 (the "Non-LLM
@@ -157,8 +170,7 @@ Logs → full-corpus HF Space (`imsaumil/allarma-benchmark-logs-full`), cold-sta
 About → Applied Energy citation (PES author order; link to CIGRE predecessor); **both
 machines' hardware** — SKORGE: AMD Ryzen 9 7950X · RTX 4090 24 GB · 128 GB DDR5 ·
 2 TB NVMe · vLLM (OS to confirm); **DGX Spark: spec line = TODO (user to supply)**;
-links to HF dataset/Space/repo/audit docs; methodology line (548 audited files +1
-variant).
+links to HF dataset/Space/repo/audit docs; methodology line (548 audited production logs).
 
 ## 6. Compare-mode behavior
 
@@ -172,10 +184,12 @@ Machine = **Compare Δ** keeps Families + legend + metric active; only the rende
 ## 7. Data and vocabulary
 
 ### 7.1 Data sources (verified row counts)
-`retrieval-llm-summary.json` 415 · `retrieval-allarma-summary.json` 116 ·
+`retrieval-llm-summary.json` 414 · `retrieval-allarma-summary.json` 116 ·
 `retrieval-llm-tiers.json` 414 · `modifier-summary.json` 18 ·
 `modifier-templates.json` 378 (9×2×21) · `cross-machine-deltas.json` 207
-(retriever-LLM only). Total audited production files **548 = 18 + 414 + 116** (+1 variant).
+(retriever-LLM only). Total audited production files **548 = 18 + 414 + 116**.
+Retrieval + allarma + modifier rows each carry a `timing` block (median/mean/max of
+per-sample `working_time`) and `completed_samples`.
 
 ### 7.2 Metric vocabulary (match the paper)
 `Modification_Accuracy` → **Modification Accuracy**; `Neo4j_Syntactic_Validity` →
@@ -187,19 +201,23 @@ Machine = **Compare Δ** keeps Families + legend + metric active; only the rende
 | Group | Retrieval | Modification |
 |---|---|---|
 | **Quality** | ✅ Accuracy, In-Scope, OOS | ✅ Mod Accuracy, Execution Success, Answer Yield, Presence, Removal · ➕ neo4j_result_count, neo4j error rate, combined_score |
-| **Cost & efficiency** | ✅ avg LLM calls/sample, avg tokens/sample, avg time/sample, total runtime · ➕ input/output token split, throughput | ✅ avg_total tokens, timing median/mean/max, throughput, total runtime · ➕ input/output split |
-| **Reliability** | ✅ truncation count/rate, max_tokens · ➕ **completed/total samples** | ✅ truncation count/rate, max_tokens · ➕ **completed/total samples**, error_retries |
+| **Cost & efficiency** | ✅ avg LLM calls/sample, avg tokens/sample, **per-sample timing median/mean/max (working_time = paper T_sample)**, total runtime · ➕ input/output token split, throughput | ✅ avg_total tokens, timing median/mean/max (working_time), throughput, total runtime · ➕ input/output split |
+| **Reliability** | ✅ truncation count/rate, max_tokens, **completed/total samples** | ✅ truncation count/rate, max_tokens, **completed/total samples** · ➕ error_retries |
 | **Stratifiers (retrieval)** | ✅ difficulty tier · ➕ template_name, query_type, agent_persona, in/out-of-scope | per-template heatmap ✅ |
 
-### 7.4 Known data gaps → extractor additions (verified against raw `.eval`)
-1. **`completed_samples`** is NOT stored (only total `samples`). The raw header has
-   both — e.g. DGX gpt-oss-20b/llm-direct-match-all is **9715/9789**. Add it; the
-   dashboard must show "9715 / 9789" / flag short runs (avoids overstating completeness).
-2. ➕ metrics above (input/output token split, neo4j_result_count, throughput where
-   missing, retrieval stratifiers).
-3. **Per-sample Pearson r / agreement %** are in the audit docs only, not the JSONs;
-   omitted from v1. Adding them needs per-sample vectors + cross-machine join (future).
-4. Modifier/baseline cross-machine deltas computed client-side (both machines present).
+### 7.4 Data status & remaining gaps (verified against raw `.eval` 2026-05-25)
+1. ✅ **DONE — `completed_samples`** now stored on all rows (e.g. DGX
+   gpt-oss-20b/llm-direct-match-all = **9715/9789**). Dashboard must show "9715 / 9789"
+   / flag short runs (avoids overstating completeness).
+2. ✅ **DONE — per-sample `timing`** (median/mean/max of `working_time`) on retrieval +
+   allarma + modifier; matches the paper's `T_sample` on all 22 quoted cells. The
+   dashboard's "avg time/sample" uses `timing.mean`, NOT `avg_time_per_sample` (wall/N).
+3. ➕ Remaining (post-v1): input/output token split, neo4j_result_count, throughput
+   where missing, retrieval stratifiers (template/query_type/persona).
+4. **Per-sample Pearson r / agreement %** — in the audit docs & paper modifier table,
+   not the JSONs; omitted from v1. The paper says "full results on the dashboard," so
+   this is a likely fast-follow (needs per-sample vectors + cross-machine join).
+5. Modifier/baseline cross-machine deltas computed client-side (both machines present).
 
 ## 8. Build approach
 Work in the existing repo. **Keep** `scripts/`+`data/` (extend the extractor for §7.4
