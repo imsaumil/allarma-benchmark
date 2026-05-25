@@ -27,7 +27,7 @@
     "timing": {
       "median": 6.07,
       "mean": 9.65,
-      "max": 41.06
+      "max": 41.05
     },
     "tokens": {
       "avg_input": 8190,
@@ -70,7 +70,7 @@
     "timing": {
       "median": 4.59,
       "mean": 6.86,
-      "max": 35.37
+      "max": 35.36
     },
     "tokens": {
       "avg_input": 7740,
@@ -241,7 +241,7 @@
     "removal_score": 0.9175,
     "timing": {
       "median": 18.81,
-      "mean": 25.42,
+      "mean": 25.41,
       "max": 287.86
     },
     "tokens": {
@@ -285,7 +285,7 @@
     "timing": {
       "median": 20.69,
       "mean": 26.01,
-      "max": 209.28
+      "max": 209.27
     },
     "tokens": {
       "avg_input": 8358,
@@ -328,7 +328,7 @@
     "timing": {
       "median": 5.0,
       "mean": 13.45,
-      "max": 44.68
+      "max": 44.67
     },
     "tokens": {
       "avg_input": 7921,
@@ -370,7 +370,7 @@
     "removal_score": 0.2109,
     "timing": {
       "median": 9.16,
-      "mean": 9.73,
+      "mean": 9.72,
       "max": 26.04
     },
     "tokens": {
@@ -412,8 +412,8 @@
     "presence_score": 0.8471,
     "removal_score": 0.5835,
     "timing": {
-      "median": 23.09,
-      "mean": 35.79,
+      "median": 23.08,
+      "mean": 35.78,
       "max": 152.57
     },
     "tokens": {
@@ -455,8 +455,8 @@
     "presence_score": 0.9706,
     "removal_score": 0.9549,
     "timing": {
-      "median": 18.11,
-      "mean": 27.87,
+      "median": 18.1,
+      "mean": 27.86,
       "max": 131.92
     },
     "tokens": {
@@ -498,7 +498,7 @@
     "presence_score": 0.9503,
     "removal_score": 0.9374,
     "timing": {
-      "median": 46.45,
+      "median": 46.44,
       "mean": 67.49,
       "max": 319.35
     },
@@ -586,7 +586,7 @@
     "timing": {
       "median": 41.68,
       "mean": 47.9,
-      "max": 257.84
+      "max": 257.83
     },
     "tokens": {
       "avg_input": 8352,
@@ -628,7 +628,7 @@
     "removal_score": 0.9159,
     "timing": {
       "median": 70.68,
-      "mean": 89.86,
+      "mean": 89.85,
       "max": 350.84
     },
     "tokens": {
@@ -715,7 +715,7 @@
     "timing": {
       "median": 17.82,
       "mean": 48.67,
-      "max": 162.98
+      "max": 162.97
     },
     "tokens": {
       "avg_input": 7921,
@@ -757,8 +757,8 @@
     "removal_score": 0.21,
     "timing": {
       "median": 39.97,
-      "mean": 44.4,
-      "max": 120.42
+      "mean": 44.39,
+      "max": 120.41
     },
     "tokens": {
       "avg_input": 7921,

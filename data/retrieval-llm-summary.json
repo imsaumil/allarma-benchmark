@@ -18,6 +18,11 @@
     },
     "total_runtime": 376.0,
     "avg_time_per_sample": 0.0384,
+    "timing": {
+      "median": 0.16,
+      "mean": 0.19,
+      "max": 1.58
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -41,6 +46,11 @@
     },
     "total_runtime": 400.0,
     "avg_time_per_sample": 0.0409,
+    "timing": {
+      "median": 0.17,
+      "mean": 0.2,
+      "max": 2.06
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -64,6 +74,11 @@
     },
     "total_runtime": 338.0,
     "avg_time_per_sample": 0.0345,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.16,
+      "max": 1.97
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -87,6 +102,11 @@
     },
     "total_runtime": 7110.0,
     "avg_time_per_sample": 0.7263,
+    "timing": {
+      "median": 3.63,
+      "mean": 3.58,
+      "max": 5.16
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -110,6 +130,11 @@
     },
     "total_runtime": 179.0,
     "avg_time_per_sample": 0.0183,
+    "timing": {
+      "median": 0.08,
+      "mean": 0.08,
+      "max": 1.94
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -133,6 +158,11 @@
     },
     "total_runtime": 652.0,
     "avg_time_per_sample": 0.0666,
+    "timing": {
+      "median": 0.29,
+      "mean": 0.32,
+      "max": 2.58
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -156,6 +186,11 @@
     },
     "total_runtime": 171.0,
     "avg_time_per_sample": 0.0175,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.08,
+      "max": 1.94
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -179,6 +214,11 @@
     },
     "total_runtime": 180.0,
     "avg_time_per_sample": 0.0184,
+    "timing": {
+      "median": 0.08,
+      "mean": 0.08,
+      "max": 2.77
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -202,6 +242,11 @@
     },
     "total_runtime": 169.0,
     "avg_time_per_sample": 0.0173,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.08,
+      "max": 1.93
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -225,6 +270,11 @@
     },
     "total_runtime": 152.0,
     "avg_time_per_sample": 0.0155,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.07,
+      "max": 1.97
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -248,6 +298,11 @@
     },
     "total_runtime": 160.0,
     "avg_time_per_sample": 0.0163,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.07,
+      "max": 1.95
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -271,6 +326,11 @@
     },
     "total_runtime": 163.0,
     "avg_time_per_sample": 0.0167,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.08,
+      "max": 1.95
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -294,6 +354,11 @@
     },
     "total_runtime": 194.0,
     "avg_time_per_sample": 0.0198,
+    "timing": {
+      "median": 0.08,
+      "mean": 0.09,
+      "max": 2.0
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -317,6 +382,11 @@
     },
     "total_runtime": 147.0,
     "avg_time_per_sample": 0.015,
+    "timing": {
+      "median": 0.06,
+      "mean": 0.07,
+      "max": 1.9
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -340,6 +410,11 @@
     },
     "total_runtime": 132.0,
     "avg_time_per_sample": 0.0135,
+    "timing": {
+      "median": 0.05,
+      "mean": 0.06,
+      "max": 1.81
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -363,6 +438,11 @@
     },
     "total_runtime": 141.0,
     "avg_time_per_sample": 0.0144,
+    "timing": {
+      "median": 0.06,
+      "mean": 0.07,
+      "max": 1.98
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -386,6 +466,11 @@
     },
     "total_runtime": 154.0,
     "avg_time_per_sample": 0.0157,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.07,
+      "max": 1.93
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -409,6 +494,11 @@
     },
     "total_runtime": 125.0,
     "avg_time_per_sample": 0.0128,
+    "timing": {
+      "median": 0.05,
+      "mean": 0.06,
+      "max": 1.91
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -432,6 +522,11 @@
     },
     "total_runtime": 119.0,
     "avg_time_per_sample": 0.0122,
+    "timing": {
+      "median": 0.05,
+      "mean": 0.05,
+      "max": 1.88
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -455,6 +550,11 @@
     },
     "total_runtime": 404.0,
     "avg_time_per_sample": 0.0413,
+    "timing": {
+      "median": 0.19,
+      "mean": 0.2,
+      "max": 2.05
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -478,6 +578,11 @@
     },
     "total_runtime": 377.0,
     "avg_time_per_sample": 0.0385,
+    "timing": {
+      "median": 0.18,
+      "mean": 0.18,
+      "max": 2.01
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -501,6 +606,11 @@
     },
     "total_runtime": 396.0,
     "avg_time_per_sample": 0.0405,
+    "timing": {
+      "median": 0.19,
+      "mean": 0.19,
+      "max": 2.02
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -524,6 +634,11 @@
     },
     "total_runtime": 149.0,
     "avg_time_per_sample": 0.0152,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.07,
+      "max": 1.89
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -547,6 +662,11 @@
     },
     "total_runtime": 163605.0,
     "avg_time_per_sample": 16.7131,
+    "timing": {
+      "median": 25.97,
+      "mean": 80.67,
+      "max": 599.78
+    },
     "max_tokens": null,
     "truncation_count": 432,
     "truncation_rate": 0.044131
@@ -570,6 +690,11 @@
     },
     "total_runtime": 10252.0,
     "avg_time_per_sample": 1.0473,
+    "timing": {
+      "median": 4.59,
+      "mean": 5.18,
+      "max": 95.73
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -593,6 +718,11 @@
     },
     "total_runtime": 8503.0,
     "avg_time_per_sample": 0.8686,
+    "timing": {
+      "median": 3.83,
+      "mean": 4.29,
+      "max": 94.32
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -616,6 +746,11 @@
     },
     "total_runtime": 9538.0,
     "avg_time_per_sample": 0.9744,
+    "timing": {
+      "median": 4.68,
+      "mean": 4.81,
+      "max": 86.01
+    },
     "max_tokens": 8192,
     "truncation_count": 7,
     "truncation_rate": 0.000715
@@ -639,6 +774,11 @@
     },
     "total_runtime": 7513.0,
     "avg_time_per_sample": 0.7675,
+    "timing": {
+      "median": 2.96,
+      "mean": 3.79,
+      "max": 86.68
+    },
     "max_tokens": 8192,
     "truncation_count": 39,
     "truncation_rate": 0.003984
@@ -662,6 +802,11 @@
     },
     "total_runtime": 4835.0,
     "avg_time_per_sample": 0.4939,
+    "timing": {
+      "median": 1.99,
+      "mean": 2.43,
+      "max": 86.72
+    },
     "max_tokens": 8192,
     "truncation_count": 18,
     "truncation_rate": 0.001839
@@ -685,6 +830,11 @@
     },
     "total_runtime": 3560.0,
     "avg_time_per_sample": 0.3637,
+    "timing": {
+      "median": 1.45,
+      "mean": 1.78,
+      "max": 82.14
+    },
     "max_tokens": 8192,
     "truncation_count": 6,
     "truncation_rate": 0.000613
@@ -708,6 +858,11 @@
     },
     "total_runtime": 6914.0,
     "avg_time_per_sample": 0.7063,
+    "timing": {
+      "median": 2.83,
+      "mean": 3.49,
+      "max": 84.86
+    },
     "max_tokens": 8192,
     "truncation_count": 22,
     "truncation_rate": 0.002247
@@ -731,6 +886,11 @@
     },
     "total_runtime": 6443.0,
     "avg_time_per_sample": 0.6582,
+    "timing": {
+      "median": 2.86,
+      "mean": 3.23,
+      "max": 86.36
+    },
     "max_tokens": 8192,
     "truncation_count": 7,
     "truncation_rate": 0.000715
@@ -754,6 +914,11 @@
     },
     "total_runtime": 3719.0,
     "avg_time_per_sample": 0.3799,
+    "timing": {
+      "median": 1.6,
+      "mean": 1.86,
+      "max": 85.96
+    },
     "max_tokens": 8192,
     "truncation_count": 4,
     "truncation_rate": 0.000409
@@ -777,6 +942,11 @@
     },
     "total_runtime": 4771.0,
     "avg_time_per_sample": 0.4874,
+    "timing": {
+      "median": 2.0,
+      "mean": 2.4,
+      "max": 85.85
+    },
     "max_tokens": 8192,
     "truncation_count": 9,
     "truncation_rate": 0.000919
@@ -800,6 +970,11 @@
     },
     "total_runtime": 5425.0,
     "avg_time_per_sample": 0.5542,
+    "timing": {
+      "median": 2.34,
+      "mean": 2.72,
+      "max": 86.26
+    },
     "max_tokens": 8192,
     "truncation_count": 5,
     "truncation_rate": 0.000511
@@ -823,6 +998,11 @@
     },
     "total_runtime": 7666.0,
     "avg_time_per_sample": 0.7831,
+    "timing": {
+      "median": 3.62,
+      "mean": 3.85,
+      "max": 89.95
+    },
     "max_tokens": 8192,
     "truncation_count": 10,
     "truncation_rate": 0.001022
@@ -846,6 +1026,11 @@
     },
     "total_runtime": 4049.0,
     "avg_time_per_sample": 0.4136,
+    "timing": {
+      "median": 1.62,
+      "mean": 2.02,
+      "max": 85.64
+    },
     "max_tokens": 8192,
     "truncation_count": 9,
     "truncation_rate": 0.000919
@@ -869,6 +1054,11 @@
     },
     "total_runtime": 2169.0,
     "avg_time_per_sample": 0.2216,
+    "timing": {
+      "median": 0.03,
+      "mean": 1.09,
+      "max": 84.33
+    },
     "max_tokens": 8192,
     "truncation_count": 2,
     "truncation_rate": 0.000204
@@ -892,6 +1082,11 @@
     },
     "total_runtime": 4728.0,
     "avg_time_per_sample": 0.483,
+    "timing": {
+      "median": 1.93,
+      "mean": 2.36,
+      "max": 87.31
+    },
     "max_tokens": 8192,
     "truncation_count": 13,
     "truncation_rate": 0.001328
@@ -915,6 +1110,11 @@
     },
     "total_runtime": 6281.0,
     "avg_time_per_sample": 0.6416,
+    "timing": {
+      "median": 2.78,
+      "mean": 3.16,
+      "max": 85.29
+    },
     "max_tokens": 8192,
     "truncation_count": 5,
     "truncation_rate": 0.000511
@@ -938,6 +1138,11 @@
     },
     "total_runtime": 6237.0,
     "avg_time_per_sample": 0.6371,
+    "timing": {
+      "median": 2.78,
+      "mean": 3.14,
+      "max": 85.5
+    },
     "max_tokens": 8192,
     "truncation_count": 6,
     "truncation_rate": 0.000613
@@ -961,6 +1166,11 @@
     },
     "total_runtime": 6576.0,
     "avg_time_per_sample": 0.6718,
+    "timing": {
+      "median": 2.71,
+      "mean": 3.31,
+      "max": 86.88
+    },
     "max_tokens": 8192,
     "truncation_count": 23,
     "truncation_rate": 0.00235
@@ -984,6 +1194,11 @@
     },
     "total_runtime": 5422.0,
     "avg_time_per_sample": 0.5539,
+    "timing": {
+      "median": 2.41,
+      "mean": 2.72,
+      "max": 87.61
+    },
     "max_tokens": 8192,
     "truncation_count": 7,
     "truncation_rate": 0.000715
@@ -1007,6 +1222,11 @@
     },
     "total_runtime": 4216.0,
     "avg_time_per_sample": 0.4307,
+    "timing": {
+      "median": 1.77,
+      "mean": 2.11,
+      "max": 86.08
+    },
     "max_tokens": 8192,
     "truncation_count": 6,
     "truncation_rate": 0.000613
@@ -1030,6 +1250,11 @@
     },
     "total_runtime": 5211.0,
     "avg_time_per_sample": 0.5323,
+    "timing": {
+      "median": 2.32,
+      "mean": 2.62,
+      "max": 87.99
+    },
     "max_tokens": 8192,
     "truncation_count": 11,
     "truncation_rate": 0.001124
@@ -1053,6 +1278,11 @@
     },
     "total_runtime": 3847.0,
     "avg_time_per_sample": 0.393,
+    "timing": {
+      "median": 1.41,
+      "mean": 1.93,
+      "max": 86.26
+    },
     "max_tokens": 8192,
     "truncation_count": 12,
     "truncation_rate": 0.001226
@@ -1076,6 +1306,11 @@
     },
     "total_runtime": 4811.0,
     "avg_time_per_sample": 0.4915,
+    "timing": {
+      "median": 0.62,
+      "mean": 2.38,
+      "max": 184.66
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1099,6 +1334,11 @@
     },
     "total_runtime": 3444.0,
     "avg_time_per_sample": 0.3518,
+    "timing": {
+      "median": 0.62,
+      "mean": 1.74,
+      "max": 183.99
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1122,6 +1362,11 @@
     },
     "total_runtime": 1033.0,
     "avg_time_per_sample": 0.1055,
+    "timing": {
+      "median": 0.5,
+      "mean": 0.51,
+      "max": 2.29
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1145,6 +1390,11 @@
     },
     "total_runtime": 21936.0,
     "avg_time_per_sample": 2.2409,
+    "timing": {
+      "median": 11.17,
+      "mean": 11.09,
+      "max": 15.87
+    },
     "max_tokens": 8192,
     "truncation_count": 1,
     "truncation_rate": 0.000102
@@ -1168,6 +1418,11 @@
     },
     "total_runtime": 276.0,
     "avg_time_per_sample": 0.0282,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.13,
+      "max": 1.94
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1191,6 +1446,11 @@
     },
     "total_runtime": 1674.0,
     "avg_time_per_sample": 0.171,
+    "timing": {
+      "median": 0.76,
+      "mean": 0.84,
+      "max": 3.35
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1214,6 +1474,11 @@
     },
     "total_runtime": 325.0,
     "avg_time_per_sample": 0.0332,
+    "timing": {
+      "median": 0.14,
+      "mean": 0.16,
+      "max": 1.94
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1237,6 +1502,11 @@
     },
     "total_runtime": 350.0,
     "avg_time_per_sample": 0.0358,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.17,
+      "max": 4.78
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1260,6 +1530,11 @@
     },
     "total_runtime": 357.0,
     "avg_time_per_sample": 0.0365,
+    "timing": {
+      "median": 0.16,
+      "mean": 0.17,
+      "max": 1.97
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1283,6 +1558,11 @@
     },
     "total_runtime": 271.0,
     "avg_time_per_sample": 0.0277,
+    "timing": {
+      "median": 0.12,
+      "mean": 0.13,
+      "max": 1.97
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1306,6 +1586,11 @@
     },
     "total_runtime": 290.0,
     "avg_time_per_sample": 0.0296,
+    "timing": {
+      "median": 0.13,
+      "mean": 0.14,
+      "max": 1.94
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1329,6 +1614,11 @@
     },
     "total_runtime": 315.0,
     "avg_time_per_sample": 0.0322,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.15,
+      "max": 1.99
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1352,6 +1642,11 @@
     },
     "total_runtime": 424.0,
     "avg_time_per_sample": 0.0433,
+    "timing": {
+      "median": 0.19,
+      "mean": 0.21,
+      "max": 1.95
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1375,6 +1670,11 @@
     },
     "total_runtime": 233.0,
     "avg_time_per_sample": 0.0238,
+    "timing": {
+      "median": 0.12,
+      "mean": 0.11,
+      "max": 2.53
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1398,6 +1698,11 @@
     },
     "total_runtime": 165.0,
     "avg_time_per_sample": 0.0169,
+    "timing": {
+      "median": 0.05,
+      "mean": 0.08,
+      "max": 2.17
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1421,6 +1726,11 @@
     },
     "total_runtime": 267.0,
     "avg_time_per_sample": 0.0273,
+    "timing": {
+      "median": 0.12,
+      "mean": 0.13,
+      "max": 2.0
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1444,6 +1754,11 @@
     },
     "total_runtime": 346.0,
     "avg_time_per_sample": 0.0353,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.17,
+      "max": 1.95
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1467,6 +1782,11 @@
     },
     "total_runtime": 321.0,
     "avg_time_per_sample": 0.0328,
+    "timing": {
+      "median": 0.14,
+      "mean": 0.15,
+      "max": 1.91
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1490,6 +1810,11 @@
     },
     "total_runtime": 319.0,
     "avg_time_per_sample": 0.0326,
+    "timing": {
+      "median": 0.14,
+      "mean": 0.15,
+      "max": 4.43
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1513,6 +1838,11 @@
     },
     "total_runtime": 951.0,
     "avg_time_per_sample": 0.0971,
+    "timing": {
+      "median": 0.44,
+      "mean": 0.47,
+      "max": 7.64
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1536,6 +1866,11 @@
     },
     "total_runtime": 887.0,
     "avg_time_per_sample": 0.0906,
+    "timing": {
+      "median": 0.41,
+      "mean": 0.44,
+      "max": 5.61
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1559,6 +1894,11 @@
     },
     "total_runtime": 926.0,
     "avg_time_per_sample": 0.0946,
+    "timing": {
+      "median": 0.43,
+      "mean": 0.46,
+      "max": 6.25
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1582,6 +1922,11 @@
     },
     "total_runtime": 258.0,
     "avg_time_per_sample": 0.0264,
+    "timing": {
+      "median": 0.13,
+      "mean": 0.12,
+      "max": 1.96
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1605,6 +1950,11 @@
     },
     "total_runtime": 442.0,
     "avg_time_per_sample": 0.0452,
+    "timing": {
+      "median": 0.2,
+      "mean": 0.22,
+      "max": 59.18
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1628,6 +1978,11 @@
     },
     "total_runtime": 459.0,
     "avg_time_per_sample": 0.0469,
+    "timing": {
+      "median": 0.19,
+      "mean": 0.21,
+      "max": 54.27
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1651,6 +2006,11 @@
     },
     "total_runtime": 332.0,
     "avg_time_per_sample": 0.0339,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.16,
+      "max": 1.98
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1674,6 +2034,11 @@
     },
     "total_runtime": 8538.0,
     "avg_time_per_sample": 0.8722,
+    "timing": {
+      "median": 4.36,
+      "mean": 4.3,
+      "max": 5.83
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1697,6 +2062,11 @@
     },
     "total_runtime": 159.0,
     "avg_time_per_sample": 0.0162,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.08,
+      "max": 1.88
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1720,6 +2090,11 @@
     },
     "total_runtime": 726.0,
     "avg_time_per_sample": 0.0742,
+    "timing": {
+      "median": 0.34,
+      "mean": 0.36,
+      "max": 2.51
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1743,6 +2118,11 @@
     },
     "total_runtime": 162.0,
     "avg_time_per_sample": 0.0165,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.08,
+      "max": 1.92
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1766,6 +2146,11 @@
     },
     "total_runtime": 157.0,
     "avg_time_per_sample": 0.016,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.07,
+      "max": 2.69
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1789,6 +2174,11 @@
     },
     "total_runtime": 170.0,
     "avg_time_per_sample": 0.0174,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.08,
+      "max": 1.94
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1812,6 +2202,11 @@
     },
     "total_runtime": 148.0,
     "avg_time_per_sample": 0.0151,
+    "timing": {
+      "median": 0.06,
+      "mean": 0.07,
+      "max": 1.9
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1835,6 +2230,11 @@
     },
     "total_runtime": 153.0,
     "avg_time_per_sample": 0.0156,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.07,
+      "max": 1.89
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1858,6 +2258,11 @@
     },
     "total_runtime": 159.0,
     "avg_time_per_sample": 0.0162,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.07,
+      "max": 1.89
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1881,6 +2286,11 @@
     },
     "total_runtime": 187.0,
     "avg_time_per_sample": 0.0191,
+    "timing": {
+      "median": 0.08,
+      "mean": 0.09,
+      "max": 1.98
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1904,6 +2314,11 @@
     },
     "total_runtime": 144.0,
     "avg_time_per_sample": 0.0147,
+    "timing": {
+      "median": 0.06,
+      "mean": 0.07,
+      "max": 1.83
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1927,6 +2342,11 @@
     },
     "total_runtime": 130.0,
     "avg_time_per_sample": 0.0133,
+    "timing": {
+      "median": 0.05,
+      "mean": 0.06,
+      "max": 1.79
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1950,6 +2370,11 @@
     },
     "total_runtime": 135.0,
     "avg_time_per_sample": 0.0138,
+    "timing": {
+      "median": 0.06,
+      "mean": 0.06,
+      "max": 1.89
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1973,6 +2398,11 @@
     },
     "total_runtime": 149.0,
     "avg_time_per_sample": 0.0152,
+    "timing": {
+      "median": 0.06,
+      "mean": 0.07,
+      "max": 1.86
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -1996,6 +2426,11 @@
     },
     "total_runtime": 116.0,
     "avg_time_per_sample": 0.0119,
+    "timing": {
+      "median": 0.05,
+      "mean": 0.05,
+      "max": 1.92
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2019,6 +2454,11 @@
     },
     "total_runtime": 110.0,
     "avg_time_per_sample": 0.0112,
+    "timing": {
+      "median": 0.05,
+      "mean": 0.05,
+      "max": 1.84
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2042,6 +2482,11 @@
     },
     "total_runtime": 405.0,
     "avg_time_per_sample": 0.0414,
+    "timing": {
+      "median": 0.19,
+      "mean": 0.2,
+      "max": 2.0
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2065,6 +2510,11 @@
     },
     "total_runtime": 384.0,
     "avg_time_per_sample": 0.0392,
+    "timing": {
+      "median": 0.18,
+      "mean": 0.19,
+      "max": 1.98
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2088,6 +2538,11 @@
     },
     "total_runtime": 402.0,
     "avg_time_per_sample": 0.0411,
+    "timing": {
+      "median": 0.19,
+      "mean": 0.2,
+      "max": 2.0
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2111,6 +2566,11 @@
     },
     "total_runtime": 149.0,
     "avg_time_per_sample": 0.0152,
+    "timing": {
+      "median": 0.06,
+      "mean": 0.07,
+      "max": 1.86
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2134,6 +2594,11 @@
     },
     "total_runtime": 3398.0,
     "avg_time_per_sample": 0.3471,
+    "timing": {
+      "median": 0.48,
+      "mean": 1.7,
+      "max": 123.76
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2157,6 +2622,11 @@
     },
     "total_runtime": 3357.0,
     "avg_time_per_sample": 0.3429,
+    "timing": {
+      "median": 0.48,
+      "mean": 1.66,
+      "max": 124.31
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2180,6 +2650,11 @@
     },
     "total_runtime": 636.0,
     "avg_time_per_sample": 0.065,
+    "timing": {
+      "median": 0.3,
+      "mean": 0.31,
+      "max": 2.1
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2203,6 +2678,11 @@
     },
     "total_runtime": 14760.0,
     "avg_time_per_sample": 1.5078,
+    "timing": {
+      "median": 7.51,
+      "mean": 7.45,
+      "max": 9.99
+    },
     "max_tokens": 8192,
     "truncation_count": 1,
     "truncation_rate": 0.000102
@@ -2226,6 +2706,11 @@
     },
     "total_runtime": 202.0,
     "avg_time_per_sample": 0.0206,
+    "timing": {
+      "median": 0.1,
+      "mean": 0.1,
+      "max": 1.88
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2249,6 +2734,11 @@
     },
     "total_runtime": 1122.0,
     "avg_time_per_sample": 0.1146,
+    "timing": {
+      "median": 0.51,
+      "mean": 0.56,
+      "max": 2.79
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2272,6 +2762,11 @@
     },
     "total_runtime": 224.0,
     "avg_time_per_sample": 0.0229,
+    "timing": {
+      "median": 0.1,
+      "mean": 0.11,
+      "max": 1.92
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2295,6 +2790,11 @@
     },
     "total_runtime": 198.0,
     "avg_time_per_sample": 0.0202,
+    "timing": {
+      "median": 0.1,
+      "mean": 0.09,
+      "max": 1.91
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2318,6 +2818,11 @@
     },
     "total_runtime": 240.0,
     "avg_time_per_sample": 0.0245,
+    "timing": {
+      "median": 0.11,
+      "mean": 0.11,
+      "max": 1.93
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2341,6 +2846,11 @@
     },
     "total_runtime": 194.0,
     "avg_time_per_sample": 0.0198,
+    "timing": {
+      "median": 0.08,
+      "mean": 0.09,
+      "max": 1.9
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2364,6 +2874,11 @@
     },
     "total_runtime": 201.0,
     "avg_time_per_sample": 0.0205,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.1,
+      "max": 1.98
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2387,6 +2902,11 @@
     },
     "total_runtime": 219.0,
     "avg_time_per_sample": 0.0224,
+    "timing": {
+      "median": 0.1,
+      "mean": 0.1,
+      "max": 1.91
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2410,6 +2930,11 @@
     },
     "total_runtime": 284.0,
     "avg_time_per_sample": 0.029,
+    "timing": {
+      "median": 0.13,
+      "mean": 0.14,
+      "max": 1.9
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2433,6 +2958,11 @@
     },
     "total_runtime": 174.0,
     "avg_time_per_sample": 0.0178,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.08,
+      "max": 1.82
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2456,6 +2986,11 @@
     },
     "total_runtime": 142.0,
     "avg_time_per_sample": 0.0145,
+    "timing": {
+      "median": 0.05,
+      "mean": 0.07,
+      "max": 1.79
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2479,6 +3014,11 @@
     },
     "total_runtime": 196.0,
     "avg_time_per_sample": 0.02,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.09,
+      "max": 1.9
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2502,6 +3042,11 @@
     },
     "total_runtime": 228.0,
     "avg_time_per_sample": 0.0233,
+    "timing": {
+      "median": 0.1,
+      "mean": 0.11,
+      "max": 1.9
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2525,6 +3070,11 @@
     },
     "total_runtime": 207.0,
     "avg_time_per_sample": 0.0211,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.1,
+      "max": 1.9
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2548,6 +3098,11 @@
     },
     "total_runtime": 204.0,
     "avg_time_per_sample": 0.0208,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.1,
+      "max": 5.35
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2571,6 +3126,11 @@
     },
     "total_runtime": 645.0,
     "avg_time_per_sample": 0.0659,
+    "timing": {
+      "median": 0.3,
+      "mean": 0.32,
+      "max": 2.12
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2594,6 +3154,11 @@
     },
     "total_runtime": 599.0,
     "avg_time_per_sample": 0.0612,
+    "timing": {
+      "median": 0.28,
+      "mean": 0.3,
+      "max": 2.08
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2617,6 +3182,11 @@
     },
     "total_runtime": 631.0,
     "avg_time_per_sample": 0.0645,
+    "timing": {
+      "median": 0.3,
+      "mean": 0.31,
+      "max": 2.08
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2640,6 +3210,11 @@
     },
     "total_runtime": 193.0,
     "avg_time_per_sample": 0.0197,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.09,
+      "max": 1.81
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2663,6 +3238,11 @@
     },
     "total_runtime": 1075.0,
     "avg_time_per_sample": 0.1098,
+    "timing": {
+      "median": 0.51,
+      "mean": 0.54,
+      "max": 7.73
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2686,6 +3266,11 @@
     },
     "total_runtime": 16022.0,
     "avg_time_per_sample": 1.6367,
+    "timing": {
+      "median": 8.17,
+      "mean": 8.09,
+      "max": 10.62
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2709,6 +3294,11 @@
     },
     "total_runtime": 7753.0,
     "avg_time_per_sample": 0.792,
+    "timing": {
+      "median": 0.6,
+      "mean": 3.88,
+      "max": 165.38
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2732,6 +3322,11 @@
     },
     "total_runtime": 3337.0,
     "avg_time_per_sample": 0.3409,
+    "timing": {
+      "median": 0.62,
+      "mean": 1.65,
+      "max": 164.33
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2755,6 +3350,11 @@
     },
     "total_runtime": 364.0,
     "avg_time_per_sample": 0.0372,
+    "timing": {
+      "median": 0.18,
+      "mean": 0.18,
+      "max": 2.01
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2778,6 +3378,11 @@
     },
     "total_runtime": 1583.0,
     "avg_time_per_sample": 0.1617,
+    "timing": {
+      "median": 0.72,
+      "mean": 0.79,
+      "max": 3.38
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2801,6 +3406,11 @@
     },
     "total_runtime": 406.0,
     "avg_time_per_sample": 0.0415,
+    "timing": {
+      "median": 0.19,
+      "mean": 0.2,
+      "max": 2.03
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2824,6 +3434,11 @@
     },
     "total_runtime": 363.0,
     "avg_time_per_sample": 0.0371,
+    "timing": {
+      "median": 0.18,
+      "mean": 0.18,
+      "max": 3.18
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2847,6 +3462,11 @@
     },
     "total_runtime": 433.0,
     "avg_time_per_sample": 0.0442,
+    "timing": {
+      "median": 0.2,
+      "mean": 0.21,
+      "max": 2.03
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2870,6 +3490,11 @@
     },
     "total_runtime": 338.0,
     "avg_time_per_sample": 0.0345,
+    "timing": {
+      "median": 0.16,
+      "mean": 0.16,
+      "max": 1.97
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2893,6 +3518,11 @@
     },
     "total_runtime": 378.0,
     "avg_time_per_sample": 0.0386,
+    "timing": {
+      "median": 0.18,
+      "mean": 0.18,
+      "max": 2.0
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2916,6 +3546,11 @@
     },
     "total_runtime": 407.0,
     "avg_time_per_sample": 0.0416,
+    "timing": {
+      "median": 0.19,
+      "mean": 0.2,
+      "max": 2.02
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2939,6 +3574,11 @@
     },
     "total_runtime": 523.0,
     "avg_time_per_sample": 0.0534,
+    "timing": {
+      "median": 0.25,
+      "mean": 0.26,
+      "max": 2.06
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2962,6 +3602,11 @@
     },
     "total_runtime": 268.0,
     "avg_time_per_sample": 0.0274,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.13,
+      "max": 1.91
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -2985,6 +3630,11 @@
     },
     "total_runtime": 185.0,
     "avg_time_per_sample": 0.0189,
+    "timing": {
+      "median": 0.05,
+      "mean": 0.09,
+      "max": 1.89
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3008,6 +3658,11 @@
     },
     "total_runtime": 360.0,
     "avg_time_per_sample": 0.0368,
+    "timing": {
+      "median": 0.17,
+      "mean": 0.18,
+      "max": 1.96
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3031,6 +3686,11 @@
     },
     "total_runtime": 431.0,
     "avg_time_per_sample": 0.044,
+    "timing": {
+      "median": 0.2,
+      "mean": 0.21,
+      "max": 2.03
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3054,6 +3714,11 @@
     },
     "total_runtime": 390.0,
     "avg_time_per_sample": 0.0398,
+    "timing": {
+      "median": 0.18,
+      "mean": 0.19,
+      "max": 2.01
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3077,6 +3742,11 @@
     },
     "total_runtime": 382.0,
     "avg_time_per_sample": 0.039,
+    "timing": {
+      "median": 0.17,
+      "mean": 0.19,
+      "max": 8.45
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3100,6 +3770,11 @@
     },
     "total_runtime": 1070.0,
     "avg_time_per_sample": 0.1093,
+    "timing": {
+      "median": 0.51,
+      "mean": 0.53,
+      "max": 2.29
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3123,6 +3798,11 @@
     },
     "total_runtime": 975.0,
     "avg_time_per_sample": 0.0996,
+    "timing": {
+      "median": 0.46,
+      "mean": 0.49,
+      "max": 2.25
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3146,6 +3826,11 @@
     },
     "total_runtime": 1057.0,
     "avg_time_per_sample": 0.108,
+    "timing": {
+      "median": 0.5,
+      "mean": 0.53,
+      "max": 2.33
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3169,6 +3854,11 @@
     },
     "total_runtime": 332.0,
     "avg_time_per_sample": 0.0339,
+    "timing": {
+      "median": 0.2,
+      "mean": 0.16,
+      "max": 2.04
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3192,6 +3882,11 @@
     },
     "total_runtime": 1107.0,
     "avg_time_per_sample": 0.1131,
+    "timing": {
+      "median": 0.56,
+      "mean": 0.55,
+      "max": 2.37
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3215,6 +3910,11 @@
     },
     "total_runtime": 1260.0,
     "avg_time_per_sample": 0.1287,
+    "timing": {
+      "median": 0.58,
+      "mean": 0.63,
+      "max": 7.87
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3238,6 +3938,11 @@
     },
     "total_runtime": 938.0,
     "avg_time_per_sample": 0.0958,
+    "timing": {
+      "median": 0.45,
+      "mean": 0.46,
+      "max": 7.67
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3261,6 +3966,11 @@
     },
     "total_runtime": 12708.0,
     "avg_time_per_sample": 1.2982,
+    "timing": {
+      "median": 6.41,
+      "mean": 6.41,
+      "max": 9.91
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3284,6 +3994,11 @@
     },
     "total_runtime": 389.0,
     "avg_time_per_sample": 0.0397,
+    "timing": {
+      "median": 0.18,
+      "mean": 0.19,
+      "max": 2.04
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3307,6 +4022,11 @@
     },
     "total_runtime": 13260.0,
     "avg_time_per_sample": 1.3546,
+    "timing": {
+      "median": 8.19,
+      "mean": 6.7,
+      "max": 20.55
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3330,6 +4050,11 @@
     },
     "total_runtime": 384.0,
     "avg_time_per_sample": 0.0392,
+    "timing": {
+      "median": 0.17,
+      "mean": 0.19,
+      "max": 2.08
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3353,6 +4078,11 @@
     },
     "total_runtime": 314.0,
     "avg_time_per_sample": 0.0321,
+    "timing": {
+      "median": 0.17,
+      "mean": 0.15,
+      "max": 2.07
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3376,6 +4106,11 @@
     },
     "total_runtime": 417.0,
     "avg_time_per_sample": 0.0426,
+    "timing": {
+      "median": 0.19,
+      "mean": 0.2,
+      "max": 2.12
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3399,6 +4134,11 @@
     },
     "total_runtime": 336.0,
     "avg_time_per_sample": 0.0343,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.16,
+      "max": 2.02
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3422,6 +4162,11 @@
     },
     "total_runtime": 361.0,
     "avg_time_per_sample": 0.0369,
+    "timing": {
+      "median": 0.17,
+      "mean": 0.18,
+      "max": 2.03
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3445,6 +4190,11 @@
     },
     "total_runtime": 453.0,
     "avg_time_per_sample": 0.0463,
+    "timing": {
+      "median": 0.22,
+      "mean": 0.22,
+      "max": 2.15
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3468,6 +4218,11 @@
     },
     "total_runtime": 552.0,
     "avg_time_per_sample": 0.0564,
+    "timing": {
+      "median": 0.27,
+      "mean": 0.27,
+      "max": 2.2
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3491,6 +4246,11 @@
     },
     "total_runtime": 319.0,
     "avg_time_per_sample": 0.0326,
+    "timing": {
+      "median": 0.16,
+      "mean": 0.15,
+      "max": 2.07
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3514,6 +4274,11 @@
     },
     "total_runtime": 204.0,
     "avg_time_per_sample": 0.0208,
+    "timing": {
+      "median": 0.06,
+      "mean": 0.1,
+      "max": 2.04
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3537,6 +4302,11 @@
     },
     "total_runtime": 395.0,
     "avg_time_per_sample": 0.0404,
+    "timing": {
+      "median": 0.19,
+      "mean": 0.19,
+      "max": 2.16
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3560,6 +4330,11 @@
     },
     "total_runtime": 465.0,
     "avg_time_per_sample": 0.0475,
+    "timing": {
+      "median": 0.22,
+      "mean": 0.23,
+      "max": 2.16
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3583,6 +4358,11 @@
     },
     "total_runtime": 455.0,
     "avg_time_per_sample": 0.0465,
+    "timing": {
+      "median": 0.22,
+      "mean": 0.22,
+      "max": 2.17
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3606,6 +4386,11 @@
     },
     "total_runtime": 482.0,
     "avg_time_per_sample": 0.0492,
+    "timing": {
+      "median": 0.24,
+      "mean": 0.23,
+      "max": 2.16
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3629,6 +4414,11 @@
     },
     "total_runtime": 852.0,
     "avg_time_per_sample": 0.087,
+    "timing": {
+      "median": 0.41,
+      "mean": 0.42,
+      "max": 1.65
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3652,6 +4442,11 @@
     },
     "total_runtime": 773.0,
     "avg_time_per_sample": 0.079,
+    "timing": {
+      "median": 0.37,
+      "mean": 0.38,
+      "max": 1.45
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3675,6 +4470,11 @@
     },
     "total_runtime": 832.0,
     "avg_time_per_sample": 0.085,
+    "timing": {
+      "median": 0.4,
+      "mean": 0.41,
+      "max": 1.53
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3698,6 +4498,11 @@
     },
     "total_runtime": 276.0,
     "avg_time_per_sample": 0.0282,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.13,
+      "max": 1.25
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3721,6 +4526,11 @@
     },
     "total_runtime": 382.0,
     "avg_time_per_sample": 0.039,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.19,
+      "max": 32.24
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3744,6 +4554,11 @@
     },
     "total_runtime": 490.0,
     "avg_time_per_sample": 0.0501,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.24,
+      "max": 31.35
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3767,6 +4582,11 @@
     },
     "total_runtime": 177.0,
     "avg_time_per_sample": 0.0181,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.08,
+      "max": 1.22
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3790,6 +4610,11 @@
     },
     "total_runtime": 2427.0,
     "avg_time_per_sample": 0.2479,
+    "timing": {
+      "median": 1.22,
+      "mean": 1.22,
+      "max": 2.11
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3813,6 +4638,11 @@
     },
     "total_runtime": 177.0,
     "avg_time_per_sample": 0.0181,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.08,
+      "max": 1.22
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3836,6 +4666,11 @@
     },
     "total_runtime": 514.0,
     "avg_time_per_sample": 0.0525,
+    "timing": {
+      "median": 0.23,
+      "mean": 0.25,
+      "max": 14.78
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3859,6 +4694,11 @@
     },
     "total_runtime": 195.0,
     "avg_time_per_sample": 0.0199,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.09,
+      "max": 1.25
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3882,6 +4722,11 @@
     },
     "total_runtime": 179.0,
     "avg_time_per_sample": 0.0183,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.09,
+      "max": 2.33
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3905,6 +4750,11 @@
     },
     "total_runtime": 205.0,
     "avg_time_per_sample": 0.0209,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.1,
+      "max": 1.22
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3928,6 +4778,11 @@
     },
     "total_runtime": 181.0,
     "avg_time_per_sample": 0.0185,
+    "timing": {
+      "median": 0.08,
+      "mean": 0.08,
+      "max": 1.24
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3951,6 +4806,11 @@
     },
     "total_runtime": 191.0,
     "avg_time_per_sample": 0.0195,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.09,
+      "max": 1.25
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3974,6 +4834,11 @@
     },
     "total_runtime": 198.0,
     "avg_time_per_sample": 0.0202,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.09,
+      "max": 1.26
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -3997,6 +4862,11 @@
     },
     "total_runtime": 217.0,
     "avg_time_per_sample": 0.0222,
+    "timing": {
+      "median": 0.1,
+      "mean": 0.1,
+      "max": 1.27
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4020,6 +4890,11 @@
     },
     "total_runtime": 157.0,
     "avg_time_per_sample": 0.016,
+    "timing": {
+      "median": 0.06,
+      "mean": 0.07,
+      "max": 1.18
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4043,6 +4918,11 @@
     },
     "total_runtime": 132.0,
     "avg_time_per_sample": 0.0135,
+    "timing": {
+      "median": 0.05,
+      "mean": 0.06,
+      "max": 1.11
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4066,6 +4946,11 @@
     },
     "total_runtime": 164.0,
     "avg_time_per_sample": 0.0168,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.08,
+      "max": 1.18
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4089,6 +4974,11 @@
     },
     "total_runtime": 171.0,
     "avg_time_per_sample": 0.0175,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.08,
+      "max": 1.23
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4112,6 +5002,11 @@
     },
     "total_runtime": 119.0,
     "avg_time_per_sample": 0.0122,
+    "timing": {
+      "median": 0.05,
+      "mean": 0.05,
+      "max": 1.16
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4135,6 +5030,11 @@
     },
     "total_runtime": 111.0,
     "avg_time_per_sample": 0.0113,
+    "timing": {
+      "median": 0.05,
+      "mean": 0.05,
+      "max": 1.15
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4158,6 +5058,11 @@
     },
     "total_runtime": 319.0,
     "avg_time_per_sample": 0.0326,
+    "timing": {
+      "median": 0.14,
+      "mean": 0.16,
+      "max": 1.32
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4181,6 +5086,11 @@
     },
     "total_runtime": 316.0,
     "avg_time_per_sample": 0.0323,
+    "timing": {
+      "median": 0.14,
+      "mean": 0.15,
+      "max": 1.27
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4204,6 +5114,11 @@
     },
     "total_runtime": 326.0,
     "avg_time_per_sample": 0.0333,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.16,
+      "max": 1.3
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4227,6 +5142,11 @@
     },
     "total_runtime": 155.0,
     "avg_time_per_sample": 0.0158,
+    "timing": {
+      "median": 0.06,
+      "mean": 0.07,
+      "max": 1.14
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4250,6 +5170,11 @@
     },
     "total_runtime": 539.0,
     "avg_time_per_sample": 0.0551,
+    "timing": {
+      "median": 0.25,
+      "mean": 0.27,
+      "max": 1.46
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4273,6 +5198,11 @@
     },
     "total_runtime": 547.0,
     "avg_time_per_sample": 0.0559,
+    "timing": {
+      "median": 0.24,
+      "mean": 0.27,
+      "max": 1.56
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4296,6 +5226,11 @@
     },
     "total_runtime": 280.0,
     "avg_time_per_sample": 0.0286,
+    "timing": {
+      "median": 0.13,
+      "mean": 0.13,
+      "max": 1.24
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4319,6 +5254,11 @@
     },
     "total_runtime": 4188.0,
     "avg_time_per_sample": 0.4278,
+    "timing": {
+      "median": 2.14,
+      "mean": 2.11,
+      "max": 2.84
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4342,6 +5282,11 @@
     },
     "total_runtime": 174.0,
     "avg_time_per_sample": 0.0178,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.08,
+      "max": 1.21
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4365,6 +5310,11 @@
     },
     "total_runtime": 714.0,
     "avg_time_per_sample": 0.0729,
+    "timing": {
+      "median": 0.32,
+      "mean": 0.35,
+      "max": 2.79
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4388,6 +5338,11 @@
     },
     "total_runtime": 196.0,
     "avg_time_per_sample": 0.02,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.09,
+      "max": 1.26
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4411,6 +5366,11 @@
     },
     "total_runtime": 178.0,
     "avg_time_per_sample": 0.0182,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.08,
+      "max": 1.51
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4434,6 +5394,11 @@
     },
     "total_runtime": 213.0,
     "avg_time_per_sample": 0.0218,
+    "timing": {
+      "median": 0.1,
+      "mean": 0.1,
+      "max": 1.28
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4457,6 +5422,11 @@
     },
     "total_runtime": 187.0,
     "avg_time_per_sample": 0.0191,
+    "timing": {
+      "median": 0.08,
+      "mean": 0.09,
+      "max": 1.22
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4480,6 +5450,11 @@
     },
     "total_runtime": 194.0,
     "avg_time_per_sample": 0.0198,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.09,
+      "max": 1.25
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4503,6 +5478,11 @@
     },
     "total_runtime": 203.0,
     "avg_time_per_sample": 0.0207,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.1,
+      "max": 1.24
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4526,6 +5506,11 @@
     },
     "total_runtime": 229.0,
     "avg_time_per_sample": 0.0234,
+    "timing": {
+      "median": 0.1,
+      "mean": 0.11,
+      "max": 1.25
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4549,6 +5534,11 @@
     },
     "total_runtime": 158.0,
     "avg_time_per_sample": 0.0161,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.08,
+      "max": 1.15
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4572,6 +5562,11 @@
     },
     "total_runtime": 130.0,
     "avg_time_per_sample": 0.0133,
+    "timing": {
+      "median": 0.05,
+      "mean": 0.06,
+      "max": 1.1
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4595,6 +5590,11 @@
     },
     "total_runtime": 173.0,
     "avg_time_per_sample": 0.0177,
+    "timing": {
+      "median": 0.08,
+      "mean": 0.08,
+      "max": 1.21
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4618,6 +5618,11 @@
     },
     "total_runtime": 184.0,
     "avg_time_per_sample": 0.0188,
+    "timing": {
+      "median": 0.08,
+      "mean": 0.09,
+      "max": 1.22
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4641,6 +5646,11 @@
     },
     "total_runtime": 129.0,
     "avg_time_per_sample": 0.0132,
+    "timing": {
+      "median": 0.05,
+      "mean": 0.06,
+      "max": 1.22
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4664,6 +5674,11 @@
     },
     "total_runtime": 121.0,
     "avg_time_per_sample": 0.0124,
+    "timing": {
+      "median": 0.05,
+      "mean": 0.06,
+      "max": 1.16
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4687,6 +5702,11 @@
     },
     "total_runtime": 419.0,
     "avg_time_per_sample": 0.0428,
+    "timing": {
+      "median": 0.19,
+      "mean": 0.21,
+      "max": 1.34
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4710,6 +5730,11 @@
     },
     "total_runtime": 398.0,
     "avg_time_per_sample": 0.0407,
+    "timing": {
+      "median": 0.18,
+      "mean": 0.2,
+      "max": 1.35
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4733,6 +5758,11 @@
     },
     "total_runtime": 417.0,
     "avg_time_per_sample": 0.0426,
+    "timing": {
+      "median": 0.19,
+      "mean": 0.2,
+      "max": 1.36
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4756,6 +5786,11 @@
     },
     "total_runtime": 164.0,
     "avg_time_per_sample": 0.0168,
+    "timing": {
+      "median": 0.07,
+      "mean": 0.08,
+      "max": 1.19
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4779,6 +5814,11 @@
     },
     "total_runtime": 1043.0,
     "avg_time_per_sample": 0.1065,
+    "timing": {
+      "median": 0.48,
+      "mean": 0.53,
+      "max": 1.54
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4802,6 +5842,11 @@
     },
     "total_runtime": 1086.0,
     "avg_time_per_sample": 0.1109,
+    "timing": {
+      "median": 0.5,
+      "mean": 0.55,
+      "max": 1.48
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4825,6 +5870,11 @@
     },
     "total_runtime": 834.0,
     "avg_time_per_sample": 0.0852,
+    "timing": {
+      "median": 0.42,
+      "mean": 0.42,
+      "max": 1.03
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4848,6 +5898,11 @@
     },
     "total_runtime": 16932.0,
     "avg_time_per_sample": 1.7297,
+    "timing": {
+      "median": 8.73,
+      "mean": 8.64,
+      "max": 10.44
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4871,6 +5926,11 @@
     },
     "total_runtime": 388.0,
     "avg_time_per_sample": 0.0396,
+    "timing": {
+      "median": 0.22,
+      "mean": 0.19,
+      "max": 0.97
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4894,6 +5954,11 @@
     },
     "total_runtime": 1792.0,
     "avg_time_per_sample": 0.1831,
+    "timing": {
+      "median": 0.86,
+      "mean": 0.91,
+      "max": 2.54
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4917,6 +5982,11 @@
     },
     "total_runtime": 392.0,
     "avg_time_per_sample": 0.04,
+    "timing": {
+      "median": 0.19,
+      "mean": 0.19,
+      "max": 0.94
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4940,6 +6010,11 @@
     },
     "total_runtime": 392.0,
     "avg_time_per_sample": 0.04,
+    "timing": {
+      "median": 0.22,
+      "mean": 0.19,
+      "max": 7.57
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4963,6 +6038,11 @@
     },
     "total_runtime": 382.0,
     "avg_time_per_sample": 0.039,
+    "timing": {
+      "median": 0.19,
+      "mean": 0.19,
+      "max": 0.94
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -4986,6 +6066,11 @@
     },
     "total_runtime": 343.0,
     "avg_time_per_sample": 0.035,
+    "timing": {
+      "median": 0.17,
+      "mean": 0.17,
+      "max": 1.0
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5009,6 +6094,11 @@
     },
     "total_runtime": 349.0,
     "avg_time_per_sample": 0.0357,
+    "timing": {
+      "median": 0.17,
+      "mean": 0.17,
+      "max": 0.98
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5032,6 +6122,11 @@
     },
     "total_runtime": 355.0,
     "avg_time_per_sample": 0.0363,
+    "timing": {
+      "median": 0.17,
+      "mean": 0.18,
+      "max": 0.91
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5055,6 +6150,11 @@
     },
     "total_runtime": 400.0,
     "avg_time_per_sample": 0.0409,
+    "timing": {
+      "median": 0.19,
+      "mean": 0.2,
+      "max": 0.95
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5078,6 +6178,11 @@
     },
     "total_runtime": 281.0,
     "avg_time_per_sample": 0.0287,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.14,
+      "max": 0.92
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5101,6 +6206,11 @@
     },
     "total_runtime": 232.0,
     "avg_time_per_sample": 0.0237,
+    "timing": {
+      "median": 0.1,
+      "mean": 0.12,
+      "max": 0.88
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5124,6 +6234,11 @@
     },
     "total_runtime": 317.0,
     "avg_time_per_sample": 0.0324,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.16,
+      "max": 0.88
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5147,6 +6262,11 @@
     },
     "total_runtime": 333.0,
     "avg_time_per_sample": 0.034,
+    "timing": {
+      "median": 0.16,
+      "mean": 0.16,
+      "max": 0.96
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5170,6 +6290,11 @@
     },
     "total_runtime": 268.0,
     "avg_time_per_sample": 0.0274,
+    "timing": {
+      "median": 0.13,
+      "mean": 0.13,
+      "max": 0.88
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5193,6 +6318,11 @@
     },
     "total_runtime": 259.0,
     "avg_time_per_sample": 0.0265,
+    "timing": {
+      "median": 0.12,
+      "mean": 0.13,
+      "max": 0.83
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5216,6 +6346,11 @@
     },
     "total_runtime": 920.0,
     "avg_time_per_sample": 0.094,
+    "timing": {
+      "median": 0.46,
+      "mean": 0.46,
+      "max": 1.43
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5239,6 +6374,11 @@
     },
     "total_runtime": 870.0,
     "avg_time_per_sample": 0.0889,
+    "timing": {
+      "median": 0.43,
+      "mean": 0.44,
+      "max": 1.33
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5262,6 +6402,11 @@
     },
     "total_runtime": 897.0,
     "avg_time_per_sample": 0.0916,
+    "timing": {
+      "median": 0.45,
+      "mean": 0.45,
+      "max": 1.33
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5285,6 +6430,11 @@
     },
     "total_runtime": 295.0,
     "avg_time_per_sample": 0.0301,
+    "timing": {
+      "median": 0.16,
+      "mean": 0.15,
+      "max": 0.88
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5308,6 +6458,11 @@
     },
     "total_runtime": 32603.0,
     "avg_time_per_sample": 3.3306,
+    "timing": {
+      "median": 14.98,
+      "mean": 16.65,
+      "max": 337.13
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5331,6 +6486,11 @@
     },
     "total_runtime": 27803.0,
     "avg_time_per_sample": 2.8402,
+    "timing": {
+      "median": 12.79,
+      "mean": 14.2,
+      "max": 352.6
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5354,6 +6514,11 @@
     },
     "total_runtime": 33150.0,
     "avg_time_per_sample": 3.3865,
+    "timing": {
+      "median": 16.26,
+      "mean": 16.55,
+      "max": 460.89
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5377,6 +6542,11 @@
     },
     "total_runtime": 505661.0,
     "avg_time_per_sample": 51.656,
+    "timing": {
+      "median": 21.18,
+      "mean": 91.01,
+      "max": 1802.94
+    },
     "max_tokens": null,
     "truncation_count": 1,
     "truncation_rate": 0.000102
@@ -5400,6 +6570,11 @@
     },
     "total_runtime": 25805.0,
     "avg_time_per_sample": 2.6361,
+    "timing": {
+      "median": 9.48,
+      "mean": 12.19,
+      "max": 587.3
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5423,6 +6598,11 @@
     },
     "total_runtime": 19327.0,
     "avg_time_per_sample": 1.9744,
+    "timing": {
+      "median": 6.91,
+      "mean": 9.01,
+      "max": 1802.0
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5446,6 +6626,11 @@
     },
     "total_runtime": 12325.0,
     "avg_time_per_sample": 1.2591,
+    "timing": {
+      "median": 4.94,
+      "mean": 5.95,
+      "max": 444.76
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5469,6 +6654,11 @@
     },
     "total_runtime": 25372.0,
     "avg_time_per_sample": 2.5919,
+    "timing": {
+      "median": 9.62,
+      "mean": 12.08,
+      "max": 563.76
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5492,6 +6682,11 @@
     },
     "total_runtime": 24095.0,
     "avg_time_per_sample": 2.4614,
+    "timing": {
+      "median": 10.13,
+      "mean": 11.7,
+      "max": 1801.84
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5515,6 +6710,11 @@
     },
     "total_runtime": 14247.0,
     "avg_time_per_sample": 1.4554,
+    "timing": {
+      "median": 5.65,
+      "mean": 6.63,
+      "max": 366.52
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5538,6 +6738,11 @@
     },
     "total_runtime": 17883.0,
     "avg_time_per_sample": 1.8268,
+    "timing": {
+      "median": 7.21,
+      "mean": 8.46,
+      "max": 459.52
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5561,6 +6766,11 @@
     },
     "total_runtime": 20493.0,
     "avg_time_per_sample": 2.0935,
+    "timing": {
+      "median": 8.4,
+      "mean": 9.88,
+      "max": 452.86
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5584,6 +6794,11 @@
     },
     "total_runtime": 28031.0,
     "avg_time_per_sample": 2.8635,
+    "timing": {
+      "median": 12.88,
+      "mean": 13.8,
+      "max": 538.96
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5607,6 +6822,11 @@
     },
     "total_runtime": 15277.0,
     "avg_time_per_sample": 1.5606,
+    "timing": {
+      "median": 5.8,
+      "mean": 7.45,
+      "max": 1804.74
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5630,6 +6850,11 @@
     },
     "total_runtime": 8405.0,
     "avg_time_per_sample": 0.8586,
+    "timing": {
+      "median": 0.04,
+      "mean": 3.98,
+      "max": 446.92
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5653,6 +6878,11 @@
     },
     "total_runtime": 18785.0,
     "avg_time_per_sample": 1.919,
+    "timing": {
+      "median": 6.98,
+      "mean": 8.34,
+      "max": 309.66
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5676,6 +6906,11 @@
     },
     "total_runtime": 23645.0,
     "avg_time_per_sample": 2.4155,
+    "timing": {
+      "median": 9.84,
+      "mean": 11.18,
+      "max": 553.55
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5699,6 +6934,11 @@
     },
     "total_runtime": 23190.0,
     "avg_time_per_sample": 2.369,
+    "timing": {
+      "median": 9.88,
+      "mean": 11.34,
+      "max": 515.58
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5722,6 +6962,11 @@
     },
     "total_runtime": 25542.0,
     "avg_time_per_sample": 2.6093,
+    "timing": {
+      "median": 9.78,
+      "mean": 12.13,
+      "max": 1804.3
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5745,6 +6990,11 @@
     },
     "total_runtime": 19136.0,
     "avg_time_per_sample": 1.9548,
+    "timing": {
+      "median": 8.44,
+      "mean": 9.61,
+      "max": 370.19
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5768,6 +7018,11 @@
     },
     "total_runtime": 17553.0,
     "avg_time_per_sample": 1.7931,
+    "timing": {
+      "median": 6.27,
+      "mean": 7.85,
+      "max": 1800.08
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5791,6 +7046,11 @@
     },
     "total_runtime": 18854.0,
     "avg_time_per_sample": 1.926,
+    "timing": {
+      "median": 8.15,
+      "mean": 9.2,
+      "max": 587.87
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5814,6 +7074,11 @@
     },
     "total_runtime": 15697.0,
     "avg_time_per_sample": 1.6035,
+    "timing": {
+      "median": 5.28,
+      "mean": 7.13,
+      "max": 399.95
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5837,6 +7102,11 @@
     },
     "total_runtime": 14603.0,
     "avg_time_per_sample": 1.4918,
+    "timing": {
+      "median": 1.95,
+      "mean": 6.97,
+      "max": 1815.09
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5860,6 +7130,11 @@
     },
     "total_runtime": 10980.0,
     "avg_time_per_sample": 1.1217,
+    "timing": {
+      "median": 1.98,
+      "mean": 5.38,
+      "max": 1815.14
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5883,6 +7158,11 @@
     },
     "total_runtime": 2390.0,
     "avg_time_per_sample": 0.2442,
+    "timing": {
+      "median": 1.23,
+      "mean": 1.21,
+      "max": 9.24
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5906,6 +7186,11 @@
     },
     "total_runtime": 39177.0,
     "avg_time_per_sample": 4.0021,
+    "timing": {
+      "median": 20.07,
+      "mean": 20.0,
+      "max": 48.36
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5929,6 +7214,11 @@
     },
     "total_runtime": 572.0,
     "avg_time_per_sample": 0.0584,
+    "timing": {
+      "median": 0.33,
+      "mean": 0.29,
+      "max": 1.31
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5952,6 +7242,11 @@
     },
     "total_runtime": 5169.0,
     "avg_time_per_sample": 0.528,
+    "timing": {
+      "median": 2.46,
+      "mean": 2.63,
+      "max": 8.18
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5975,6 +7270,11 @@
     },
     "total_runtime": 781.0,
     "avg_time_per_sample": 0.0798,
+    "timing": {
+      "median": 0.38,
+      "mean": 0.39,
+      "max": 1.37
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -5998,6 +7298,11 @@
     },
     "total_runtime": 579.0,
     "avg_time_per_sample": 0.0591,
+    "timing": {
+      "median": 0.33,
+      "mean": 0.29,
+      "max": 8.22
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6021,6 +7326,11 @@
     },
     "total_runtime": 709.0,
     "avg_time_per_sample": 0.0724,
+    "timing": {
+      "median": 0.35,
+      "mean": 0.36,
+      "max": 1.25
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6044,6 +7354,11 @@
     },
     "total_runtime": 616.0,
     "avg_time_per_sample": 0.0629,
+    "timing": {
+      "median": 0.31,
+      "mean": 0.31,
+      "max": 3.22
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6067,6 +7382,11 @@
     },
     "total_runtime": 638.0,
     "avg_time_per_sample": 0.0652,
+    "timing": {
+      "median": 0.32,
+      "mean": 0.32,
+      "max": 1.24
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6090,6 +7410,11 @@
     },
     "total_runtime": 660.0,
     "avg_time_per_sample": 0.0674,
+    "timing": {
+      "median": 0.33,
+      "mean": 0.33,
+      "max": 1.14
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6113,6 +7438,11 @@
     },
     "total_runtime": 802.0,
     "avg_time_per_sample": 0.0819,
+    "timing": {
+      "median": 0.39,
+      "mean": 0.4,
+      "max": 1.3
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6136,6 +7466,11 @@
     },
     "total_runtime": 456.0,
     "avg_time_per_sample": 0.0466,
+    "timing": {
+      "median": 0.32,
+      "mean": 0.23,
+      "max": 1.18
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6159,6 +7494,11 @@
     },
     "total_runtime": 316.0,
     "avg_time_per_sample": 0.0323,
+    "timing": {
+      "median": 0.1,
+      "mean": 0.16,
+      "max": 1.04
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6182,6 +7522,11 @@
     },
     "total_runtime": 631.0,
     "avg_time_per_sample": 0.0645,
+    "timing": {
+      "median": 0.32,
+      "mean": 0.32,
+      "max": 1.24
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6205,6 +7550,11 @@
     },
     "total_runtime": 700.0,
     "avg_time_per_sample": 0.0715,
+    "timing": {
+      "median": 0.34,
+      "mean": 0.35,
+      "max": 1.38
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6228,6 +7578,11 @@
     },
     "total_runtime": 665.0,
     "avg_time_per_sample": 0.0679,
+    "timing": {
+      "median": 0.33,
+      "mean": 0.33,
+      "max": 1.22
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6251,6 +7606,11 @@
     },
     "total_runtime": 661.0,
     "avg_time_per_sample": 0.0675,
+    "timing": {
+      "median": 0.33,
+      "mean": 0.33,
+      "max": 5.64
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6274,6 +7634,11 @@
     },
     "total_runtime": 2262.0,
     "avg_time_per_sample": 0.2311,
+    "timing": {
+      "median": 1.13,
+      "mean": 1.15,
+      "max": 19.09
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6297,6 +7662,11 @@
     },
     "total_runtime": 2123.0,
     "avg_time_per_sample": 0.2169,
+    "timing": {
+      "median": 1.06,
+      "mean": 1.08,
+      "max": 15.16
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6320,6 +7690,11 @@
     },
     "total_runtime": 2183.0,
     "avg_time_per_sample": 0.223,
+    "timing": {
+      "median": 1.1,
+      "mean": 1.11,
+      "max": 14.84
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6343,6 +7718,11 @@
     },
     "total_runtime": 490.0,
     "avg_time_per_sample": 0.0501,
+    "timing": {
+      "median": 0.35,
+      "mean": 0.25,
+      "max": 1.33
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6366,6 +7746,11 @@
     },
     "total_runtime": 1267.0,
     "avg_time_per_sample": 0.1294,
+    "timing": {
+      "median": 0.59,
+      "mean": 0.64,
+      "max": 182.91
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6389,6 +7774,11 @@
     },
     "total_runtime": 1044.0,
     "avg_time_per_sample": 0.1067,
+    "timing": {
+      "median": 0.53,
+      "mean": 0.53,
+      "max": 3.06
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6412,6 +7802,11 @@
     },
     "total_runtime": 752.0,
     "avg_time_per_sample": 0.0768,
+    "timing": {
+      "median": 0.38,
+      "mean": 0.38,
+      "max": 1.17
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6435,6 +7830,11 @@
     },
     "total_runtime": 16280.0,
     "avg_time_per_sample": 1.6631,
+    "timing": {
+      "median": 8.34,
+      "mean": 8.31,
+      "max": 11.54
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6458,6 +7858,11 @@
     },
     "total_runtime": 306.0,
     "avg_time_per_sample": 0.0313,
+    "timing": {
+      "median": 0.16,
+      "mean": 0.15,
+      "max": 0.94
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6481,6 +7886,11 @@
     },
     "total_runtime": 1936.0,
     "avg_time_per_sample": 0.1978,
+    "timing": {
+      "median": 0.96,
+      "mean": 0.98,
+      "max": 3.05
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6504,6 +7914,11 @@
     },
     "total_runtime": 358.0,
     "avg_time_per_sample": 0.0366,
+    "timing": {
+      "median": 0.17,
+      "mean": 0.18,
+      "max": 0.92
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6527,6 +7942,11 @@
     },
     "total_runtime": 313.0,
     "avg_time_per_sample": 0.032,
+    "timing": {
+      "median": 0.16,
+      "mean": 0.15,
+      "max": 9.26
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6550,6 +7970,11 @@
     },
     "total_runtime": 341.0,
     "avg_time_per_sample": 0.0348,
+    "timing": {
+      "median": 0.16,
+      "mean": 0.17,
+      "max": 0.94
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6573,6 +7998,11 @@
     },
     "total_runtime": 311.0,
     "avg_time_per_sample": 0.0318,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.15,
+      "max": 0.88
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6596,6 +8026,11 @@
     },
     "total_runtime": 320.0,
     "avg_time_per_sample": 0.0327,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.16,
+      "max": 0.85
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6619,6 +8054,11 @@
     },
     "total_runtime": 328.0,
     "avg_time_per_sample": 0.0335,
+    "timing": {
+      "median": 0.16,
+      "mean": 0.16,
+      "max": 0.92
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6642,6 +8082,11 @@
     },
     "total_runtime": 380.0,
     "avg_time_per_sample": 0.0388,
+    "timing": {
+      "median": 0.18,
+      "mean": 0.19,
+      "max": 1.01
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6665,6 +8110,11 @@
     },
     "total_runtime": 274.0,
     "avg_time_per_sample": 0.028,
+    "timing": {
+      "median": 0.14,
+      "mean": 0.14,
+      "max": 0.95
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6688,6 +8138,11 @@
     },
     "total_runtime": 232.0,
     "avg_time_per_sample": 0.0237,
+    "timing": {
+      "median": 0.11,
+      "mean": 0.11,
+      "max": 0.75
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6711,6 +8166,11 @@
     },
     "total_runtime": 296.0,
     "avg_time_per_sample": 0.0302,
+    "timing": {
+      "median": 0.14,
+      "mean": 0.15,
+      "max": 0.86
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6734,6 +8194,11 @@
     },
     "total_runtime": 316.0,
     "avg_time_per_sample": 0.0323,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.16,
+      "max": 0.93
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6757,6 +8222,11 @@
     },
     "total_runtime": 237.0,
     "avg_time_per_sample": 0.0242,
+    "timing": {
+      "median": 0.12,
+      "mean": 0.12,
+      "max": 0.82
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6780,6 +8250,11 @@
     },
     "total_runtime": 226.0,
     "avg_time_per_sample": 0.0231,
+    "timing": {
+      "median": 0.11,
+      "mean": 0.11,
+      "max": 0.8
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6803,6 +8278,11 @@
     },
     "total_runtime": 854.0,
     "avg_time_per_sample": 0.0872,
+    "timing": {
+      "median": 0.43,
+      "mean": 0.43,
+      "max": 1.34
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6826,6 +8306,11 @@
     },
     "total_runtime": 816.0,
     "avg_time_per_sample": 0.0834,
+    "timing": {
+      "median": 0.41,
+      "mean": 0.41,
+      "max": 1.18
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6849,6 +8334,11 @@
     },
     "total_runtime": 845.0,
     "avg_time_per_sample": 0.0863,
+    "timing": {
+      "median": 0.42,
+      "mean": 0.43,
+      "max": 1.22
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6872,6 +8362,11 @@
     },
     "total_runtime": 280.0,
     "avg_time_per_sample": 0.0286,
+    "timing": {
+      "median": 0.14,
+      "mean": 0.14,
+      "max": 0.85
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6895,6 +8390,11 @@
     },
     "total_runtime": 16696.0,
     "avg_time_per_sample": 1.7056,
+    "timing": {
+      "median": 1.58,
+      "mean": 7.93,
+      "max": 1815.21
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6918,6 +8418,11 @@
     },
     "total_runtime": 14030.0,
     "avg_time_per_sample": 1.4332,
+    "timing": {
+      "median": 1.62,
+      "mean": 6.45,
+      "max": 1814.99
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6941,6 +8446,11 @@
     },
     "total_runtime": 1534.0,
     "avg_time_per_sample": 0.1567,
+    "timing": {
+      "median": 0.79,
+      "mean": 0.78,
+      "max": 1.62
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6964,6 +8474,11 @@
     },
     "total_runtime": 27835.0,
     "avg_time_per_sample": 2.8435,
+    "timing": {
+      "median": 14.26,
+      "mean": 14.21,
+      "max": 42.31
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -6987,6 +8502,11 @@
     },
     "total_runtime": 429.0,
     "avg_time_per_sample": 0.0438,
+    "timing": {
+      "median": 0.25,
+      "mean": 0.21,
+      "max": 1.13
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7010,6 +8530,11 @@
     },
     "total_runtime": 3430.0,
     "avg_time_per_sample": 0.3504,
+    "timing": {
+      "median": 1.63,
+      "mean": 1.75,
+      "max": 5.27
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7033,6 +8558,11 @@
     },
     "total_runtime": 583.0,
     "avg_time_per_sample": 0.0596,
+    "timing": {
+      "median": 0.29,
+      "mean": 0.29,
+      "max": 1.24
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7056,6 +8586,11 @@
     },
     "total_runtime": 436.0,
     "avg_time_per_sample": 0.0445,
+    "timing": {
+      "median": 0.25,
+      "mean": 0.22,
+      "max": 7.71
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7079,6 +8614,11 @@
     },
     "total_runtime": 532.0,
     "avg_time_per_sample": 0.0543,
+    "timing": {
+      "median": 0.27,
+      "mean": 0.27,
+      "max": 0.98
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7102,6 +8642,11 @@
     },
     "total_runtime": 479.0,
     "avg_time_per_sample": 0.0489,
+    "timing": {
+      "median": 0.24,
+      "mean": 0.24,
+      "max": 6.23
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7125,6 +8670,11 @@
     },
     "total_runtime": 490.0,
     "avg_time_per_sample": 0.0501,
+    "timing": {
+      "median": 0.25,
+      "mean": 0.24,
+      "max": 1.02
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7148,6 +8698,11 @@
     },
     "total_runtime": 509.0,
     "avg_time_per_sample": 0.052,
+    "timing": {
+      "median": 0.26,
+      "mean": 0.25,
+      "max": 1.08
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7171,6 +8726,11 @@
     },
     "total_runtime": 581.0,
     "avg_time_per_sample": 0.0594,
+    "timing": {
+      "median": 0.29,
+      "mean": 0.29,
+      "max": 1.07
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7194,6 +8754,11 @@
     },
     "total_runtime": 360.0,
     "avg_time_per_sample": 0.0368,
+    "timing": {
+      "median": 0.22,
+      "mean": 0.18,
+      "max": 1.16
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7217,6 +8782,11 @@
     },
     "total_runtime": 270.0,
     "avg_time_per_sample": 0.0276,
+    "timing": {
+      "median": 0.1,
+      "mean": 0.13,
+      "max": 0.93
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7240,6 +8810,11 @@
     },
     "total_runtime": 454.0,
     "avg_time_per_sample": 0.0464,
+    "timing": {
+      "median": 0.21,
+      "mean": 0.23,
+      "max": 3.53
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7263,6 +8838,11 @@
     },
     "total_runtime": 491.0,
     "avg_time_per_sample": 0.0502,
+    "timing": {
+      "median": 0.23,
+      "mean": 0.24,
+      "max": 2.51
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7286,6 +8866,11 @@
     },
     "total_runtime": 428.0,
     "avg_time_per_sample": 0.0437,
+    "timing": {
+      "median": 0.21,
+      "mean": 0.21,
+      "max": 2.47
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7309,6 +8894,11 @@
     },
     "total_runtime": 436.0,
     "avg_time_per_sample": 0.0445,
+    "timing": {
+      "median": 0.21,
+      "mean": 0.21,
+      "max": 9.9
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7332,6 +8922,11 @@
     },
     "total_runtime": 1483.0,
     "avg_time_per_sample": 0.1515,
+    "timing": {
+      "median": 0.74,
+      "mean": 0.75,
+      "max": 2.42
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7355,6 +8950,11 @@
     },
     "total_runtime": 1398.0,
     "avg_time_per_sample": 0.1428,
+    "timing": {
+      "median": 0.7,
+      "mean": 0.71,
+      "max": 1.92
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7378,6 +8978,11 @@
     },
     "total_runtime": 1446.0,
     "avg_time_per_sample": 0.1477,
+    "timing": {
+      "median": 0.72,
+      "mean": 0.73,
+      "max": 1.64
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7401,6 +9006,11 @@
     },
     "total_runtime": 378.0,
     "avg_time_per_sample": 0.0386,
+    "timing": {
+      "median": 0.23,
+      "mean": 0.19,
+      "max": 1.01
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7424,6 +9034,11 @@
     },
     "total_runtime": 61508.0,
     "avg_time_per_sample": 6.2834,
+    "timing": {
+      "median": 1.98,
+      "mean": 30.86,
+      "max": 1816.52
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7447,6 +9062,11 @@
     },
     "total_runtime": 20000.0,
     "avg_time_per_sample": 2.0431,
+    "timing": {
+      "median": 2.0,
+      "mean": 10.21,
+      "max": 1815.03
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7470,6 +9090,11 @@
     },
     "total_runtime": 2692.0,
     "avg_time_per_sample": 0.275,
+    "timing": {
+      "median": 1.38,
+      "mean": 1.37,
+      "max": 2.6
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7493,6 +9118,11 @@
     },
     "total_runtime": 39505.0,
     "avg_time_per_sample": 4.0357,
+    "timing": {
+      "median": 20.19,
+      "mean": 20.17,
+      "max": 26.66
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7516,6 +9146,11 @@
     },
     "total_runtime": 842.0,
     "avg_time_per_sample": 0.086,
+    "timing": {
+      "median": 0.43,
+      "mean": 0.42,
+      "max": 1.58
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7539,6 +9174,11 @@
     },
     "total_runtime": 4986.0,
     "avg_time_per_sample": 0.5093,
+    "timing": {
+      "median": 2.38,
+      "mean": 2.54,
+      "max": 7.18
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7562,6 +9202,11 @@
     },
     "total_runtime": 945.0,
     "avg_time_per_sample": 0.0965,
+    "timing": {
+      "median": 0.47,
+      "mean": 0.48,
+      "max": 1.29
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7585,6 +9230,11 @@
     },
     "total_runtime": 845.0,
     "avg_time_per_sample": 0.0863,
+    "timing": {
+      "median": 0.44,
+      "mean": 0.43,
+      "max": 9.22
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7608,6 +9258,11 @@
     },
     "total_runtime": 921.0,
     "avg_time_per_sample": 0.0941,
+    "timing": {
+      "median": 0.45,
+      "mean": 0.46,
+      "max": 5.84
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7631,6 +9286,11 @@
     },
     "total_runtime": 788.0,
     "avg_time_per_sample": 0.0805,
+    "timing": {
+      "median": 0.39,
+      "mean": 0.4,
+      "max": 1.39
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7654,6 +9314,11 @@
     },
     "total_runtime": 827.0,
     "avg_time_per_sample": 0.0845,
+    "timing": {
+      "median": 0.41,
+      "mean": 0.42,
+      "max": 1.42
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7677,6 +9342,11 @@
     },
     "total_runtime": 869.0,
     "avg_time_per_sample": 0.0888,
+    "timing": {
+      "median": 0.43,
+      "mean": 0.44,
+      "max": 1.39
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7700,6 +9370,11 @@
     },
     "total_runtime": 1046.0,
     "avg_time_per_sample": 0.1069,
+    "timing": {
+      "median": 0.52,
+      "mean": 0.53,
+      "max": 1.65
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7723,6 +9398,11 @@
     },
     "total_runtime": 571.0,
     "avg_time_per_sample": 0.0583,
+    "timing": {
+      "median": 0.43,
+      "mean": 0.29,
+      "max": 4.17
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7746,6 +9426,11 @@
     },
     "total_runtime": 376.0,
     "avg_time_per_sample": 0.0384,
+    "timing": {
+      "median": 0.1,
+      "mean": 0.19,
+      "max": 5.67
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7769,6 +9454,11 @@
     },
     "total_runtime": 823.0,
     "avg_time_per_sample": 0.0841,
+    "timing": {
+      "median": 0.42,
+      "mean": 0.41,
+      "max": 1.35
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7792,6 +9482,11 @@
     },
     "total_runtime": 911.0,
     "avg_time_per_sample": 0.0931,
+    "timing": {
+      "median": 0.45,
+      "mean": 0.46,
+      "max": 1.27
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7815,6 +9510,11 @@
     },
     "total_runtime": 885.0,
     "avg_time_per_sample": 0.0904,
+    "timing": {
+      "median": 0.44,
+      "mean": 0.45,
+      "max": 1.25
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7838,6 +9538,11 @@
     },
     "total_runtime": 881.0,
     "avg_time_per_sample": 0.09,
+    "timing": {
+      "median": 0.43,
+      "mean": 0.44,
+      "max": 6.51
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7861,6 +9566,11 @@
     },
     "total_runtime": 2769.0,
     "avg_time_per_sample": 0.2829,
+    "timing": {
+      "median": 1.41,
+      "mean": 1.41,
+      "max": 2.82
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7884,6 +9594,11 @@
     },
     "total_runtime": 2520.0,
     "avg_time_per_sample": 0.2574,
+    "timing": {
+      "median": 1.28,
+      "mean": 1.28,
+      "max": 2.77
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7907,6 +9622,11 @@
     },
     "total_runtime": 2725.0,
     "avg_time_per_sample": 0.2784,
+    "timing": {
+      "median": 1.39,
+      "mean": 1.38,
+      "max": 2.8
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7930,6 +9650,11 @@
     },
     "total_runtime": 638.0,
     "avg_time_per_sample": 0.0652,
+    "timing": {
+      "median": 0.49,
+      "mean": 0.32,
+      "max": 1.55
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7953,6 +9678,11 @@
     },
     "total_runtime": 11421.0,
     "avg_time_per_sample": 1.1667,
+    "timing": {
+      "median": 2.55,
+      "mean": 5.83,
+      "max": 1815.11
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7976,6 +9706,11 @@
     },
     "total_runtime": 13177.0,
     "avg_time_per_sample": 1.3461,
+    "timing": {
+      "median": 2.54,
+      "mean": 5.99,
+      "max": 1814.96
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -7999,6 +9734,11 @@
     },
     "total_runtime": 3324.0,
     "avg_time_per_sample": 0.3396,
+    "timing": {
+      "median": 1.72,
+      "mean": 1.69,
+      "max": 2.96
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8022,6 +9762,11 @@
     },
     "total_runtime": 39602.0,
     "avg_time_per_sample": 4.0456,
+    "timing": {
+      "median": 20.24,
+      "mean": 20.22,
+      "max": 34.36
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8045,6 +9790,11 @@
     },
     "total_runtime": 926.0,
     "avg_time_per_sample": 0.0946,
+    "timing": {
+      "median": 0.55,
+      "mean": 0.47,
+      "max": 1.52
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8068,6 +9818,11 @@
     },
     "total_runtime": 6379.0,
     "avg_time_per_sample": 0.6516,
+    "timing": {
+      "median": 3.07,
+      "mean": 3.25,
+      "max": 8.86
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8091,6 +9846,11 @@
     },
     "total_runtime": 1213.0,
     "avg_time_per_sample": 0.1239,
+    "timing": {
+      "median": 0.61,
+      "mean": 0.61,
+      "max": 1.62
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8114,6 +9874,11 @@
     },
     "total_runtime": 928.0,
     "avg_time_per_sample": 0.0948,
+    "timing": {
+      "median": 0.55,
+      "mean": 0.47,
+      "max": 8.15
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8137,6 +9902,11 @@
     },
     "total_runtime": 1172.0,
     "avg_time_per_sample": 0.1197,
+    "timing": {
+      "median": 0.58,
+      "mean": 0.59,
+      "max": 6.19
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8160,6 +9930,11 @@
     },
     "total_runtime": 1021.0,
     "avg_time_per_sample": 0.1043,
+    "timing": {
+      "median": 0.51,
+      "mean": 0.52,
+      "max": 1.36
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8183,6 +9958,11 @@
     },
     "total_runtime": 1067.0,
     "avg_time_per_sample": 0.109,
+    "timing": {
+      "median": 0.54,
+      "mean": 0.54,
+      "max": 1.43
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8206,6 +9986,11 @@
     },
     "total_runtime": 1113.0,
     "avg_time_per_sample": 0.1137,
+    "timing": {
+      "median": 0.56,
+      "mean": 0.56,
+      "max": 1.34
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8229,6 +10014,11 @@
     },
     "total_runtime": 1294.0,
     "avg_time_per_sample": 0.1322,
+    "timing": {
+      "median": 0.65,
+      "mean": 0.65,
+      "max": 1.57
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8252,6 +10042,11 @@
     },
     "total_runtime": 685.0,
     "avg_time_per_sample": 0.07,
+    "timing": {
+      "median": 0.54,
+      "mean": 0.34,
+      "max": 6.12
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8275,6 +10070,11 @@
     },
     "total_runtime": 425.0,
     "avg_time_per_sample": 0.0434,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.21,
+      "max": 5.87
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8298,6 +10098,11 @@
     },
     "total_runtime": 1055.0,
     "avg_time_per_sample": 0.1078,
+    "timing": {
+      "median": 0.54,
+      "mean": 0.53,
+      "max": 1.61
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8321,6 +10126,11 @@
     },
     "total_runtime": 1160.0,
     "avg_time_per_sample": 0.1185,
+    "timing": {
+      "median": 0.58,
+      "mean": 0.59,
+      "max": 1.64
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8344,6 +10154,11 @@
     },
     "total_runtime": 1126.0,
     "avg_time_per_sample": 0.115,
+    "timing": {
+      "median": 0.56,
+      "mean": 0.57,
+      "max": 1.47
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8367,6 +10182,11 @@
     },
     "total_runtime": 1122.0,
     "avg_time_per_sample": 0.1146,
+    "timing": {
+      "median": 0.56,
+      "mean": 0.57,
+      "max": 11.73
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8390,6 +10210,11 @@
     },
     "total_runtime": 3202.0,
     "avg_time_per_sample": 0.3271,
+    "timing": {
+      "median": 1.6,
+      "mean": 1.63,
+      "max": 3.32
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8413,6 +10238,11 @@
     },
     "total_runtime": 3015.0,
     "avg_time_per_sample": 0.308,
+    "timing": {
+      "median": 1.51,
+      "mean": 1.53,
+      "max": 2.93
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8436,6 +10266,11 @@
     },
     "total_runtime": 3175.0,
     "avg_time_per_sample": 0.3243,
+    "timing": {
+      "median": 1.61,
+      "mean": 1.62,
+      "max": 3.28
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8459,6 +10294,11 @@
     },
     "total_runtime": 758.0,
     "avg_time_per_sample": 0.0774,
+    "timing": {
+      "median": 0.6,
+      "mean": 0.38,
+      "max": 2.02
+    },
     "max_tokens": null,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8482,6 +10322,11 @@
     },
     "total_runtime": 773.0,
     "avg_time_per_sample": 0.079,
+    "timing": {
+      "median": 0.34,
+      "mean": 0.39,
+      "max": 93.8
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8505,6 +10350,11 @@
     },
     "total_runtime": 1224.0,
     "avg_time_per_sample": 0.125,
+    "timing": {
+      "median": 0.33,
+      "mean": 0.61,
+      "max": 93.47
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8528,6 +10378,11 @@
     },
     "total_runtime": 437.0,
     "avg_time_per_sample": 0.0446,
+    "timing": {
+      "median": 0.21,
+      "mean": 0.22,
+      "max": 0.94
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8551,6 +10406,11 @@
     },
     "total_runtime": 6542.0,
     "avg_time_per_sample": 0.6683,
+    "timing": {
+      "median": 3.35,
+      "mean": 3.33,
+      "max": 6.29
+    },
     "max_tokens": 8192,
     "truncation_count": 12,
     "truncation_rate": 0.001226
@@ -8574,6 +10434,11 @@
     },
     "total_runtime": 277.0,
     "avg_time_per_sample": 0.0283,
+    "timing": {
+      "median": 0.14,
+      "mean": 0.14,
+      "max": 0.84
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8597,6 +10462,11 @@
     },
     "total_runtime": 1153.0,
     "avg_time_per_sample": 0.1178,
+    "timing": {
+      "median": 0.55,
+      "mean": 0.58,
+      "max": 27.45
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8620,6 +10490,11 @@
     },
     "total_runtime": 283.0,
     "avg_time_per_sample": 0.0289,
+    "timing": {
+      "median": 0.14,
+      "mean": 0.14,
+      "max": 1.52
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8643,6 +10518,11 @@
     },
     "total_runtime": 282.0,
     "avg_time_per_sample": 0.0288,
+    "timing": {
+      "median": 0.14,
+      "mean": 0.14,
+      "max": 7.66
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8666,6 +10546,11 @@
     },
     "total_runtime": 296.0,
     "avg_time_per_sample": 0.0302,
+    "timing": {
+      "median": 0.14,
+      "mean": 0.15,
+      "max": 0.87
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8689,6 +10574,11 @@
     },
     "total_runtime": 278.0,
     "avg_time_per_sample": 0.0284,
+    "timing": {
+      "median": 0.14,
+      "mean": 0.14,
+      "max": 0.82
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8712,6 +10602,11 @@
     },
     "total_runtime": 286.0,
     "avg_time_per_sample": 0.0292,
+    "timing": {
+      "median": 0.14,
+      "mean": 0.14,
+      "max": 0.78
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8735,6 +10630,11 @@
     },
     "total_runtime": 288.0,
     "avg_time_per_sample": 0.0294,
+    "timing": {
+      "median": 0.14,
+      "mean": 0.14,
+      "max": 0.86
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8758,6 +10658,11 @@
     },
     "total_runtime": 316.0,
     "avg_time_per_sample": 0.0323,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.16,
+      "max": 0.95
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8781,6 +10686,11 @@
     },
     "total_runtime": 248.0,
     "avg_time_per_sample": 0.0253,
+    "timing": {
+      "median": 0.12,
+      "mean": 0.12,
+      "max": 0.84
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8804,6 +10714,11 @@
     },
     "total_runtime": 221.0,
     "avg_time_per_sample": 0.0226,
+    "timing": {
+      "median": 0.11,
+      "mean": 0.11,
+      "max": 0.77
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8827,6 +10742,11 @@
     },
     "total_runtime": 261.0,
     "avg_time_per_sample": 0.0267,
+    "timing": {
+      "median": 0.13,
+      "mean": 0.13,
+      "max": 0.84
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8850,6 +10770,11 @@
     },
     "total_runtime": 278.0,
     "avg_time_per_sample": 0.0284,
+    "timing": {
+      "median": 0.14,
+      "mean": 0.14,
+      "max": 0.85
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8873,6 +10798,11 @@
     },
     "total_runtime": 183.0,
     "avg_time_per_sample": 0.0187,
+    "timing": {
+      "median": 0.09,
+      "mean": 0.09,
+      "max": 0.74
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8896,6 +10826,11 @@
     },
     "total_runtime": 176.0,
     "avg_time_per_sample": 0.018,
+    "timing": {
+      "median": 0.08,
+      "mean": 0.08,
+      "max": 0.73
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8919,6 +10854,11 @@
     },
     "total_runtime": 648.0,
     "avg_time_per_sample": 0.0662,
+    "timing": {
+      "median": 0.33,
+      "mean": 0.33,
+      "max": 1.08
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8942,6 +10882,11 @@
     },
     "total_runtime": 627.0,
     "avg_time_per_sample": 0.0641,
+    "timing": {
+      "median": 0.32,
+      "mean": 0.31,
+      "max": 0.97
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8965,6 +10910,11 @@
     },
     "total_runtime": 649.0,
     "avg_time_per_sample": 0.0663,
+    "timing": {
+      "median": 0.33,
+      "mean": 0.33,
+      "max": 1.13
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -8988,6 +10938,11 @@
     },
     "total_runtime": 254.0,
     "avg_time_per_sample": 0.0259,
+    "timing": {
+      "median": 0.12,
+      "mean": 0.13,
+      "max": 0.75
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9011,6 +10966,11 @@
     },
     "total_runtime": 1459.0,
     "avg_time_per_sample": 0.149,
+    "timing": {
+      "median": 0.7,
+      "mean": 0.74,
+      "max": 2.2
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9034,6 +10994,11 @@
     },
     "total_runtime": 1456.0,
     "avg_time_per_sample": 0.1487,
+    "timing": {
+      "median": 0.69,
+      "mean": 0.74,
+      "max": 2.22
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9057,6 +11022,11 @@
     },
     "total_runtime": 763.0,
     "avg_time_per_sample": 0.0779,
+    "timing": {
+      "median": 0.38,
+      "mean": 0.38,
+      "max": 0.95
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9080,6 +11050,11 @@
     },
     "total_runtime": 10415.0,
     "avg_time_per_sample": 1.0639,
+    "timing": {
+      "median": 5.34,
+      "mean": 5.31,
+      "max": 6.15
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9103,6 +11078,11 @@
     },
     "total_runtime": 322.0,
     "avg_time_per_sample": 0.0329,
+    "timing": {
+      "median": 0.17,
+      "mean": 0.16,
+      "max": 0.91
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9126,6 +11106,11 @@
     },
     "total_runtime": 1860.0,
     "avg_time_per_sample": 0.19,
+    "timing": {
+      "median": 0.88,
+      "mean": 0.94,
+      "max": 8.24
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9149,6 +11134,11 @@
     },
     "total_runtime": 368.0,
     "avg_time_per_sample": 0.0376,
+    "timing": {
+      "median": 0.18,
+      "mean": 0.18,
+      "max": 2.4
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9172,6 +11162,11 @@
     },
     "total_runtime": 325.0,
     "avg_time_per_sample": 0.0332,
+    "timing": {
+      "median": 0.17,
+      "mean": 0.16,
+      "max": 7.91
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9195,6 +11190,11 @@
     },
     "total_runtime": 383.0,
     "avg_time_per_sample": 0.0391,
+    "timing": {
+      "median": 0.18,
+      "mean": 0.19,
+      "max": 0.91
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9218,6 +11218,11 @@
     },
     "total_runtime": 353.0,
     "avg_time_per_sample": 0.0361,
+    "timing": {
+      "median": 0.17,
+      "mean": 0.17,
+      "max": 0.9
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9241,6 +11246,11 @@
     },
     "total_runtime": 359.0,
     "avg_time_per_sample": 0.0367,
+    "timing": {
+      "median": 0.17,
+      "mean": 0.18,
+      "max": 0.93
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9264,6 +11274,11 @@
     },
     "total_runtime": 371.0,
     "avg_time_per_sample": 0.0379,
+    "timing": {
+      "median": 0.18,
+      "mean": 0.18,
+      "max": 0.93
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9287,6 +11302,11 @@
     },
     "total_runtime": 418.0,
     "avg_time_per_sample": 0.0427,
+    "timing": {
+      "median": 0.21,
+      "mean": 0.21,
+      "max": 1.06
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9310,6 +11330,11 @@
     },
     "total_runtime": 289.0,
     "avg_time_per_sample": 0.0295,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.14,
+      "max": 0.95
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9333,6 +11358,11 @@
     },
     "total_runtime": 236.0,
     "avg_time_per_sample": 0.0241,
+    "timing": {
+      "median": 0.1,
+      "mean": 0.12,
+      "max": 0.8
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9356,6 +11386,11 @@
     },
     "total_runtime": 331.0,
     "avg_time_per_sample": 0.0338,
+    "timing": {
+      "median": 0.16,
+      "mean": 0.16,
+      "max": 0.91
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9379,6 +11414,11 @@
     },
     "total_runtime": 357.0,
     "avg_time_per_sample": 0.0365,
+    "timing": {
+      "median": 0.17,
+      "mean": 0.18,
+      "max": 0.9
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9402,6 +11442,11 @@
     },
     "total_runtime": 276.0,
     "avg_time_per_sample": 0.0282,
+    "timing": {
+      "median": 0.13,
+      "mean": 0.13,
+      "max": 0.82
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9425,6 +11470,11 @@
     },
     "total_runtime": 259.0,
     "avg_time_per_sample": 0.0265,
+    "timing": {
+      "median": 0.12,
+      "mean": 0.13,
+      "max": 0.89
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9448,6 +11498,11 @@
     },
     "total_runtime": 928.0,
     "avg_time_per_sample": 0.0948,
+    "timing": {
+      "median": 0.47,
+      "mean": 0.47,
+      "max": 1.31
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9471,6 +11526,11 @@
     },
     "total_runtime": 883.0,
     "avg_time_per_sample": 0.0902,
+    "timing": {
+      "median": 0.45,
+      "mean": 0.44,
+      "max": 1.29
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9494,6 +11554,11 @@
     },
     "total_runtime": 918.0,
     "avg_time_per_sample": 0.0938,
+    "timing": {
+      "median": 0.46,
+      "mean": 0.46,
+      "max": 1.41
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
@@ -9517,6 +11582,11 @@
     },
     "total_runtime": 300.0,
     "avg_time_per_sample": 0.0306,
+    "timing": {
+      "median": 0.15,
+      "mean": 0.15,
+      "max": 0.93
+    },
     "max_tokens": 8192,
     "truncation_count": 0,
     "truncation_rate": 0.0
