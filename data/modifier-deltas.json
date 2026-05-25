@@ -1,0 +1,218 @@
+[
+  {
+    "benchmark": "modifier",
+    "model_folder": "gemma-4-e2b-it",
+    "model": "gemma-4-E2B-it",
+    "sk_eval_file": "2026-04-19T15-19-11+00-00_modifier-benchmark-task_YBtJsab8eLNsfZHsaW4uQN.eval",
+    "dgx_eval_file": "2026-04-29T05-33-18+00-00_modifier-benchmark-task_ELAuTDhjZUhhWbUtzr89rt.eval",
+    "scorers": {
+      "Modification_Accuracy": {
+        "sk": 0.714238,
+        "dgx": 0.711383,
+        "delta_pp": -0.29
+      },
+      "Neo4j_Syntactic_Validity": {
+        "sk": 0.888672,
+        "dgx": 0.887695,
+        "delta_pp": -0.1
+      },
+      "Neo4j_Semantic_Validity": {
+        "sk": 0.607422,
+        "dgx": 0.604492,
+        "delta_pp": -0.29
+      }
+    }
+  },
+  {
+    "benchmark": "modifier",
+    "model_folder": "gpt-oss-20b",
+    "model": "gpt-oss-20b",
+    "sk_eval_file": "2026-04-04T03-28-53+00-00_modifier-benchmark-task_V6cqKXBFFLVQDAdsNRoUXL.eval",
+    "dgx_eval_file": "2026-04-15T04-16-35+00-00_modifier-benchmark-task_jCwHEmgH9UYJgJpgqr76aq.eval",
+    "scorers": {
+      "Modification_Accuracy": {
+        "sk": 0.959392,
+        "dgx": 0.962164,
+        "delta_pp": 0.28
+      },
+      "Neo4j_Syntactic_Validity": {
+        "sk": 0.954102,
+        "dgx": 0.958984,
+        "delta_pp": 0.49
+      },
+      "Neo4j_Semantic_Validity": {
+        "sk": 0.898438,
+        "dgx": 0.907227,
+        "delta_pp": 0.88
+      }
+    }
+  },
+  {
+    "benchmark": "modifier",
+    "model_folder": "ministral-3-14b",
+    "model": "Ministral-3-14B-Instruct-2512",
+    "sk_eval_file": "2026-04-05T13-57-22+00-00_modifier-benchmark-task_WFFpkztBGDb4MuHWDz2Tod.eval",
+    "dgx_eval_file": "2026-04-13T16-15-00+00-00_modifier-benchmark-task_YUg4LhRDCcgoUuKBBrXGQL.eval",
+    "scorers": {
+      "Modification_Accuracy": {
+        "sk": 0.93635,
+        "dgx": 0.939023,
+        "delta_pp": 0.27
+      },
+      "Neo4j_Syntactic_Validity": {
+        "sk": 0.923828,
+        "dgx": 0.918945,
+        "delta_pp": -0.49
+      },
+      "Neo4j_Semantic_Validity": {
+        "sk": 0.816406,
+        "dgx": 0.801758,
+        "delta_pp": -1.46
+      }
+    }
+  },
+  {
+    "benchmark": "modifier",
+    "model_folder": "ministral-3-3b",
+    "model": "Ministral-3-3B-Instruct-2512",
+    "sk_eval_file": "2026-04-05T22-49-48+00-00_modifier-benchmark-task_RpapNLQS4ippYjabGt7Yq8.eval",
+    "dgx_eval_file": "2026-04-16T13-54-38+00-00_modifier-benchmark-task_Wi3VzNWwCJMzjTqwTBgbnP.eval",
+    "scorers": {
+      "Modification_Accuracy": {
+        "sk": 0.825702,
+        "dgx": 0.825378,
+        "delta_pp": -0.03
+      },
+      "Neo4j_Syntactic_Validity": {
+        "sk": 0.847656,
+        "dgx": 0.842773,
+        "delta_pp": -0.49
+      },
+      "Neo4j_Semantic_Validity": {
+        "sk": 0.652344,
+        "dgx": 0.650391,
+        "delta_pp": -0.2
+      }
+    }
+  },
+  {
+    "benchmark": "modifier",
+    "model_folder": "ministral-3-8b",
+    "model": "Ministral-3-8B-Instruct-2512",
+    "sk_eval_file": "2026-04-03T11-31-15+00-00_modifier-benchmark-task_Kp6pVHobMXmpWyvfLV9b3W.eval",
+    "dgx_eval_file": "2026-04-15T17-18-40+00-00_modifier-benchmark-task_cGH2xTtCEiHZFmmMgUxSCC.eval",
+    "scorers": {
+      "Modification_Accuracy": {
+        "sk": 0.918683,
+        "dgx": 0.913882,
+        "delta_pp": -0.48
+      },
+      "Neo4j_Syntactic_Validity": {
+        "sk": 0.879883,
+        "dgx": 0.882812,
+        "delta_pp": 0.29
+      },
+      "Neo4j_Semantic_Validity": {
+        "sk": 0.738281,
+        "dgx": 0.740234,
+        "delta_pp": 0.2
+      }
+    }
+  },
+  {
+    "benchmark": "modifier",
+    "model_folder": "nemotron-nano-12b-v2",
+    "model": "NVIDIA-Nemotron-Nano-12B-v2",
+    "sk_eval_file": "2026-04-03T16-11-18+00-00_modifier-benchmark-task_7PHwYqgVrjdGvqQhqLZYfX.eval",
+    "dgx_eval_file": "2026-04-20T19-10-17+00-00_modifier-benchmark-task_2bzHMAjbGhwhQ3nTeh8t52.eval",
+    "scorers": {
+      "Modification_Accuracy": {
+        "sk": 0.940367,
+        "dgx": 0.933114,
+        "delta_pp": -0.73
+      },
+      "Neo4j_Syntactic_Validity": {
+        "sk": 0.895508,
+        "dgx": 0.869141,
+        "delta_pp": -2.64
+      },
+      "Neo4j_Semantic_Validity": {
+        "sk": 0.811523,
+        "dgx": 0.795898,
+        "delta_pp": -1.56
+      }
+    }
+  },
+  {
+    "benchmark": "modifier",
+    "model_folder": "nemotron-nano-9b-v2",
+    "model": "NVIDIA-Nemotron-Nano-9B-v2",
+    "sk_eval_file": "2026-04-06T13-44-18+00-00_modifier-benchmark-task_SPxMLK2b2XNWGdUwwQFU3U.eval",
+    "dgx_eval_file": "2026-05-04T03-48-56+00-00_modifier-benchmark-task_6Yxz7TasnNgyegyXnZ3Y4g.eval",
+    "scorers": {
+      "Modification_Accuracy": {
+        "sk": 0.925842,
+        "dgx": 0.937134,
+        "delta_pp": 1.13
+      },
+      "Neo4j_Syntactic_Validity": {
+        "sk": 0.828125,
+        "dgx": 0.859375,
+        "delta_pp": 3.12
+      },
+      "Neo4j_Semantic_Validity": {
+        "sk": 0.736328,
+        "dgx": 0.762695,
+        "delta_pp": 2.64
+      }
+    }
+  },
+  {
+    "benchmark": "modifier",
+    "model_folder": "qwen3.5-0.8b",
+    "model": "Qwen3.5-0.8B",
+    "sk_eval_file": "2026-04-03T06-50-28+00-00_modifier-benchmark-task_Za5WaLosEZGf57UhtTQfWN.eval",
+    "dgx_eval_file": "2026-04-27T18-20-07+00-00_modifier-benchmark-task_LRhLQuKVBhfYQCM7rVYjeM.eval",
+    "scorers": {
+      "Modification_Accuracy": {
+        "sk": 0.416337,
+        "dgx": 0.415401,
+        "delta_pp": -0.09
+      },
+      "Neo4j_Syntactic_Validity": {
+        "sk": 0.701172,
+        "dgx": 0.694336,
+        "delta_pp": -0.68
+      },
+      "Neo4j_Semantic_Validity": {
+        "sk": 0.646484,
+        "dgx": 0.639648,
+        "delta_pp": -0.68
+      }
+    }
+  },
+  {
+    "benchmark": "modifier",
+    "model_folder": "qwen3.5-2b",
+    "model": "Qwen3.5-2B",
+    "sk_eval_file": "2026-04-05T02-29-24+00-00_modifier-benchmark-task_2iyrpKqZGJRvEEgjaGbjN6.eval",
+    "dgx_eval_file": "2026-04-28T15-09-41+00-00_modifier-benchmark-task_caur8NNCJc3Kd6CBDdPsVF.eval",
+    "scorers": {
+      "Modification_Accuracy": {
+        "sk": 0.469169,
+        "dgx": 0.467602,
+        "delta_pp": -0.16
+      },
+      "Neo4j_Syntactic_Validity": {
+        "sk": 0.953125,
+        "dgx": 0.951172,
+        "delta_pp": -0.2
+      },
+      "Neo4j_Semantic_Validity": {
+        "sk": 0.833008,
+        "dgx": 0.833984,
+        "delta_pp": 0.1
+      }
+    }
+  }
+]

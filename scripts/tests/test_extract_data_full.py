@@ -157,6 +157,26 @@ def test_walk_modifier_yields_18_rows_with_three_scorers(skorge_dir, dgx_dir):
         assert r["max_tokens"] == 16384
 
 
+def test_compute_modifier_deltas_paper_rounding():
+    """nemotron-9b Exec-Success is a rounding tie: SK 0.828125, DGX 0.859375 → 3.125 pp.
+    Python full-precision rounding (half-to-even) gives +3.12 (paper); naive 4-dp
+    round-then-subtract gives +3.13. Pre-computed deltas must match the paper."""
+    def row(mac, ef, syn, sem, mod):
+        return {"machine": mac, "model": "NVIDIA-Nemotron-Nano-9B-v2",
+                "model_folder": "nemotron-nano-9b-v2", "eval_file": ef,
+                "metrics": {"Modification_Accuracy": {"value": mod, "se": 0.0},
+                            "Neo4j_Syntactic_Validity": {"value": syn, "se": 0.0},
+                            "Neo4j_Semantic_Validity": {"value": sem, "se": 0.0}}}
+    rows = [row("skorge", "sk.eval", 0.828125, 0.736328, 0.9258),
+            row("dgx_spark", "dgx.eval", 0.859375, 0.762695, 0.9371)]
+    d = edf.compute_modifier_deltas(rows)
+    assert len(d) == 1
+    sc = d[0]["scorers"]
+    assert sc["Neo4j_Syntactic_Validity"]["delta_pp"] == 3.12, "must be +3.12 (paper), not +3.13"
+    assert sc["Neo4j_Semantic_Validity"]["delta_pp"] == 2.64
+    assert sc["Modification_Accuracy"]["delta_pp"] == 1.13
+
+
 def test_walk_modifier_templates_per_template_breakdown(skorge_dir, dgx_dir):
     """qwen3.5-0.8b modifier on skorge: ~63 templates × 1 model × 1 machine."""
     rows = edf.walk_modifier_templates(skorge_dir, dgx_dir)

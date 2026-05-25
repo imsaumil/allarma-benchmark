@@ -10,16 +10,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.7142,
-        "se": 0.0075
+        "value": 0.714238,
+        "se": 0.007471
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.8887,
-        "se": 0.0098
+        "value": 0.888672,
+        "se": 0.009834
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.6074,
-        "se": 0.0153
+        "value": 0.607422,
+        "se": 0.015268
       }
     },
     "presence_score": 0.8498,
@@ -53,16 +53,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.9594,
-        "se": 0.0032
+        "value": 0.959392,
+        "se": 0.003187
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.9541,
-        "se": 0.0065
+        "value": 0.954102,
+        "se": 0.006543
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.8984,
-        "se": 0.0094
+        "value": 0.898438,
+        "se": 0.009444
       }
     },
     "presence_score": 0.9681,
@@ -96,16 +96,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.9363,
-        "se": 0.0041
+        "value": 0.93635,
+        "se": 0.004097
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.9238,
-        "se": 0.0083
+        "value": 0.923828,
+        "se": 0.008294
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.8164,
-        "se": 0.0121
+        "value": 0.816406,
+        "se": 0.012104
       }
     },
     "presence_score": 0.9474,
@@ -139,16 +139,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.8257,
-        "se": 0.0063
+        "value": 0.825702,
+        "se": 0.00632
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.8477,
-        "se": 0.0112
+        "value": 0.847656,
+        "se": 0.011235
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.6523,
-        "se": 0.0149
+        "value": 0.652344,
+        "se": 0.014889
       }
     },
     "presence_score": 0.8934,
@@ -182,16 +182,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.9187,
-        "se": 0.0049
+        "value": 0.918683,
+        "se": 0.004866
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.8799,
-        "se": 0.0102
+        "value": 0.879883,
+        "se": 0.010164
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.7383,
-        "se": 0.0137
+        "value": 0.738281,
+        "se": 0.013743
       }
     },
     "presence_score": 0.9134,
@@ -225,16 +225,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.9404,
-        "se": 0.0038
+        "value": 0.940367,
+        "se": 0.003836
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.8955,
-        "se": 0.0096
+        "value": 0.895508,
+        "se": 0.009564
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.8115,
-        "se": 0.0122
+        "value": 0.811523,
+        "se": 0.012228
       }
     },
     "presence_score": 0.9656,
@@ -268,16 +268,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.9258,
-        "se": 0.0043
+        "value": 0.925842,
+        "se": 0.004289
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.8281,
-        "se": 0.0118
+        "value": 0.828125,
+        "se": 0.011796
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.7363,
-        "se": 0.0138
+        "value": 0.736328,
+        "se": 0.013776
       }
     },
     "presence_score": 0.9384,
@@ -311,16 +311,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.4163,
-        "se": 0.0074
+        "value": 0.416337,
+        "se": 0.007368
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.7012,
-        "se": 0.0143
+        "value": 0.701172,
+        "se": 0.014312
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.6465,
-        "se": 0.0149
+        "value": 0.646484,
+        "se": 0.014947
       }
     },
     "presence_score": 0.5448,
@@ -354,16 +354,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.4692,
-        "se": 0.0076
+        "value": 0.469169,
+        "se": 0.007608
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.9531,
-        "se": 0.0066
+        "value": 0.953125,
+        "se": 0.006609
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.833,
-        "se": 0.0117
+        "value": 0.833008,
+        "se": 0.011661
       }
     },
     "presence_score": 0.7343,
@@ -397,16 +397,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.7114,
-        "se": 0.0075
+        "value": 0.711383,
+        "se": 0.00747
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.8877,
-        "se": 0.0099
+        "value": 0.887695,
+        "se": 0.009872
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.6045,
-        "se": 0.0153
+        "value": 0.604492,
+        "se": 0.015287
       }
     },
     "presence_score": 0.8471,
@@ -440,16 +440,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.9622,
-        "se": 0.0031
+        "value": 0.962164,
+        "se": 0.003096
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.959,
-        "se": 0.0062
+        "value": 0.958984,
+        "se": 0.006201
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.9072,
-        "se": 0.0091
+        "value": 0.907227,
+        "se": 0.009071
       }
     },
     "presence_score": 0.9706,
@@ -483,16 +483,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.939,
-        "se": 0.004
+        "value": 0.939023,
+        "se": 0.003974
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.9189,
-        "se": 0.0085
+        "value": 0.918945,
+        "se": 0.008533
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.8018,
-        "se": 0.0125
+        "value": 0.801758,
+        "se": 0.012465
       }
     },
     "presence_score": 0.9503,
@@ -526,16 +526,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.8254,
-        "se": 0.0065
+        "value": 0.825378,
+        "se": 0.006483
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.8428,
-        "se": 0.0114
+        "value": 0.842773,
+        "se": 0.011381
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.6504,
-        "se": 0.0149
+        "value": 0.650391,
+        "se": 0.014909
       }
     },
     "presence_score": 0.8903,
@@ -569,16 +569,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.9139,
-        "se": 0.0049
+        "value": 0.913882,
+        "se": 0.004888
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.8828,
-        "se": 0.0101
+        "value": 0.882812,
+        "se": 0.010056
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.7402,
-        "se": 0.0137
+        "value": 0.740234,
+        "se": 0.01371
       }
     },
     "presence_score": 0.9096,
@@ -612,16 +612,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.9331,
-        "se": 0.0041
+        "value": 0.933114,
+        "se": 0.00409
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.8691,
-        "se": 0.0105
+        "value": 0.869141,
+        "se": 0.010544
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.7959,
-        "se": 0.0126
+        "value": 0.795898,
+        "se": 0.012601
       }
     },
     "presence_score": 0.9529,
@@ -655,16 +655,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.9371,
-        "se": 0.0039
+        "value": 0.937134,
+        "se": 0.003948
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.8594,
-        "se": 0.0109
+        "value": 0.859375,
+        "se": 0.010869
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.7627,
-        "se": 0.0133
+        "value": 0.762695,
+        "se": 0.013301
       }
     },
     "presence_score": 0.9507,
@@ -698,16 +698,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.4154,
-        "se": 0.0074
+        "value": 0.415401,
+        "se": 0.007425
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.6943,
-        "se": 0.0144
+        "value": 0.694336,
+        "se": 0.014404
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.6396,
-        "se": 0.015
+        "value": 0.639648,
+        "se": 0.015011
       }
     },
     "presence_score": 0.5432,
@@ -741,16 +741,16 @@
     "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
-        "value": 0.4676,
-        "se": 0.0076
+        "value": 0.467602,
+        "se": 0.007621
       },
       "Neo4j_Syntactic_Validity": {
-        "value": 0.9512,
-        "se": 0.0067
+        "value": 0.951172,
+        "se": 0.006738
       },
       "Neo4j_Semantic_Validity": {
-        "value": 0.834,
-        "se": 0.0116
+        "value": 0.833984,
+        "se": 0.011634
       }
     },
     "presence_score": 0.7321,

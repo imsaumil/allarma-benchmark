@@ -221,15 +221,55 @@ def walk_retrieval_allarma(skorge_dir: str, dgx_dir: str) -> list[dict]:
 
 
 def _modifier_aggregate_metrics(header: dict) -> dict:
-    """Pull the 3 named modifier scorers from header['results']['scores']."""
+    """Pull the 3 named modifier scorers from header['results']['scores'].
+
+    Stored at 6 decimals (not 4) so client/extractor cross-machine deltas reproduce
+    the paper exactly — at 4 dp the nemotron-9b Syn tie (0.828125 vs 0.859375) rounds
+    to +3.13 pp, but the full-precision delta is +3.12 pp (paper). 6 dp preserves the
+    tie; deltas are pre-computed in compute_modifier_deltas with Python rounding."""
     out = {}
     for sg in header["results"]["scores"]:
         name = sg["name"]
         m = sg["metrics"]
         if "mean" in m:
-            out[name] = {"value": round(m["mean"]["value"], 4), "se": round(m["stderr"]["value"], 4)}
+            out[name] = {"value": round(m["mean"]["value"], 6), "se": round(m["stderr"]["value"], 6)}
         elif "accuracy" in m:
-            out[name] = {"value": round(m["accuracy"]["value"], 4), "se": round(m["stderr"]["value"], 4)}
+            out[name] = {"value": round(m["accuracy"]["value"], 6), "se": round(m["stderr"]["value"], 6)}
+    return out
+
+
+_MODIFIER_SCORERS = ("Modification_Accuracy", "Neo4j_Syntactic_Validity", "Neo4j_Semantic_Validity")
+
+
+def compute_modifier_deltas(mod_rows: list[dict]) -> list[dict]:
+    """Pair SK/DGX modifier rows per model → one row per model with per-scorer
+    cross-machine deltas (paper-precision: subtract 6-dp values, round to 2 dp).
+    Mirrors compute_cross_machine_deltas (retrieval). delta_pp = (dgx − sk) × 100."""
+    by_model: dict[str, dict[str, dict]] = defaultdict(dict)
+    for r in mod_rows:
+        by_model[r["model_folder"]][r["machine"]] = r
+    out: list[dict] = []
+    for model_folder, pair in sorted(by_model.items()):
+        sk, dgx = pair.get("skorge"), pair.get("dgx_spark")
+        if sk is None or dgx is None:
+            continue
+        scorers = {}
+        for s in _MODIFIER_SCORERS:
+            sk_v = sk["metrics"][s]["value"]
+            dgx_v = dgx["metrics"][s]["value"]
+            scorers[s] = {
+                "sk": sk_v,
+                "dgx": dgx_v,
+                "delta_pp": round((dgx_v - sk_v) * 100, 2),
+            }
+        out.append({
+            "benchmark": "modifier",
+            "model_folder": model_folder,
+            "model": sk["model"],
+            "sk_eval_file": sk["eval_file"],
+            "dgx_eval_file": dgx["eval_file"],
+            "scorers": scorers,
+        })
     return out
 
 
@@ -485,6 +525,10 @@ def main() -> None:
     print("Extracting modifier (18 rows)...")
     mod_rows = walk_modifier(args.skorge_dir, args.dgx_dir)
     _write_json(args.output_dir, "modifier-summary.json", mod_rows)
+
+    print("Computing modifier cross-machine deltas (9 model pairs)...")
+    mod_deltas = compute_modifier_deltas(mod_rows)
+    _write_json(args.output_dir, "modifier-deltas.json", mod_deltas)
 
     print("Extracting modifier templates (per-template heatmap rows)...")
     tpl_rows = walk_modifier_templates(args.skorge_dir, args.dgx_dir)
