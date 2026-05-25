@@ -469,8 +469,125 @@
       { label: 'Total_Samples', accessor: 'samples' },
     ], `retrieval-${state.machine}.csv`);
   }
-  function renderCompareScatter(body) { body.innerHTML = '<div class="chartbox">Compare scatter (C4).</div>'; }
-  function renderCompareTable(body) { body.innerHTML = '<div class="chartbox">Compare table (C4).</div>'; }
+  // =========================================================================
+  // C4 — Compare Δ view (scatter + delta table)
+  // =========================================================================
+  // cross-machine-deltas.json is retriever-LLM only (23 strategies × 9 models =
+  // 207 rows). Δ = dgx_acc − sk_acc (pp). Families (aug/pure) + legend filter;
+  // the base family has no per-machine LLM delta, so baselines are not shown here.
+  function compareRows() {
+    const all = DASHBOARD_DATA.crossMachineDeltas || [];
+    return all.filter((d) => {
+      const fam = STRATEGY_FAMILY(d.strategy, d.benchmark); // 'aug' | 'pure'
+      if (!state.fams[fam]) return false;
+      return state.models[d.model];
+    });
+  }
+
+  function renderCompareScatter(body) {
+    body.innerHTML = '<div id="retrieval-chart" style="min-height:480px"></div>';
+    const rows = compareRows();
+    const div = document.getElementById('retrieval-chart');
+    if (!rows.length) {
+      div.innerHTML = '<p class="hint" style="padding:1rem">No LLM cells selected — enable the LLM-augmented or Pure-LLM family and at least one model. (Baselines have no cross-machine LLM delta.)</p>';
+      return;
+    }
+
+    const onDiag = rows.filter((d) => Math.abs(d.delta_pp) <= 3);
+    const off = rows.filter((d) => Math.abs(d.delta_pp) > 3);
+    const mk = (d) => ({ x: d.sk_acc * 100, y: d.dgx_acc * 100 });
+    const hover = (d) => `<b>${modelDisplay(d.model)}</b><br>${d.strategy}<br>` +
+      `SK ${(d.sk_acc * 100).toFixed(2)}% · DGX ${(d.dgx_acc * 100).toFixed(2)}%<br>Δ ${d.delta_pp >= 0 ? '+' : ''}${d.delta_pp.toFixed(2)} pp`;
+
+    const xs = rows.map((d) => d.sk_acc * 100).concat(rows.map((d) => d.dgx_acc * 100));
+    const lo = Math.max(0, Math.floor(Math.min(...xs) - 2));
+    const hi = Math.min(100, Math.ceil(Math.max(...xs) + 2));
+
+    const traces = [
+      { name: 'y = x (identical)', type: 'scatter', mode: 'lines', x: [lo, hi], y: [lo, hi],
+        line: { color: '#1565c0', dash: 'dash', width: 1.5 }, hoverinfo: 'skip' },
+      { name: '|Δ| ≤ 3 pp', type: 'scatter', mode: 'markers', x: onDiag.map((d) => mk(d).x), y: onDiag.map((d) => mk(d).y),
+        marker: { color: '#1565c0', size: 8, opacity: 0.7 }, text: onDiag.map(hover), hoverinfo: 'text' },
+      { name: '|Δ| > 3 pp', type: 'scatter', mode: 'markers+text', x: off.map((d) => mk(d).x), y: off.map((d) => mk(d).y),
+        marker: { color: '#c5384a', size: 11, opacity: 0.9, line: { color: '#7a1f2b', width: 1 } },
+        text: off.map((d) => `${modelDisplay(d.model)}/${d.strategy.replace(/_all$|_candidate$/, '')} (${d.delta_pp >= 0 ? '+' : ''}${d.delta_pp.toFixed(2)})`),
+        textposition: 'middle right', textfont: { color: '#c5384a', size: 9 },
+        hovertext: off.map(hover), hoverinfo: 'text' },
+    ];
+    const layout = {
+      height: 520, margin: { l: 60, r: 40, t: 30, b: 55 },
+      xaxis: { title: 'SKORGE Accuracy (%)', range: [lo, hi], zeroline: false },
+      yaxis: { title: 'DGX Spark Accuracy (%)', range: [lo, hi], zeroline: false, scaleanchor: 'x', scaleratio: 1 },
+      legend: { orientation: 'h', y: 1.06, font: { size: 10 } },
+      font: { family: 'Manrope, sans-serif' },
+      paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+    };
+    Plotly.react('retrieval-chart', traces, layout, { responsive: true, displayModeBar: false });
+  }
+
+  function deltaClass(d) { const x = Math.abs(d); return x <= 1 ? 'good' : x <= 3 ? 'warn' : 'bad'; }
+
+  function renderCompareTable(body) {
+    if (retDataTable) { try { retDataTable.destroy(); } catch (e) {} retDataTable = null; }
+    body.innerHTML =
+      '<div style="margin-bottom:.6rem"><button class="btn-small" id="ret-csv">Export CSV</button>' +
+      '<span style="margin-left:1rem;font-size:.78rem"><span class="d good">|Δ|≤1</span> <span class="d warn">≤3</span> <span class="d bad">&gt;3 pp</span></span></div>' +
+      '<div class="tablewrap"><table id="retrieval-table" class="display" style="width:100%"></table></div>';
+
+    const rows = compareRows();
+    // Sort by descending |Δ| so the largest divergences surface first.
+    const sorted = [...rows].sort((a, b) => Math.abs(b.delta_pp) - Math.abs(a.delta_pp));
+    const dataset = sorted.map((d) => {
+      const skUrl = buildLogUrl(d.model_folder, d.sk_eval_file, d.benchmark);
+      const dgxUrl = buildLogUrl(d.model_folder, d.dgx_eval_file, d.benchmark);
+      const dCell = `<span class="d ${deltaClass(d.delta_pp)}">${d.delta_pp >= 0 ? '+' : ''}${d.delta_pp.toFixed(2)}</span>`;
+      const mt = `${d.sk_max_tokens == null ? 'None' : d.sk_max_tokens} → ${d.dgx_max_tokens == null ? 'None' : d.dgx_max_tokens}`;
+      const tr = `${d.sk_truncation_count} → ${d.dgx_truncation_count}`;
+      const stratCell = `${modelDisplay(d.model)}${isReasoning(d.model) ? ' ✦' : ''} / ` +
+        `<a href="${skUrl}" target="_blank" rel="noopener" title="SKORGE eval">${d.strategy}</a> ` +
+        `<a href="${dgxUrl}" target="_blank" rel="noopener" title="DGX eval" style="font-size:.7rem">[dgx ↗]</a>`;
+      // Column 3 carries the colored cell HTML plus the raw delta; a render fn
+      // (below) shows the cell for display but sorts/filters on |Δ| so the table
+      // is "sortable by |Δ|" via the built-in numeric sort.
+      return [stratCell, (d.sk_acc * 100).toFixed(2), (d.dgx_acc * 100).toFixed(2),
+        { html: dCell, abs: Math.abs(d.delta_pp), raw: d.delta_pp }, mt, tr];
+    });
+
+    retDataTable = new DataTable('#retrieval-table', {
+      data: dataset,
+      columns: [
+        { title: 'Model / Strategy' }, { title: 'SK Acc' }, { title: 'DGX Acc' },
+        {
+          title: 'Δ pp',
+          render: function (data, type) {
+            if (type === 'sort' || type === 'type') return data.abs;
+            if (type === 'filter') return data.raw.toFixed(2);
+            return data.html;
+          },
+        },
+        { title: 'max_tokens SK→DGX' }, { title: 'Trunc count SK→DGX' },
+      ],
+      order: [[3, 'desc']], // sort by |Δ| descending
+      pageLength: 25, scrollX: true, deferRender: true,
+    });
+
+    const csvBtn = document.getElementById('ret-csv');
+    if (csvBtn) csvBtn.addEventListener('click', () => exportCompareCSV(sorted));
+  }
+
+  function exportCompareCSV(sorted) {
+    exportJSONToCSV(sorted, [
+      { label: 'Model', accessor: (d) => modelDisplay(d.model) },
+      { label: 'Strategy', accessor: 'strategy' },
+      { label: 'SK_Accuracy', accessor: (d) => (d.sk_acc * 100).toFixed(4) },
+      { label: 'DGX_Accuracy', accessor: (d) => (d.dgx_acc * 100).toFixed(4) },
+      { label: 'Delta_pp', accessor: (d) => d.delta_pp.toFixed(4) },
+      { label: 'SK_max_tokens', accessor: (d) => (d.sk_max_tokens == null ? 'None' : d.sk_max_tokens) },
+      { label: 'DGX_max_tokens', accessor: (d) => (d.dgx_max_tokens == null ? 'None' : d.dgx_max_tokens) },
+      { label: 'SK_truncation_count', accessor: 'sk_truncation_count' },
+      { label: 'DGX_truncation_count', accessor: 'dgx_truncation_count' },
+    ], 'retrieval-cross-machine-deltas.csv');
+  }
   function renderSubcharts() { /* C5 */ }
 
   // ---- Entry point ----------------------------------------------------------
