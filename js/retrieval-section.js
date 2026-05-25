@@ -588,7 +588,118 @@
       { label: 'DGX_truncation_count', accessor: 'dgx_truncation_count' },
     ], 'retrieval-cross-machine-deltas.csv');
   }
-  function renderSubcharts() { /* C5 */ }
+  // =========================================================================
+  // C5 — Tier-stratified accuracy + Pareto efficiency (ported from CIGRE → 9 models)
+  // =========================================================================
+  const TIER_NAMES = ['easy', 'medium', 'hard', 'expert'];
+  const TIER_LABELS = ['T1 Easy (5,098)', 'T2 Medium (4,561)', 'T3 Hard (108)', 'T4 Expert (22)'];
+  // Per-section sub-chart state (machine in Compare falls back to SKORGE).
+  let tierStrategy = 'rrf_llm_rerank_k5_all';
+  let subchartsBuilt = false;
+
+  function subMachineJson() { return state.machine === 'cmp' ? 'skorge' : MACHINE_JSON[state.machine]; }
+
+  function renderSubcharts() {
+    const host = document.getElementById('ret-subcharts');
+    if (!host) return;
+    if (!subchartsBuilt) {
+      host.innerHTML = `
+        <h3 style="color:#1565c0">1.2 · Tier-stratified accuracy</h3>
+        <div class="fg" style="margin:.3rem 0 .6rem"><span class="lbl">Strategy</span>
+          <select class="ctl" id="ret-tier-strat"></select>
+          <span class="hint" style="margin-left:.6rem">Per-difficulty-tier accuracy for the chosen strategy${state.machine === 'cmp' ? ' · showing SKORGE (tiers are per-machine)' : ''}.</span>
+        </div>
+        <div id="ret-tier-chart" style="min-height:380px"></div>
+        <h3 style="color:#1565c0;margin-top:1.4rem">1.3 · Pareto efficiency — accuracy vs token cost</h3>
+        <p class="hint" style="margin-bottom:.4rem">Accuracy vs avg tokens/sample (cost proxy); dotted line = per-model Pareto frontier.</p>
+        <div id="ret-pareto-chart" style="min-height:440px"></div>`;
+      populateTierDropdown();
+      subchartsBuilt = true;
+    } else {
+      // Update the per-machine note when machine changes.
+      const note = host.querySelector('#ret-tier-strat')?.parentElement?.querySelector('.hint');
+      if (note) note.textContent = 'Per-difficulty-tier accuracy for the chosen strategy' +
+        (state.machine === 'cmp' ? ' · showing SKORGE (tiers are per-machine).' : '.');
+    }
+    renderTierChart();
+    renderParetoScatter();
+  }
+
+  function populateTierDropdown() {
+    const sel = document.getElementById('ret-tier-strat');
+    if (!sel) return;
+    const tiers = DASHBOARD_DATA.retrievalLlmTiers || [];
+    const strategies = [...new Set(tiers.map((r) => r.strategy))].sort();
+    sel.innerHTML = strategies.map((s) =>
+      `<option value="${s}"${s === tierStrategy ? ' selected' : ''}>${s}</option>`).join('');
+    sel.addEventListener('change', () => { tierStrategy = sel.value; renderTierChart(); });
+  }
+
+  function renderTierChart() {
+    const machineJson = subMachineJson();
+    const tiers = (DASHBOARD_DATA.retrievalLlmTiers || []).filter((r) => r.machine === machineJson);
+    const traces = activeModels().map((model) => {
+      const row = tiers.find((r) => r.strategy === tierStrategy && r.model === model);
+      if (!row) return null;
+      const y = TIER_NAMES.map((t) => (row.tiers[t] ? row.tiers[t].accuracy * 100 : 0));
+      const se = TIER_NAMES.map((t) => (row.tiers[t] ? row.tiers[t].se * 100 : 0));
+      const hover = TIER_NAMES.map((t) => {
+        const td = row.tiers[t]; if (!td) return '';
+        return `<b>${modelDisplay(model)}</b><br>${tierStrategy}<br>${td.correct}/${td.total} = ${(td.accuracy * 100).toFixed(1)}% ± ${(td.se * 100).toFixed(2)}`;
+      });
+      return {
+        name: modelDisplay(model), type: 'bar', x: TIER_LABELS, y,
+        marker: { color: modelColor(model) }, hovertext: hover, hoverinfo: 'text',
+        error_y: { type: 'data', array: se, visible: true, thickness: 1 },
+      };
+    }).filter(Boolean);
+
+    const layout = {
+      barmode: 'group', height: 380, margin: { t: 30, b: 50, l: 50, r: 20 },
+      yaxis: { title: 'Accuracy (%)', range: [0, 105] },
+      legend: { orientation: 'h', y: 1.08, font: { size: 10 } },
+      font: { family: 'Manrope, sans-serif' },
+      paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+    };
+    Plotly.react('ret-tier-chart', traces, layout, { responsive: true, displayModeBar: false });
+  }
+
+  function renderParetoScatter() {
+    const machineJson = subMachineJson();
+    const llm = llmRows(machineJson);
+    const traces = [];
+    activeModels().forEach((model) => {
+      const rows = llm.filter((r) => r.model === model && r.metrics.avg_llm_token_usage != null);
+      if (!rows.length) return;
+      traces.push({
+        name: modelDisplay(model), type: 'scatter', mode: 'markers',
+        x: rows.map((r) => r.metrics.avg_llm_token_usage),
+        y: rows.map((r) => r.metrics.accuracy * 100),
+        marker: { color: modelColor(model), size: 9, opacity: 0.8 },
+        text: rows.map((r) => r.strategy),
+        hovertemplate: `<b>%{text}</b><br>${modelDisplay(model)}<br>Accuracy: %{y:.2f}%<br>Avg tokens: %{x:.1f}<extra></extra>`,
+      });
+      // Per-model Pareto frontier: walk lowest cost → keep accuracy improvers.
+      const sorted = [...rows].sort((a, b) => a.metrics.avg_llm_token_usage - b.metrics.avg_llm_token_usage);
+      const frontier = []; let maxAcc = -1;
+      sorted.forEach((r) => { if (r.metrics.accuracy > maxAcc) { frontier.push(r); maxAcc = r.metrics.accuracy; } });
+      if (frontier.length > 1) {
+        traces.push({
+          name: modelDisplay(model) + ' frontier', type: 'scatter', mode: 'lines',
+          x: frontier.map((r) => r.metrics.avg_llm_token_usage), y: frontier.map((r) => r.metrics.accuracy * 100),
+          line: { color: modelColor(model), width: 1, dash: 'dot' }, showlegend: false, hoverinfo: 'skip',
+        });
+      }
+    });
+    const layout = {
+      height: 440, margin: { t: 30, b: 50, l: 50, r: 20 },
+      xaxis: { title: 'Avg Tokens/Sample (cost proxy)' }, yaxis: { title: 'Accuracy (%)' },
+      legend: { orientation: 'h', y: 1.06, font: { size: 10 } },
+      font: { family: 'Manrope, sans-serif' },
+      paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+    };
+    Plotly.react('ret-pareto-chart', traces, layout, { responsive: true, displayModeBar: false });
+  }
 
   // ---- Entry point ----------------------------------------------------------
   function initRetrievalSection() {
