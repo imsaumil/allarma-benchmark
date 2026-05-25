@@ -403,29 +403,10 @@ def walk_retrieval_llm_tiers(skorge_dir: str, dgx_dir: str) -> list[dict]:
     return out
 
 
-def extract_unbounded_variant_row(unbounded_eval_path: str) -> dict:
-    """Extract the CIGRE-March unbounded-tokens variant for gpt-oss-20b/llm_direct_match_all.
-
-    The .eval file's header reports task='llm_direct_match_all' (same as skorge's
-    capped run); we override the strategy label here to make it distinct in the
-    dashboard while keeping the .eval file content untouched (audit-preservable).
-    """
-    row = extract_retrieval_llm_row(
-        unbounded_eval_path, machine="skorge", model_folder="gpt-oss-20b",
-    )
-    row["strategy"] = "llm_direct_match_all_unbounded_tokens"
-    # eval_file keeps the original filename for audit preservability,
-    # but the file as uploaded to HF will be renamed (per spec §5.2).
-    return row
-
-
 def compute_cross_machine_deltas(llm_rows: list[dict]) -> list[dict]:
     """Pair (model, strategy) cells across SK and DGX → one Δ row per pair."""
     by_key: dict[tuple, dict[str, dict]] = defaultdict(dict)
     for r in llm_rows:
-        # exclude the unbounded variant from the pairing (it's a configuration variant)
-        if r["strategy"].endswith("_unbounded_tokens"):
-            continue
         by_key[(r["model_folder"], r["strategy"])][r["machine"]] = r
 
     deltas: list[dict] = []
@@ -458,15 +439,13 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--skorge-dir", required=True)
     parser.add_argument("--dgx-dir", required=True)
-    parser.add_argument("--unbounded-variant", required=True)
     parser.add_argument("--output-dir", required=True)
     args = parser.parse_args()
 
     os.makedirs(args.output_dir, exist_ok=True)
 
-    print("Extracting retrieval-LLM (414 + 1 unbounded variant rows)...")
+    print("Extracting retrieval-LLM (414 rows)...")
     llm_rows = walk_retrieval_llm(args.skorge_dir, args.dgx_dir)
-    llm_rows.append(extract_unbounded_variant_row(args.unbounded_variant))
     _write_json(args.output_dir, "retrieval-llm-summary.json", llm_rows)
 
     print("Extracting retrieval-Allarma (116 rows)...")

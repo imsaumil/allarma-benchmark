@@ -43,21 +43,3 @@ def dgx_gpt_oss_direct_match_eval(dgx_dir):
     if not os.path.isfile(p):
         pytest.skip(f"dgx gpt-oss direct-match eval not found: {p}")
     return p
-
-
-@pytest.fixture(scope="session")
-def unbounded_variant():
-    p = os.environ.get(
-        "ALLARMA_UNBOUNDED_VARIANT",
-        os.path.join(
-            _DEFAULT_ROOT,
-            "CIGRE_WRITEUP",
-            "log_files",
-            "retriever",
-            "gpt_oss_20b_reasoning_low",
-            "2026-03-09T20-47-38+00-00_llm-direct-match-all_4nMPiCbiFLqLNLwBCZHSs2.eval",
-        ),
-    )
-    if not os.path.isfile(p):
-        pytest.skip(f"unbounded variant not found: {p}")
-    return p

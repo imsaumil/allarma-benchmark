@@ -23,9 +23,13 @@ def test_read_eval_header_returns_dict_with_expected_keys(skorge_dir):
 
 
 def test_truncation_count_matches_audit_doc(skorge_dir):
-    """Audit doc §7.1 says skorge gpt-oss-20b/llm_direct_match_all = 1137 truncated."""
+    """Audit doc §7.1 says the capped skorge gpt-oss-20b/llm_direct_match_all run
+    = 1137 truncated. 2026-05-24: that capped run (max_tokens=8192) was archived
+    as max_tokens drift; the unbounded run is now canonical. The capped .eval is
+    preserved under retriever/_archived_max_tokens_drift_2026-04-14/ so this
+    truncation-counting logic test stays valid against documented ground truth."""
     eval_path = os.path.join(
-        skorge_dir, "retriever", "gpt-oss-20b",
+        skorge_dir, "retriever", "_archived_max_tokens_drift_2026-04-14",
         "2026-04-14T02-46-14+00-00_llm-direct-match-all_ZvDdPL6t2i8CcHguiYijHV.eval",
     )
     n_trunc = edf.truncation_count_for_eval(eval_path)
@@ -92,7 +96,7 @@ def test_allarma_row_captures_completed_samples(skorge_dir):
 
 def test_extract_retrieval_llm_walker_yields_414_rows(skorge_dir, dgx_dir):
     """9 models × 23 strategies × 2 machines = 414 LLM-augmented rows.
-    The unbounded variant is added separately (Task 11) so this walker yields 414."""
+    (gpt-oss-20b/llm_direct_match_all is the unbounded run now living in the tree.)"""
     rows = edf.walk_retrieval_llm(skorge_dir, dgx_dir)
     assert len(rows) == 414, f"expected 414, got {len(rows)}"
     # Spot check: gpt-oss-20b on skorge has 23 unique strategies
@@ -166,37 +170,28 @@ def test_walk_retrieval_llm_tiers_one_row_per_eval(skorge_dir, dgx_dir):
             assert "total" in r["tiers"][t]
 
 
-def test_unbounded_variant_appears_with_distinct_strategy_label(unbounded_variant):
-    """The CIGRE-March file has task='llm_direct_match_all' inside, but the dashboard
-    must label it 'llm_direct_match_all_unbounded_tokens' to distinguish it."""
-    row = edf.extract_unbounded_variant_row(unbounded_variant)
-    assert row["strategy"] == "llm_direct_match_all_unbounded_tokens"
-    assert row["machine"] == "skorge"
-    assert row["model_folder"] == "gpt-oss-20b"
-    assert row["max_tokens"] is None  # unbounded
-    # Spec says accuracy ~0.9186 (verified during spec drafting)
-    assert abs(row["metrics"]["accuracy"] - 0.9186) < 0.0005
-
-
-def test_cross_machine_deltas_reproduce_audit_anomaly_1(skorge_dir, dgx_dir):
-    """Audit §3.3: gpt-oss-20b/llm_direct_match_all SK 85.51% → DGX 95.32%, Δ = +9.80 pp."""
+def test_cross_machine_deltas_gpt_oss_direct_match(skorge_dir, dgx_dir):
+    """gpt-oss-20b/llm_direct_match_all cross-machine delta.
+    2026-05-24: the capped skorge run (85.51%, +9.80 pp, max_tokens=8192) was archived
+    as max_tokens drift; the unbounded run (91.86%) is canonical. SK 91.86% (unbounded)
+    vs DGX 95.32% (unbounded) → +3.46 pp — now an unexplained >3 pp cell (no longer a
+    truncation/cap artifact, since both sides are unbounded)."""
     llm_rows = edf.walk_retrieval_llm(skorge_dir, dgx_dir)
     deltas = edf.compute_cross_machine_deltas(llm_rows)
-    # find the gpt-oss/direct-match cell
     target = next(d for d in deltas
                   if d["model_folder"] == "gpt-oss-20b" and d["strategy"] == "llm_direct_match_all")
-    delta_pp = (target["dgx_acc"] - target["sk_acc"]) * 100
-    assert 9.5 < delta_pp < 10.0, f"audit says +9.80 pp; got {delta_pp:.2f}"
+    assert target["sk_max_tokens"] is None and target["dgx_max_tokens"] is None  # both unbounded now
+    delta_pp = round((target["dgx_acc"] - target["sk_acc"]) * 100, 2)
+    assert 3.3 < delta_pp < 3.6, f"expected ~+3.46 pp (unbounded canonical); got {delta_pp:.2f}"
 
 
-def test_main_e2e_writes_six_json_files_with_expected_counts(tmp_path, skorge_dir, dgx_dir, unbounded_variant):
+def test_main_e2e_writes_six_json_files_with_expected_counts(tmp_path, skorge_dir, dgx_dir):
     import subprocess, sys
     out = str(tmp_path)
     result = subprocess.run([
         sys.executable, "extract_data_full.py",
         "--skorge-dir", skorge_dir,
         "--dgx-dir", dgx_dir,
-        "--unbounded-variant", unbounded_variant,
         "--output-dir", out,
     ], cwd=os.path.dirname(__file__) + "/..", check=True, capture_output=True, text=True)
     assert "Done." in result.stdout
@@ -205,7 +200,7 @@ def test_main_e2e_writes_six_json_files_with_expected_counts(tmp_path, skorge_di
         "retrieval-llm-tiers.json", "modifier-summary.json",
         "modifier-templates.json", "cross-machine-deltas.json",
     )}
-    assert counts["retrieval-llm-summary.json"] == 415
+    assert counts["retrieval-llm-summary.json"] == 414
     assert counts["retrieval-allarma-summary.json"] == 116
     assert counts["retrieval-llm-tiers.json"] == 414
     assert counts["modifier-summary.json"] == 18
