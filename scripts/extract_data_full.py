@@ -58,6 +58,30 @@ def truncation_count_for_eval(eval_path: str) -> int:
     return n_trunc
 
 
+def _sample_latency(s: dict) -> float:
+    """Per-sample latency = `working_time` (model+tool time), falling back to
+    `total_time` when absent. Verified 1-to-1 against paper v3 T_sample on all 22
+    quoted timing cells (working_time matches exactly; total_time is inflated by
+    scoring/overhead on some cells)."""
+    wt = s.get("working_time")
+    return wt if wt is not None else s["total_time"]
+
+
+def per_sample_timing(eval_path: str) -> dict:
+    """Per-sample latency (s) from summaries.json — the paper's T_sample column.
+    Distinct from `avg_time_per_sample` (= total wall / N), which is deflated ~5x by
+    concurrent sample execution and is NOT comparable to the paper's per-query latency."""
+    with zipfile.ZipFile(eval_path) as zf:
+        summaries = json.load(zf.open("summaries.json"))
+    times = [_sample_latency(s) for s in summaries]
+    n = len(times)
+    return {
+        "median": round(statistics.median(times), 2) if times else 0.0,
+        "mean": round(sum(times) / n, 2) if n else 0.0,
+        "max": round(max(times), 2) if times else 0.0,
+    }
+
+
 def extract_retrieval_llm_row(eval_path: str, *, machine: str, model_folder: str) -> dict:
     """Extract one row of retrieval-LLM data from a single .eval file."""
     h = read_eval_header(eval_path)
@@ -96,6 +120,7 @@ def extract_retrieval_llm_row(eval_path: str, *, machine: str, model_folder: str
         },
         "total_runtime": round(total_runtime_s, 1),
         "avg_time_per_sample": round(total_runtime_s / n_samples, 4) if n_samples > 0 else 0.0,
+        "timing": per_sample_timing(eval_path),  # paper T_sample (working_time)
         "max_tokens": mt,
         "truncation_count": truncation_count_for_eval(eval_path),
         "truncation_rate": 0.0,  # filled below
@@ -173,6 +198,7 @@ def extract_retrieval_allarma_row(eval_path: str, *, machine: str) -> dict:
         },
         "total_runtime": round(total_runtime_s, 1),
         "avg_time_per_sample": round(total_runtime_s / n_samples, 4) if n_samples > 0 else 0.0,
+        "timing": per_sample_timing(eval_path),  # paper T_sample (working_time)
         "max_tokens": None,
         "truncation_count": 0,
         "truncation_rate": 0.0,
@@ -226,7 +252,7 @@ def extract_modifier_row(eval_path: str, *, machine: str, model_folder: str) -> 
         with zf.open("summaries.json") as f:
             summaries = json.load(f)
         for s in summaries:
-            times.append(s["total_time"])
+            times.append(_sample_latency(s))  # working_time — matches paper T_sample
             # A handful of samples (timeouts at 600s) record an empty model_usage
             # dict. Keep timing/score data but skip token accounting for those.
             mu = s.get("model_usage") or {}

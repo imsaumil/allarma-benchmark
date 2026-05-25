@@ -62,6 +62,18 @@ def test_extract_retrieval_llm_row_for_skorge_qwen_one_strategy(skorge_dir):
     assert row["max_tokens"] == 8192
 
 
+def test_retrieval_per_sample_timing_matches_paper(skorge_dir):
+    """Paper v3 Table T_sample for gpt-oss-20b/rrf_llm_rerank_k15_all on SKORGE = 3.85 s
+    (mean of per-sample working_time). The dashboard 'avg time/sample' must use this
+    measure, NOT total_runtime/N (= 0.78 s, deflated by concurrency)."""
+    import glob
+    matches = glob.glob(os.path.join(
+        skorge_dir, "retriever", "gpt-oss-20b", "*rrf-llm-rerank-k15-all*.eval"))
+    assert matches, "k15 eval not found"
+    t = edf.per_sample_timing(matches[0])
+    assert abs(t["mean"] - 3.85) < 0.02, f"paper T_sample=3.85; got {t['mean']}"
+
+
 def test_retrieval_llm_row_captures_completed_samples(dgx_gpt_oss_direct_match_eval):
     """The DGX gpt-oss-20b/llm-direct-match-all run is the one short run in the
     corpus: total_samples=9789 but completed_samples=9715 (74 short). Both must
