@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>aLLarMa Benchmarks — v2 cross-machine</title>
+  <title>EPRI · aLLarMa Benchmarks — v2 cross-machine</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,85 +12,79 @@
 </head>
 <body>
   <nav id="main-nav">
-    <div class="nav-title">aLLarMa Benchmarks</div>
+    <div class="nav-brand">
+      <span class="nav-title">EPRI · aLLarMa Benchmarks</span>
+      <span class="nav-pill">v2 · cross-machine</span>
+    </div>
     <div class="nav-links">
       <a href="#overview">Overview</a>
       <a href="#retrieval">Retrieval</a>
-      <a href="#modifier">Modifier</a>
+      <a href="#modification">Modification</a>
+      <a href="#logs">Logs</a>
       <a href="#about">About</a>
-      <input id="nav-search" type="text" placeholder="Filter rows…" />
     </div>
   </nav>
 
   <section id="overview">
-    <h2>Cross-machine reproducibility of the aLLarMa pipeline</h2>
-    <div id="overview-hero-container"></div>
+    <h2>Overview</h2>
+    <div id="overview-container"></div>
   </section>
 
   <section id="retrieval">
-    <h2>Part 1 — Retrieval Benchmarking</h2>
-    <p class="section-desc">
-      Stage 1 of the aLLarMa pipeline: select the right Cypher template from a library of predefined queries given a natural-language question.
-      We benchmark 9 models across 23 LLM-augmented strategies and 58 Allarma-baseline strategies (no-LLM) on two heterogeneous machines.
-    </p>
-    <div id="retrieval-section-container"></div>
+    <h2>Retrieval</h2>
+    <div id="retrieval-container"></div>
   </section>
 
-  <section id="modifier">
-    <h2>Part 2 — Modifier Benchmarking</h2>
-    <p class="section-desc">
-      Stage 2 of the aLLarMa pipeline: adapt a retrieved Cypher template to the user's specific entities and parameters.
-      Benchmarked across the same 9 models on both machines, 1,024 samples each, scored on modification accuracy and Neo4j syntactic / semantic validity.
-    </p>
-    <div id="modifier-section-container"></div>
+  <section id="modification">
+    <h2>Modification</h2>
+    <div id="modification-container"></div>
+  </section>
+
+  <section id="logs">
+    <h2>InspectAI Evaluation Logs</h2>
+    <p class="section-desc">Browse the raw InspectAI evaluation logs for the full cross-machine corpus.</p>
+    <a href="https://imsaumil-allarma-benchmark-logs-full.hf.space" class="btn btn-large" target="_blank" rel="noopener">View All InspectAI Logs</a>
+    <p class="note">Hosted on HuggingFace Spaces. May take ~30s to wake from sleep on first visit.</p>
   </section>
 
   <section id="about">
     <h2>About</h2>
-    <div id="about-container">
-      <div class="about-content">
-        <div class="about-block">
-          <h3>Citation</h3>
-          <p>aLLarMa: Large Language Model Based Application for Operational Data, Alarms, and Networks — Applied Energy paper (in preparation).</p>
-          <p>Predecessor (CIGRE 2026 Paris Session, Paper ID 12538):
-            <a href="https://imsaumil.github.io/allarma-benchmark-eval-dashboard/" target="_blank">3-model subset dashboard</a></p>
-          <p><strong>Authors:</strong> Adrian Kelly (EPRI Ireland), Saumil Shah (NCSU), Sujit Tripathy (EPRI USA), Fan Zhang (EPRI USA), Wenyuan Tang (NCSU)</p>
-          <h3>Methodology</h3>
-          <p>This dashboard is the published view over the audited cross-machine corpus described in:</p>
-          <ul>
-            <li><a href="docs/cross_machine_retriever_comparison.md" target="_blank">cross_machine_retriever_comparison.md</a></li>
-            <li><a href="docs/cross_machine_modifier_comparison.md" target="_blank">cross_machine_modifier_comparison.md</a></li>
-          </ul>
-          <p>548 production .eval files audited (548 = 18 modifier + 414 retrieval-LLM + 116 retrieval-Allarma-baseline). Plus 1 CIGRE-March unbounded-tokens variant for the gpt-oss-20b/llm_direct_match_all max_tokens comparison.</p>
-        </div>
-        <div class="about-block">
-          <h3>Datasets &amp; links</h3>
-          <ul>
-            <li>HF dataset: <a href="https://huggingface.co/datasets/imsaumil/allarma-benchmark-eval-logs-full" target="_blank">imsaumil/allarma-benchmark-eval-logs-full</a></li>
-            <li>HF Space (InspectAI viewer): <a href="https://imsaumil-allarma-benchmark-logs-full.hf.space" target="_blank">imsaumil-allarma-benchmark-logs-full.hf.space</a></li>
-            <li>Dashboard repo: <a href="https://github.com/imsaumil/allarma-benchmark-eval-dashboard-full" target="_blank">allarma-benchmark-eval-dashboard-full</a></li>
-          </ul>
-          <h3>Hardware</h3>
-          <ul>
-            <li><strong>SKORGE GPU server:</strong> AMD Ryzen 9 7950X · NVIDIA RTX 4090 24 GB · 128 GB DDR5 · 2 TB NVMe · vLLM serving</li>
-            <li><strong>NVIDIA DGX_Spark:</strong> edge-class device · vLLM serving</li>
-          </ul>
-        </div>
+    <div class="about-content">
+      <div class="about-block">
+        <h3>Citation</h3>
+        <p>aLLarMa: Large Language Model Based Application for Operational Data, Alarms, and Networks — Applied Energy paper (in preparation).</p>
+        <p>Predecessor (CIGRE 2026 Paris Session, Paper ID 12538):
+          <a href="https://imsaumil.github.io/allarma-benchmark-eval-dashboard/" target="_blank" rel="noopener">3-model subset dashboard</a></p>
+        <p><strong>Authors:</strong> Adrian Kelly (EPRI Ireland), Saumil Shah (NCSU), Sujit Tripathy (EPRI USA), Fan Zhang (EPRI USA), Wenyuan Tang (NCSU)</p>
+      </div>
+      <div class="about-block">
+        <h3>Hardware</h3>
+        <ul>
+          <li><strong>SKORGE:</strong> AMD Ryzen 9 7950X · NVIDIA RTX 4090 24 GB · 128 GB DDR5 · 2 TB NVMe · vLLM serving</li>
+          <li><strong>NVIDIA DGX Spark:</strong> <!-- TODO: exact spec line from user --></li>
+        </ul>
+        <h3>Datasets &amp; links</h3>
+        <ul>
+          <li>HF dataset: <a href="https://huggingface.co/datasets/imsaumil/allarma-benchmark-eval-logs-full" target="_blank" rel="noopener">imsaumil/allarma-benchmark-eval-logs-full</a></li>
+          <li>HF Space (InspectAI viewer): <a href="https://imsaumil-allarma-benchmark-logs-full.hf.space" target="_blank" rel="noopener">imsaumil-allarma-benchmark-logs-full.hf.space</a></li>
+          <li>Dashboard repo: <a href="https://github.com/imsaumil/allarma-benchmark-eval-dashboard-full" target="_blank" rel="noopener">allarma-benchmark-eval-dashboard-full</a></li>
+        </ul>
       </div>
     </div>
   </section>
 
+  <!-- Per-row log drawer mounts (filled by log-drawer.js in Phase C6) -->
+  <div id="log-drawer"></div>
+  <div id="log-scrim"></div>
+
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-  <script src="https://unpkg.com/@popperjs/core@2"></script>
   <script src="js/shared-utils.js"></script>
-  <script src="js/url-state.js"></script>
   <script src="js/data-loader.js"></script>
-  <script src="js/nav.js"></script>
-  <script src="js/overview-hero.js"></script>
   <script src="js/retrieval-section.js"></script>
   <script src="js/modifier-section.js"></script>
-  <script src="js/provenance-popover.js"></script>
+  <script src="js/overview.js"></script>
+  <script src="js/log-drawer.js"></script>
 </body>
 </html>
