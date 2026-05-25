@@ -205,9 +205,239 @@
     }
   }
 
-  // Stubs filled by D2/D3 so D1 renders cleanly on its own.
-  function renderChart(body) { body.innerHTML = '<p class="hint" style="padding:1rem">Chart — D2.</p>'; }
-  function renderTable(body) { body.innerHTML = '<p class="hint" style="padding:1rem">Table — D2.</p>'; }
+  // =========================================================================
+  // D2 — Chart view: Plotly 9-model bars + in-chart metric selector
+  // =========================================================================
+  // The metric <select> lives ATOP the chart and ONLY in Chart view (design §4.1).
+  function metricSelectHTML() {
+    const opts = METRIC_GROUPS.map((g) => {
+      const inner = g.keys.map((k) =>
+        `<option value="${k}"${k === state.metric ? ' selected' : ''}>${METRICS[k].label}</option>`).join('');
+      return `<optgroup label="${g.group}">${inner}</optgroup>`;
+    }).join('');
+    return `<div class="fg" style="margin-bottom:.6rem"><span class="lbl">Metric</span>` +
+      `<select class="ctl" id="mod-metric">${opts}</select></div>`;
+  }
+
+  // Value for a summary row under the selected metric; pct metrics scaled ×100.
+  function metricVal(row, key) {
+    const def = METRICS[key];
+    const v = def.get(row);
+    if (v === null || v === undefined) return null;
+    return def.pct ? v * 100 : v;
+  }
+
+  function renderChart(body) {
+    body.innerHTML = metricSelectHTML() + '<div id="modifier-chart" style="min-height:420px"></div>';
+    const sel = document.getElementById('mod-metric');
+    if (sel) sel.addEventListener('change', () => { state.metric = sel.value; renderChart(body); });
+
+    const machineJson = MACHINE_JSON[state.machine];
+    const key = state.metric;
+    const def = METRICS[key];
+    const chartDiv = document.getElementById('modifier-chart');
+
+    const models = activeModels();
+    if (!models.length) {
+      chartDiv.innerHTML = '<p class="hint" style="padding:1rem">No models selected — enable a legend chip.</p>';
+      return;
+    }
+
+    const lower = LOWER_BETTER.has(key);
+    const fmt = (v) => (v === null ? '' : (def.pct ? v.toFixed(2) + '%' : (Math.abs(v) >= 1000 ? Math.round(v).toLocaleString() : v.toFixed(2))));
+
+    // One vertical bar per active model, ordered best→worst on the selected metric.
+    const scored = models.map((m) => {
+      const row = rowFor(machineJson, m);
+      return { model: m, row, v: row ? metricVal(row, key) : null };
+    });
+    scored.sort((a, b) => {
+      const av = a.v === null ? (lower ? Infinity : -Infinity) : a.v;
+      const bv = b.v === null ? (lower ? Infinity : -Infinity) : b.v;
+      return lower ? av - bv : bv - av;
+    });
+
+    const xs = scored.map((s) => modelDisplay(s.model) + (isReasoning(s.model) ? ' ✦' : ''));
+    const ys = scored.map((s) => s.v);
+    const colors = scored.map((s) => modelColor(s.model));
+    const texts = scored.map((s) => fmt(s.v));
+    const hovers = scored.map((s) => s.row
+      ? `<b>${modelDisplay(s.model)}</b><br>${def.label}: ${fmt(s.v)}` : '');
+
+    const trace = {
+      type: 'bar', x: xs, y: ys, marker: { color: colors },
+      text: texts, textposition: 'outside', textfont: { size: 10 },
+      hovertext: hovers, hoverinfo: 'text', cliponaxis: false,
+    };
+    const layout = {
+      height: 460, margin: { l: 60, r: 30, t: 30, b: 90 },
+      xaxis: { tickangle: -35, automargin: true },
+      yaxis: { title: def.label, automargin: true, zeroline: true, rangemode: 'tozero' },
+      font: { family: 'Manrope, sans-serif' },
+      paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+    };
+    Plotly.react('modifier-chart', [trace], layout, { responsive: true, displayModeBar: false });
+
+    // Bar click → log drawer (all metrics for that model×machine).
+    chartDiv.removeAllListeners && chartDiv.removeAllListeners('plotly_click');
+    chartDiv.on && chartDiv.on('plotly_click', (ev) => {
+      const pt = ev.points && ev.points[0]; if (!pt) return;
+      const s = scored[pt.pointNumber];
+      if (s && s.row) openDrawerForRow(s.row, s.model);
+    });
+  }
+
+  // =========================================================================
+  // Drawer payload builder (all metrics for a model × machine row)
+  // =========================================================================
+  function openDrawerForRow(row, model) {
+    if (!row || typeof window.openLogDrawer !== 'function') return;
+    const me = row.metrics || {};
+    const machineLabel = row.machine === 'dgx_spark' ? 'DGX Spark' : 'SKORGE';
+    const pctSE = (mv) => (mv && mv.value != null
+      ? (mv.value * 100).toFixed(2) + '%' + (mv.se != null ? ' ± ' + (mv.se * 100).toFixed(2) : '') : '—');
+    const pctv = (v) => (v === null || v === undefined ? '—' : (Number(v) * 100).toFixed(2) + '%');
+
+    const quality = [
+      { label: 'Modification Accuracy', value: pctSE(me.Modification_Accuracy) },
+      { label: 'Execution Success (Syntactic)', value: pctSE(me.Neo4j_Syntactic_Validity) },
+      { label: 'Answer Yield (non-empty)', value: pctSE(me.Neo4j_Semantic_Validity) },
+      { label: 'Presence', value: pctv(row.presence_score) },
+      { label: 'Removal', value: pctv(row.removal_score) },
+    ];
+    const tk = row.tokens || {};
+    const cost = [
+      { label: 'Avg Tokens/Sample', value: tk.avg_total != null ? Math.round(tk.avg_total).toLocaleString() : '—' },
+      { label: 'Avg Input / Output Tokens', value: (tk.avg_input != null && tk.avg_output != null)
+        ? Math.round(tk.avg_input).toLocaleString() + ' / ' + Math.round(tk.avg_output).toLocaleString() : '—' },
+      { label: 'Median / Mean / Max Time', value: row.timing
+        ? `${row.timing.median.toFixed(2)} / ${row.timing.mean.toFixed(2)} / ${row.timing.max.toFixed(2)} s` : '—' },
+      { label: 'Throughput', value: row.throughput != null ? row.throughput + ' tok/s' : '—' },
+      { label: 'Total Runtime', value: row.total_runtime != null ? formatRuntime(row.total_runtime) : '—' },
+    ];
+    const completed = (row.completed_samples != null ? row.completed_samples : row.samples);
+    const reliability = [
+      { label: 'Truncation Rate', value: row.truncation_rate != null ? (row.truncation_rate * 100).toFixed(2) + '%' : '—' },
+      { label: 'Truncation Count', value: row.truncation_count != null ? row.truncation_count : '—' },
+      { label: 'max_tokens', value: row.max_tokens == null ? 'None (unbounded)' : row.max_tokens },
+      { label: 'Completed / Total', value: `${completed.toLocaleString()} / ${row.samples.toLocaleString()}` + (completed < row.samples ? ' (short run)' : '') },
+    ];
+
+    window.openLogDrawer({
+      title: modelDisplay(model) + (isReasoning(model) ? ' ✦' : '') + ' — modification benchmark',
+      machine: machineLabel,
+      groups: [
+        { group: 'Quality', rows: quality },
+        { group: 'Cost & efficiency', rows: cost },
+        { group: 'Reliability', rows: reliability },
+      ],
+      logUrl: buildLogUrl(row.model_folder, row.eval_file, 'modifier'),
+    });
+  }
+
+  // =========================================================================
+  // D2 — Table view: comprehensive sortable DataTable + CSV + completed/total
+  // =========================================================================
+  let modDataTable = null;
+
+  function num(v, d) { return (v === null || v === undefined) ? '—' : Number(v).toFixed(d); }
+  function pct(v, d) { return (v === null || v === undefined) ? '—' : (Number(v) * 100).toFixed(d); }
+
+  // Active-model summary rows for the selected machine, ordered by Mod Accuracy.
+  function tableEntries() {
+    const machineJson = MACHINE_JSON[state.machine];
+    return activeModels()
+      .map((m) => ({ model: m, src: rowFor(machineJson, m) }))
+      .filter((e) => e.src)
+      .sort((a, b) => b.src.metrics.Modification_Accuracy.value - a.src.metrics.Modification_Accuracy.value);
+  }
+
+  function renderTable(body) {
+    if (modDataTable) { try { modDataTable.destroy(); } catch (e) {} modDataTable = null; }
+    body.innerHTML =
+      '<div style="margin-bottom:.6rem"><button class="btn-small" id="mod-csv">Export CSV</button></div>' +
+      '<div class="tablewrap"><table id="modifier-table" class="display" style="width:100%"></table></div>';
+
+    const entries = tableEntries();
+    const dataset = entries.map((entry) => {
+      const r = entry.src;
+      const me = r.metrics || {};
+      const tk = r.tokens || {};
+      const url = buildLogUrl(r.model_folder, r.eval_file, 'modifier');
+      const modelCell = `<a href="${url}" target="_blank" rel="noopener" title="Open eval in InspectAI viewer">${modelDisplay(entry.model)}</a>` +
+        (isReasoning(entry.model) ? ' ✦' : '');
+      const ma = me.Modification_Accuracy || {};
+      const accSE = `${pct(ma.value, 2)} ± ${ma.se != null ? (ma.se * 100).toFixed(2) : '—'}`;
+      const tok = tk.avg_total != null ? Math.round(tk.avg_total).toLocaleString() : '—';
+      const tmean = r.timing && r.timing.mean != null ? r.timing.mean.toFixed(2) : '—';
+      const thr = r.throughput != null ? r.throughput : '—';
+      const trunc = num(r.truncation_rate != null ? r.truncation_rate * 100 : null, 2);
+      const completedVal = (r.completed_samples != null ? r.completed_samples : r.samples);
+      const completed = `${completedVal.toLocaleString()} / ${r.samples.toLocaleString()}`;
+      const shortRun = (r.completed_samples != null && r.completed_samples < r.samples);
+      return [
+        modelCell,
+        accSE,
+        pct(me.Neo4j_Syntactic_Validity ? me.Neo4j_Syntactic_Validity.value : null, 2),
+        pct(me.Neo4j_Semantic_Validity ? me.Neo4j_Semantic_Validity.value : null, 2),
+        pct(r.presence_score, 2),
+        pct(r.removal_score, 2),
+        tok, tmean, thr,
+        trunc,
+        shortRun ? `<b style="color:#c5384a" title="short run">${completed}</b>` : completed,
+        `<span class="logbtn" data-ridx="${entries.indexOf(entry)}">logs ↗</span>`,
+      ];
+    });
+
+    modDataTable = new DataTable('#modifier-table', {
+      data: dataset,
+      columns: [
+        { title: 'Model' },
+        { title: 'Mod Accuracy ± SE' }, { title: 'Exec Success' }, { title: 'Answer Yield' },
+        { title: 'Presence' }, { title: 'Removal' },
+        { title: 'Avg Tokens' }, { title: 'Avg Time/Sample (s)' }, { title: 'Throughput (tok/s)' },
+        { title: 'Trunc %' }, { title: 'Completed / Total' }, { title: '', orderable: false },
+      ],
+      order: [[1, 'desc']],
+      pageLength: 25,
+      scrollX: true,
+      deferRender: true,
+    });
+
+    document.querySelector('#modifier-table').addEventListener('click', (ev) => {
+      const btn = ev.target.closest('.logbtn');
+      if (!btn) return;
+      const idx = Number(btn.dataset.ridx);
+      const entry = entries[idx];
+      if (entry) openDrawerForRow(entry.src, entry.model);
+    });
+
+    const csvBtn = document.getElementById('mod-csv');
+    if (csvBtn) csvBtn.addEventListener('click', () => exportTableCSV(entries));
+  }
+
+  function exportTableCSV(entries) {
+    const data = entries.map((e) => Object.assign({ __model: e.model }, e.src));
+    exportJSONToCSV(data, [
+      { label: 'Machine', accessor: 'machine' },
+      { label: 'Model', accessor: (r) => modelDisplay(r.__model) },
+      { label: 'Modification_Accuracy', accessor: (r) => (r.metrics.Modification_Accuracy.value * 100).toFixed(4) },
+      { label: 'Modification_Accuracy_SE', accessor: (r) => (r.metrics.Modification_Accuracy.se * 100).toFixed(4) },
+      { label: 'Execution_Success', accessor: (r) => (r.metrics.Neo4j_Syntactic_Validity.value * 100).toFixed(4) },
+      { label: 'Answer_Yield', accessor: (r) => (r.metrics.Neo4j_Semantic_Validity.value * 100).toFixed(4) },
+      { label: 'Presence', accessor: (r) => (r.presence_score * 100).toFixed(4) },
+      { label: 'Removal', accessor: (r) => (r.removal_score * 100).toFixed(4) },
+      { label: 'Avg_Total_Tokens', accessor: (r) => (r.tokens ? r.tokens.avg_total : '') },
+      { label: 'Median_Time_s', accessor: (r) => (r.timing ? r.timing.median.toFixed(2) : '') },
+      { label: 'Mean_Time_s', accessor: (r) => (r.timing ? r.timing.mean.toFixed(2) : '') },
+      { label: 'Throughput_tok_s', accessor: (r) => (r.throughput != null ? r.throughput : '') },
+      { label: 'Total_Runtime_s', accessor: (r) => (r.total_runtime != null ? r.total_runtime.toFixed(1) : '') },
+      { label: 'Truncation_Rate_pct', accessor: (r) => (r.truncation_rate != null ? (r.truncation_rate * 100).toFixed(4) : '') },
+      { label: 'Completed', accessor: (r) => (r.completed_samples != null ? r.completed_samples : r.samples) },
+      { label: 'Total_Samples', accessor: 'samples' },
+    ], `modifier-${state.machine}.csv`);
+  }
+
   function renderCompareScatter(body) { body.innerHTML = '<p class="hint" style="padding:1rem">Compare scatter — D3.</p>'; }
   function renderCompareTable(body) { body.innerHTML = '<p class="hint" style="padding:1rem">Compare table — D3.</p>'; }
   function renderSubcharts() { /* heatmap — D3 */ }
