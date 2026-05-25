@@ -58,6 +58,17 @@ def test_extract_retrieval_llm_row_for_skorge_qwen_one_strategy(skorge_dir):
     assert row["max_tokens"] == 8192
 
 
+def test_retrieval_llm_row_captures_completed_samples(dgx_gpt_oss_direct_match_eval):
+    """The DGX gpt-oss-20b/llm-direct-match-all run is the one short run in the
+    corpus: total_samples=9789 but completed_samples=9715 (74 short). Both must
+    be surfaced so the dashboard never overstates completeness."""
+    row = edf.extract_retrieval_llm_row(
+        dgx_gpt_oss_direct_match_eval, machine="dgx_spark", model_folder="gpt-oss-20b",
+    )
+    assert row["samples"] == 9789            # total (unchanged)
+    assert row["completed_samples"] == 9715  # NEW: short run surfaced
+
+
 def test_extract_retrieval_llm_walker_yields_414_rows(skorge_dir, dgx_dir):
     """9 models × 23 strategies × 2 machines = 414 LLM-augmented rows.
     The unbounded variant is added separately (Task 11) so this walker yields 414."""

@@ -33,6 +33,19 @@ def dgx_dir():
 
 
 @pytest.fixture(scope="session")
+def dgx_gpt_oss_direct_match_eval(dgx_dir):
+    """The DGX gpt-oss-20b/llm-direct-match-all run: the one short run in the
+    corpus (total_samples=9789, completed_samples=9715)."""
+    p = os.path.join(
+        dgx_dir, "retriever", "gpt-oss-20b",
+        "2026-04-13T19-19-19+00-00_llm-direct-match-all_aiYS5Rf9jsTfH5wG2vdGUu.eval",
+    )
+    if not os.path.isfile(p):
+        pytest.skip(f"dgx gpt-oss direct-match eval not found: {p}")
+    return p
+
+
+@pytest.fixture(scope="session")
 def unbounded_variant():
     p = os.environ.get(
         "ALLARMA_UNBOUNDED_VARIANT",
