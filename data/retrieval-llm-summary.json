@@ -7,6 +7,7 @@
     "eval_file": "2026-04-16T03-28-02+00-00_llm-listwise-rerank-dense-candidate_CoMwzhhwSbScHqq2R3wbFd.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.546736,
       "accuracy_se": 0.005031,
@@ -29,6 +30,7 @@
     "eval_file": "2026-04-16T03-34-36+00-00_llm-listwise-rerank-dense-all_MVsYDbwYcrttyEvTUQk9PM.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.920114,
       "accuracy_se": 0.00274,
@@ -51,6 +53,7 @@
     "eval_file": "2026-04-16T03-41-34+00-00_llm-direct-match-candidate_UfgtPbCpZdT8MayuQSW5ce.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.57534,
       "accuracy_se": 0.004996,
@@ -73,6 +76,7 @@
     "eval_file": "2026-04-16T03-47-25+00-00_llm-direct-match-all_Pi9rRuVvscGbABRNi5fzKb.eval",
     "strategy": "llm_direct_match_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.6398,
       "accuracy_se": 0.004852,
@@ -95,6 +99,7 @@
     "eval_file": "2026-04-16T05-46-17+00-00_rrf-selective-llm-scoregap-all_ea2ZE9wS7YBgKpSCNFedg7.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.926755,
       "accuracy_se": 0.002633,
@@ -117,6 +122,7 @@
     "eval_file": "2026-04-16T05-49-35+00-00_query-expand-rrf-all_nnQhXJWFFYEgrAaZXdGdAZ.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.919706,
       "accuracy_se": 0.002747,
@@ -139,6 +145,7 @@
     "eval_file": "2026-04-16T06-00-47+00-00_persona-filter-rrf-all_7oBbKxSNNPQ5nRHcGptNoU.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.726019,
       "accuracy_se": 0.004508,
@@ -161,6 +168,7 @@
     "eval_file": "2026-04-16T06-03-59+00-00_cascade-rrf-ce-llm-all_MNPuDtTu5bXWVhYe2j3a6C.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.926755,
       "accuracy_se": 0.002633,
@@ -183,6 +191,7 @@
     "eval_file": "2026-04-16T06-07-19+00-00_rrf-llm-rerank-k10-all_8aZd9jT7KeLSZv9ketwcw7.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.931045,
       "accuracy_se": 0.002561,
@@ -205,6 +214,7 @@
     "eval_file": "2026-04-16T06-10-30+00-00_rrf-llm-rerank-k3-all_RzbGUcbgvX4Za3f9VGdeRn.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.940035,
       "accuracy_se": 0.0024,
@@ -227,6 +237,7 @@
     "eval_file": "2026-04-16T06-13-24+00-00_rrf-llm-rerank-k5-all_gSFyCK3cZDhvSDpXXGXuwS.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.940546,
       "accuracy_se": 0.00239,
@@ -249,6 +260,7 @@
     "eval_file": "2026-04-16T06-16-24+00-00_rrf-llm-rerank-k7-all_Cz3xnLJdWhCxLbXjgrFdqH.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.938911,
       "accuracy_se": 0.002421,
@@ -271,6 +283,7 @@
     "eval_file": "2026-04-16T06-19-27+00-00_rrf-llm-rerank-k15-all_TXPbCJQQqAhsC3bhCTzn8x.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.92134,
       "accuracy_se": 0.002721,
@@ -293,6 +306,7 @@
     "eval_file": "2026-04-16T06-23-03+00-00_rrf-selective-llm-agree3-all_HZtpCSiSUXGLAKDKgtYkus.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.936357,
       "accuracy_se": 0.002467,
@@ -315,6 +329,7 @@
     "eval_file": "2026-04-16T06-25-49+00-00_rrf-selective-llm-agree2-all_fVvLscde8nZ8dATN5ScFGS.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.937992,
       "accuracy_se": 0.002438,
@@ -337,6 +352,7 @@
     "eval_file": "2026-04-16T06-28-19+00-00_fast-selective-dense-all_C57SsZ6GUsQRRu4q5PnYTN.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.930636,
       "accuracy_se": 0.002568,
@@ -359,6 +375,7 @@
     "eval_file": "2026-04-16T06-31-01+00-00_dense-llm-rerank-all_3g3drkkRupM4ACqMmiLBqs.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.922464,
       "accuracy_se": 0.002703,
@@ -381,6 +398,7 @@
     "eval_file": "2026-04-16T06-33-57+00-00_sparse-llm-rerank-all_gc7RkMbZ7nDgRUzY65ed2G.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.913883,
       "accuracy_se": 0.002835,
@@ -403,6 +421,7 @@
     "eval_file": "2026-04-16T06-36-25+00-00_bm25-llm-rerank-all_5eUnDmpGec9Ycn6mgomytz.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.856574,
       "accuracy_se": 0.003543,
@@ -425,6 +444,7 @@
     "eval_file": "2026-04-16T06-38-45+00-00_rrf-llm-oos-k10-candidate_khrqnFdccKLywhVFMHBXxH.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.533762,
       "accuracy_se": 0.005042,
@@ -447,6 +467,7 @@
     "eval_file": "2026-04-16T06-45-44+00-00_rrf-llm-oos-k3-candidate_W668rBFbqnriYjhZPJgsts.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.550005,
       "accuracy_se": 0.005028,
@@ -469,6 +490,7 @@
     "eval_file": "2026-04-16T06-52-16+00-00_rrf-llm-oos-k7-candidate_ZBAShxsstTpi4YN7RtHMWh.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.545204,
       "accuracy_se": 0.005033,
@@ -491,6 +513,7 @@
     "eval_file": "2026-04-16T06-59-06+00-00_rrf-selective-llm-agree3-oos-all_VYeVZPRTUB3i9fJ9DwkPao.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.932577,
       "accuracy_se": 0.002534,
@@ -510,9 +533,33 @@
     "machine": "skorge",
     "model": "gpt-oss-20b",
     "model_folder": "gpt-oss-20b",
+    "eval_file": "2026-03-09T20-47-38+00-00_llm-direct-match-all_4nMPiCbiFLqLNLwBCZHSs2.eval",
+    "strategy": "llm_direct_match_all",
+    "samples": 9789,
+    "completed_samples": 9789,
+    "metrics": {
+      "accuracy": 0.918582,
+      "accuracy_se": 0.002764,
+      "accuracy_in_scope": 0.920344,
+      "accuracy_oos": 0.136364,
+      "avg_llm_call_count": 1.0,
+      "avg_llm_token_usage": 15591.77
+    },
+    "total_runtime": 163605.0,
+    "avg_time_per_sample": 16.7131,
+    "max_tokens": null,
+    "truncation_count": 432,
+    "truncation_rate": 0.044131
+  },
+  {
+    "benchmark": "retriever-llm",
+    "machine": "skorge",
+    "model": "gpt-oss-20b",
+    "model_folder": "gpt-oss-20b",
     "eval_file": "2026-04-13T18-53-50+00-00_llm-listwise-rerank-dense-candidate_2Q89CJ5r8VquvJfXRYe4SM.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.574114,
       "accuracy_se": 0.004998,
@@ -535,6 +582,7 @@
     "eval_file": "2026-04-13T21-44-59+00-00_llm-listwise-rerank-dense-all_dbmnkj9TST69vREDendoKo.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.938809,
       "accuracy_se": 0.002422,
@@ -557,6 +605,7 @@
     "eval_file": "2026-04-14T00-07-01+00-00_llm-direct-match-candidate_BuKQyC8cffquhzXUyNhpjp.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.645725,
       "accuracy_se": 0.004834,
@@ -576,31 +625,10 @@
     "machine": "skorge",
     "model": "gpt-oss-20b",
     "model_folder": "gpt-oss-20b",
-    "eval_file": "2026-04-14T02-46-14+00-00_llm-direct-match-all_ZvDdPL6t2i8CcHguiYijHV.eval",
-    "strategy": "llm_direct_match_all",
-    "samples": 9789,
-    "metrics": {
-      "accuracy": 0.855144,
-      "accuracy_se": 0.003557,
-      "accuracy_in_scope": 0.856763,
-      "accuracy_oos": 0.136364,
-      "avg_llm_call_count": 1.0,
-      "avg_llm_token_usage": 14744.53
-    },
-    "total_runtime": 57365.0,
-    "avg_time_per_sample": 5.8601,
-    "max_tokens": 8192,
-    "truncation_count": 1137,
-    "truncation_rate": 0.116151
-  },
-  {
-    "benchmark": "retriever-llm",
-    "machine": "skorge",
-    "model": "gpt-oss-20b",
-    "model_folder": "gpt-oss-20b",
     "eval_file": "2026-04-14T18-42-43+00-00_rrf-selective-llm-scoregap-all_kcjjsZ4KyQS5HEur7TU7ct.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.931249,
       "accuracy_se": 0.002557,
@@ -623,6 +651,7 @@
     "eval_file": "2026-04-14T20-48-16+00-00_query-expand-rrf-all_d7X9u7BU9GQbM9BEp8hUpz.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.924711,
       "accuracy_se": 0.002667,
@@ -645,6 +674,7 @@
     "eval_file": "2026-04-14T22-09-12+00-00_persona-filter-rrf-all_mKqpcKc6dMuCW9jhCmB9bq.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.777199,
       "accuracy_se": 0.004206,
@@ -667,6 +697,7 @@
     "eval_file": "2026-04-14T23-08-53+00-00_cascade-rrf-ce-llm-all_Gp3komdHUbQGo9W3Mzn42U.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.930841,
       "accuracy_se": 0.002564,
@@ -689,6 +720,7 @@
     "eval_file": "2026-04-15T01-04-27+00-00_rrf-llm-rerank-k10-all_54f7SSTX6rzZUVynrdYLjp.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.954337,
       "accuracy_se": 0.00211,
@@ -711,6 +743,7 @@
     "eval_file": "2026-04-15T02-52-13+00-00_rrf-llm-rerank-k3-all_bwFHbFkNcHVbLPzLPyzJYi.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.943202,
       "accuracy_se": 0.002339,
@@ -733,6 +766,7 @@
     "eval_file": "2026-04-15T03-54-35+00-00_rrf-llm-rerank-k5-all_gDwpikMjensv2WPvuWjjEj.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.951068,
       "accuracy_se": 0.00218,
@@ -755,6 +789,7 @@
     "eval_file": "2026-04-15T05-14-29+00-00_rrf-llm-rerank-k7-all_KDq4o2wz8o6UYSeFRyBvfr.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.954541,
       "accuracy_se": 0.002105,
@@ -777,6 +812,7 @@
     "eval_file": "2026-04-15T06-45-17+00-00_rrf-llm-rerank-k15-all_Pi3DRwXGzTXLsUEeXPRZqA.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.955665,
       "accuracy_se": 0.00208,
@@ -799,6 +835,7 @@
     "eval_file": "2026-04-15T08-53-26+00-00_rrf-selective-llm-agree3-all_kjcYX3m3j6AehdDqqGdnST.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.954745,
       "accuracy_se": 0.002101,
@@ -821,6 +858,7 @@
     "eval_file": "2026-04-15T10-01-14+00-00_rrf-selective-llm-agree2-all_MF8zyJvai4rSzRifToYeWV.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.948207,
       "accuracy_se": 0.00224,
@@ -843,6 +881,7 @@
     "eval_file": "2026-04-15T10-37-43+00-00_fast-selective-dense-all_EBgr4ZVMuPRKu2TuaHbJqV.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.942793,
       "accuracy_se": 0.002347,
@@ -865,6 +904,7 @@
     "eval_file": "2026-04-15T11-56-53+00-00_dense-llm-rerank-all_7hXDFkKLtyJaF9pdn2wr9w.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.949637,
       "accuracy_se": 0.00221,
@@ -887,6 +927,7 @@
     "eval_file": "2026-04-15T13-41-55+00-00_sparse-llm-rerank-all_PFETbGtSHoKZz3bSzKERCV.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.942078,
       "accuracy_se": 0.002361,
@@ -909,6 +950,7 @@
     "eval_file": "2026-04-15T17-20-42+00-00_bm25-llm-rerank-all_e55AQqcdz4LMQazDqpQHzp.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.888344,
       "accuracy_se": 0.003183,
@@ -931,6 +973,7 @@
     "eval_file": "2026-04-15T19-10-40+00-00_rrf-llm-oos-k10-candidate_NC8cUkyderdJWkFYmEKTUe.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.629891,
       "accuracy_se": 0.00488,
@@ -953,6 +996,7 @@
     "eval_file": "2026-04-15T20-41-17+00-00_rrf-llm-oos-k3-candidate_JNwp2AFyhjZ3yi2bZb2bP6.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.595362,
       "accuracy_se": 0.004961,
@@ -975,6 +1019,7 @@
     "eval_file": "2026-04-15T21-51-48+00-00_rrf-llm-oos-k7-candidate_aZxURFRKsQPHJqURmdEUBh.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.625192,
       "accuracy_se": 0.004893,
@@ -997,6 +1042,7 @@
     "eval_file": "2026-04-15T23-18-54+00-00_rrf-selective-llm-agree3-oos-all_f5MVM8LeZGXhme2674Wpiv.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.954132,
       "accuracy_se": 0.002114,
@@ -1019,6 +1065,7 @@
     "eval_file": "2026-04-07T19-32-03+00-00_llm-listwise-rerank-dense-candidate_7ehCB26DHZyz4RKFWtGbKd.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.520584,
       "accuracy_se": 0.005049,
@@ -1041,6 +1088,7 @@
     "eval_file": "2026-04-07T20-52-32+00-00_llm-listwise-rerank-dense-all_3ABFfpnHthsrdTnPsWkSso.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.912248,
       "accuracy_se": 0.00286,
@@ -1063,6 +1111,7 @@
     "eval_file": "2026-04-07T21-50-16+00-00_llm-direct-match-candidate_LGeMnJgL9v6QsKj6hmriyf.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.6256,
       "accuracy_se": 0.004892,
@@ -1085,6 +1134,7 @@
     "eval_file": "2026-04-07T22-07-44+00-00_llm-direct-match-all_hBN4W4ohrDMTB9z8pdDREh.eval",
     "strategy": "llm_direct_match_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.731944,
       "accuracy_se": 0.004477,
@@ -1107,6 +1157,7 @@
     "eval_file": "2026-04-08T04-13-42+00-00_rrf-selective-llm-scoregap-all_FU5G9SK38Y9on89AhKcYqd.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.92369,
       "accuracy_se": 0.002683,
@@ -1129,6 +1180,7 @@
     "eval_file": "2026-04-08T04-18-37+00-00_query-expand-rrf-all_e567ik8x85sE7q3dzZpCTH.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.910614,
       "accuracy_se": 0.002884,
@@ -1151,6 +1203,7 @@
     "eval_file": "2026-04-08T04-46-51+00-00_persona-filter-rrf-all_iTGE9pTGrSLxGMPo56aLUN.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.799367,
       "accuracy_se": 0.004048,
@@ -1173,6 +1226,7 @@
     "eval_file": "2026-04-08T04-52-36+00-00_cascade-rrf-ce-llm-all_6oFSqag9NzXLxo2o49oZ4j.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.923179,
       "accuracy_se": 0.002692,
@@ -1195,6 +1249,7 @@
     "eval_file": "2026-04-08T04-58-47+00-00_rrf-llm-rerank-k10-all_QNAyJQo4KBxUw2f6DEpcVp.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.923588,
       "accuracy_se": 0.002685,
@@ -1217,6 +1272,7 @@
     "eval_file": "2026-04-08T05-05-06+00-00_rrf-llm-rerank-k3-all_NsLFhp33RX73fjcwmJN8Kr.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.935642,
       "accuracy_se": 0.00248,
@@ -1239,6 +1295,7 @@
     "eval_file": "2026-04-08T05-09-57+00-00_rrf-llm-rerank-k5-all_Xsu6XtFrx5B2mjrw8Qxg7G.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.932271,
       "accuracy_se": 0.00254,
@@ -1261,6 +1318,7 @@
     "eval_file": "2026-04-08T05-15-09+00-00_rrf-llm-rerank-k7-all_NtEnhud9cSbRLPXi5KBErQ.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.926959,
       "accuracy_se": 0.00263,
@@ -1283,6 +1341,7 @@
     "eval_file": "2026-04-08T05-20-46+00-00_rrf-llm-rerank-k15-all_3sQefyp9PVaJEcPP3tNmWW.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.919195,
       "accuracy_se": 0.002755,
@@ -1305,6 +1364,7 @@
     "eval_file": "2026-04-08T05-28-10+00-00_rrf-selective-llm-agree3-all_agiJzcLxdAkLDkyT66bswk.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.932373,
       "accuracy_se": 0.002538,
@@ -1327,6 +1387,7 @@
     "eval_file": "2026-04-08T05-32-22+00-00_rrf-selective-llm-agree2-all_9NpAFoBtHQzuZwCs3wDTLn.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.938502,
       "accuracy_se": 0.002428,
@@ -1349,6 +1410,7 @@
     "eval_file": "2026-04-08T05-35-25+00-00_fast-selective-dense-all_UCpHQSQWPmJu8mcGbWJRdS.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.926448,
       "accuracy_se": 0.002638,
@@ -1371,6 +1433,7 @@
     "eval_file": "2026-04-08T05-40-15+00-00_dense-llm-rerank-all_RKWajfCJs9v5vs5FjV7MyD.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.911329,
       "accuracy_se": 0.002873,
@@ -1393,6 +1456,7 @@
     "eval_file": "2026-04-08T05-46-21+00-00_sparse-llm-rerank-all_2GWauU5bJjVXLMDwsX5Kxp.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.912453,
       "accuracy_se": 0.002857,
@@ -1415,6 +1479,7 @@
     "eval_file": "2026-04-08T05-52-02+00-00_bm25-llm-rerank-all_Ka9yMzzKH3sxDe3TgRKuBu.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.860251,
       "accuracy_se": 0.003504,
@@ -1437,6 +1502,7 @@
     "eval_file": "2026-04-08T05-57-41+00-00_rrf-llm-oos-k10-candidate_Wit5YJq6aBFAb9hrteKhaM.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.503831,
       "accuracy_se": 0.005053,
@@ -1459,6 +1525,7 @@
     "eval_file": "2026-04-08T06-13-46+00-00_rrf-llm-oos-k3-candidate_QoX7nyaXyUEqC7tZcBCJx8.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.575544,
       "accuracy_se": 0.004996,
@@ -1481,6 +1548,7 @@
     "eval_file": "2026-04-08T06-28-46+00-00_rrf-llm-oos-k7-candidate_oVtJaqGVDsJ6yczpHeKXh7.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.530289,
       "accuracy_se": 0.005044,
@@ -1503,6 +1571,7 @@
     "eval_file": "2026-04-08T06-44-28+00-00_rrf-selective-llm-agree3-oos-all_LUp6Cn6QEDFarBVNjc2qGc.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.934825,
       "accuracy_se": 0.002495,
@@ -1525,6 +1594,7 @@
     "eval_file": "2026-03-20T05-06-12+00-00_llm-listwise-rerank-dense-candidate_XTUpqhJYU72qVVqjkxQkV9.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.476657,
       "accuracy_se": 0.005048,
@@ -1547,6 +1617,7 @@
     "eval_file": "2026-03-20T05-13-51+00-00_llm-listwise-rerank-dense-all_hpB4aXFfL6SZYwYSgh4nTs.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.858106,
       "accuracy_se": 0.003527,
@@ -1569,6 +1640,7 @@
     "eval_file": "2026-03-20T05-21-48+00-00_llm-direct-match-candidate_KAGi9jbkTFAUCKKoC9xsrw.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.574114,
       "accuracy_se": 0.004998,
@@ -1591,6 +1663,7 @@
     "eval_file": "2026-03-20T05-27-33+00-00_llm-direct-match-all_TnhgZtXtsxe2DQSeUXxG7f.eval",
     "strategy": "llm_direct_match_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.488814,
       "accuracy_se": 0.005052,
@@ -1613,6 +1686,7 @@
     "eval_file": "2026-03-20T07-50-15+00-00_rrf-selective-llm-scoregap-all_CyEcqMA9zfYWobduRf2TUw.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.914598,
       "accuracy_se": 0.002825,
@@ -1635,6 +1709,7 @@
     "eval_file": "2026-03-20T07-53-13+00-00_query-expand-rrf-all_g6TkYsPqgCVrKQ7nNphSK6.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.900398,
       "accuracy_se": 0.003027,
@@ -1657,6 +1732,7 @@
     "eval_file": "2026-03-20T08-05-39+00-00_persona-filter-rrf-all_EGosmiZTe4rJmT3oQ5FouF.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.776177,
       "accuracy_se": 0.004213,
@@ -1679,6 +1755,7 @@
     "eval_file": "2026-03-20T08-08-43+00-00_cascade-rrf-ce-llm-all_fWjtVDi6nrHQpCtV2BCFow.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.915109,
       "accuracy_se": 0.002817,
@@ -1701,6 +1778,7 @@
     "eval_file": "2026-03-20T08-11-41+00-00_rrf-llm-rerank-k10-all_nvvfjEfoEVsGRMgREtFAxB.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.785065,
       "accuracy_se": 0.004152,
@@ -1723,6 +1801,7 @@
     "eval_file": "2026-03-20T08-14-51+00-00_rrf-llm-rerank-k3-all_Jrn9idjNXn77BNNEYafMRC.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.856267,
       "accuracy_se": 0.003546,
@@ -1745,6 +1824,7 @@
     "eval_file": "2026-03-20T08-17-41+00-00_rrf-llm-rerank-k5-all_dPwtwRXsJmXPJtNoFSoWgX.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.779548,
       "accuracy_se": 0.00419,
@@ -1767,6 +1847,7 @@
     "eval_file": "2026-03-20T08-20-36+00-00_rrf-llm-rerank-k7-all_E6P5dB6uA2xVomyYCg5PDw.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.789049,
       "accuracy_se": 0.004124,
@@ -1789,6 +1870,7 @@
     "eval_file": "2026-03-20T08-23-37+00-00_rrf-llm-rerank-k15-all_eozusaeBpmxSs4KrTokJ5k.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.80948,
       "accuracy_se": 0.003969,
@@ -1811,6 +1893,7 @@
     "eval_file": "2026-03-20T08-27-04+00-00_rrf-selective-llm-agree3-all_CEmMNKcBVCp5xcgZwAHr8C.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.87251,
       "accuracy_se": 0.003371,
@@ -1833,6 +1916,7 @@
     "eval_file": "2026-03-20T08-29-47+00-00_rrf-selective-llm-agree2-all_7wAqjfRxZrHTnDXZjXejhr.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.917561,
       "accuracy_se": 0.00278,
@@ -1855,6 +1939,7 @@
     "eval_file": "2026-03-20T08-32-15+00-00_fast-selective-dense-all_oDfWRpwcUn8XCHTuL7RrQ3.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.788742,
       "accuracy_se": 0.004126,
@@ -1877,6 +1962,7 @@
     "eval_file": "2026-03-20T08-34-51+00-00_dense-llm-rerank-all_F6zSWt2r9amk7xdFGArczm.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.781081,
       "accuracy_se": 0.004179,
@@ -1899,6 +1985,7 @@
     "eval_file": "2026-03-20T08-37-43+00-00_sparse-llm-rerank-all_QtmbtBAcZozg4vszzjauWL.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.765042,
       "accuracy_se": 0.004285,
@@ -1921,6 +2008,7 @@
     "eval_file": "2026-03-20T08-40-01+00-00_bm25-llm-rerank-all_ZcuHf4edsFmCbAbBMqutg4.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.73603,
       "accuracy_se": 0.004455,
@@ -1943,6 +2031,7 @@
     "eval_file": "2026-03-20T08-42-13+00-00_rrf-llm-oos-k10-candidate_8EXQZFpYNRy2zhf9ZZefDB.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.427112,
       "accuracy_se": 0.005,
@@ -1965,6 +2054,7 @@
     "eval_file": "2026-03-20T08-49-13+00-00_rrf-llm-oos-k3-candidate_DBqCMK83fwQdzWK4FFqD2Z.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.539994,
       "accuracy_se": 0.005037,
@@ -1987,6 +2077,7 @@
     "eval_file": "2026-03-20T08-55-53+00-00_rrf-llm-oos-k7-candidate_REzNWeKVcLkvzMNh8PBG8v.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.465114,
       "accuracy_se": 0.005041,
@@ -2009,6 +2100,7 @@
     "eval_file": "2026-03-20T09-02-51+00-00_rrf-selective-llm-agree3-oos-all_mH78PvyRKgi8sAgeuTSMJz.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.900909,
       "accuracy_se": 0.00302,
@@ -2031,6 +2123,7 @@
     "eval_file": "2026-03-21T21-44-53+00-00_llm-listwise-rerank-dense-candidate_g36jdpP4dUeJLhftJPsAwD.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.586168,
       "accuracy_se": 0.004978,
@@ -2053,6 +2146,7 @@
     "eval_file": "2026-03-21T22-41-49+00-00_llm-listwise-rerank-dense-all_YypY6PcRgAiRG4NJ8oLvDQ.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.909899,
       "accuracy_se": 0.002894,
@@ -2075,6 +2169,7 @@
     "eval_file": "2026-03-21T23-38-04+00-00_llm-direct-match-candidate_8mB7jDY7smJFBdi6y7J6B2.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.60711,
       "accuracy_se": 0.004936,
@@ -2097,6 +2192,7 @@
     "eval_file": "2026-03-21T23-48-53+00-00_llm-direct-match-all_oUWRBeLF76oxghYqBSxEZR.eval",
     "strategy": "llm_direct_match_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.678108,
       "accuracy_se": 0.004722,
@@ -2119,6 +2215,7 @@
     "eval_file": "2026-03-22T03-55-15+00-00_rrf-selective-llm-scoregap-all_GnvKhkmWx7sZZtXbX49FTb.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.925835,
       "accuracy_se": 0.002648,
@@ -2141,6 +2238,7 @@
     "eval_file": "2026-03-22T03-58-57+00-00_query-expand-rrf-all_AUm7pUSgM9oVauqo9SpHPS.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.90285,
       "accuracy_se": 0.002993,
@@ -2163,6 +2261,7 @@
     "eval_file": "2026-03-22T04-17-59+00-00_persona-filter-rrf-all_gQHAXYnjKeY3EE8ohx8kWc.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.813975,
       "accuracy_se": 0.003933,
@@ -2185,6 +2284,7 @@
     "eval_file": "2026-03-22T04-22-05+00-00_cascade-rrf-ce-llm-all_kK5sW3DZKfgWPiHcgeywYG.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.925733,
       "accuracy_se": 0.00265,
@@ -2207,6 +2307,7 @@
     "eval_file": "2026-03-22T04-25-44+00-00_rrf-llm-rerank-k10-all_JFd4sEAB3CWRiegRHYfs5U.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.935131,
       "accuracy_se": 0.002489,
@@ -2229,6 +2330,7 @@
     "eval_file": "2026-03-22T04-30-06+00-00_rrf-llm-rerank-k3-all_QLYBDt5M3qLdA2RziroWtv.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.937379,
       "accuracy_se": 0.002449,
@@ -2251,6 +2353,7 @@
     "eval_file": "2026-03-22T04-33-42+00-00_rrf-llm-rerank-k5-all_XfM6fw9okjTynuHWtrt99Y.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.94075,
       "accuracy_se": 0.002386,
@@ -2273,6 +2376,7 @@
     "eval_file": "2026-03-22T04-37-23+00-00_rrf-llm-rerank-k7-all_jSanpENrzJESx8m4MFJnZQ.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.937174,
       "accuracy_se": 0.002453,
@@ -2295,6 +2399,7 @@
     "eval_file": "2026-03-22T04-41-22+00-00_rrf-llm-rerank-k15-all_iui8AWWfzQ7u6ydLmEUULf.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.925529,
       "accuracy_se": 0.002654,
@@ -2317,6 +2422,7 @@
     "eval_file": "2026-03-22T04-46-28+00-00_rrf-selective-llm-agree3-all_AnVLxQhJ94SYGb7GV57R52.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.937583,
       "accuracy_se": 0.002445,
@@ -2339,6 +2445,7 @@
     "eval_file": "2026-03-22T04-49-41+00-00_rrf-selective-llm-agree2-all_FFeHKMyTKTCUBNxR6wiUNr.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.937787,
       "accuracy_se": 0.002441,
@@ -2361,6 +2468,7 @@
     "eval_file": "2026-03-22T04-52-21+00-00_fast-selective-dense-all_Qs8Qg3WsFcT9efhcAsE7HJ.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.930841,
       "accuracy_se": 0.002564,
@@ -2383,6 +2491,7 @@
     "eval_file": "2026-03-22T04-56-00+00-00_dense-llm-rerank-all_nRsVoEPoGEASTX25J9S7qG.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.928389,
       "accuracy_se": 0.002606,
@@ -2405,6 +2514,7 @@
     "eval_file": "2026-03-22T05-00-09+00-00_sparse-llm-rerank-all_Cd8hPyYT3VTkBZfCvW8Fz6.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.92134,
       "accuracy_se": 0.002721,
@@ -2427,6 +2537,7 @@
     "eval_file": "2026-03-22T05-03-57+00-00_bm25-llm-rerank-all_Qyq5oZBe7juWG6iiZDknLt.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.866687,
       "accuracy_se": 0.003436,
@@ -2449,6 +2560,7 @@
     "eval_file": "2026-03-22T05-07-41+00-00_rrf-llm-oos-k10-candidate_h8273NTdnjkTc5n3t4QWaA.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.49433,
       "accuracy_se": 0.005053,
@@ -2471,6 +2583,7 @@
     "eval_file": "2026-03-22T05-18-42+00-00_rrf-llm-oos-k3-candidate_i5y2vQT9X9GRtczKFCwCQb.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.571253,
       "accuracy_se": 0.005002,
@@ -2493,6 +2606,7 @@
     "eval_file": "2026-03-22T05-28-56+00-00_rrf-llm-oos-k7-candidate_DkX4mmuTuDUceERgcNCv9P.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.519358,
       "accuracy_se": 0.00505,
@@ -2515,6 +2629,7 @@
     "eval_file": "2026-03-22T05-39-41+00-00_rrf-selective-llm-agree3-oos-all_hXUhvLZQVh7YMgNvtrybKd.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.926448,
       "accuracy_se": 0.002638,
@@ -2537,6 +2652,7 @@
     "eval_file": "2026-03-12T05-50-51+00-00_llm-direct-match-candidate_KGoWTKsF4XDAHEwx6chmkb.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.599244,
       "accuracy_se": 0.004953,
@@ -2559,6 +2675,7 @@
     "eval_file": "2026-03-12T06-09-00+00-00_llm-direct-match-all_MmYjZJhMayB52v4F38WZmj.eval",
     "strategy": "llm_direct_match_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.216365,
       "accuracy_se": 0.004162,
@@ -2581,6 +2698,7 @@
     "eval_file": "2026-03-12T14-51-01+00-00_llm-listwise-rerank-dense-candidate_HPX5jnKMBLs3BMb3LsQgFL.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.379099,
       "accuracy_se": 0.004904,
@@ -2603,6 +2721,7 @@
     "eval_file": "2026-03-12T17-00-32+00-00_llm-listwise-rerank-dense-all_Eon96ynuL3Mk7i9MgNstQP.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.822045,
       "accuracy_se": 0.003866,
@@ -2625,6 +2744,7 @@
     "eval_file": "2026-03-12T17-56-26+00-00_rrf-selective-llm-scoregap-all_TmvYnDCjB9UD8kzqGmvTzt.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.92512,
       "accuracy_se": 0.00266,
@@ -2647,6 +2767,7 @@
     "eval_file": "2026-03-12T18-02-50+00-00_query-expand-rrf-all_2M7uVJJ5c4SfUqr5VoFg5g.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.921034,
       "accuracy_se": 0.002726,
@@ -2669,6 +2790,7 @@
     "eval_file": "2026-03-12T18-29-34+00-00_persona-filter-rrf-all_H7bPzrWpsuoHCX558uqwN3.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.773828,
       "accuracy_se": 0.004228,
@@ -2691,6 +2813,7 @@
     "eval_file": "2026-03-12T18-36-41+00-00_cascade-rrf-ce-llm-all_YCMZ5TBFwxYCg7qAADibwG.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.92512,
       "accuracy_se": 0.00266,
@@ -2713,6 +2836,7 @@
     "eval_file": "2026-03-12T18-43-04+00-00_rrf-llm-rerank-k10-all_hi44xAXEY2xiJSz6pktjNU.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.948718,
       "accuracy_se": 0.002229,
@@ -2735,6 +2859,7 @@
     "eval_file": "2026-03-12T18-50-39+00-00_rrf-llm-rerank-k3-all_DLejAhjssGFjHe8A2LqxFY.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.941363,
       "accuracy_se": 0.002375,
@@ -2757,6 +2882,7 @@
     "eval_file": "2026-03-12T18-56-39+00-00_rrf-llm-rerank-k5-all_44PqAUTUARnuUKdwNVmrPE.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.949229,
       "accuracy_se": 0.002219,
@@ -2779,6 +2905,7 @@
     "eval_file": "2026-03-12T19-03-19+00-00_rrf-llm-rerank-k7-all_ZZe2G2W473wZwKpbb9puX8.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.950352,
       "accuracy_se": 0.002195,
@@ -2801,6 +2928,7 @@
     "eval_file": "2026-03-12T19-10-26+00-00_rrf-llm-rerank-k15-all_HBJx7ZuzsJAuNXJ5gBCTcy.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.949944,
       "accuracy_se": 0.002204,
@@ -2823,6 +2951,7 @@
     "eval_file": "2026-03-12T19-19-30+00-00_rrf-selective-llm-agree3-all_4srRMx6mRcz4krhFpeBupp.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.951068,
       "accuracy_se": 0.00218,
@@ -2845,6 +2974,7 @@
     "eval_file": "2026-03-12T19-24-17+00-00_rrf-selective-llm-agree2-all_E5rJHt8j5veoiaw3Faoyeg.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.948309,
       "accuracy_se": 0.002238,
@@ -2867,6 +2997,7 @@
     "eval_file": "2026-03-12T19-27-41+00-00_fast-selective-dense-all_kRx83MqcBpsnv6GnYBxxE7.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.939728,
       "accuracy_se": 0.002405,
@@ -2889,6 +3020,7 @@
     "eval_file": "2026-03-12T19-34-03+00-00_dense-llm-rerank-all_FU6tEpjBeFSf4ipiEcNLM9.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.943099,
       "accuracy_se": 0.002341,
@@ -2911,6 +3043,7 @@
     "eval_file": "2026-03-12T19-41-37+00-00_sparse-llm-rerank-all_MSXiHRunZY8pH2PgtNJDFq.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.933701,
       "accuracy_se": 0.002515,
@@ -2933,6 +3066,7 @@
     "eval_file": "2026-03-12T19-48-28+00-00_bm25-llm-rerank-all_LbYZG4XnnMmpmNrXHvAxuu.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.877924,
       "accuracy_se": 0.003309,
@@ -2955,6 +3089,7 @@
     "eval_file": "2026-03-12T19-55-12+00-00_rrf-llm-oos-k10-candidate_7xXsfmeRqpEBF5pRAURtHc.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.583206,
       "accuracy_se": 0.004983,
@@ -2977,6 +3112,7 @@
     "eval_file": "2026-03-12T20-13-18+00-00_rrf-llm-oos-k3-candidate_mUXsXiooN2JKVPAR9DtEda.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.555317,
       "accuracy_se": 0.005023,
@@ -2999,6 +3135,7 @@
     "eval_file": "2026-03-12T20-29-46+00-00_rrf-llm-oos-k7-candidate_D766jo69YdULRwHoasAik6.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.581878,
       "accuracy_se": 0.004985,
@@ -3021,6 +3158,7 @@
     "eval_file": "2026-03-12T20-47-37+00-00_rrf-selective-llm-agree3-oos-all_oGRYEeySmRmUbturdcspSs.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.950761,
       "accuracy_se": 0.002187,
@@ -3043,6 +3181,7 @@
     "eval_file": "2026-04-13T06-13-03+00-00_llm-listwise-rerank-dense-all_5mfsQi4pAw54TJkCg2szGG.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.925426,
       "accuracy_se": 0.002655,
@@ -3065,6 +3204,7 @@
     "eval_file": "2026-04-13T06-17-50+00-00_llm-listwise-rerank-dense-candidate_3rmP7KtTC8verWWe2ue6PY.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.529472,
       "accuracy_se": 0.005045,
@@ -3087,6 +3227,7 @@
     "eval_file": "2026-04-13T06-31-48+00-00_llm-direct-match-candidate_aBmkv4ujDXNVu7XHRDQHn4.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.542956,
       "accuracy_se": 0.005035,
@@ -3109,6 +3250,7 @@
     "eval_file": "2026-04-13T06-47-39+00-00_llm-direct-match-all_ChyjVPGuMotGzdcjXZs7Vw.eval",
     "strategy": "llm_direct_match_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.116355,
       "accuracy_se": 0.003241,
@@ -3131,6 +3273,7 @@
     "eval_file": "2026-04-13T10-19-52+00-00_rrf-selective-llm-scoregap-all_dNecVt5ZSfwZTMxGynEEKF.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.929411,
       "accuracy_se": 0.002589,
@@ -3153,6 +3296,7 @@
     "eval_file": "2026-04-13T10-26-42+00-00_query-expand-rrf-all_WMaaSj4EMnFMTzauCy9VCk.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.915517,
       "accuracy_se": 0.002811,
@@ -3175,6 +3319,7 @@
     "eval_file": "2026-04-13T14-08-04+00-00_persona-filter-rrf-all_8eq2Amzg7kHDCTq3bbDP4K.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.768107,
       "accuracy_se": 0.004266,
@@ -3197,6 +3342,7 @@
     "eval_file": "2026-04-13T14-14-51+00-00_cascade-rrf-ce-llm-all_JBSsu8eQyA4Ysj2M2PgxwP.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.929206,
       "accuracy_se": 0.002592,
@@ -3219,6 +3365,7 @@
     "eval_file": "2026-04-13T14-20-28+00-00_rrf-llm-rerank-k10-all_amcEK6jP2mng3S8YdGqcKU.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.948309,
       "accuracy_se": 0.002238,
@@ -3241,6 +3388,7 @@
     "eval_file": "2026-04-13T14-27-46+00-00_rrf-llm-rerank-k3-all_JfEapazxt9EZjju7pBvUwg.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.942895,
       "accuracy_se": 0.002345,
@@ -3263,6 +3411,7 @@
     "eval_file": "2026-04-13T14-33-44+00-00_rrf-llm-rerank-k5-all_dBSDTr2dSEBRtWuWPcQYEj.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.948003,
       "accuracy_se": 0.002244,
@@ -3285,6 +3434,7 @@
     "eval_file": "2026-04-13T14-40-06+00-00_rrf-llm-rerank-k7-all_ZHyrJvTmhqHAE8gXEcwbCu.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.950352,
       "accuracy_se": 0.002195,
@@ -3307,6 +3457,7 @@
     "eval_file": "2026-04-13T14-48-00+00-00_rrf-llm-rerank-k15-all_HXTpP8bQB8Bzg4RJRL24F6.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.947799,
       "accuracy_se": 0.002248,
@@ -3329,6 +3480,7 @@
     "eval_file": "2026-04-13T14-57-33+00-00_rrf-selective-llm-agree3-all_8ij2tpz8EVjqoMpDmbc5LK.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.950046,
       "accuracy_se": 0.002202,
@@ -3351,6 +3503,7 @@
     "eval_file": "2026-04-13T15-03-12+00-00_rrf-selective-llm-agree2-all_Bums5i5mPLPjAao2jjV9nH.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.946266,
       "accuracy_se": 0.002279,
@@ -3373,6 +3526,7 @@
     "eval_file": "2026-04-13T15-06-56+00-00_fast-selective-dense-all_f2UgF6aziMKSCuBW6M9voc.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.940239,
       "accuracy_se": 0.002396,
@@ -3395,6 +3549,7 @@
     "eval_file": "2026-04-13T15-13-52+00-00_dense-llm-rerank-all_7xGxcU6Tuzg2vdwcxzaXiJ.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.945143,
       "accuracy_se": 0.002301,
@@ -3417,6 +3572,7 @@
     "eval_file": "2026-04-13T15-21-58+00-00_sparse-llm-rerank-all_MpQTaEcUw9PXQQuZSYzKY8.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.934927,
       "accuracy_se": 0.002493,
@@ -3439,6 +3595,7 @@
     "eval_file": "2026-04-13T15-29-56+00-00_bm25-llm-rerank-all_BarazmPqNyMoecKNiSb4L6.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.875779,
       "accuracy_se": 0.003334,
@@ -3461,6 +3618,7 @@
     "eval_file": "2026-04-13T16-01-14+00-00_rrf-llm-oos-k10-candidate_eNnQjDSq5ZhYYTKruCB5ef.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.53223,
       "accuracy_se": 0.005043,
@@ -3483,6 +3641,7 @@
     "eval_file": "2026-04-13T16-15-42+00-00_rrf-llm-oos-k3-candidate_2cMi2b5m2RBrg6kazP5UTY.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.55072,
       "accuracy_se": 0.005028,
@@ -3505,6 +3664,7 @@
     "eval_file": "2026-04-13T16-28-50+00-00_rrf-llm-oos-k7-candidate_EvYDGedd4UXiSP4yyZQaGA.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.551844,
       "accuracy_se": 0.005026,
@@ -3527,6 +3687,7 @@
     "eval_file": "2026-04-13T16-42-57+00-00_rrf-selective-llm-agree3-oos-all_QBc6ZSeJT7H84RF63t3twZ.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.950352,
       "accuracy_se": 0.002195,
@@ -3549,6 +3710,7 @@
     "eval_file": "2026-04-02T06-39-31+00-00_llm-listwise-rerank-dense-candidate_ccPypunqUoi3ft9CJnHrEn.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.514966,
       "accuracy_se": 0.005051,
@@ -3571,6 +3733,7 @@
     "eval_file": "2026-04-02T06-46-10+00-00_llm-listwise-rerank-dense-all_ZgpdtmjGiFjJLoggYPrbCy.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.912861,
       "accuracy_se": 0.002851,
@@ -3593,6 +3756,7 @@
     "eval_file": "2026-04-02T06-54-38+00-00_llm-direct-match-candidate_YC3Hpz7rDfM9Wf6Bvpwukq.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.180202,
       "accuracy_se": 0.003885,
@@ -3615,6 +3779,7 @@
     "eval_file": "2026-04-02T06-57-49+00-00_llm-direct-match-all_g2kfwPf3oJgB6XaxBhhVTr.eval",
     "strategy": "llm_direct_match_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.050873,
       "accuracy_se": 0.002221,
@@ -3637,6 +3802,7 @@
     "eval_file": "2026-04-02T07-38-38+00-00_rrf-selective-llm-scoregap-all_Yyhy65w7mUmJ2TamrxdV2q.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.906834,
       "accuracy_se": 0.002938,
@@ -3659,6 +3825,7 @@
     "eval_file": "2026-04-02T07-41-55+00-00_query-expand-rrf-all_gQVH5VKSBUSZ4NjF66oAe4.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.886607,
       "accuracy_se": 0.003205,
@@ -3681,6 +3848,7 @@
     "eval_file": "2026-04-02T07-50-50+00-00_persona-filter-rrf-all_dJMkZ6DK7Dzxy6s7KumeAD.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.711717,
       "accuracy_se": 0.004578,
@@ -3703,6 +3871,7 @@
     "eval_file": "2026-04-02T07-54-26+00-00_cascade-rrf-ce-llm-all_gfXdffij4PRfkRvmzwGcvs.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.906834,
       "accuracy_se": 0.002938,
@@ -3725,6 +3894,7 @@
     "eval_file": "2026-04-02T07-57-46+00-00_rrf-llm-rerank-k10-all_eR4nttKszMMpG94PTNB8jn.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.869445,
       "accuracy_se": 0.003405,
@@ -3747,6 +3917,7 @@
     "eval_file": "2026-04-02T08-01-31+00-00_rrf-llm-rerank-k3-all_7PiRrhjnEf2p3KkX2JmMXf.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.921749,
       "accuracy_se": 0.002714,
@@ -3769,6 +3940,7 @@
     "eval_file": "2026-04-02T08-04-53+00-00_rrf-llm-rerank-k5-all_iVA8mehqWkeVjdLNWw4kiX.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.919501,
       "accuracy_se": 0.00275,
@@ -3791,6 +3963,7 @@
     "eval_file": "2026-04-02T08-08-26+00-00_rrf-llm-rerank-k7-all_jqCeaVatR9bCLPa8ZQ2Fnz.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.900296,
       "accuracy_se": 0.003028,
@@ -3813,6 +3986,7 @@
     "eval_file": "2026-04-02T08-12-05+00-00_rrf-llm-rerank-k15-all_Mrt8rXSXYahvMyfdEDSMHo.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.755542,
       "accuracy_se": 0.004344,
@@ -3835,6 +4009,7 @@
     "eval_file": "2026-04-02T08-16-04+00-00_rrf-selective-llm-agree3-all_RU6WKaDrtT3rNS54t7cu47.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.873736,
       "accuracy_se": 0.003357,
@@ -3857,6 +4032,7 @@
     "eval_file": "2026-04-02T08-19-00+00-00_rrf-selective-llm-agree2-all_eAjnZAWFJeW9WhidDzMGRU.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.892328,
       "accuracy_se": 0.003133,
@@ -3879,6 +4055,7 @@
     "eval_file": "2026-04-02T08-21-31+00-00_fast-selective-dense-all_NQgicwP85bwdHxD9t4ZU5P.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.919808,
       "accuracy_se": 0.002745,
@@ -3901,6 +4078,7 @@
     "eval_file": "2026-04-02T08-24-37+00-00_dense-llm-rerank-all_fsKUB6fwXmSr8PQ7p2jPGz.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.887935,
       "accuracy_se": 0.003188,
@@ -3923,6 +4101,7 @@
     "eval_file": "2026-04-02T08-27-50+00-00_sparse-llm-rerank-all_nDPA4pqoEsMB8YibygbBVM.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.856369,
       "accuracy_se": 0.003545,
@@ -3945,6 +4124,7 @@
     "eval_file": "2026-04-02T08-30-10+00-00_bm25-llm-rerank-all_MHZa2t7uNQEz8tJJYyZbga.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.740525,
       "accuracy_se": 0.00443,
@@ -3967,6 +4147,7 @@
     "eval_file": "2026-04-02T08-32-22+00-00_rrf-llm-oos-k10-candidate_ZavGTnEkPEVnfKRxo7vHfw.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.138727,
       "accuracy_se": 0.003494,
@@ -3989,6 +4170,7 @@
     "eval_file": "2026-04-02T08-37-56+00-00_rrf-llm-oos-k3-candidate_TZiW88Aj3KcgGD4oeuGjei.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.139953,
       "accuracy_se": 0.003507,
@@ -4011,6 +4193,7 @@
     "eval_file": "2026-04-02T08-43-27+00-00_rrf-llm-oos-k7-candidate_eL3RX3Z6jLAbUH2xNMLGvD.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.120237,
       "accuracy_se": 0.003287,
@@ -4033,6 +4216,7 @@
     "eval_file": "2026-04-02T08-49-08+00-00_rrf-selective-llm-agree3-oos-all_6TUno3HCGYrE4DUmVSnEr3.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.762182,
       "accuracy_se": 0.004303,
@@ -4055,6 +4239,7 @@
     "eval_file": "2026-04-09T21-20-08+00-00_llm-listwise-rerank-dense-candidate_9RQ2yNcfH6uEKzZqwGyeYy.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.514966,
       "accuracy_se": 0.005051,
@@ -4077,6 +4262,7 @@
     "eval_file": "2026-04-09T21-29-24+00-00_llm-listwise-rerank-dense-all_DRQ5ryCFCgQTp7eqHDUYwF.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.912861,
       "accuracy_se": 0.002851,
@@ -4099,6 +4285,7 @@
     "eval_file": "2026-04-09T21-38-49+00-00_llm-direct-match-candidate_db2TPJzkNs3ydFmo9zE87T.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.435795,
       "accuracy_se": 0.005012,
@@ -4121,6 +4308,7 @@
     "eval_file": "2026-04-09T21-43-42+00-00_llm-direct-match-all_7kSKZ7gga7McGXMaMKsLZK.eval",
     "strategy": "llm_direct_match_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.284503,
       "accuracy_se": 0.00456,
@@ -4143,6 +4331,7 @@
     "eval_file": "2026-04-09T22-53-53+00-00_rrf-selective-llm-scoregap-all_WHqtNTwvnt66KfiqvHxXPq.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.907958,
       "accuracy_se": 0.002922,
@@ -4165,6 +4354,7 @@
     "eval_file": "2026-04-09T22-57-08+00-00_query-expand-rrf-all_oR6vHNrN9uQeaesvdZv9FU.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.909388,
       "accuracy_se": 0.002901,
@@ -4187,6 +4377,7 @@
     "eval_file": "2026-04-09T23-09-23+00-00_persona-filter-rrf-all_NH8iLADAzctU2wniwSfsFV.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.728777,
       "accuracy_se": 0.004494,
@@ -4209,6 +4400,7 @@
     "eval_file": "2026-04-09T23-13-01+00-00_cascade-rrf-ce-llm-all_6weKSkeigAHmVrccP5f2yi.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.907754,
       "accuracy_se": 0.002925,
@@ -4231,6 +4423,7 @@
     "eval_file": "2026-04-09T23-16-18+00-00_rrf-llm-rerank-k10-all_gmcfDwYsgYazE8pkCYduRv.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.885892,
       "accuracy_se": 0.003214,
@@ -4253,6 +4446,7 @@
     "eval_file": "2026-04-09T23-20-13+00-00_rrf-llm-rerank-k3-all_53i4u3hm6yEv85Bufmixej.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.920625,
       "accuracy_se": 0.002732,
@@ -4275,6 +4469,7 @@
     "eval_file": "2026-04-09T23-23-41+00-00_rrf-llm-rerank-k5-all_VjMGFSPXWCTWBAm4ki4Tid.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.921442,
       "accuracy_se": 0.002719,
@@ -4297,6 +4492,7 @@
     "eval_file": "2026-04-09T23-27-16+00-00_rrf-llm-rerank-k7-all_4ZLuJL8nShgiGGtSNoyFvT.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.912351,
       "accuracy_se": 0.002858,
@@ -4319,6 +4515,7 @@
     "eval_file": "2026-04-09T23-31-00+00-00_rrf-llm-rerank-k15-all_J43Wz3NPU43PhbKPzcQbWs.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.798141,
       "accuracy_se": 0.004057,
@@ -4341,6 +4538,7 @@
     "eval_file": "2026-04-09T23-35-11+00-00_rrf-selective-llm-agree3-all_eFaeogZoXF9gpePBQwhMY4.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.88814,
       "accuracy_se": 0.003186,
@@ -4363,6 +4561,7 @@
     "eval_file": "2026-04-09T23-38-09+00-00_rrf-selective-llm-agree2-all_bXBUwheegzXSksNAnpHkAY.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.903463,
       "accuracy_se": 0.002985,
@@ -4385,6 +4584,7 @@
     "eval_file": "2026-04-09T23-40-37+00-00_fast-selective-dense-all_9nYQ5PaAJ5Zuw2VoY3NWgg.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.921749,
       "accuracy_se": 0.002714,
@@ -4407,6 +4607,7 @@
     "eval_file": "2026-04-09T23-43-51+00-00_dense-llm-rerank-all_CVfzvDUZ8s5XNcFMA5EUWm.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.904689,
       "accuracy_se": 0.002968,
@@ -4429,6 +4630,7 @@
     "eval_file": "2026-04-09T23-47-16+00-00_sparse-llm-rerank-all_KbTBZPFMp8yE6swHdGqG6V.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.86495,
       "accuracy_se": 0.003454,
@@ -4451,6 +4653,7 @@
     "eval_file": "2026-04-09T23-49-46+00-00_bm25-llm-rerank-all_Gotb7UzUtt3L2iPK2gpJ42.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.770865,
       "accuracy_se": 0.004248,
@@ -4473,6 +4676,7 @@
     "eval_file": "2026-04-09T23-52-08+00-00_rrf-llm-oos-k10-candidate_Tjrt7iuGEDfzwYJLkTB598.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.181735,
       "accuracy_se": 0.003898,
@@ -4495,6 +4699,7 @@
     "eval_file": "2026-04-09T23-59-22+00-00_rrf-llm-oos-k3-candidate_BNwRSatkWtU4XUtseA36ZJ.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.164062,
       "accuracy_se": 0.003743,
@@ -4517,6 +4722,7 @@
     "eval_file": "2026-04-10T00-06-15+00-00_rrf-llm-oos-k7-candidate_U4rxLa4JQgWgH73GbotDeh.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.184288,
       "accuracy_se": 0.003919,
@@ -4539,6 +4745,7 @@
     "eval_file": "2026-04-10T00-13-26+00-00_rrf-selective-llm-agree3-oos-all_ZkA9ACsWwWvkCVdZ7gnckN.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.894371,
       "accuracy_se": 0.003107,
@@ -4561,6 +4768,7 @@
     "eval_file": "2026-04-24T15-19-17+00-00_llm-listwise-rerank-dense-candidate_NjJn73NbLcs9z55kxNVjLB.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.545715,
       "accuracy_se": 0.005032,
@@ -4583,6 +4791,7 @@
     "eval_file": "2026-04-24T15-36-54+00-00_llm-listwise-rerank-dense-all_mpbKVzU7rVZKnfFW9J5fZL.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.920523,
       "accuracy_se": 0.002734,
@@ -4605,6 +4814,7 @@
     "eval_file": "2026-04-24T15-55-15+00-00_llm-direct-match-candidate_JAdWVTdfwXxN2XLmSMZucM.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.575646,
       "accuracy_se": 0.004995,
@@ -4627,6 +4837,7 @@
     "eval_file": "2026-04-24T16-09-19+00-00_llm-direct-match-all_E9582Qu5f8uNKxceMbrMAA.eval",
     "strategy": "llm_direct_match_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.640311,
       "accuracy_se": 0.004851,
@@ -4649,6 +4860,7 @@
     "eval_file": "2026-04-24T20-51-49+00-00_rrf-selective-llm-scoregap-all_byVhvMTU9jNyz9n7RxYoun.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.927061,
       "accuracy_se": 0.002628,
@@ -4671,6 +4883,7 @@
     "eval_file": "2026-04-24T20-58-34+00-00_query-expand-rrf-all_HfybQadKGkLs6ihvLgccbo.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.920523,
       "accuracy_se": 0.002734,
@@ -4693,6 +4906,7 @@
     "eval_file": "2026-04-24T21-28-43+00-00_persona-filter-rrf-all_RjGXhpPvoRWyw2tiSBfgho.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.725202,
       "accuracy_se": 0.004512,
@@ -4715,6 +4929,7 @@
     "eval_file": "2026-04-24T21-35-31+00-00_cascade-rrf-ce-llm-all_eNtqKgsFbz9DCkakvXpmjN.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.927163,
       "accuracy_se": 0.002627,
@@ -4737,6 +4952,7 @@
     "eval_file": "2026-04-24T21-42-20+00-00_rrf-llm-rerank-k10-all_B7HtHDA2wTqiFJMLaV6JZF.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.930943,
       "accuracy_se": 0.002563,
@@ -4759,6 +4975,7 @@
     "eval_file": "2026-04-24T21-48-59+00-00_rrf-llm-rerank-k3-all_AnmePAGPWZCuYwQRGARy3D.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.9384,
       "accuracy_se": 0.00243,
@@ -4781,6 +4998,7 @@
     "eval_file": "2026-04-24T21-54-58+00-00_rrf-llm-rerank-k5-all_ZvJs96ZidrpX7kuJhPEXZJ.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.941976,
       "accuracy_se": 0.002363,
@@ -4803,6 +5021,7 @@
     "eval_file": "2026-04-24T22-01-04+00-00_rrf-llm-rerank-k7-all_FSMhCXofS6S4cENJjxSyXv.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.938809,
       "accuracy_se": 0.002422,
@@ -4825,6 +5044,7 @@
     "eval_file": "2026-04-24T22-07-15+00-00_rrf-llm-rerank-k15-all_h7LccZkdrqE6ofCsU7G3kt.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.920012,
       "accuracy_se": 0.002742,
@@ -4847,6 +5067,7 @@
     "eval_file": "2026-04-24T22-14-12+00-00_rrf-selective-llm-agree3-all_dLJWt47nHBpbb3MBk9d798.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.935846,
       "accuracy_se": 0.002477,
@@ -4869,6 +5090,7 @@
     "eval_file": "2026-04-24T22-19-08+00-00_rrf-selective-llm-agree2-all_afesMCGaKfiWrFfGKHBWTc.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.937072,
       "accuracy_se": 0.002454,
@@ -4891,6 +5113,7 @@
     "eval_file": "2026-04-24T22-23-16+00-00_fast-selective-dense-all_9V2jVp2ADQEJrWWNj9dpD9.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.931454,
       "accuracy_se": 0.002554,
@@ -4913,6 +5136,7 @@
     "eval_file": "2026-04-24T22-28-50+00-00_dense-llm-rerank-all_ACJRVFNkuq5fi8Ap8uNzD5.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.921953,
       "accuracy_se": 0.002711,
@@ -4935,6 +5159,7 @@
     "eval_file": "2026-04-24T22-34-39+00-00_sparse-llm-rerank-all_EELC2uGsfJ3zi7crZq8FQu.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.914394,
       "accuracy_se": 0.002828,
@@ -4957,6 +5182,7 @@
     "eval_file": "2026-04-24T22-39-24+00-00_bm25-llm-rerank-all_RJfzBhoUQBGRHEDMwKNxU7.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.856982,
       "accuracy_se": 0.003538,
@@ -4979,6 +5205,7 @@
     "eval_file": "2026-04-24T22-44-00+00-00_rrf-llm-oos-k10-candidate_HyBYrh9YkWZUVgmsK8PCGh.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.532332,
       "accuracy_se": 0.005043,
@@ -5001,6 +5228,7 @@
     "eval_file": "2026-04-24T22-59-31+00-00_rrf-llm-oos-k3-candidate_NHQVegHAA4to9EckQA32te.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.55215,
       "accuracy_se": 0.005026,
@@ -5023,6 +5251,7 @@
     "eval_file": "2026-04-24T23-14-11+00-00_rrf-llm-oos-k7-candidate_jG9W4Ka5goVSKVS7ARTkFa.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.544182,
       "accuracy_se": 0.005034,
@@ -5045,6 +5274,7 @@
     "eval_file": "2026-04-24T23-29-19+00-00_rrf-selective-llm-agree3-oos-all_RAphpDqLiKkjsQta6ywfC3.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.933088,
       "accuracy_se": 0.002525,
@@ -5067,6 +5297,7 @@
     "eval_file": "2026-04-12T17-19-22+00-00_llm-listwise-rerank-dense-candidate_H6Md5J6xspxUq8RJZVo5hz.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.57534,
       "accuracy_se": 0.004996,
@@ -5089,6 +5320,7 @@
     "eval_file": "2026-04-13T02-23-00+00-00_llm-listwise-rerank-dense-all_AZ2ygaf9mPmtes2iJrKuhk.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.938809,
       "accuracy_se": 0.002422,
@@ -5111,6 +5343,7 @@
     "eval_file": "2026-04-13T10-06-38+00-00_llm-direct-match-candidate_bjaN8ywQoyCgvTRPpbacqz.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.647768,
       "accuracy_se": 0.004828,
@@ -5133,6 +5366,7 @@
     "eval_file": "2026-04-13T19-19-19+00-00_llm-direct-match-all_aiYS5Rf9jsTfH5wG2vdGUu.eval",
     "strategy": "llm_direct_match_all",
     "samples": 9789,
+    "completed_samples": 9715,
     "metrics": {
       "accuracy": 0.953165,
       "accuracy_se": 0.002135,
@@ -5155,6 +5389,7 @@
     "eval_file": "2026-04-19T15-47-20+00-00_rrf-selective-llm-scoregap-all_PGXuCFh6FiC8KLZEa58RdB.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.931964,
       "accuracy_se": 0.002545,
@@ -5177,6 +5412,7 @@
     "eval_file": "2026-04-19T22-57-42+00-00_query-expand-rrf-all_mkuagtrVME9dmMFSwGrAaA.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.925937,
       "accuracy_se": 0.002647,
@@ -5199,6 +5435,7 @@
     "eval_file": "2026-04-20T04-20-07+00-00_persona-filter-rrf-all_ey6SkhFUDRD9vF7ZgnuHMb.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.780979,
       "accuracy_se": 0.00418,
@@ -5221,6 +5458,7 @@
     "eval_file": "2026-04-20T07-45-49+00-00_cascade-rrf-ce-llm-all_Pro9yLxTBae5V3Q9uBnuTH.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.932067,
       "accuracy_se": 0.002543,
@@ -5243,6 +5481,7 @@
     "eval_file": "2026-04-20T14-48-58+00-00_rrf-llm-rerank-k10-all_dsEW4GRG2GHG9ZaxtGeXzR.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.953519,
       "accuracy_se": 0.002128,
@@ -5265,6 +5504,7 @@
     "eval_file": "2026-04-20T21-30-51+00-00_rrf-llm-rerank-k3-all_Twnx9RqvdFJh6q72djhK3Q.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.944427,
       "accuracy_se": 0.002316,
@@ -5287,6 +5527,7 @@
     "eval_file": "2026-04-21T01-28-35+00-00_rrf-llm-rerank-k5-all_L2nxsXqh3AyJyGnRgnPaJo.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.951272,
       "accuracy_se": 0.002176,
@@ -5309,6 +5550,7 @@
     "eval_file": "2026-04-21T06-26-56+00-00_rrf-llm-rerank-k7-all_7VsodwEEPLsjQzhQzUrHyY.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.952191,
       "accuracy_se": 0.002156,
@@ -5331,6 +5573,7 @@
     "eval_file": "2026-04-21T12-08-46+00-00_rrf-llm-rerank-k15-all_Kgtr9R9qxLHJg4eY7cEFtY.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.955767,
       "accuracy_se": 0.002078,
@@ -5353,6 +5596,7 @@
     "eval_file": "2026-04-21T19-56-15+00-00_rrf-selective-llm-agree3-all_YsnZyNcGZxn727tLzeW44S.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.95403,
       "accuracy_se": 0.002117,
@@ -5375,6 +5619,7 @@
     "eval_file": "2026-04-22T00-11-08+00-00_rrf-selective-llm-agree2-all_WWMBsaY4A8rhFVq4i9PVi7.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.948003,
       "accuracy_se": 0.002244,
@@ -5397,6 +5642,7 @@
     "eval_file": "2026-04-22T02-31-29+00-00_fast-selective-dense-all_jKjBu26ySYBCMCQiFKcUks.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.943406,
       "accuracy_se": 0.002335,
@@ -5419,6 +5665,7 @@
     "eval_file": "2026-04-22T07-44-52+00-00_dense-llm-rerank-all_3HNHeQ4my2QpuRjUnPeeBU.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.951068,
       "accuracy_se": 0.00218,
@@ -5441,6 +5688,7 @@
     "eval_file": "2026-04-22T14-19-15+00-00_sparse-llm-rerank-all_DcoHXogEGcprYUZJZuyQHU.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.940239,
       "accuracy_se": 0.002396,
@@ -5463,6 +5711,7 @@
     "eval_file": "2026-04-22T20-46-02+00-00_bm25-llm-rerank-all_3UQ2WB6HjgoTk58FudNfpF.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.887323,
       "accuracy_se": 0.003196,
@@ -5485,6 +5734,7 @@
     "eval_file": "2026-04-23T03-52-01+00-00_rrf-llm-oos-k10-candidate_GvgfjJoKeECSicjpJzmfBk.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.630504,
       "accuracy_se": 0.004878,
@@ -5507,6 +5757,7 @@
     "eval_file": "2026-04-23T09-11-09+00-00_rrf-llm-oos-k3-candidate_9WKScvRi9Z7t56skhxkcw8.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.598835,
       "accuracy_se": 0.004954,
@@ -5529,6 +5780,7 @@
     "eval_file": "2026-04-23T14-03-54+00-00_rrf-llm-oos-k7-candidate_2EzDagC7gfe3M3YNpeaKP8.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.627745,
       "accuracy_se": 0.004886,
@@ -5551,6 +5803,7 @@
     "eval_file": "2026-04-23T19-18-20+00-00_rrf-selective-llm-agree3-oos-all_j9UqxWYiLZxX9GLAoUBMsz.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.955869,
       "accuracy_se": 0.002076,
@@ -5573,6 +5826,7 @@
     "eval_file": "2026-03-24T03-42-09+00-00_llm-listwise-rerank-dense-candidate_agM8QfDo2ye9NyFeuWENRb.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.507611,
       "accuracy_se": 0.005053,
@@ -5595,6 +5849,7 @@
     "eval_file": "2026-03-24T07-45-48+00-00_llm-listwise-rerank-dense-all_6C2rzfkkj3vBeX8uKYEEPQ.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.911431,
       "accuracy_se": 0.002872,
@@ -5617,6 +5872,7 @@
     "eval_file": "2026-03-24T10-49-03+00-00_llm-direct-match-candidate_FH2NBePewyWWmvrWXr79nM.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.627132,
       "accuracy_se": 0.004888,
@@ -5639,6 +5895,7 @@
     "eval_file": "2026-03-24T11-29-02+00-00_llm-direct-match-all_6kC3AdJgF3G7PVngozk9cr.eval",
     "strategy": "llm_direct_match_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.728062,
       "accuracy_se": 0.004497,
@@ -5661,6 +5918,7 @@
     "eval_file": "2026-03-24T22-22-17+00-00_rrf-selective-llm-scoregap-all_3UgqAMUuU5vYnEpCYMpWVH.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.923486,
       "accuracy_se": 0.002687,
@@ -5683,6 +5941,7 @@
     "eval_file": "2026-03-24T22-32-06+00-00_query-expand-rrf-all_n94BNVK47d78PqyEbDFXH9.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.911125,
       "accuracy_se": 0.002876,
@@ -5705,6 +5964,7 @@
     "eval_file": "2026-03-24T23-58-32+00-00_persona-filter-rrf-all_n9DDz9gzTxudNTXcdjf86v.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.801001,
       "accuracy_se": 0.004035,
@@ -5727,6 +5987,7 @@
     "eval_file": "2026-03-25T00-11-51+00-00_cascade-rrf-ce-llm-all_GsPCKThsYMLf7TvTm5iyFG.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.923792,
       "accuracy_se": 0.002682,
@@ -5749,6 +6010,7 @@
     "eval_file": "2026-03-25T00-21-47+00-00_rrf-llm-rerank-k10-all_Ddu3HvmTQSq7DwGYVqzbMa.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.923996,
       "accuracy_se": 0.002678,
@@ -5771,6 +6033,7 @@
     "eval_file": "2026-03-25T00-33-53+00-00_rrf-llm-rerank-k3-all_gDgbYA579bWGTJDq5zoUur.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.934314,
       "accuracy_se": 0.002504,
@@ -5793,6 +6056,7 @@
     "eval_file": "2026-03-25T00-44-25+00-00_rrf-llm-rerank-k5-all_j42B4fQk2MxXPu5uh7bGDn.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.933395,
       "accuracy_se": 0.00252,
@@ -5815,6 +6079,7 @@
     "eval_file": "2026-03-25T00-55-20+00-00_rrf-llm-rerank-k7-all_JChQaAGJF7BjNcuYXiwH7Z.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.928083,
       "accuracy_se": 0.002611,
@@ -5837,6 +6102,7 @@
     "eval_file": "2026-03-25T01-06-37+00-00_rrf-llm-rerank-k15-all_boMdor7KiLumiUgQLwPSsQ.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.91991,
       "accuracy_se": 0.002743,
@@ -5859,6 +6125,7 @@
     "eval_file": "2026-03-25T01-20-17+00-00_rrf-selective-llm-agree3-all_YAhLDLYVF4Lna6BnjpW3RU.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.932884,
       "accuracy_se": 0.002529,
@@ -5881,6 +6148,7 @@
     "eval_file": "2026-03-25T01-28-09+00-00_rrf-selective-llm-agree2-all_hAgpSADZfQEWYLpBFpczcJ.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.937992,
       "accuracy_se": 0.002438,
@@ -5903,6 +6171,7 @@
     "eval_file": "2026-03-25T01-33-40+00-00_fast-selective-dense-all_kEVtyBVaL6NtMVEYhZWVBo.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.928083,
       "accuracy_se": 0.002611,
@@ -5925,6 +6194,7 @@
     "eval_file": "2026-03-25T01-44-29+00-00_dense-llm-rerank-all_XhFkBDAYojgp2sm5jQFYVB.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.913372,
       "accuracy_se": 0.002843,
@@ -5947,6 +6217,7 @@
     "eval_file": "2026-03-25T01-56-25+00-00_sparse-llm-rerank-all_6MMKcborSpfFWLsbyiFJrd.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.91041,
       "accuracy_se": 0.002887,
@@ -5969,6 +6240,7 @@
     "eval_file": "2026-03-25T02-07-47+00-00_bm25-llm-rerank-all_NWqqPNSg4vHMJUzxCdmVnw.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.860047,
       "accuracy_se": 0.003507,
@@ -5991,6 +6263,7 @@
     "eval_file": "2026-03-25T02-19-05+00-00_rrf-llm-oos-k10-candidate_WeSZ3LR968ZDMv4aG4pDb3.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.50046,
       "accuracy_se": 0.005054,
@@ -6013,6 +6286,7 @@
     "eval_file": "2026-03-25T02-56-58+00-00_rrf-llm-oos-k3-candidate_hiZzxhwzf9Nrpj6QjowyJM.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.579937,
       "accuracy_se": 0.004989,
@@ -6035,6 +6309,7 @@
     "eval_file": "2026-03-25T03-32-31+00-00_rrf-llm-oos-k7-candidate_6gZJADxKCdRC8U5EUFjQmv.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.530085,
       "accuracy_se": 0.005044,
@@ -6057,6 +6332,7 @@
     "eval_file": "2026-03-25T04-09-05+00-00_rrf-selective-llm-agree3-oos-all_fkgGVaux32dkd3KpfjncMc.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.934212,
       "accuracy_se": 0.002506,
@@ -6079,6 +6355,7 @@
     "eval_file": "2026-03-19T18-32-41+00-00_llm-listwise-rerank-dense-candidate_nfNXDQavncnCsHDRMsWb5R.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.480744,
       "accuracy_se": 0.00505,
@@ -6101,6 +6378,7 @@
     "eval_file": "2026-03-19T18-54-03+00-00_llm-listwise-rerank-dense-all_Lu9uvrZAs2ffLhoEE4D5x2.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.863316,
       "accuracy_se": 0.003472,
@@ -6123,6 +6401,7 @@
     "eval_file": "2026-03-19T19-11-43+00-00_llm-direct-match-candidate_N8LKqQJSUTWGpq2uaqhr8x.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.576055,
       "accuracy_se": 0.004995,
@@ -6145,6 +6424,7 @@
     "eval_file": "2026-03-19T19-24-25+00-00_llm-direct-match-all_fxytbhgchbyU9k74FUPEyL.eval",
     "strategy": "llm_direct_match_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.497804,
       "accuracy_se": 0.005054,
@@ -6167,6 +6447,7 @@
     "eval_file": "2026-03-19T23-56-03+00-00_rrf-selective-llm-scoregap-all_TSi8MAuPebmbXsCoGDzmoC.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.915824,
       "accuracy_se": 0.002806,
@@ -6189,6 +6470,7 @@
     "eval_file": "2026-03-20T00-01-26+00-00_query-expand-rrf-all_UzDU5Nipye2B7xV4WgXskM.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.900705,
       "accuracy_se": 0.003023,
@@ -6211,6 +6493,7 @@
     "eval_file": "2026-03-20T00-34-00+00-00_persona-filter-rrf-all_eEgstjFw8sqsfMzjnVPQs2.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.775769,
       "accuracy_se": 0.004215,
@@ -6233,6 +6516,7 @@
     "eval_file": "2026-03-20T00-40-15+00-00_cascade-rrf-ce-llm-all_KZgEBJRhSbPYvJccN6BFe5.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.916028,
       "accuracy_se": 0.002803,
@@ -6255,6 +6539,7 @@
     "eval_file": "2026-03-20T00-45-45+00-00_rrf-llm-rerank-k10-all_QnMjGdf56q2psiKfaqbbvU.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.775462,
       "accuracy_se": 0.004218,
@@ -6277,6 +6562,7 @@
     "eval_file": "2026-03-20T00-51-43+00-00_rrf-llm-rerank-k3-all_7tpUzyJrBUuKCsLr3jUkEf.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.837471,
       "accuracy_se": 0.003729,
@@ -6299,6 +6585,7 @@
     "eval_file": "2026-03-20T00-57-11+00-00_rrf-llm-rerank-k5-all_Fc5n8u5wjyrvt3SP6uyLCu.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.75973,
       "accuracy_se": 0.004318,
@@ -6321,6 +6608,7 @@
     "eval_file": "2026-03-20T01-02-48+00-00_rrf-llm-rerank-k7-all_i6e743YAQVvBRgeqYVMJEu.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.779038,
       "accuracy_se": 0.004193,
@@ -6343,6 +6631,7 @@
     "eval_file": "2026-03-20T01-08-33+00-00_rrf-llm-rerank-k15-all_gKCTJKv4QPeUHRF3B37UJ2.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.797017,
       "accuracy_se": 0.004065,
@@ -6365,6 +6654,7 @@
     "eval_file": "2026-03-20T01-15-10+00-00_rrf-selective-llm-agree3-all_aXf8a2ufawPMmgrx7Q8XHo.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.87016,
       "accuracy_se": 0.003397,
@@ -6387,6 +6677,7 @@
     "eval_file": "2026-03-20T01-20-00+00-00_rrf-selective-llm-agree2-all_jk7wgkrsxTmFuMvqBK8cwL.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.916028,
       "accuracy_se": 0.002803,
@@ -6409,6 +6700,7 @@
     "eval_file": "2026-03-20T01-24-08+00-00_fast-selective-dense-all_CTdNdTa8wACqJiQhC7JJSf.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.770559,
       "accuracy_se": 0.00425,
@@ -6431,6 +6723,7 @@
     "eval_file": "2026-03-20T01-29-21+00-00_dense-llm-rerank-all_UcV4PxyUyXZfebueEPZBDF.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.769537,
       "accuracy_se": 0.004256,
@@ -6453,6 +6746,7 @@
     "eval_file": "2026-03-20T01-34-54+00-00_sparse-llm-rerank-all_js5BsAWih8kh4fGSQxuTSx.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.750741,
       "accuracy_se": 0.004372,
@@ -6475,6 +6769,7 @@
     "eval_file": "2026-03-20T01-39-08+00-00_bm25-llm-rerank-all_cvLGVTcF8WDqkqekkiQgBu.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.719277,
       "accuracy_se": 0.004542,
@@ -6497,6 +6792,7 @@
     "eval_file": "2026-03-20T01-43-11+00-00_rrf-llm-oos-k10-candidate_5C3upjx9rCQdSfRbBQXB4s.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.425478,
       "accuracy_se": 0.004997,
@@ -6519,6 +6815,7 @@
     "eval_file": "2026-03-20T01-57-37+00-00_rrf-llm-oos-k3-candidate_HCWCePauVAzVuNhRfUBjDH.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.540505,
       "accuracy_se": 0.005037,
@@ -6541,6 +6838,7 @@
     "eval_file": "2026-03-20T02-11-24+00-00_rrf-llm-oos-k7-candidate_gQB8SHjzGwnqAW4Kw3fgfE.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.458882,
       "accuracy_se": 0.005036,
@@ -6563,6 +6861,7 @@
     "eval_file": "2026-03-20T02-25-40+00-00_rrf-selective-llm-agree3-oos-all_f6PZwAURnnR8H5yEZ2gtnT.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.89386,
       "accuracy_se": 0.003113,
@@ -6585,6 +6884,7 @@
     "eval_file": "2026-03-21T21-50-03+00-00_llm-listwise-rerank-dense-candidate_CvdjfSbhsbmA5TQN5EX9xQ.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.588109,
       "accuracy_se": 0.004975,
@@ -6607,6 +6907,7 @@
     "eval_file": "2026-03-22T02-28-34+00-00_llm-listwise-rerank-dense-all_Mwd9kzKCrH3zqXumeG72VC.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.910818,
       "accuracy_se": 0.002881,
@@ -6629,6 +6930,7 @@
     "eval_file": "2026-03-22T06-22-40+00-00_llm-direct-match-candidate_jvha4SpAm9PQiWoTQ35SJm.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.606906,
       "accuracy_se": 0.004937,
@@ -6651,6 +6953,7 @@
     "eval_file": "2026-03-22T06-48-24+00-00_llm-direct-match-all_TjTum5KroxnQissSMCECoR.eval",
     "strategy": "llm_direct_match_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.666156,
       "accuracy_se": 0.004766,
@@ -6673,6 +6976,7 @@
     "eval_file": "2026-03-22T14-32-37+00-00_rrf-selective-llm-scoregap-all_KFxBifvKFtzL9yHNXe9LdT.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.924405,
       "accuracy_se": 0.002672,
@@ -6695,6 +6999,7 @@
     "eval_file": "2026-03-22T14-40-02+00-00_query-expand-rrf-all_95okrYcw4tqatwyrkUouuN.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.905506,
       "accuracy_se": 0.002957,
@@ -6717,6 +7022,7 @@
     "eval_file": "2026-03-22T15-37-29+00-00_persona-filter-rrf-all_SCSXxHgZ3Ns57mCMotTEnv.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.81469,
       "accuracy_se": 0.003927,
@@ -6739,6 +7045,7 @@
     "eval_file": "2026-03-22T15-47-29+00-00_cascade-rrf-ce-llm-all_Tbp99tnULYvJr8TD8KXPQ8.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.924303,
       "accuracy_se": 0.002673,
@@ -6761,6 +7068,7 @@
     "eval_file": "2026-03-22T15-55-01+00-00_rrf-llm-rerank-k10-all_ksrwpVYZPbdFopnVXgetuY.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.934212,
       "accuracy_se": 0.002506,
@@ -6783,6 +7091,7 @@
     "eval_file": "2026-03-22T16-04-09+00-00_rrf-llm-rerank-k3-all_FQAGsLSHiCkdAk6tYBZGrX.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.936051,
       "accuracy_se": 0.002473,
@@ -6805,6 +7114,7 @@
     "eval_file": "2026-03-22T16-12-24+00-00_rrf-llm-rerank-k5-all_2mwxY5BjE8n8JbowL7zG3Z.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.940954,
       "accuracy_se": 0.002382,
@@ -6827,6 +7137,7 @@
     "eval_file": "2026-03-22T16-20-51+00-00_rrf-llm-rerank-k7-all_QsM8SNWeLf2mqNtL9fAeCX.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.936459,
       "accuracy_se": 0.002465,
@@ -6849,6 +7160,7 @@
     "eval_file": "2026-03-22T16-29-37+00-00_rrf-llm-rerank-k15-all_hfontXqExQ3knNx3jQ6SkQ.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.925937,
       "accuracy_se": 0.002647,
@@ -6871,6 +7183,7 @@
     "eval_file": "2026-03-22T16-39-36+00-00_rrf-selective-llm-agree3-all_3XYBK5iTEXTjnF9bKeWDgE.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.936766,
       "accuracy_se": 0.00246,
@@ -6893,6 +7206,7 @@
     "eval_file": "2026-03-22T16-45-53+00-00_rrf-selective-llm-agree2-all_NgxGi6mQfsYwFNJucopPfv.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.937174,
       "accuracy_se": 0.002453,
@@ -6915,6 +7229,7 @@
     "eval_file": "2026-03-22T16-50-38+00-00_fast-selective-dense-all_iQc4V56o6ivXxJzNhNtkwD.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.930739,
       "accuracy_se": 0.002566,
@@ -6937,6 +7252,7 @@
     "eval_file": "2026-03-22T16-58-30+00-00_dense-llm-rerank-all_FhPNtRzqPH4PbZUaAoCpMB.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.927776,
       "accuracy_se": 0.002616,
@@ -6959,6 +7275,7 @@
     "eval_file": "2026-03-22T17-06-58+00-00_sparse-llm-rerank-all_Lj3gLVy7jD2Mtob59KZTPL.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.917765,
       "accuracy_se": 0.002777,
@@ -6981,6 +7298,7 @@
     "eval_file": "2026-03-22T17-14-23+00-00_bm25-llm-rerank-all_fznbnd7mswen8vi8FR7Eqr.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.866074,
       "accuracy_se": 0.003442,
@@ -7003,6 +7321,7 @@
     "eval_file": "2026-03-22T17-21-56+00-00_rrf-llm-oos-k10-candidate_JNvCCxbzVvqBZxcrLAQvaj.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.486567,
       "accuracy_se": 0.005052,
@@ -7025,6 +7344,7 @@
     "eval_file": "2026-03-22T17-46-50+00-00_rrf-llm-oos-k3-candidate_Nk52RDFwputonHDc32reGc.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.571866,
       "accuracy_se": 0.005001,
@@ -7047,6 +7367,7 @@
     "eval_file": "2026-03-22T18-10-20+00-00_rrf-llm-oos-k7-candidate_VUv8357McqddRR4GvtTx2d.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.51231,
       "accuracy_se": 0.005052,
@@ -7069,6 +7390,7 @@
     "eval_file": "2026-03-22T18-34-37+00-00_rrf-selective-llm-agree3-oos-all_U2ukKXvT4xYnwqdxdNAp8d.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.926448,
       "accuracy_se": 0.002638,
@@ -7091,6 +7413,7 @@
     "eval_file": "2026-04-06T03-36-38+00-00_llm-listwise-rerank-dense-candidate_CHCqLhHGqBF7mPY54BkxKb.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.410665,
       "accuracy_se": 0.004972,
@@ -7113,6 +7436,7 @@
     "eval_file": "2026-04-06T20-42-01+00-00_llm-listwise-rerank-dense-all_iUgZz3eCsiNKC9VqhcfTbW.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.830524,
       "accuracy_se": 0.003792,
@@ -7135,6 +7459,7 @@
     "eval_file": "2026-04-07T02-15-36+00-00_llm-direct-match-candidate_cpQhmqCfdbyGDZL2osDtwB.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.600266,
       "accuracy_se": 0.004951,
@@ -7157,6 +7482,7 @@
     "eval_file": "2026-04-07T03-00-38+00-00_llm-direct-match-all_WiboRaQw8SdkjambvikjGJ.eval",
     "strategy": "llm_direct_match_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.220349,
       "accuracy_se": 0.004189,
@@ -7179,6 +7505,7 @@
     "eval_file": "2026-04-07T13-59-22+00-00_rrf-selective-llm-scoregap-all_n2EDwJAGvkHs2CNyrDN3eL.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.925835,
       "accuracy_se": 0.002648,
@@ -7201,6 +7528,7 @@
     "eval_file": "2026-04-07T14-13-40+00-00_query-expand-rrf-all_VPXT2VEjs9istpEpe55aRY.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.920421,
       "accuracy_se": 0.002735,
@@ -7223,6 +7551,7 @@
     "eval_file": "2026-04-07T15-37-04+00-00_persona-filter-rrf-all_8u3ZWY7eNmXhtJo2AknAVM.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.771887,
       "accuracy_se": 0.004241,
@@ -7245,6 +7574,7 @@
     "eval_file": "2026-04-07T15-53-06+00-00_cascade-rrf-ce-llm-all_2vNR5gb388tDvZg5iwJaAi.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.926039,
       "accuracy_se": 0.002645,
@@ -7267,6 +7597,7 @@
     "eval_file": "2026-04-07T16-07-27+00-00_rrf-llm-rerank-k10-all_55yQVdmFQYtkmZQjPArGGA.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.948411,
       "accuracy_se": 0.002236,
@@ -7289,6 +7620,7 @@
     "eval_file": "2026-04-07T16-23-05+00-00_rrf-llm-rerank-k3-all_hXNQhqWh2gKMovdX6Xb46Q.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.941567,
       "accuracy_se": 0.002371,
@@ -7311,6 +7643,7 @@
     "eval_file": "2026-04-07T16-36-30+00-00_rrf-llm-rerank-k5-all_TdZHzQJkY2EKG3YKQRFFHn.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.948207,
       "accuracy_se": 0.00224,
@@ -7333,6 +7666,7 @@
     "eval_file": "2026-04-07T16-50-33+00-00_rrf-llm-rerank-k7-all_YuDnJHvteJ2AEZUCe7evqZ.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.949127,
       "accuracy_se": 0.002221,
@@ -7355,6 +7689,7 @@
     "eval_file": "2026-04-07T17-05-18+00-00_rrf-llm-rerank-k15-all_dmVy9fdNasGYYC2TgaHNZt.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.95025,
       "accuracy_se": 0.002198,
@@ -7377,6 +7712,7 @@
     "eval_file": "2026-04-07T17-23-01+00-00_rrf-selective-llm-agree3-all_R5XwLfBUFG4XafJ4WYKw6e.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.950863,
       "accuracy_se": 0.002185,
@@ -7399,6 +7735,7 @@
     "eval_file": "2026-04-07T17-32-48+00-00_rrf-selective-llm-agree2-all_nrZ6jDycwx3oMP3kwGvbJA.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.946266,
       "accuracy_se": 0.002279,
@@ -7421,6 +7758,7 @@
     "eval_file": "2026-04-07T17-39-19+00-00_fast-selective-dense-all_DdLWutGqedJNQjzbCNDAtY.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.93983,
       "accuracy_se": 0.002403,
@@ -7443,6 +7781,7 @@
     "eval_file": "2026-04-07T17-53-19+00-00_dense-llm-rerank-all_P3jKMfJCPHc3WSECWiNRPw.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.944223,
       "accuracy_se": 0.00232,
@@ -7465,6 +7804,7 @@
     "eval_file": "2026-04-07T18-08-47+00-00_sparse-llm-rerank-all_cGSGiDeMaG7FFTWyfq7J42.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.934314,
       "accuracy_se": 0.002504,
@@ -7487,6 +7827,7 @@
     "eval_file": "2026-04-07T18-23-49+00-00_bm25-llm-rerank-all_8jTiAFng9rbNchkSt2fNiY.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.876903,
       "accuracy_se": 0.003321,
@@ -7509,6 +7850,7 @@
     "eval_file": "2026-04-07T18-38-46+00-00_rrf-llm-oos-k10-candidate_fD6PEt5D3B64mMVVGFqPtp.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.583206,
       "accuracy_se": 0.004983,
@@ -7531,6 +7873,7 @@
     "eval_file": "2026-04-07T19-25-07+00-00_rrf-llm-oos-k3-candidate_eRMTJmQUe884MTKxVybRbP.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.556134,
       "accuracy_se": 0.005022,
@@ -7553,6 +7896,7 @@
     "eval_file": "2026-04-07T20-07-18+00-00_rrf-llm-oos-k7-candidate_S2L9dmuMBMUD6Z62jeTmPL.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.584227,
       "accuracy_se": 0.004981,
@@ -7575,6 +7919,7 @@
     "eval_file": "2026-04-07T20-52-53+00-00_rrf-selective-llm-agree3-oos-all_dGQbgDjkHMa9MV4hiDux9K.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.95025,
       "accuracy_se": 0.002198,
@@ -7597,6 +7942,7 @@
     "eval_file": "2026-03-20T06-20-24+00-00_llm-listwise-rerank-dense-candidate_Y6fwHy6B34FMg5GQD5Vi5k.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.536929,
       "accuracy_se": 0.00504,
@@ -7619,6 +7965,7 @@
     "eval_file": "2026-03-20T09-31-00+00-00_llm-listwise-rerank-dense-all_b4uxucg8ttSV8xbEh3a7Ny.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.926142,
       "accuracy_se": 0.002643,
@@ -7641,6 +7988,7 @@
     "eval_file": "2026-03-20T13-10-52+00-00_llm-direct-match-candidate_AX25g3H4Mm9VqHKjtkui9E.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.543978,
       "accuracy_se": 0.005034,
@@ -7663,6 +8011,7 @@
     "eval_file": "2026-03-20T14-06-26+00-00_llm-direct-match-all_e2F6arLzttvTZ5g7pzRsuv.eval",
     "strategy": "llm_direct_match_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.106344,
       "accuracy_se": 0.003116,
@@ -7685,6 +8034,7 @@
     "eval_file": "2026-03-21T01-06-45+00-00_rrf-selective-llm-scoregap-all_EVyaDdsTp2z24AKCmZwRcc.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.929104,
       "accuracy_se": 0.002594,
@@ -7707,6 +8057,7 @@
     "eval_file": "2026-03-21T01-22-28+00-00_query-expand-rrf-all_d4WLKmkTLCtg7UDRD4CjrH.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.917458,
       "accuracy_se": 0.002781,
@@ -7729,6 +8080,7 @@
     "eval_file": "2026-03-21T03-09-04+00-00_persona-filter-rrf-all_f6JygTwyQqbDnFAFfN3QUJ.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.767086,
       "accuracy_se": 0.004272,
@@ -7751,6 +8103,7 @@
     "eval_file": "2026-03-21T03-29-34+00-00_cascade-rrf-ce-llm-all_Wv4nfbYEWvy3xSodvsS3XD.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.929206,
       "accuracy_se": 0.002592,
@@ -7773,6 +8126,7 @@
     "eval_file": "2026-03-21T03-45-18+00-00_rrf-llm-rerank-k10-all_jYFXvj2JEEvwtaqMkkVVrR.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.949637,
       "accuracy_se": 0.00221,
@@ -7795,6 +8149,7 @@
     "eval_file": "2026-03-21T04-05-08+00-00_rrf-llm-rerank-k3-all_KB5Lr2arCdTvaWgPoso3mB.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.941567,
       "accuracy_se": 0.002371,
@@ -7817,6 +8172,7 @@
     "eval_file": "2026-03-21T04-22-26+00-00_rrf-llm-rerank-k5-all_YZfsrSAPFevYi8D8jgQJb6.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.948514,
       "accuracy_se": 0.002234,
@@ -7839,6 +8195,7 @@
     "eval_file": "2026-03-21T04-40-29+00-00_rrf-llm-rerank-k7-all_82omEn9tbjoZfegz8p5KUz.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.95025,
       "accuracy_se": 0.002198,
@@ -7861,6 +8218,7 @@
     "eval_file": "2026-03-21T04-59-19+00-00_rrf-llm-rerank-k15-all_nRtRd8XZaxbQ96eE58LhcG.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.947799,
       "accuracy_se": 0.002248,
@@ -7883,6 +8241,7 @@
     "eval_file": "2026-03-21T05-21-10+00-00_rrf-selective-llm-agree3-all_YwLBY8wJoJeY68J4v88hBs.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.95168,
       "accuracy_se": 0.002167,
@@ -7905,6 +8264,7 @@
     "eval_file": "2026-03-21T05-32-50+00-00_rrf-selective-llm-agree2-all_i9nn7YSEpfEZMFHmpzUUdT.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.946471,
       "accuracy_se": 0.002275,
@@ -7927,6 +8287,7 @@
     "eval_file": "2026-03-21T05-40-10+00-00_fast-selective-dense-all_7egXAXWMt48N5ppQ99uZxY.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.941158,
       "accuracy_se": 0.002379,
@@ -7949,6 +8310,7 @@
     "eval_file": "2026-03-21T05-58-02+00-00_dense-llm-rerank-all_meNi2dcNqaStjJf67FQhZt.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.94504,
       "accuracy_se": 0.002303,
@@ -7971,6 +8333,7 @@
     "eval_file": "2026-03-21T06-17-39+00-00_sparse-llm-rerank-all_aBFsiDHXKoxtJmFBmzQwjp.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.934825,
       "accuracy_se": 0.002495,
@@ -7993,6 +8356,7 @@
     "eval_file": "2026-03-21T06-36-42+00-00_bm25-llm-rerank-all_6tyQYQgLXzfZxoGkAovFTA.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.87629,
       "accuracy_se": 0.003328,
@@ -8015,6 +8379,7 @@
     "eval_file": "2026-03-21T06-55-40+00-00_rrf-llm-oos-k10-candidate_9CA9tUz2hw8aHcLf2nE8n2.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.540811,
       "accuracy_se": 0.005037,
@@ -8037,6 +8402,7 @@
     "eval_file": "2026-03-21T07-49-14+00-00_rrf-llm-oos-k3-candidate_Qh9mDcUyBLWZX7yxtciwqy.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.552865,
       "accuracy_se": 0.005025,
@@ -8059,6 +8425,7 @@
     "eval_file": "2026-03-21T08-39-40+00-00_rrf-llm-oos-k7-candidate_bJYuUEzJF98R5A6LuEEgZ5.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.554909,
       "accuracy_se": 0.005023,
@@ -8081,6 +8448,7 @@
     "eval_file": "2026-03-21T09-32-46+00-00_rrf-selective-llm-agree3-oos-all_krfMto2AyjdU5GcsFpHu6S.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.949535,
       "accuracy_se": 0.002212,
@@ -8103,6 +8471,7 @@
     "eval_file": "2026-03-26T06-01-26+00-00_llm-listwise-rerank-dense-candidate_2kWnWeVjRrNgWZH8XJT44h.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.514966,
       "accuracy_se": 0.005051,
@@ -8125,6 +8494,7 @@
     "eval_file": "2026-03-26T06-14-34+00-00_llm-listwise-rerank-dense-all_3DNgcQBaJVakjW395Xi62J.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.91327,
       "accuracy_se": 0.002845,
@@ -8147,6 +8517,7 @@
     "eval_file": "2026-03-26T06-35-13+00-00_llm-direct-match-candidate_FLeifzpstv7k5BLUJnNtfF.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.181326,
       "accuracy_se": 0.003894,
@@ -8169,6 +8540,7 @@
     "eval_file": "2026-03-26T06-42-40+00-00_llm-direct-match-all_8pVeANKK7ggTUjT9h3hp9U.eval",
     "strategy": "llm_direct_match_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.050567,
       "accuracy_se": 0.002215,
@@ -8191,6 +8563,7 @@
     "eval_file": "2026-03-26T08-32-00+00-00_rrf-selective-llm-scoregap-all_eXtkp78sMJGaMDzLnnGzpd.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.906528,
       "accuracy_se": 0.002942,
@@ -8213,6 +8586,7 @@
     "eval_file": "2026-03-26T08-36-54+00-00_query-expand-rrf-all_QZBw4SAFvXHw645Z4Ck7Ao.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.888651,
       "accuracy_se": 0.003179,
@@ -8235,6 +8609,7 @@
     "eval_file": "2026-03-26T08-56-25+00-00_persona-filter-rrf-all_d88xJamn2fvfQjtEtVE6nG.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.68485,
       "accuracy_se": 0.004696,
@@ -8257,6 +8632,7 @@
     "eval_file": "2026-03-26T09-01-25+00-00_cascade-rrf-ce-llm-all_LzbHUvupRYkEuDS7yBgzgz.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.90663,
       "accuracy_se": 0.002941,
@@ -8279,6 +8655,7 @@
     "eval_file": "2026-03-26T09-06-23+00-00_rrf-llm-rerank-k10-all_n7P8n9aap2ocMYdZEi9YqM.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.868322,
       "accuracy_se": 0.003418,
@@ -8301,6 +8678,7 @@
     "eval_file": "2026-03-26T09-11-36+00-00_rrf-llm-rerank-k3-all_3BwPGwqmaCj9Tx4MqE72ua.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.919706,
       "accuracy_se": 0.002747,
@@ -8323,6 +8701,7 @@
     "eval_file": "2026-03-26T09-16-31+00-00_rrf-llm-rerank-k5-all_nwyPN2VJefnv9nYzv6PLtc.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.920319,
       "accuracy_se": 0.002737,
@@ -8345,6 +8724,7 @@
     "eval_file": "2026-03-26T09-21-34+00-00_rrf-llm-rerank-k7-all_9y5oADbBc2vFiZp4rDJpHU.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.895699,
       "accuracy_se": 0.003089,
@@ -8367,6 +8747,7 @@
     "eval_file": "2026-03-26T09-26-39+00-00_rrf-llm-rerank-k15-all_Jpn2AjeESAQqnbmChDmFuf.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.879354,
       "accuracy_se": 0.003292,
@@ -8389,6 +8770,7 @@
     "eval_file": "2026-03-26T09-32-11+00-00_rrf-selective-llm-agree3-all_aRgeVRGW5iKP7f5ionTS5u.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.873327,
       "accuracy_se": 0.003362,
@@ -8411,6 +8793,7 @@
     "eval_file": "2026-03-26T09-36-35+00-00_rrf-selective-llm-agree2-all_bnwS9gMjrY8ZLaHVt7yia7.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.892022,
       "accuracy_se": 0.003137,
@@ -8433,6 +8816,7 @@
     "eval_file": "2026-03-26T09-40-32+00-00_fast-selective-dense-all_Jv3QuFMNfUgyWRcd2VqW7c.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.920523,
       "accuracy_se": 0.002734,
@@ -8455,6 +8839,7 @@
     "eval_file": "2026-03-26T09-45-10+00-00_dense-llm-rerank-all_VNnviQhvdxme5wYDkXaKqy.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.888446,
       "accuracy_se": 0.003182,
@@ -8477,6 +8862,7 @@
     "eval_file": "2026-03-26T09-50-05+00-00_sparse-llm-rerank-all_9H5eyWsPvZrCQ7QSZPBKR2.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.857187,
       "accuracy_se": 0.003536,
@@ -8499,6 +8885,7 @@
     "eval_file": "2026-03-26T09-53-25+00-00_bm25-llm-rerank-all_AVCYFqS3rAxGefXtKSjqSd.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.737358,
       "accuracy_se": 0.004448,
@@ -8521,6 +8908,7 @@
     "eval_file": "2026-03-26T09-56-38+00-00_rrf-llm-oos-k10-candidate_MspvBnb7BGtPV8jWTE3Aao.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.13035,
       "accuracy_se": 0.003403,
@@ -8543,6 +8931,7 @@
     "eval_file": "2026-03-26T10-07-37+00-00_rrf-llm-oos-k3-candidate_ERvhVhdTLm6eR3pxje2MEX.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.129942,
       "accuracy_se": 0.003398,
@@ -8565,6 +8954,7 @@
     "eval_file": "2026-03-26T10-18-14+00-00_rrf-llm-oos-k7-candidate_dGAYFPtMgyWJ9YeKPiwHsp.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.115742,
       "accuracy_se": 0.003233,
@@ -8587,6 +8977,7 @@
     "eval_file": "2026-03-26T10-29-15+00-00_rrf-selective-llm-agree3-oos-all_6VSWvqDjoVwYtXkyf3k4g9.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.761467,
       "accuracy_se": 0.004308,
@@ -8609,6 +9000,7 @@
     "eval_file": "2026-04-02T03-41-59+00-00_llm-listwise-rerank-dense-candidate_iv5RXPJy9DHBTTx7F8eeye.eval",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.514966,
       "accuracy_se": 0.005051,
@@ -8631,6 +9023,7 @@
     "eval_file": "2026-04-02T04-06-34+00-00_llm-listwise-rerank-dense-all_anRbRasjwcRNQPJz3xhhTa.eval",
     "strategy": "llm_listwise_rerank_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.91327,
       "accuracy_se": 0.002845,
@@ -8653,6 +9046,7 @@
     "eval_file": "2026-04-02T04-31-05+00-00_llm-direct-match-candidate_3EmPTguhzdQoPa9qGMwSJX.eval",
     "strategy": "llm_direct_match_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.436204,
       "accuracy_se": 0.005012,
@@ -8675,6 +9069,7 @@
     "eval_file": "2026-04-02T04-43-59+00-00_llm-direct-match-all_gMuwB72sNENfStgdPwSkHT.eval",
     "strategy": "llm_direct_match_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.28624,
       "accuracy_se": 0.004568,
@@ -8697,6 +9092,7 @@
     "eval_file": "2026-04-02T07-37-53+00-00_rrf-selective-llm-scoregap-all_97vNbtiij3ifrTdvcaPqJo.eval",
     "strategy": "rrf_selective_llm_scoregap_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.907856,
       "accuracy_se": 0.002923,
@@ -8719,6 +9115,7 @@
     "eval_file": "2026-04-02T07-43-31+00-00_query-expand-rrf-all_DbZwXkmtHx3Yyt2KEkgvxX.eval",
     "strategy": "query_expand_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.912759,
       "accuracy_se": 0.002852,
@@ -8741,6 +9138,7 @@
     "eval_file": "2026-04-02T08-14-48+00-00_persona-filter-rrf-all_9AtnPo26FbKx6mnQgmw4z7.eval",
     "strategy": "persona_filter_rrf_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.723669,
       "accuracy_se": 0.00452,
@@ -8763,6 +9161,7 @@
     "eval_file": "2026-04-02T08-21-14+00-00_cascade-rrf-ce-llm-all_dgy7EJ6Kk8XEYQpCgVUGX7.eval",
     "strategy": "cascade_rrf_ce_llm_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.907754,
       "accuracy_se": 0.002925,
@@ -8785,6 +9184,7 @@
     "eval_file": "2026-04-02T08-26-55+00-00_rrf-llm-rerank-k10-all_MLEWQRFcekswziD3ThtKLk.eval",
     "strategy": "rrf_llm_rerank_k10_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.887629,
       "accuracy_se": 0.003192,
@@ -8807,6 +9207,7 @@
     "eval_file": "2026-04-02T08-33-35+00-00_rrf-llm-rerank-k3-all_NoQ5xZRiyYzPpAu7A6YGig.eval",
     "strategy": "rrf_llm_rerank_k3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.917969,
       "accuracy_se": 0.002774,
@@ -8829,6 +9230,7 @@
     "eval_file": "2026-04-02T08-39-44+00-00_rrf-llm-rerank-k5-all_DnHMxYYMd5NnGYBz9jEkVf.eval",
     "strategy": "rrf_llm_rerank_k5_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.92277,
       "accuracy_se": 0.002698,
@@ -8851,6 +9253,7 @@
     "eval_file": "2026-04-02T08-46-00+00-00_rrf-llm-rerank-k7-all_bQHGaUGqDyyaJpFuL4Vnqa.eval",
     "strategy": "rrf_llm_rerank_k7_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.913168,
       "accuracy_se": 0.002846,
@@ -8873,6 +9276,7 @@
     "eval_file": "2026-04-02T08-52-27+00-00_rrf-llm-rerank-k15-all_49yzh6DN3mHmMk2hyU7HQu.eval",
     "strategy": "rrf_llm_rerank_k15_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.882419,
       "accuracy_se": 0.003256,
@@ -8895,6 +9299,7 @@
     "eval_file": "2026-04-02T08-59-42+00-00_rrf-selective-llm-agree3-all_PxuGFn9XHKbHmsm8EQqfda.eval",
     "strategy": "rrf_selective_llm_agree3_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.888242,
       "accuracy_se": 0.003184,
@@ -8917,6 +9322,7 @@
     "eval_file": "2026-04-02T09-04-46+00-00_rrf-selective-llm-agree2-all_aqrzzuEBeNS9UUK7D7AF5K.eval",
     "strategy": "rrf_selective_llm_agree2_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.902135,
       "accuracy_se": 0.003003,
@@ -8939,6 +9345,7 @@
     "eval_file": "2026-04-02T09-08-57+00-00_fast-selective-dense-all_Ns9CoSev7dZvp5kkU7rtjy.eval",
     "strategy": "fast_selective_dense_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.922055,
       "accuracy_se": 0.00271,
@@ -8961,6 +9368,7 @@
     "eval_file": "2026-04-02T09-14-44+00-00_dense-llm-rerank-all_nfXp9Jd6Kb37whGfP7Jwk4.eval",
     "strategy": "dense_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.904178,
       "accuracy_se": 0.002975,
@@ -8983,6 +9391,7 @@
     "eval_file": "2026-04-02T09-20-57+00-00_sparse-llm-rerank-all_9YHJTkkKfRBp77d5VuFJc5.eval",
     "strategy": "sparse_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.860353,
       "accuracy_se": 0.003503,
@@ -9005,6 +9414,7 @@
     "eval_file": "2026-04-02T09-25-50+00-00_bm25-llm-rerank-all_2ionJqFJnzDqDYLQYWk3Gr.eval",
     "strategy": "bm25_llm_rerank_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.768516,
       "accuracy_se": 0.004263,
@@ -9027,6 +9437,7 @@
     "eval_file": "2026-04-02T09-30-26+00-00_rrf-llm-oos-k10-candidate_Qo6chowuqJX2dDpEUaRQ8F.eval",
     "strategy": "rrf_llm_oos_k10_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.175707,
       "accuracy_se": 0.003847,
@@ -9049,6 +9460,7 @@
     "eval_file": "2026-04-02T09-46-06+00-00_rrf-llm-oos-k3-candidate_AA6UpwNbV8GVW4HAAALRPt.eval",
     "strategy": "rrf_llm_oos_k3_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.15875,
       "accuracy_se": 0.003694,
@@ -9071,6 +9483,7 @@
     "eval_file": "2026-04-02T10-01-00+00-00_rrf-llm-oos-k7-candidate_CcqKFE9oCikvc2HBaYMYYv.eval",
     "strategy": "rrf_llm_oos_k7_candidate",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.179181,
       "accuracy_se": 0.003876,
@@ -9093,6 +9506,7 @@
     "eval_file": "2026-04-02T10-16-29+00-00_rrf-selective-llm-agree3-oos-all_NGkvQC2Q8WfzukQpAnV5jN.eval",
     "strategy": "rrf_selective_llm_agree3_oos_all",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.892022,
       "accuracy_se": 0.003137,
@@ -9115,6 +9529,7 @@
     "eval_file": "2026-03-09T20-47-38+00-00_llm-direct-match-all_4nMPiCbiFLqLNLwBCZHSs2.eval",
     "strategy": "llm_direct_match_all_unbounded_tokens",
     "samples": 9789,
+    "completed_samples": 9789,
     "metrics": {
       "accuracy": 0.918582,
       "accuracy_se": 0.002764,

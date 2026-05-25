@@ -763,6 +763,39 @@
     "machine": "skorge",
     "model": "gpt-oss-20b",
     "model_folder": "gpt-oss-20b",
+    "strategy": "llm_direct_match_all",
+    "tiers": {
+      "easy": {
+        "accuracy": 0.977638,
+        "se": 0.002071,
+        "correct": 4984,
+        "total": 5098
+      },
+      "medium": {
+        "accuracy": 0.859241,
+        "se": 0.005149,
+        "correct": 3919,
+        "total": 4561
+      },
+      "hard": {
+        "accuracy": 0.796296,
+        "se": 0.038755,
+        "correct": 86,
+        "total": 108
+      },
+      "expert": {
+        "accuracy": 0.136364,
+        "se": 0.073165,
+        "correct": 3,
+        "total": 22
+      }
+    }
+  },
+  {
+    "benchmark": "retriever-llm",
+    "machine": "skorge",
+    "model": "gpt-oss-20b",
+    "model_folder": "gpt-oss-20b",
     "strategy": "llm_listwise_rerank_dense_candidate",
     "tiers": {
       "easy": {
@@ -847,39 +880,6 @@
         "accuracy": 0.953704,
         "se": 0.020219,
         "correct": 103,
-        "total": 108
-      },
-      "expert": {
-        "accuracy": 0.136364,
-        "se": 0.073165,
-        "correct": 3,
-        "total": 22
-      }
-    }
-  },
-  {
-    "benchmark": "retriever-llm",
-    "machine": "skorge",
-    "model": "gpt-oss-20b",
-    "model_folder": "gpt-oss-20b",
-    "strategy": "llm_direct_match_all",
-    "tiers": {
-      "easy": {
-        "accuracy": 0.939192,
-        "se": 0.003347,
-        "correct": 4788,
-        "total": 5098
-      },
-      "medium": {
-        "accuracy": 0.768691,
-        "se": 0.006244,
-        "correct": 3506,
-        "total": 4561
-      },
-      "hard": {
-        "accuracy": 0.685185,
-        "se": 0.044691,
-        "correct": 74,
         "total": 108
       },
       "expert": {

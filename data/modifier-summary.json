@@ -7,6 +7,7 @@
     "eval_file": "2026-04-19T15-19-11+00-00_modifier-benchmark-task_YBtJsab8eLNsfZHsaW4uQN.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.7142,
@@ -49,6 +50,7 @@
     "eval_file": "2026-04-04T03-28-53+00-00_modifier-benchmark-task_V6cqKXBFFLVQDAdsNRoUXL.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.9594,
@@ -91,6 +93,7 @@
     "eval_file": "2026-04-05T13-57-22+00-00_modifier-benchmark-task_WFFpkztBGDb4MuHWDz2Tod.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.9363,
@@ -133,6 +136,7 @@
     "eval_file": "2026-04-05T22-49-48+00-00_modifier-benchmark-task_RpapNLQS4ippYjabGt7Yq8.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.8257,
@@ -175,6 +179,7 @@
     "eval_file": "2026-04-03T11-31-15+00-00_modifier-benchmark-task_Kp6pVHobMXmpWyvfLV9b3W.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.9187,
@@ -217,6 +222,7 @@
     "eval_file": "2026-04-03T16-11-18+00-00_modifier-benchmark-task_7PHwYqgVrjdGvqQhqLZYfX.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.9404,
@@ -259,6 +265,7 @@
     "eval_file": "2026-04-06T13-44-18+00-00_modifier-benchmark-task_SPxMLK2b2XNWGdUwwQFU3U.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.9258,
@@ -301,6 +308,7 @@
     "eval_file": "2026-04-03T06-50-28+00-00_modifier-benchmark-task_Za5WaLosEZGf57UhtTQfWN.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.4163,
@@ -343,6 +351,7 @@
     "eval_file": "2026-04-05T02-29-24+00-00_modifier-benchmark-task_2iyrpKqZGJRvEEgjaGbjN6.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.4692,
@@ -385,6 +394,7 @@
     "eval_file": "2026-04-29T05-33-18+00-00_modifier-benchmark-task_ELAuTDhjZUhhWbUtzr89rt.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.7114,
@@ -427,6 +437,7 @@
     "eval_file": "2026-04-15T04-16-35+00-00_modifier-benchmark-task_jCwHEmgH9UYJgJpgqr76aq.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.9622,
@@ -469,6 +480,7 @@
     "eval_file": "2026-04-13T16-15-00+00-00_modifier-benchmark-task_YUg4LhRDCcgoUuKBBrXGQL.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.939,
@@ -511,6 +523,7 @@
     "eval_file": "2026-04-16T13-54-38+00-00_modifier-benchmark-task_Wi3VzNWwCJMzjTqwTBgbnP.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.8254,
@@ -553,6 +566,7 @@
     "eval_file": "2026-04-15T17-18-40+00-00_modifier-benchmark-task_cGH2xTtCEiHZFmmMgUxSCC.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.9139,
@@ -595,6 +609,7 @@
     "eval_file": "2026-04-20T19-10-17+00-00_modifier-benchmark-task_2bzHMAjbGhwhQ3nTeh8t52.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.9331,
@@ -637,6 +652,7 @@
     "eval_file": "2026-05-04T03-48-56+00-00_modifier-benchmark-task_6Yxz7TasnNgyegyXnZ3Y4g.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.9371,
@@ -679,6 +695,7 @@
     "eval_file": "2026-04-27T18-20-07+00-00_modifier-benchmark-task_LRhLQuKVBhfYQCM7rVYjeM.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.4154,
@@ -721,6 +738,7 @@
     "eval_file": "2026-04-28T15-09-41+00-00_modifier-benchmark-task_caur8NNCJc3Kd6CBDdPsVF.eval",
     "strategy": "modifier_benchmark_task",
     "samples": 1024,
+    "completed_samples": 1024,
     "metrics": {
       "Modification_Accuracy": {
         "value": 0.4676,
