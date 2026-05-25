@@ -1,4 +1,4 @@
-// data-loader.js — fetch the 6 dashboard JSONs and dispatch section initialization.
+// data-loader.js — fetch the 7 dashboard JSONs and dispatch section initialization.
 
 const DASHBOARD_DATA = {
   retrievalLlm: null,        // retrieval-llm-summary.json     (414)
@@ -6,6 +6,7 @@ const DASHBOARD_DATA = {
   retrievalLlmTiers: null,   // retrieval-llm-tiers.json       (414)
   modifier: null,            // modifier-summary.json          (18)
   modifierTemplates: null,   // modifier-templates.json        (378)
+  modifierDeltas: null,      // modifier-deltas.json           (9, paper-precision)
   crossMachineDeltas: null,  // cross-machine-deltas.json      (207)
   loaded: false,
 };
@@ -18,6 +19,7 @@ async function loadAllData() {
       retrievalLlmTiers,
       modifier,
       modifierTemplates,
+      modifierDeltas,
       crossMachineDeltas,
     ] = await Promise.all([
       fetch('data/retrieval-llm-summary.json').then(r => r.json()),
@@ -25,6 +27,7 @@ async function loadAllData() {
       fetch('data/retrieval-llm-tiers.json').then(r => r.json()),
       fetch('data/modifier-summary.json').then(r => r.json()),
       fetch('data/modifier-templates.json').then(r => r.json()),
+      fetch('data/modifier-deltas.json').then(r => r.json()),
       fetch('data/cross-machine-deltas.json').then(r => r.json()),
     ]);
 
@@ -33,6 +36,7 @@ async function loadAllData() {
     DASHBOARD_DATA.retrievalLlmTiers = retrievalLlmTiers;
     DASHBOARD_DATA.modifier = modifier;
     DASHBOARD_DATA.modifierTemplates = modifierTemplates;
+    DASHBOARD_DATA.modifierDeltas = modifierDeltas;
     DASHBOARD_DATA.crossMachineDeltas = crossMachineDeltas;
     DASHBOARD_DATA.loaded = true;
 

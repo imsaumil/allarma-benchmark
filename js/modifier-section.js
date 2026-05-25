@@ -439,11 +439,11 @@
   }
 
   // =========================================================================
-  // D3 — Compare Δ view (scatter + delta table), computed client-side
+  // D3 — Compare Δ view (scatter + delta table)
   // =========================================================================
-  // cross-machine-deltas.json is retrieval-only, so modifier deltas are joined
-  // here: for each active model, pair its SKORGE + DGX summary rows. Δ for a
-  // scorer = (dgx − sk) × 100 pp. Color: green ≤1 / amber ≤1.5 / red >1.5.
+  // Δ values come from PRE-COMPUTED modifier-deltas.json (paper full-precision
+  // rounding) via preDelta(); we pair SK+DGX summary rows here only to position
+  // the scatter and show the SK/DGX values. Color: green ≤1 / amber ≤1.5 / red >1.5.
   function deltaClass(d) { const x = Math.abs(d); return x <= 1 ? 'good' : x <= 1.5 ? 'warn' : 'bad'; }
 
   // Per-model joined rows (only models present on BOTH machines + legend-active).
@@ -458,6 +458,15 @@
 
   function scorerVal(row, key) { return row.metrics[key].value * 100; }
 
+  // Δ is read from PRE-COMPUTED modifier-deltas.json (Python full-precision rounding),
+  // NOT recomputed in JS — at the nemotron-9b Syn tie (3.125) JS rounds to +3.13 while
+  // the paper rounds half-to-even to +3.12. Pre-computed values match the paper exactly.
+  function preDelta(modelFolder, scorerKey) {
+    const md = (typeof DASHBOARD_DATA !== 'undefined' && DASHBOARD_DATA.modifierDeltas) || [];
+    const r = md.find((x) => x.model_folder === modelFolder);
+    return r ? r.scorers[scorerKey].delta_pp : null;
+  }
+
   function renderCompareScatter(body) {
     body.innerHTML = '<div id="modifier-chart" style="min-height:480px"></div>';
     const pairs = comparePairs();
@@ -471,7 +480,7 @@
     const key = 'Modification_Accuracy';
     const withDelta = pairs.map((p) => {
       const sk = scorerVal(p.sk, key), dgx = scorerVal(p.dg, key);
-      return { p, sk, dgx, delta: dgx - sk };
+      return { p, sk, dgx, delta: preDelta(p.sk.model_folder, key) };
     });
     const onDiag = withDelta.filter((d) => Math.abs(d.delta) <= 1.5);
     const off = withDelta.filter((d) => Math.abs(d.delta) > 1.5);
@@ -529,7 +538,7 @@
     pairs.forEach((p) => {
       SCORERS.forEach((s) => {
         const sk = scorerVal(p.sk, s.key), dgx = scorerVal(p.dg, s.key);
-        flat.push({ p, scorer: s, sk, dgx, delta: dgx - sk });
+        flat.push({ p, scorer: s, sk, dgx, delta: preDelta(p.sk.model_folder, s.key) });
       });
     });
     const sorted = [...flat].sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
