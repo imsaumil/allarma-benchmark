@@ -69,6 +69,27 @@ def test_retrieval_llm_row_captures_completed_samples(dgx_gpt_oss_direct_match_e
     assert row["completed_samples"] == 9715  # NEW: short run surfaced
 
 
+def test_modifier_row_captures_completed_samples(skorge_dir):
+    """Complete modifier run: completed_samples == total (1024)."""
+    eval_path = os.path.join(
+        skorge_dir, "modifier", "qwen3.5-0.8b",
+        "2026-04-03T06-50-28+00-00_modifier-benchmark-task_Za5WaLosEZGf57UhtTQfWN.eval",
+    )
+    row = edf.extract_modifier_row(eval_path, machine="skorge", model_folder="qwen3.5-0.8b")
+    assert row["completed_samples"] == 1024
+
+
+def test_allarma_row_captures_completed_samples(skorge_dir):
+    """Complete allarma baseline run: completed_samples == total (9789)."""
+    allarma_dir = os.path.join(skorge_dir, "retriever", "allarma-retriever-benchmark")
+    eval_file = sorted(f for f in os.listdir(allarma_dir) if f.endswith(".eval"))[0]
+    row = edf.extract_retrieval_allarma_row(
+        os.path.join(allarma_dir, eval_file), machine="skorge",
+    )
+    assert row["samples"] == 9789
+    assert row["completed_samples"] == 9789
+
+
 def test_extract_retrieval_llm_walker_yields_414_rows(skorge_dir, dgx_dir):
     """9 models × 23 strategies × 2 machines = 414 LLM-augmented rows.
     The unbounded variant is added separately (Task 11) so this walker yields 414."""

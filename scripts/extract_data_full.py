@@ -147,6 +147,7 @@ def extract_retrieval_allarma_row(eval_path: str, *, machine: str) -> dict:
     metrics = scores_block["metrics"]
 
     n_samples = eval_info["dataset"]["samples"]
+    completed_samples = h["results"].get("completed_samples", n_samples)
     accuracy = metrics.get("accuracy", {}).get("value", 0.0)
     se = math.sqrt(accuracy * (1 - accuracy) / n_samples) if n_samples > 0 else 0.0
 
@@ -163,6 +164,7 @@ def extract_retrieval_allarma_row(eval_path: str, *, machine: str) -> dict:
         "strategy": eval_info["task"],
         "scorer": scores_block["name"],
         "samples": n_samples,
+        "completed_samples": completed_samples,
         "metrics": {
             "accuracy": round(accuracy, 6),
             "accuracy_se": round(se, 6),
@@ -252,6 +254,7 @@ def extract_modifier_row(eval_path: str, *, machine: str, model_folder: str) -> 
         "eval_file": os.path.basename(eval_path),
         "strategy": eval_info["task"],
         "samples": n,
+        "completed_samples": h["results"].get("completed_samples", n),
         "metrics": _modifier_aggregate_metrics(h),
         "presence_score": round(sum(presence_scores) / n, 4) if n else 0.0,
         "removal_score": round(sum(removal_scores) / n, 4) if n else 0.0,
