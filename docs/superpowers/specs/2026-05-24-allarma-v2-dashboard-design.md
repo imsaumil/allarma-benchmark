@@ -179,7 +179,7 @@ Machine = **Compare Δ** keeps Families + legend + metric active; only the rende
 | View | Compare rendering | Δ source |
 |---|---|---|
 | **Chart** | **SKORGE-vs-DGX scatter** with the y=x line; points off the diagonal by >3 pp drawn red (the outlier cells) | per-machine summaries / `cross-machine-deltas.json` |
-| **Table** | color-coded **delta table/matrix** (green ≤1 · amber ≤1.5/3 · red beyond) | `cross-machine-deltas.json` (retriever-LLM, 207 rows); modifier & baseline deltas computed client-side from per-machine summaries |
+| **Table** | color-coded **delta table/matrix** (green ≤1 · amber ≤1.5/3 · red beyond) | retrieval: `cross-machine-deltas.json` (207); modifier: **`modifier-deltas.json` (9, pre-computed at paper full-precision — fixes the nemotron-9b Syn tie to +3.12)**; baseline deltas client-side (follow-up) |
 
 ## 7. Data and vocabulary
 
@@ -187,7 +187,8 @@ Machine = **Compare Δ** keeps Families + legend + metric active; only the rende
 `retrieval-llm-summary.json` 414 · `retrieval-allarma-summary.json` 116 ·
 `retrieval-llm-tiers.json` 414 · `modifier-summary.json` 18 ·
 `modifier-templates.json` 378 (9×2×21) · `cross-machine-deltas.json` 207
-(retriever-LLM only). Total audited production files **548 = 18 + 414 + 116**.
+(retriever-LLM only) · `modifier-deltas.json` 9 (pre-computed modifier Δ, paper-precision).
+Total audited production files **548 = 18 + 414 + 116**.
 Retrieval + allarma + modifier rows each carry a `timing` block (median/mean/max of
 per-sample `working_time`) and `completed_samples`.
 
