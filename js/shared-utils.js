@@ -69,7 +69,7 @@ function STRATEGY_FAMILY(strategy, benchmark) {
 function buildLogUrl(modelFolder, evalFile, benchmark) {
   const category = benchmark === 'modifier' ? 'modifier' : 'retriever';
   const encodedFile = String(evalFile).replace(/\+/g, '%2B');
-  return 'https://imsaumil-allarma-benchmark-logs-full.hf.space/#/logs/' +
+  return 'https://imsaumil-allarma-benchmark.hf.space/#/logs/' +
     category + '/' + modelFolder + '/' + encodedFile;
 }
 

@@ -166,7 +166,7 @@ per-template heatmap retained as a sub-view.
 
 ### §3 Logs / §4 About
 
-Logs → full-corpus HF Space (`imsaumil/allarma-benchmark-logs-full`), cold-start note.
+Logs → full-corpus HF Space (`imsaumil/allarma-benchmark`), cold-start note.
 About → Applied Energy citation (PES author order; link to CIGRE predecessor); **both
 machines' hardware** — SKORGE: AMD Ryzen 9 7950X · RTX 4090 24 GB · 128 GB DDR5 ·
 2 TB NVMe · vLLM (OS to confirm); **DGX Spark: spec line = TODO (user to supply)**;

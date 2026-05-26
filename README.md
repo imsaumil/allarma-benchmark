@@ -25,6 +25,6 @@ gpt-oss-20b/llm_direct_match_all max_tokens comparison.
 ## Deployment
 
 - **Dashboard:** Push to GitHub, enable GitHub Pages on `master` branch.
-- **Eval logs (InspectAI viewer):** HuggingFace Docker space `imsaumil/allarma-benchmark-logs-full` snapshot-downloads from HF dataset `imsaumil/allarma-benchmark-eval-logs-full` on cold start.
+- **Eval logs (InspectAI viewer):** HuggingFace Docker space `imsaumil/allarma-benchmark` snapshot-downloads from HF dataset `imsaumil/allarma-benchmark` on cold start.
 
 Predecessor (CIGRE 2026, 3-model subset): https://imsaumil.github.io/allarma-benchmark-eval-dashboard/
