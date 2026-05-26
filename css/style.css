@@ -196,8 +196,16 @@ section[id] { scroll-margin-top: 72px; }
     color: #fff; padding: 0.7rem; border-radius: 7px; font-weight: 700;
 }
 
+/* Overview pipeline diagram */
+.overview-diagram { margin: 0 0 1rem; text-align: center; }
+.overview-diagram img {
+    max-width: 100%; height: auto; border: 1px solid #e9ecef; border-radius: 8px;
+    background: #fff; padding: 0.5rem;
+}
+
 /* Caveats callout (Overview) */
 .caveat {
     margin-top: 1rem; border-left: 4px solid #b7791f; background: #fbf3e2;
     border-radius: 6px; padding: 0.7rem 1rem; color: #6b541d; font-size: 0.85rem;
 }
+.caveat a { color: #1565c0; font-weight: 600; }
