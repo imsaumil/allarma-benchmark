@@ -468,7 +468,7 @@
       traces.push({
         name: 'Non-LLM baseline', type: 'bar', orientation: 'h',
         x: xs, y: yCats, marker: { color: '#90a4ae' },
-        text: texts, textposition: 'outside', textfont: { size: 15, family: 'Manrope', color: '#1C1C1C' },
+        text: texts, textposition: 'outside', textfont: CHART_FONTS.annotation,
         hovertext: hovers, hoverinfo: 'text', cliponaxis: false, constraintext: 'none',
       });
     } else {
@@ -515,7 +515,7 @@
             x: xs, y: ys, width: widths,
             marker: { color: modelColor(model) },
             customdata: customs,
-            text: texts, textposition: 'outside', textfont: { size: 15, family: 'Manrope', color: '#1C1C1C' },
+            text: texts, textposition: 'outside', textfont: CHART_FONTS.annotation,
             hovertext: hovers, hoverinfo: 'text', cliponaxis: false, constraintext: 'none',
           });
         }
@@ -526,19 +526,19 @@
       barmode: isBase ? 'group' : 'overlay',                                /* LLM/Pure use overlay so tight-pack y-positions render adjacently */
       bargap: 0.25, bargroupgap: 0.18,                                      /* group params still affect baseline single-trace spacing */
       height: Math.max(180, yCats.length * nSeries * 20 + 120),             /* 20px/bar slot ≥ 15px label height → no vertical overlap */
-      margin: { l: 300, r: 100, t: 20, b: 40 },                             /* fixed l/r: align y-axes across family charts + room for outside % labels */
-      xaxis: { title: def.label, automargin: true, zeroline: true },
+      margin: CHART_MARGINS.familyBars,                                     /* fixed l/r: aligns y-axes across the 3 family charts + room for outside % labels */
+      xaxis: { title: { text: def.label, font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, automargin: true, zeroline: true, range: def.pct ? CHART_RANGE_PCT : undefined },
       yaxis: isBase ? {
         automargin: false,
         tickmode: 'array', tickvals: yCats, ticktext: yCats,                /* force EVERY strategy name to render (no Plotly auto-thinning) */
-        tickfont: { family: 'ui-monospace, monospace', size: 13 },
+        tickfont: CHART_FONTS.axisTickMono,
       } : {
         automargin: false,
         tickmode: 'array',
         tickvals: yCats.map((_, i) => i),                                   /* tight-pack uses numeric y-positions */
         ticktext: yCats,
         range: [-0.5, yCats.length - 0.5],                                  /* keep all rows visible with half-band padding */
-        tickfont: { family: 'ui-monospace, monospace', size: 13 },
+        tickfont: CHART_FONTS.axisTickMono,
       },
       showlegend: false,   /* model color key is the LLM legend chips above (no redundant chart legend) */
       font: { family: 'Manrope, sans-serif' },
@@ -820,13 +820,13 @@
       { name: '|Δ| > 3 pp', type: 'scatter', mode: 'markers+text', x: off.map((d) => mk(d).x), y: off.map((d) => mk(d).y),
         marker: { color: '#c5384a', size: 11, opacity: 0.9, line: { color: '#7a1f2b', width: 1 } },
         text: off.map((d) => `${modelDisplay(d.model)}/${d.strategy.replace(/_all$|_candidate$/, '')} (${d.delta_pp >= 0 ? '+' : ''}${d.delta_pp.toFixed(2)})`),
-        textposition: 'middle right', textfont: { color: '#c5384a', size: 9 },
+        textposition: 'middle right', textfont: CHART_FONTS.annotationWarn,
         hovertext: off.map(hover), hoverinfo: 'text' },
     ];
     const layout = {
       height: 520, margin: { l: 60, r: 40, t: 30, b: 55 },
-      xaxis: { title: 'SKORGE Accuracy (%)', range: [lo, hi], zeroline: false },
-      yaxis: { title: 'DGX Spark Accuracy (%)', range: [lo, hi], zeroline: false, scaleanchor: 'x', scaleratio: 1 },
+      xaxis: { title: { text: 'SKORGE Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, range: [lo, hi], zeroline: false },
+      yaxis: { title: { text: 'DGX Spark Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, range: [lo, hi], zeroline: false, scaleanchor: 'x', scaleratio: 1 },
       legend: { orientation: 'h', y: 1.06, font: { size: 10 } },
       font: { family: 'Manrope, sans-serif' },
       hoverlabel: {                                                          /* white tooltip card, consistent Manrope */
@@ -979,7 +979,8 @@
 
     const layout = {
       barmode: 'group', height: 380, margin: { t: 30, b: 50, l: 50, r: 20 },
-      yaxis: { title: 'Accuracy (%)', range: [0, 105], tickfont: { size: 13 } },
+      xaxis: { tickfont: CHART_FONTS.axisTick },
+      yaxis: { title: { text: 'Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, range: [0, 105] },
       showlegend: false,   /* models keyed by the LLM legend chips */
       font: { family: 'Manrope, sans-serif' },
       hoverlabel: {                                                          /* white tooltip card, consistent Manrope */
@@ -1031,7 +1032,8 @@
     });
     const layout = {
       height: 440, margin: { t: 30, b: 50, l: 50, r: 20 },
-      xaxis: { title: 'Avg Tokens/Sample (cost proxy)' }, yaxis: { title: 'Accuracy (%)' },
+      xaxis: { title: { text: 'Avg Tokens/Sample (cost proxy)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick },
+      yaxis: { title: { text: 'Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick },
       showlegend: false,   /* models keyed by the LLM legend chips */
       font: { family: 'Manrope, sans-serif' },
       hoverlabel: {                                                          /* white tooltip card, consistent Manrope */

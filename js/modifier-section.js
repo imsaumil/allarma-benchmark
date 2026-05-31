@@ -301,13 +301,13 @@
 
     const trace = {
       type: 'bar', x: xs, y: ys, marker: { color: colors },
-      text: texts, textposition: 'outside', textfont: { size: 10 },
+      text: texts, textposition: 'outside', textfont: CHART_FONTS.annotation,
       hovertext: hovers, hoverinfo: 'text', cliponaxis: false,
     };
     const layout = {
       height: 460, margin: { l: 60, r: 30, t: 30, b: 90 },
-      xaxis: { tickangle: -35, automargin: true },
-      yaxis: { title: def.label, automargin: true, zeroline: true, rangemode: 'tozero' },
+      xaxis: { tickfont: CHART_FONTS.axisTick, tickangle: -35, automargin: true },
+      yaxis: { title: { text: def.label, font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, automargin: true, zeroline: true, rangemode: 'tozero' },
       font: { family: 'Manrope, sans-serif' },
       hoverlabel: {                                                          /* white tooltip card, consistent Manrope */
         bgcolor: '#ffffff', bordercolor: '#CBD5E1',
@@ -543,14 +543,14 @@
         x: off.map((d) => d.sk), y: off.map((d) => d.dgx),
         marker: { color: '#c5384a', size: 13, opacity: 0.9, line: { color: '#7a1f2b', width: 1 } },
         text: off.map((d) => `${modelDisplay(d.p.model)} (${d.delta >= 0 ? '+' : ''}${d.delta.toFixed(2)})`),
-        textposition: 'top center', textfont: { color: '#c5384a', size: 9 },
+        textposition: 'top center', textfont: CHART_FONTS.annotationWarn,
         hovertext: off.map(hover), hoverinfo: 'text' },
     ];
     const layout = {
       height: 520, margin: { l: 60, r: 40, t: 30, b: 55 },
-      title: { text: 'Modification Accuracy — SKORGE vs DGX Spark', font: { size: 13 } },
-      xaxis: { title: 'SKORGE Modification Accuracy (%)', range: [lo, hi], zeroline: false },
-      yaxis: { title: 'DGX Spark Modification Accuracy (%)', range: [lo, hi], zeroline: false, scaleanchor: 'x', scaleratio: 1 },
+      title: { text: 'Modification Accuracy — SKORGE vs DGX Spark', font: CHART_FONTS.axisTitle },
+      xaxis: { title: { text: 'SKORGE Modification Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, range: [lo, hi], zeroline: false },
+      yaxis: { title: { text: 'DGX Spark Modification Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, range: [lo, hi], zeroline: false, scaleanchor: 'x', scaleratio: 1 },
       legend: { orientation: 'h', y: 1.08, font: { size: 10 } },
       font: { family: 'Manrope, sans-serif' },
       hoverlabel: {                                                          /* white tooltip card, consistent Manrope */
@@ -715,8 +715,8 @@
     const layout = {
       height: Math.max(320, models.length * 34 + 140),
       margin: { l: 110, r: 30, t: 20, b: 60 },
-      xaxis: { title: 'Query template', tickangle: -45, automargin: true },
-      yaxis: { automargin: true },
+      xaxis: { title: { text: 'Query template', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, tickangle: -45, automargin: true },
+      yaxis: { tickfont: CHART_FONTS.axisTick, automargin: true },
       font: { family: 'Manrope, sans-serif' },
       hoverlabel: {                                                          /* white tooltip card, consistent Manrope */
         bgcolor: '#ffffff', bordercolor: '#CBD5E1',

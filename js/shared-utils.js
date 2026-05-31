@@ -103,6 +103,26 @@ function exportJSONToCSV(data, columns, filename) {
   URL.revokeObjectURL(url);
 }
 
+// Single source of truth for Plotly font styles — every chart pulls from here
+// so annotation labels and axis title/tick fonts are identical across the dashboard.
+const CHART_FONTS = {
+  annotation:     { family: 'Manrope, sans-serif',   size: 15, color: '#1C1C1C' },  /* % labels / bar value text */
+  annotationWarn: { family: 'Manrope, sans-serif',   size: 10, color: '#c5384a' },  /* off-diagonal scatter warnings (kept small + red per design) */
+  axisTitle:      { family: 'Manrope, sans-serif',   size: 15, color: '#1C1C1C' },  /* xaxis/yaxis title */
+  axisTick:       { family: 'Manrope, sans-serif',   size: 15, color: '#37474f' },  /* default tick labels */
+  axisTickMono:   { family: 'ui-monospace, monospace', size: 15, color: '#1C1C1C' },/* strategy-name ticks on family bars */
+};
+
+// Margin for the three retrieval family-bar charts (long strategy names at 15px monospace y-tick).
+// Other charts keep their own margins (per design — they have short y-labels and different layouts).
+const CHART_MARGINS = {
+  familyBars: { l: 340, r: 100, t: 20, b: 50 },
+};
+
+// Range to use on percentage-valued x-axis of the retrieval family bars (so every pct metric
+// — Accuracy, In-Scope, OOS, Trunc — shows ticks to 100, regardless of how high the data goes).
+const CHART_RANGE_PCT = [0, 100];
+
 // Expose on window for cross-file use (and for node-based assertions).
 if (typeof window !== 'undefined') {
   window.MODEL_COLORS = MODEL_COLORS;
@@ -110,6 +130,9 @@ if (typeof window !== 'undefined') {
   window.REASONING_MODELS = REASONING_MODELS;
   window.METRIC_LABELS = METRIC_LABELS;
   window.STRATEGY_FAMILY = STRATEGY_FAMILY;
+  window.CHART_FONTS = CHART_FONTS;
+  window.CHART_MARGINS = CHART_MARGINS;
+  window.CHART_RANGE_PCT = CHART_RANGE_PCT;
   window.buildLogUrl = buildLogUrl;
   window.formatRuntime = formatRuntime;
   window.exportJSONToCSV = exportJSONToCSV;
@@ -117,6 +140,7 @@ if (typeof window !== 'undefined') {
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     MODEL_COLORS, MODEL_DISPLAY, REASONING_MODELS, METRIC_LABELS,
-    STRATEGY_FAMILY, buildLogUrl, formatRuntime, exportJSONToCSV,
+    STRATEGY_FAMILY, CHART_FONTS, CHART_MARGINS, CHART_RANGE_PCT,
+    buildLogUrl, formatRuntime, exportJSONToCSV,
   };
 }
