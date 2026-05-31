@@ -16,24 +16,17 @@ function initOverview() {
       <img src="assets/process_diagram.png"
            alt="aLLarMa two-stage pipeline: user question to Stage 1 template retriever (with library of predefined queries), Stage 2 template modifier, query executor over the knowledge graph database, and results."
            width="1600" height="661" loading="lazy">
+      <figcaption class="fig-cap">
+        <strong>Figure 1.</strong> The aLLarMa two-stage constrained GraphRAG pipeline:
+        <span class="stage1">Stage 1</span> retrieves a pre-validated query template;
+        <span class="stage2">Stage 2</span> modifies it within marked boundaries.
+      </figcaption>
     </figure>
 
-    <p class="section-desc">
-      aLLarMa is a two-stage constrained GraphRAG framework: Stage 1 retrieves a
-      pre-validated query template, Stage 2 modifies it within marked boundaries.
-      This dashboard benchmarks both stages across 9 open-weight LLMs on two
-      machines (a consumer workstation with an RTX 4090 and an NVIDIA DGX Spark
-      edge appliance).
-    </p>
-
-    <p class="section-desc" style="font-weight:600;color:#1C1C1C">
-      548 audited production eval logs &middot; 9 LLMs (0.8B&ndash;20B) &middot; 2 machines.
-    </p>
-
-    <div class="caveat">
-      <h3 style="margin:0 0 .5rem;color:#6b541d;font-size:1rem">Read the numbers with these caveats</h3>
-
-      <p style="margin:0 0 .7rem">
+    <details class="caveat">
+      <summary>Read the numbers with these caveats</summary>
+      <div class="caveat-body">
+      <p>
         <strong>Read the spread, not just the mean.</strong> Per-model retriever
         <em>means</em> are reproducible across machines (every per-model mean
         &Delta;accuracy within &plusmn;0.55&nbsp;pp), but a few individual
@@ -41,7 +34,7 @@ function initOverview() {
         The points below list what the averages hide.
       </p>
 
-      <ul style="margin:0;padding-left:1.2rem;line-height:1.5">
+      <ul>
         <li>
           <strong>4 retriever (model,&nbsp;strategy) cells exceed &plusmn;3&nbsp;pp</strong>,
           and none is explained by <code>max_tokens</code>:
@@ -82,12 +75,13 @@ function initOverview() {
         </li>
       </ul>
 
-      <p style="margin:.7rem 0 0;font-size:.8rem;color:#6b541d">
+      <p class="caveat-foot">
         Authoritative full lists:
         <a href="${RETR_DOC}">retriever comparison</a> &middot;
         <a href="${MOD_DOC}">modifier comparison</a>.
       </p>
-    </div>
+      </div>
+    </details>
   `;
 }
 

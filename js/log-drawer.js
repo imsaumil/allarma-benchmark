@@ -42,7 +42,7 @@
       `<div class="db">` +
         (machine ? `<div style="font-size:.8rem;color:#495057;margin-bottom:.6rem">Machine: <b style="color:#1C1C1C">${esc(machine)}</b></div>` : '') +
         bodyHTML +
-        `<p style="font-size:.78rem;color:#979797;margin-top:1rem">Every metric is computed from this run's per-sample data.</p>` +
+        `<p style="font-size:.8rem;color:#979797;margin-top:1rem">Every metric is computed from this run's per-sample data.</p>` +
         `<a class="go" href="${esc(logUrl)}" target="_blank" rel="noopener">Open in InspectAI viewer ↗</a>` +
       `</div>`;
 

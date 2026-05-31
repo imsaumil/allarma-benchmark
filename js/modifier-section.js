@@ -107,18 +107,18 @@
 
       <div class="filterbar" id="mod-filterbar">
         <div class="fg">
+          <span class="lbl">View</span>
+          <div class="seg alt" id="mod-view">
+            <button data-v="chart">Chart</button>
+            <button data-v="table">Table</button>
+          </div>
+        </div>
+        <div class="fg" style="margin:0 auto">
           <span class="lbl">Machine</span>
           <div class="seg" id="mod-machine">
             <button data-m="skorge">SKORGE</button>
             <button data-m="dgx">DGX Spark</button>
             <button data-m="cmp">Compare Δ</button>
-          </div>
-        </div>
-        <div class="fg" style="margin-left:auto">
-          <span class="lbl">View</span>
-          <div class="seg alt" id="mod-view">
-            <button data-v="chart">Chart</button>
-            <button data-v="table">Table</button>
           </div>
         </div>
       </div>
@@ -129,7 +129,7 @@
       </div>
 
       <div id="mod-body" style="margin-top:1rem"></div>
-      <p class="hint" id="mod-foot" style="font-size:.74rem;color:#979797;font-weight:600;margin-top:.6rem"></p>
+      <p class="hint" id="mod-foot" style="font-size:.8rem;color:#979797;font-weight:600;margin-top:.6rem"></p>
 
       <div id="mod-subcharts" style="margin-top:1.6rem"></div>
     `;
@@ -197,11 +197,11 @@
     const nMod = activeModels().length;
     if (state.machine === 'cmp') {
       foot.innerHTML = 'Compare Δ = DGX − SKORGE (pp) per scorer. Cells |Δ|&gt;1.5 pp drawn red, ≤1.5 amber, ≤1 green. ' +
-        'Legend filters models. <b>logs ↗</b> per row opens the eval in the InspectAI viewer.';
+        'Legend filters models. The <b>[sk ↗] [dgx ↗]</b> links on each row open the per-machine eval in the InspectAI viewer.';
     } else {
       foot.innerHTML = `Machine <b>${MACHINE_LABEL[state.machine]}</b> · <b>${nMod}</b> of 9 LLMs · ` +
         'grouped bars, one per model; the metric selector (Chart view) switches the plotted scorer. ' +
-        '<b>logs ↗</b> per row in Table view; click any bar to open the drawer.';
+        'Click any model name in Table view to open its eval in the InspectAI viewer, or any bar to open the drawer.';
     }
   }
 
@@ -215,7 +215,7 @@
         `<option value="${k}"${k === state.metric ? ' selected' : ''}>${METRICS[k].label}</option>`).join('');
       return `<optgroup label="${g.group}">${inner}</optgroup>`;
     }).join('');
-    return `<div class="fg" style="margin-bottom:.6rem"><span class="lbl">Metric</span>` +
+    return `<div class="fg" style="margin-bottom:.7rem"><span class="lbl">View metric</span>` +
       `<select class="ctl" id="mod-metric">${opts}</select></div>`;
   }
 
@@ -243,26 +243,61 @@
       return;
     }
 
-    const lower = LOWER_BETTER.has(key);
     const fmt = (v) => (v === null ? '' : (def.pct ? v.toFixed(2) + '%' : (Math.abs(v) >= 1000 ? Math.round(v).toLocaleString() : v.toFixed(2))));
 
-    // One vertical bar per active model, ordered best→worst on the selected metric.
+    // One vertical bar per active model, ordered by MODEL_ORDER — matches the LLM chips' left-to-right
+    // order at the top of the section (consistent with how the retrieval bars stack).
     const scored = models.map((m) => {
       const row = rowFor(machineJson, m);
       return { model: m, row, v: row ? metricVal(row, key) : null };
     });
-    scored.sort((a, b) => {
-      const av = a.v === null ? (lower ? Infinity : -Infinity) : a.v;
-      const bv = b.v === null ? (lower ? Infinity : -Infinity) : b.v;
-      return lower ? av - bv : bv - av;
-    });
 
-    const xs = scored.map((s) => modelDisplay(s.model) + (isReasoning(s.model) ? ' ✦' : ''));
-    const ys = scored.map((s) => s.v);
-    const colors = scored.map((s) => modelColor(s.model));
-    const texts = scored.map((s) => fmt(s.v));
-    const hovers = scored.map((s) => s.row
-      ? `<b>${modelDisplay(s.model)}</b><br>${def.label}: ${fmt(s.v)}` : '');
+    // Skip-zero rule (per user, 2026-05-31): drop models whose value is 0 or null on the selected metric.
+    const machineLabel = MACHINE_LABEL[state.machine] || state.machine;
+    const cleanLabel = def.label.replace(/ ?\(%\)$/, '').replace(/ ?\(s\)$/, '');
+    const kept = scored.filter((s) => s.v != null && s.v !== 0);
+    if (kept.length === 0) {
+      chartDiv.innerHTML =
+        '<div style="padding:1.25rem 1.5rem;margin:.4rem 0;color:#555;font-style:italic;'
+        + 'border:1px dashed #CBD5E1;border-radius:.5rem;background:#fafbfc;text-align:center;line-height:1.55">'
+        + `No active models have non-zero ${cleanLabel} on ${machineLabel} for the current selection.`
+        + '</div>';
+      return;
+    }
+
+    const xs = kept.map((s) => modelDisplay(s.model) + (isReasoning(s.model) ? ' ✦' : ''));
+    const ys = kept.map((s) => s.v);
+    const colors = kept.map((s) => modelColor(s.model));
+    const texts = kept.map((s) => fmt(s.v));
+    // Labeled key-value hover, matching the retrieval section: white card, Manrope, bold field names.
+    // Order: Model / Machine / <selected metric> / Latency / [ctx: Trunc · Tokens] / [short-run].
+    const isLatencySelected = key === 'timing_median' || key === 'timing_mean' || key === 'timing_max';
+    const buildHover = (s) => {
+      if (!s.row) return '';
+      const r = s.row;
+      const lines = [
+        `<b>Model:</b> ${modelDisplay(s.model)}${isReasoning(s.model) ? ' ✦' : ''}`,
+        `<b>Machine:</b> ${machineLabel}`,
+        `<b>${cleanLabel}:</b> <b>${fmt(s.v)}</b>`,
+      ];
+      if (!isLatencySelected && r.timing && r.timing.mean != null) {
+        lines.push(`<b>Latency:</b> ${r.timing.mean.toFixed(2)} s`);
+      }
+      const ctx = [];
+      if (r.truncation_rate != null && r.truncation_rate > 0 && key !== 'truncation_rate') {
+        ctx.push(`<b>Trunc:</b> ${(r.truncation_rate * 100).toFixed(2)}%`);
+      }
+      if (key !== 'avg_total' && r.tokens && r.tokens.avg_total != null) {
+        ctx.push(`<b>Tokens:</b> ${Math.round(r.tokens.avg_total).toLocaleString()}`);
+      }
+      if (ctx.length) lines.push(ctx.join(' · '));
+      const completedVal = r.completed_samples != null ? r.completed_samples : r.samples;
+      if (r.samples != null && completedVal != null && completedVal < r.samples) {
+        lines.push(`<i>${completedVal.toLocaleString()} / ${r.samples.toLocaleString()} completed</i>`);
+      }
+      return lines.join('<br>');
+    };
+    const hovers = kept.map(buildHover);
 
     const trace = {
       type: 'bar', x: xs, y: ys, marker: { color: colors },
@@ -274,6 +309,11 @@
       xaxis: { tickangle: -35, automargin: true },
       yaxis: { title: def.label, automargin: true, zeroline: true, rangemode: 'tozero' },
       font: { family: 'Manrope, sans-serif' },
+      hoverlabel: {                                                          /* white tooltip card, consistent Manrope */
+        bgcolor: '#ffffff', bordercolor: '#CBD5E1',
+        font: { family: 'Manrope, sans-serif', size: 13, color: '#1C1C1C' },
+        align: 'left',
+      },
       paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
     };
     Plotly.react('modifier-chart', [trace], layout, { responsive: true, displayModeBar: false });
@@ -282,7 +322,7 @@
     chartDiv.removeAllListeners && chartDiv.removeAllListeners('plotly_click');
     chartDiv.on && chartDiv.on('plotly_click', (ev) => {
       const pt = ev.points && ev.points[0]; if (!pt) return;
-      const s = scored[pt.pointNumber];
+      const s = kept[pt.pointNumber];                                          // index into the filtered set (skip-zero applied)
       if (s && s.row) openDrawerForRow(s.row, s.model);
     });
   }
@@ -385,7 +425,6 @@
         tok, tmean, thr,
         trunc,
         shortRun ? `<b style="color:#c5384a" title="short run">${completed}</b>` : completed,
-        `<span class="logbtn" data-ridx="${entries.indexOf(entry)}">logs ↗</span>`,
       ];
     });
 
@@ -396,21 +435,14 @@
         { title: 'Mod Accuracy ± SE' }, { title: 'Exec Success' }, { title: 'Answer Yield' },
         { title: 'Presence' }, { title: 'Removal' },
         { title: 'Avg Tokens' }, { title: 'Avg Time/Sample (s)' }, { title: 'Throughput (tok/s)' },
-        { title: 'Trunc %' }, { title: 'Completed / Total' }, { title: '', orderable: false },
+        { title: 'Trunc %' }, { title: 'Completed / Total' },
       ],
       order: [[1, 'desc']],
       pageLength: 25,
       scrollX: true,
       deferRender: true,
     });
-
-    document.querySelector('#modifier-table').addEventListener('click', (ev) => {
-      const btn = ev.target.closest('.logbtn');
-      if (!btn) return;
-      const idx = Number(btn.dataset.ridx);
-      const entry = entries[idx];
-      if (entry) openDrawerForRow(entry.src, entry.model);
-    });
+    // The Model column hyperlinks to the InspectAI viewer — no drilldown logbtn needed.
 
     const csvBtn = document.getElementById('mod-csv');
     if (csvBtn) csvBtn.addEventListener('click', () => exportTableCSV(entries));
@@ -484,8 +516,17 @@
     });
     const onDiag = withDelta.filter((d) => Math.abs(d.delta) <= 1.5);
     const off = withDelta.filter((d) => Math.abs(d.delta) > 1.5);
-    const hover = (d) => `<b>${modelDisplay(d.p.model)}</b><br>` +
-      `SK ${d.sk.toFixed(2)}% · DGX ${d.dgx.toFixed(2)}%<br>Δ ${d.delta >= 0 ? '+' : ''}${d.delta.toFixed(2)} pp`;
+    // Labeled key-value hover, matching the retrieval section. Δ value bolded for emphasis.
+    const hover = (d) => {
+      const sign = d.delta >= 0 ? '+' : '';
+      return [
+        `<b>Model:</b> ${modelDisplay(d.p.model)}${isReasoning(d.p.model) ? ' ✦' : ''}`,
+        `<b>Metric:</b> Modification Accuracy`,
+        `<b>SKORGE:</b> ${d.sk.toFixed(2)}%`,
+        `<b>DGX Spark:</b> ${d.dgx.toFixed(2)}%`,
+        `<b>Δ:</b> <b>${sign}${d.delta.toFixed(2)} pp</b>`,
+      ].join('<br>');
+    };
 
     const allv = withDelta.flatMap((d) => [d.sk, d.dgx]);
     const lo = Math.max(0, Math.floor(Math.min(...allv) - 3));
@@ -512,6 +553,11 @@
       yaxis: { title: 'DGX Spark Modification Accuracy (%)', range: [lo, hi], zeroline: false, scaleanchor: 'x', scaleratio: 1 },
       legend: { orientation: 'h', y: 1.08, font: { size: 10 } },
       font: { family: 'Manrope, sans-serif' },
+      hoverlabel: {                                                          /* white tooltip card, consistent Manrope */
+        bgcolor: '#ffffff', bordercolor: '#CBD5E1',
+        font: { family: 'Manrope, sans-serif', size: 13, color: '#1C1C1C' },
+        align: 'left',
+      },
       paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
     };
     Plotly.react('modifier-chart', traces, layout, { responsive: true, displayModeBar: false });
@@ -529,7 +575,7 @@
     if (modDataTable) { try { modDataTable.destroy(); } catch (e) {} modDataTable = null; }
     body.innerHTML =
       '<div style="margin-bottom:.6rem"><button class="btn-small" id="mod-csv">Export CSV</button>' +
-      '<span style="margin-left:1rem;font-size:.78rem"><span class="d good">|Δ|≤1</span> <span class="d warn">≤1.5</span> <span class="d bad">&gt;1.5 pp</span></span></div>' +
+      '<span style="margin-left:1rem;font-size:.8rem"><span class="d good">|Δ|≤1</span> <span class="d warn">≤1.5</span> <span class="d bad">&gt;1.5 pp</span></span></div>' +
       '<div class="tablewrap"><table id="modifier-table" class="display" style="width:100%"></table></div>';
 
     const pairs = comparePairs();
@@ -548,8 +594,8 @@
       const dgxUrl = buildLogUrl(d.p.dg.model_folder, d.p.dg.eval_file, 'modifier');
       const dCell = `<span class="d ${deltaClass(d.delta)}">${d.delta >= 0 ? '+' : ''}${d.delta.toFixed(2)}</span>`;
       const modelCell = `${modelDisplay(d.p.model)}${isReasoning(d.p.model) ? ' ✦' : ''} ` +
-        `<a href="${skUrl}" target="_blank" rel="noopener" title="SKORGE eval" style="font-size:.7rem">[sk ↗]</a> ` +
-        `<a href="${dgxUrl}" target="_blank" rel="noopener" title="DGX eval" style="font-size:.7rem">[dgx ↗]</a>`;
+        `<a href="${skUrl}" target="_blank" rel="noopener" title="SKORGE eval" style="font-size:.8rem">[sk ↗]</a> ` +
+        `<a href="${dgxUrl}" target="_blank" rel="noopener" title="DGX eval" style="font-size:.8rem">[dgx ↗]</a>`;
       return [modelCell, d.scorer.label, d.sk.toFixed(2), d.dgx.toFixed(2),
         { html: dCell, abs: Math.abs(d.delta), raw: d.delta }];
     });
@@ -608,7 +654,7 @@
         `<option value="${m.key}"${m.key === heatMetric ? ' selected' : ''}>${m.label}</option>`).join('');
       host.innerHTML = `
         <h3 style="color:#1565c0">2.4 · Per-template breakdown</h3>
-        <div class="fg" style="margin:.3rem 0 .6rem"><span class="lbl">Metric</span>
+        <div class="fg" style="margin:.3rem 0 .6rem"><span class="lbl">View metric</span>
           <select class="ctl" id="mod-heat-metric">${opts}</select>
           <span class="hint" id="mod-heat-note" style="margin-left:.6rem"></span>
         </div>
@@ -625,12 +671,14 @@
 
   function renderHeatmap() {
     const machineJson = subMachineJson();
+    const heatMachineLabel = machineJson === 'dgx_spark' ? 'DGX Spark' : 'SKORGE';
     const tmpl = (DASHBOARD_DATA.modifierTemplates || []).filter((r) => r.machine === machineJson);
     const templateIds = [...new Set(tmpl.map((r) => r.template_id))].sort();
     const models = activeModels(); // legend filters rows
     const def = HEATMAP_METRICS.find((m) => m.key === heatMetric);
 
     // z[modelRow][templateCol] = value × 100 (null if missing).
+    // Labeled key-value hover, matching retrieval + bar chart: Model / Machine / Template / Samples / <metric>.
     const z = [], hovertext = [];
     models.forEach((m) => {
       const zr = [], hr = [];
@@ -639,8 +687,19 @@
         const v = row ? row[heatMetric] : null;
         zr.push(v === null || v === undefined ? null : v * 100);
         hr.push(row
-          ? `<b>${modelDisplay(m)}</b><br>${tid} (n=${row.count})<br>${def.label}: ${(v * 100).toFixed(2)}%`
-          : `${modelDisplay(m)}<br>${tid}: —`);
+          ? [
+              `<b>Model:</b> ${modelDisplay(m)}${isReasoning(m) ? ' ✦' : ''}`,
+              `<b>Machine:</b> ${heatMachineLabel}`,
+              `<b>Template:</b> ${tid}`,
+              `<b>Samples:</b> ${row.count}`,
+              `<b>${def.label}:</b> <b>${(v * 100).toFixed(2)}%</b>`,
+            ].join('<br>')
+          : [
+              `<b>Model:</b> ${modelDisplay(m)}${isReasoning(m) ? ' ✦' : ''}`,
+              `<b>Machine:</b> ${heatMachineLabel}`,
+              `<b>Template:</b> ${tid}`,
+              `<b>${def.label}:</b> —`,
+            ].join('<br>'));
       });
       z.push(zr); hovertext.push(hr);
     });
@@ -659,6 +718,11 @@
       xaxis: { title: 'Query template', tickangle: -45, automargin: true },
       yaxis: { automargin: true },
       font: { family: 'Manrope, sans-serif' },
+      hoverlabel: {                                                          /* white tooltip card, consistent Manrope */
+        bgcolor: '#ffffff', bordercolor: '#CBD5E1',
+        font: { family: 'Manrope, sans-serif', size: 13, color: '#1C1C1C' },
+        align: 'left',
+      },
       paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
     };
     Plotly.react('mod-heat-chart', [trace], layout, { responsive: true, displayModeBar: false });

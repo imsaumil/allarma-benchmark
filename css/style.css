@@ -17,19 +17,22 @@ body {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 }
 .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
-.nav-title { font-weight: 700; font-size: 1.1rem; letter-spacing: 0.5px; }
-.nav-links { display: flex; align-items: center; gap: 0.25rem; }
+.nav-title { font-weight: 700; font-size: 1.28rem; letter-spacing: 0.5px; }
+.nav-links { display: flex; align-items: center; gap: 0.3rem; }
 .nav-links a {
-    color: #fff; text-decoration: none; font-size: 0.9rem;
+    color: #fff; text-decoration: none; font-size: 1rem;
     padding: 0.4rem 0.75rem; border-radius: 6px;
     opacity: 0.85; transition: all 0.2s;
 }
 .nav-links a:hover { opacity: 1; background: rgba(255,255,255,0.15); }
+/* Live Dashboard — clean white pill (CIGRE style; no shadow/animation) */
 .nav-pill {
-    background: rgba(255,255,255,0.2); color: #fff;
-    padding: 2px 10px; border-radius: 20px; font-weight: 600;
-    font-size: 0.7rem; letter-spacing: 0.3px;
+    background: #fff; color: #1565c0 !important;
+    padding: 0.35rem 1rem; border-radius: 20px; font-weight: 600;
+    font-size: 0.9rem; letter-spacing: 0.2px; opacity: 1 !important;
+    margin-right: 0.5rem;
 }
+.nav-pill:hover { background: #e3f2fd !important; }
 
 /* === Buttons (EPRI style) === */
 .btn {
@@ -50,7 +53,7 @@ body {
 
 /* === Sections === */
 section {
-    padding: 2rem 2rem; max-width: 1200px; margin: 0 auto;
+    padding: 2rem 2.25rem; max-width: 1440px; margin: 0 auto;
     background: #fff; border-radius: 8px;
     margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
@@ -59,15 +62,23 @@ section h2 {
     font-size: 1.5rem; color: #1565c0; font-weight: 700;
     border-bottom: 2px solid #1565c0; padding-bottom: 0.5rem; margin-bottom: 0.75rem;
 }
-section h3 { font-size: 1.05rem; color: #1C1C1C; font-weight: 600; margin: 1rem 0 0.5rem; }
-.section-desc { color: #495057; margin-bottom: 0.75rem; font-size: 0.95rem; }
+section h3 { font-size: 1.1rem; color: #1C1C1C; font-weight: 600; margin: 1rem 0 0.5rem; }
+.section-desc { color: #495057; margin-bottom: 0.75rem; font-size: 0.95rem; line-height: 1.55; }
+/* Uniform small / hint / footnote text */
+.hint { font-size: 0.8rem; color: #6c757d; font-weight: 600; }
 
 /* === Controls === */
 .control-group { display: inline-flex; align-items: center; gap: 0.5rem; margin: 0.5rem 1rem 0.5rem 0; }
-select {
-    padding: 0.4rem 0.6rem; border: 1px solid #CBD5E1; border-radius: 6px;
-    font-size: 0.9rem; font-family: inherit; background: #fff;
+select, .ctl {
+    font-family: inherit; font-weight: 600; font-size: 0.88rem; color: #1C1C1C;
+    padding: 0.4rem 1.9rem 0.4rem 0.7rem; border: 1px solid #CBD5E1; border-radius: 7px;
+    background-color: #fff; cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' fill='none' stroke='%23495057' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat: no-repeat; background-position: right 0.65rem center; background-size: 0.7rem;
+    -webkit-appearance: none; appearance: none; transition: border-color 0.15s, box-shadow 0.15s;
 }
+select:hover, .ctl:hover { border-color: #1565c0; }
+select:focus, .ctl:focus { outline: none; border-color: #1565c0; box-shadow: 0 0 0 3px rgba(21,101,192,0.15); }
 label { font-weight: 600; font-size: 0.9rem; color: #495057; }
 
 /* === Tables === */
@@ -117,38 +128,39 @@ section[id] { scroll-margin-top: 72px; }
     padding: 0.7rem 0.8rem; display: flex; gap: 1.4rem; align-items: center;
     flex-wrap: wrap; margin: 0.4rem 0 1rem;
 }
-.filterbar .fg { display: flex; align-items: center; gap: 0.5rem; }
-.filterbar .lbl {
-    font-weight: 700; font-size: 0.78rem; text-transform: uppercase;
+.fg { display: flex; align-items: center; gap: 0.6rem; }
+.lbl {
+    font-weight: 700; font-size: 0.85rem; text-transform: uppercase;
     letter-spacing: 0.04em; color: #495057;
 }
+/* (.ctl shares the unified select style above) */
 
 /* Segmented toggle (Machine, View) */
 .seg { display: inline-flex; background: #e7ecf3; border-radius: 7px; padding: 3px; }
 .seg button {
     border: 0; background: transparent; font-family: inherit; font-weight: 700;
-    font-size: 0.8rem; color: #495057; padding: 6px 12px; border-radius: 6px; cursor: pointer;
+    font-size: 0.88rem; color: #495057; padding: 6px 14px; border-radius: 6px; cursor: pointer;
 }
 .seg button.on { background: #1565c0; color: #fff; }
 .seg.alt button.on { background: #37474f; }
 
 /* Family checkboxes */
 .fam {
-    display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.85rem;
+    display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.92rem;
     font-weight: 600; cursor: pointer; user-select: none;
-    border: 1px solid #CBD5E1; border-radius: 7px; padding: 5px 10px; background: #fff;
+    border: 1px solid #CBD5E1; border-radius: 7px; padding: 6px 12px; background: #fff;
 }
 .fam.on { background: #e3f2fd; border-color: #9bc1ee; color: #1565c0; }
-.fam .cnt { font-size: 0.72rem; color: #979797; font-weight: 700; }
+.fam .cnt { font-size: 0.8rem; color: #979797; font-weight: 700; }
 .fam.on .cnt { color: #1565c0; }
 .fam input { accent-color: #1565c0; }
 
 /* LLM legend chips (color key + model filter) */
-.legend { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; }
+.legend { display: flex; gap: 0.45rem; flex-wrap: wrap; align-items: center; flex: 1; }
 .lgbox {
-    display: inline-flex; align-items: center; gap: 5px; font-size: 0.76rem;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 0.9rem;
     font-weight: 600; border: 1px solid #CBD5E1; border-radius: 20px;
-    padding: 3px 9px 3px 6px; cursor: pointer; background: #fff; user-select: none;
+    padding: 5px 12px; cursor: pointer; background: #fff; user-select: none; flex: 1 1 auto;
 }
 .lgbox .sw { display: inline-block; width: 11px; height: 11px; border-radius: 3px; }
 .lgbox .rz { font-size: 0.6rem; }
@@ -156,6 +168,33 @@ section[id] { scroll-margin-top: 72px; }
 
 /* Chart container box */
 .chartbox { border: 1px solid #e9ecef; border-radius: 8px; padding: 1rem 1.1rem; }
+
+/* Per-family subsections (single-machine Chart/Table views) */
+.fam-sub { margin: 0 0 1.1rem; }
+.fam-sub-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin: 0.6rem 0 0.4rem;
+}
+.fam-sub-head h3 { margin: 0; }                       /* reuse section h3 type, drop its margins */
+.expand-btn {
+    border: 1px solid #CBD5E1; background: #fff; color: #1565c0;
+    font-family: inherit; font-weight: 700; font-size: 0.8rem;
+    padding: 4px 12px; border-radius: 6px; cursor: pointer; transition: all 0.15s;
+}
+.expand-btn:hover { border-color: #1565c0; background: #e3f2fd; }
+/* Scroll container: default caps height to ~5 rows; Expand removes the cap.
+   Chart vs table get different caps via the view-modifier class. */
+.fam-scroll {
+    overflow-y: auto;
+    border: 1px solid #e9ecef; border-radius: 8px;
+}
+.fam-scroll.chart-scroll { max-height: 300px; }       /* ~5 strategy groups, then scroll */
+.fam-scroll.table-scroll { max-height: 250px; }       /* DataTables header + ~5 rows, then scroll */
+.fam-scroll.expanded { max-height: none; overflow: visible; }
+
+/* Dropdown category (optgroup) + option label fonts — consistent/readable */
+select optgroup { font-weight: 700; font-style: normal; color: #1565c0; font-size: 0.85rem; }
+select option { font-weight: 500; color: #1C1C1C; font-size: 0.9rem; }
 
 /* Delta cells (Compare view): green good / amber warn / red bad */
 .d { font-weight: 700; border-radius: 5px; padding: 1px 6px; font-size: 0.82rem; }
@@ -197,15 +236,36 @@ section[id] { scroll-margin-top: 72px; }
 }
 
 /* Overview pipeline diagram */
-.overview-diagram { margin: 0 0 1rem; text-align: center; }
+.overview-diagram { margin: 0.5rem auto 1.25rem; text-align: center; }
 .overview-diagram img {
-    max-width: 100%; height: auto; border: 1px solid #e9ecef; border-radius: 8px;
-    background: #fff; padding: 0.5rem;
+    max-width: 600px; width: 100%; height: auto; border: 1px solid #e9ecef;
+    border-radius: 8px; background: #fff; padding: 0.4rem;
 }
+.fig-cap {
+    margin: 0.65rem auto 0; max-width: 940px; font-size: 0.95rem; line-height: 1.5;
+    color: #495057; text-align: center;
+}
+.fig-cap strong { color: #1565c0; }
+/* Stage labels keyed to the diagram's green (Stage 1) / orange (Stage 2) boxes */
+.fig-cap .stage1 { color: #146c43; font-weight: 700; }
+.fig-cap .stage2 { color: #c25e08; font-weight: 700; }
 
-/* Caveats callout (Overview) */
+/* Caveats callout (Overview) — collapsible, uniform typography */
 .caveat {
-    margin-top: 1rem; border-left: 4px solid #b7791f; background: #fbf3e2;
-    border-radius: 6px; padding: 0.7rem 1rem; color: #6b541d; font-size: 0.85rem;
+    margin-top: 1rem; border-left: 4px solid #b7791f; background: #fbf9f0;
+    border-radius: 6px; padding: 0.55rem 1rem;
 }
+.caveat > summary {
+    cursor: pointer; font-weight: 600; font-size: 1.1rem; color: #1C1C1C;
+    list-style: none; padding: 0.2rem 0;
+}
+.caveat > summary::-webkit-details-marker { display: none; }
+.caveat > summary::before { content: '\25B8\00a0'; color: #b7791f; }       /* ▸ */
+.caveat[open] > summary::before { content: '\25BE\00a0'; color: #b7791f; } /* ▾ */
+.caveat-body { color: #495057; font-size: 0.95rem; line-height: 1.6; padding-top: 0.3rem; }
+.caveat-body p { margin: 0.5rem 0; }
+.caveat-body ul { margin: 0; padding-left: 1.25rem; }
+.caveat-body li { margin-bottom: 0.35rem; }
+.caveat-body strong { color: #1C1C1C; }
+.caveat-foot { font-size: 0.8rem; color: #6c757d; margin-top: 0.6rem; }
 .caveat a { color: #1565c0; font-weight: 600; }
