@@ -99,7 +99,7 @@
     const baseCount = new Set(al.map((r) => r.strategy)).size;
 
     container.innerHTML = `
-      <p class="section-desc">81 retrieval strategies (${baseCount} LLM-free · ${augCount} LLM-augmented ·
+      <p class="section-desc">81 retrieval strategies (${baseCount} LLM-free, ${augCount} LLM-augmented,
         ${pureCount} pure-LLM) on 9,789 difficulty-tiered samples; the 23 LLM strategies run across all 9 models.</p>
 
       <div class="filterbar" id="ret-filterbar">
@@ -131,6 +131,7 @@
         <div class="legend" id="ret-legend"></div>
       </div>
 
+      <p class="chart-sub" style="margin:.7rem 0 0">&#9432; <b>Chart view:</b> click any bar to open the metrics drawer. <b>Table view:</b> click any accuracy value to open the eval in the InspectAI viewer.</p>
       <div id="ret-body" style="margin-top:1rem"></div>
       <p class="hint" id="ret-foot" style="font-size:var(--fs-small);color:#979797;font-weight:600;margin-top:.6rem"></p>
 
@@ -206,12 +207,7 @@
   function updateFoot() {
     const foot = document.getElementById('ret-foot');
     if (!foot) return;
-    if (state.machine === 'cmp') {
-      foot.innerHTML = 'Compare Δ = DGX − SKORGE accuracy (pp). Cells off the diagonal by &gt;3 pp drawn red. ' +
-        'Families + legend still filter. Click any strategy name to open the eval in the InspectAI viewer.';
-    } else {
-      foot.innerHTML = '';   /* control bar already conveys machine/family/view — no narrative footer needed */
-    }
+    foot.innerHTML = '';   /* control bar + per-section subtitles convey machine/family/view — no narrative footer needed */
   }
 
   // =========================================================================
@@ -225,8 +221,7 @@
       return `<optgroup label="${g.group}">${inner}</optgroup>`;
     }).join('');
     return `<div class="fg" style="margin-bottom:.7rem"><span class="lbl">View metric</span>` +
-      `<select class="ctl" id="ret-metric">${opts}</select>` +
-      `<span class="chart-sub" style="margin-left:.8rem">&#9432; Click any bar or strategy name to open the detailed InspectAI eval log.</span></div>`;
+      `<select class="ctl" id="ret-metric">${opts}</select></div>`;
   }
 
   // Value for (strategy, model, machine); pct metrics scaled ×100. null if missing.
@@ -295,7 +290,7 @@
     // Subsection scaffold: one .fam-sub per active family.
     let html = metricSelectHTML();
     if (!fams.length) {
-      html += '<p class="hint" style="padding:1rem">No strategies selected — enable a family.</p>';
+      html += '<p class="hint" style="padding:1rem">No strategies selected. Enable a family.</p>';
       body.innerHTML = html;
       bindMetricSelect(body);
       return;
@@ -353,9 +348,10 @@
     const buildHover = (row, val, modelLabel) => {
       const valStr = def.pct ? `${fmt(val)}%` : fmt(val);
       const ctx = [];
-      // Context-line items at the very end (Tokens last, per user). Acc only if not the selected metric.
+      // Context-line items at the very end (Tokens last). Accuracy only if not the selected metric.
+      // Label is the full "Accuracy:" (matches tier + Pareto hovers; per-family was the only place using "Acc:" before).
       if (row.metrics && row.metrics.accuracy != null && key !== 'accuracy') {
-        ctx.push(`<b>Acc:</b> ${(row.metrics.accuracy * 100).toFixed(2)}%`);
+        ctx.push(`<b>Accuracy:</b> ${(row.metrics.accuracy * 100).toFixed(2)}%`);
       }
       if (row.truncation_rate != null && row.truncation_rate > 0 && key !== 'truncation_rate') {
         ctx.push(`<b>Trunc:</b> ${(row.truncation_rate * 100).toFixed(2)}%`);
@@ -380,7 +376,7 @@
         `<b>${cleanLabel}:</b> <b>${valStr}</b>`,
         latencyRow,
       ];
-      if (ctx.length) lines.push(ctx.join(' · '));
+      if (ctx.length) lines.push(...ctx);                                  /* each context metric on its own line — uniform layout across every selected metric (no middot pack) */
       if (shortRun) lines.push(`<i>${shortRun}</i>`);
       return lines.filter(Boolean).join('<br>');
     };
@@ -428,7 +424,7 @@
       };
       const cause = (isBase ? baseHints : llmHints)[key];
       const msg = `No ${subject} have non-zero ${cleanLabel} for the current selection`
-        + (cause ? ` — ${cause}` : '.');
+        + (cause ? `: ${cause}` : '.');
       chartDiv.innerHTML =
         `<div style="padding:1.25rem 1.5rem;margin:.4rem 0;color:#555;font-style:italic;`
         + `border:1px dashed #CBD5E1;border-radius:.5rem;background:#fafbfc;text-align:center;line-height:1.55">`
@@ -524,7 +520,7 @@
       bargap: 0.25, bargroupgap: 0.18,                                      /* group params still affect baseline single-trace spacing */
       height: Math.max(180, yCats.length * nSeries * 20 + 120),             /* 20px/bar slot ≥ 15px label height → no vertical overlap */
       margin: CHART_MARGINS.familyBars,                                     /* fixed l/r: aligns y-axes across the 3 family charts + room for outside % labels */
-      xaxis: { title: { text: def.label, font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, automargin: true, zeroline: true, range: def.pct ? CHART_RANGE_PCT : undefined },
+      xaxis: { title: { text: def.label, font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, automargin: true, zeroline: true, range: def.pct ? (key === 'truncation_rate' ? [0, 25] : CHART_RANGE_PCT) : undefined },
       yaxis: isBase ? {
         automargin: false,
         tickmode: 'array', tickvals: yCats, ticktext: yCats,                /* force EVERY strategy name to render (no Plotly auto-thinning) */
@@ -598,7 +594,7 @@
     ];
 
     window.openLogDrawer({
-      title: row.strategy + (model ? ' — ' + modelDisplay(model) : ' — no-LLM baseline'),
+      title: row.strategy + (model ? ' (' + modelDisplay(model) + ')' : ' (no-LLM baseline)'),
       machine: machineLabel,
       groups: [
         { group: 'Quality', rows: quality },
@@ -660,11 +656,12 @@
     const r = entry.src;
     const me = r.metrics || {};
     const url = buildLogUrl(r.model_folder, r.eval_file, r.benchmark);
-    const stratCell = `<a href="${url}" target="_blank" rel="noopener" title="Open eval in InspectAI viewer">${r.strategy}</a>`;
+    const stratCell = r.strategy;                                        /* plain text — link moves to the Accuracy cell so model/strategy stay clean */
     const modelCell = entry.model ? modelDisplay(entry.model) + (isReasoning(entry.model) ? ' ✦' : '')
       : '<span style="color:#607d8b;font-style:italic">no LLM</span>';
     const isBase = entry.fam === 'base';
-    const accSE = `${pct(me.accuracy, 2)} ± ${me.accuracy_se != null ? (me.accuracy_se * 100).toFixed(2) : '—'}`;
+    const accSEText = `${pct(me.accuracy, 2)} ± ${me.accuracy_se != null ? (me.accuracy_se * 100).toFixed(2) : '—'}`;
+    const accSE = `<a href="${url}" target="_blank" rel="noopener" title="Open eval in InspectAI viewer">${accSEText}</a>`;
     const calls = isBase ? '—' : num(me.avg_llm_call_count, 2);
     const tok = isBase ? '—' : (me.avg_llm_token_usage != null ? Math.round(me.avg_llm_token_usage).toLocaleString() : '—');
     const tmean = r.timing && r.timing.mean != null ? r.timing.mean.toFixed(2) : '—';
@@ -690,9 +687,13 @@
     // Single shared row list sorted by the chart metric for consistency with chart view.
     const rows = tableRows(state.metric);
 
-    let html = '<div style="margin-bottom:.6rem"><button class="btn-small" id="ret-csv">Export CSV</button></div>';
+    // Unified toolbar: Export CSV (left) + ONE search input (right) that filters all 3 family tables.
+    let html = '<div class="ret-table-toolbar">'
+      + '<button class="btn-small" id="ret-csv">Export CSV</button>'
+      + '<input type="search" class="ret-search-input" id="ret-search" placeholder="Search…" aria-label="Search">'
+      + '</div>';
     if (!fams.length) {
-      html += '<p class="hint" style="padding:1rem">No strategies selected — enable a family.</p>';
+      html += '<p class="hint" style="padding:1rem">No strategies selected. Enable a family.</p>';
       body.innerHTML = html;
       const csvBtn0 = document.getElementById('ret-csv');
       if (csvBtn0) csvBtn0.addEventListener('click', () => exportTableCSV(rows));
@@ -722,14 +723,24 @@
         order: [[2, 'desc']],
         paging: false,
         info: false,
-        searching: false,
-        scrollX: true,
+        searching: true,                                   /* search() API still wired; UI suppressed via layout below */
+        scrollX: true,                                     /* 11-col table is inherently ~1400 px wide — scroll lives inside the table, not the page */
+        scrollY: state.expanded[fam] ? '' : '250px',       /* DataTables manages vertical cap so the h-scrollbar pins at the viewport bottom (same as modifier). Expand removes it. */
         deferRender: true,
+        layout: { topStart: null, topEnd: null },          /* hide per-family search UI — the unified toolbar handles it */
       });
       retDataTables.push(dt);
-      // Strategy-name hyperlink in column 0 opens the InspectAI viewer directly —
-      // no drilldown logbtn needed (the previous trailing column was redundant).
+      // Strategy-name hyperlink in column 0 opens the InspectAI viewer directly.
     });
+
+    // Wire the unified search input to all family DataTables.
+    const unifiedSearch = document.getElementById('ret-search');
+    if (unifiedSearch) {
+      unifiedSearch.addEventListener('input', () => {
+        const q = unifiedSearch.value;
+        retDataTables.forEach((dt) => dt.search(q).draw());
+      });
+    }
 
     // Expand / collapse toggles (re-render to re-apply the cap cleanly).
     body.querySelectorAll('.expand-btn').forEach((b) => {
@@ -783,7 +794,7 @@
     const rows = compareRows();
     const div = document.getElementById('retrieval-chart');
     if (!rows.length) {
-      div.innerHTML = '<p class="hint" style="padding:1rem">No LLM cells selected — enable the LLM-augmented or Pure-LLM family and at least one model. (Baselines have no cross-machine LLM delta.)</p>';
+      div.innerHTML = '<p class="hint" style="padding:1rem">No LLM cells selected. Enable the LLM-augmented or Pure-LLM family and at least one model. (Baselines have no cross-machine LLM delta.)</p>';
       return;
     }
 
@@ -806,11 +817,11 @@
     };
 
     const xs = rows.map((d) => d.sk_acc * 100).concat(rows.map((d) => d.dgx_acc * 100));
-    const lo = Math.max(0, Math.floor(Math.min(...xs) - 2));
-    const hi = Math.min(100, Math.ceil(Math.max(...xs) + 2));
+    const lo = Math.max(0, Math.floor(Math.min(...xs) - 5));                /* ±5 pp padding so outlier points and labels sit comfortably inside the plot edges */
+    const hi = Math.min(100, Math.ceil(Math.max(...xs) + 5));
 
     const traces = [
-      { name: 'y = x (identical)', type: 'scatter', mode: 'lines', x: [lo, hi], y: [lo, hi],
+      { name: 'y = x (identical)', type: 'scatter', mode: 'lines', x: [0, 100], y: [0, 100],   /* full 0-100 diagonal; Plotly clips to visible y-range */
         line: { color: '#1565c0', dash: 'dash', width: 1.5 }, hoverinfo: 'skip' },
       { name: '|Δ| ≤ 3 pp', type: 'scatter', mode: 'markers', x: onDiag.map((d) => mk(d).x), y: onDiag.map((d) => mk(d).y),
         marker: { color: '#1565c0', size: 8, opacity: 0.7 }, text: onDiag.map(hover), hoverinfo: 'text' },
@@ -821,10 +832,11 @@
         hovertext: off.map(hover), hoverinfo: 'text' },
     ];
     const layout = {
-      height: 520, margin: { l: 60, r: 40, t: 30, b: 55 },
-      xaxis: { title: { text: 'SKORGE Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, range: [lo, hi], zeroline: false },
-      yaxis: { title: { text: 'DGX Spark Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, range: [lo, hi], zeroline: false, scaleanchor: 'x', scaleratio: 1 },
-      legend: { orientation: 'h', y: 1.06, font: { size: 10 } },
+      height: 520, margin: { l: 60, r: 40, t: 55, b: 55 },                  /* t=55 fits centered chart title; legend now lives inside the plot so no extra top room needed */
+      title: { text: 'Retrieval Accuracy: SKORGE vs DGX Spark', font: CHART_FONTS.axisTitle, x: 0.5, xanchor: 'center' },
+      xaxis: { title: { text: 'SKORGE Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, range: [0, 100], zeroline: false },   /* fixed full 0-100 spectrum on x */
+      yaxis: { title: { text: 'DGX Spark Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, range: [lo, hi], zeroline: false },  /* dynamic y; scaleanchor removed so plot fills container width */
+      legend: { orientation: 'v', x: 0.02, y: 0.98, xanchor: 'left', yanchor: 'top', font: CHART_FONTS.legend, bgcolor: 'rgba(255,255,255,0.85)', bordercolor: '#CBD5E1', borderwidth: 1 },   /* vertical pill, top-left inside plot */
       font: { family: 'Manrope, sans-serif' },
       hoverlabel: {                                                          /* white tooltip card, consistent Manrope */
         bgcolor: '#ffffff', bordercolor: '#CBD5E1',
@@ -841,8 +853,6 @@
   function renderCompareTable(body) {
     destroyTables();
     body.innerHTML =
-      '<div style="margin-bottom:.6rem"><button class="btn-small" id="ret-csv">Export CSV</button>' +
-      '<span style="margin-left:1rem;font-size:var(--fs-small)"><span class="d good">|Δ|≤1</span> <span class="d warn">≤3</span> <span class="d bad">&gt;3 pp</span></span></div>' +
       '<div class="tablewrap"><table id="retrieval-table" class="display" style="width:100%"></table></div>';
 
     const rows = compareRows();
@@ -854,20 +864,21 @@
       const dCell = `<span class="d ${deltaClass(d.delta_pp)}">${d.delta_pp >= 0 ? '+' : ''}${d.delta_pp.toFixed(2)}</span>`;
       const mt = `${d.sk_max_tokens == null ? 'None' : d.sk_max_tokens} → ${d.dgx_max_tokens == null ? 'None' : d.dgx_max_tokens}`;
       const tr = `${d.sk_truncation_count} → ${d.dgx_truncation_count}`;
-      const stratCell = `${modelDisplay(d.model)}${isReasoning(d.model) ? ' ✦' : ''} / ` +
-        `<a href="${skUrl}" target="_blank" rel="noopener" title="SKORGE eval">${d.strategy}</a> ` +
-        `<a href="${dgxUrl}" target="_blank" rel="noopener" title="DGX eval" style="font-size:var(--fs-small)">[dgx ↗]</a>`;
-      // Column 3 carries the colored cell HTML plus the raw delta; a render fn
+      const modelText = `${modelDisplay(d.model)}${isReasoning(d.model) ? ' ✦' : ''}`;        /* plain text — Model column */
+      const strategyText = d.strategy;                                                       /* plain text — Strategy column */
+      const skAccLink = `<a href="${skUrl}" target="_blank" rel="noopener" title="Open SKORGE eval in InspectAI viewer">${(d.sk_acc * 100).toFixed(2)}</a>`;
+      const dgxAccLink = `<a href="${dgxUrl}" target="_blank" rel="noopener" title="Open DGX Spark eval in InspectAI viewer">${(d.dgx_acc * 100).toFixed(2)}</a>`;
+      // Δ pp column carries the colored cell HTML plus the raw delta; a render fn
       // (below) shows the cell for display but sorts/filters on |Δ| so the table
       // is "sortable by |Δ|" via the built-in numeric sort.
-      return [stratCell, (d.sk_acc * 100).toFixed(2), (d.dgx_acc * 100).toFixed(2),
+      return [modelText, strategyText, skAccLink, dgxAccLink,
         { html: dCell, abs: Math.abs(d.delta_pp), raw: d.delta_pp }, mt, tr];
     });
 
     retDataTables.push(new DataTable('#retrieval-table', {
       data: dataset,
       columns: [
-        { title: 'Model / Strategy' }, { title: 'SK Acc' }, { title: 'DGX Acc' },
+        { title: 'Model' }, { title: 'Strategy' }, { title: 'SK Acc' }, { title: 'DGX Acc' },
         {
           title: 'Δ pp',
           render: function (data, type) {
@@ -878,12 +889,32 @@
         },
         { title: 'max_tokens SK→DGX' }, { title: 'Trunc count SK→DGX' },
       ],
-      order: [[3, 'desc']], // sort by |Δ| descending
+      order: [[4, 'desc']], // sort by |Δ| descending (column index shifted: Model+Strategy split adds one column)
       pageLength: 25, scrollX: true, deferRender: true,
+      language: { search: '', searchPlaceholder: 'Search…' },          /* hide DT's "Search:" label; use placeholder for uniform look across all four search bars */
+      layout: {                                                        /* one-row toolbar: CSV + pageLength (left) | legend + search (right) */
+        topStart: [
+          () => {
+            const btn = document.createElement('button');
+            btn.id = 'ret-csv';
+            btn.className = 'btn-small';
+            btn.textContent = 'Export CSV';
+            btn.addEventListener('click', () => exportCompareCSV(sorted));
+            return btn;
+          },
+          'pageLength',                                                /* entries-per-page selector sits beside the Export CSV button on the left */
+        ],
+        topEnd: [
+          () => {                                                      /* |Δ| color-key chips, sit inline with the search input on the right */
+            const legend = document.createElement('span');
+            legend.className = 'delta-legend';
+            legend.innerHTML = '<span class="d good">|Δ|&le;1</span> <span class="d warn">&le;3</span> <span class="d bad">&gt;3&nbsp;pp</span>';
+            return legend;
+          },
+          'search',
+        ],
+      },
     }));
-
-    const csvBtn = document.getElementById('ret-csv');
-    if (csvBtn) csvBtn.addEventListener('click', () => exportCompareCSV(sorted));
   }
 
   function exportCompareCSV(sorted) {
@@ -910,6 +941,24 @@
 
   function subMachineJson() { return state.machine === 'cmp' ? 'skorge' : MACHINE_JSON[state.machine]; }
 
+  // Both sub-charts (tier + Pareto) are ALWAYS single-machine: subMachineJson() falls back to
+  // 'skorge' in Compare mode (per-machine data can't be cross-aggregated). The subtitles below
+  // name the source machine explicitly in every view so users don't have to scroll up to the
+  // top selector to know which machine the bars/points come from.
+  function machineLabel() {
+    // state.machine values are 'skorge' / 'dgx' / 'cmp' (NOT the data-file 'dgx_spark' id — that's MACHINE_JSON['dgx'])
+    if (state.machine === 'cmp') return 'SKORGE only';
+    if (state.machine === 'skorge') return 'SKORGE';
+    if (state.machine === 'dgx') return 'DGX Spark';
+    return '';
+  }
+  function tierSubtitleText() {
+    return `Per-difficulty-tier accuracy for the chosen strategy on ${machineLabel()} (tiers are per-machine).`;
+  }
+  function paretoSubtitleText() {
+    return `Accuracy vs avg tokens/sample (cost proxy) on ${machineLabel()}; dotted line = per-model Pareto frontier.`;
+  }
+
   function renderSubcharts() {
     const host = document.getElementById('ret-subcharts');
     if (!host) return;
@@ -918,19 +967,20 @@
         <h3 style="color:#1565c0">1.2 · Tier-stratified accuracy</h3>
         <div class="fg" style="margin:.3rem 0 .6rem"><span class="lbl">Strategy</span>
           <select class="ctl" id="ret-tier-strat"></select>
-          <span class="chart-sub" style="margin-left:.6rem">Per-difficulty-tier accuracy for the chosen strategy${state.machine === 'cmp' ? ' · showing SKORGE (tiers are per-machine)' : ''}.</span>
+          <span class="chart-sub" id="ret-tier-sub" style="margin-left:.6rem">${tierSubtitleText()}</span>
         </div>
         <div id="ret-tier-chart" style="min-height:380px"></div>
-        <h3 style="color:#1565c0;margin-top:1.4rem">1.3 · Pareto efficiency — accuracy vs token cost</h3>
-        <p class="chart-sub" style="margin-bottom:.4rem">Accuracy vs avg tokens/sample (cost proxy); dotted line = per-model Pareto frontier.</p>
+        <h3 style="color:#1565c0;margin-top:1.4rem">1.3 · Pareto efficiency: accuracy vs token cost</h3>
+        <p class="chart-sub" id="ret-pareto-sub" style="margin-bottom:.4rem">${paretoSubtitleText()}</p>
         <div id="ret-pareto-chart" style="min-height:440px"></div>`;
       populateTierDropdown();
       subchartsBuilt = true;
     } else {
-      // Update the per-machine note when machine changes.
-      const note = host.querySelector('#ret-tier-strat')?.parentElement?.querySelector('.chart-sub');
-      if (note) note.textContent = 'Per-difficulty-tier accuracy for the chosen strategy' +
-        (state.machine === 'cmp' ? ' · showing SKORGE (tiers are per-machine).' : '.');
+      // Update both per-machine subtitles when machine changes.
+      const tierNote = host.querySelector('#ret-tier-sub');
+      if (tierNote) tierNote.textContent = tierSubtitleText();
+      const paretoNote = host.querySelector('#ret-pareto-sub');
+      if (paretoNote) paretoNote.textContent = paretoSubtitleText();
     }
     renderTierChart();
     renderParetoScatter();
@@ -949,6 +999,7 @@
   function renderTierChart() {
     const machineJson = subMachineJson();
     const tiers = (DASHBOARD_DATA.retrievalLlmTiers || []).filter((r) => r.machine === machineJson);
+    const hoverMachine = machineJson === 'skorge' ? 'SKORGE' : 'DGX Spark';   /* display name for the hover Machine: line; matches the per-family / modifier per-row / heatmap pattern */
     const traces = activeModels().map((model) => {
       const row = tiers.find((r) => r.strategy === tierStrategy && r.model === model);
       if (!row) return null;
@@ -962,6 +1013,7 @@
           `<b>Strategy:</b> ${tierStrategy}`,
           `<b>Family:</b> ${FAM_LABEL[fam] || fam}`,
           `<b>Model:</b> ${modelDisplay(model)}${isReasoning(model) ? ' ✦' : ''}`,
+          `<b>Machine:</b> ${hoverMachine}`,                                  /* added for consistency with per-family / modifier per-row / heatmap hovers */
           `<b>Tier:</b> ${TIER_LABELS[ti]}`,
           `<b>Accuracy:</b> <b>${(td.accuracy * 100).toFixed(2)}%</b> ± ${(td.se * 100).toFixed(2)}`,
           `<b>Samples:</b> ${td.correct}/${td.total}`,
@@ -993,6 +1045,16 @@
   function renderParetoScatter() {
     const machineJson = subMachineJson();
     const llm = llmRows(machineJson);
+    const hoverMachine = machineJson === 'skorge' ? 'SKORGE' : 'DGX Spark';   /* display name for the hover Machine: line; matches the tier / per-family / modifier per-row / heatmap pattern */
+    // The data has TWO clusters with a huge empty gap: 0-1k tokens (~198 points) and
+    // 15-16k tokens (~9 high-cost outliers like llm_direct_match_all). Show them as
+    // two side-by-side subplots that share the y-axis, separated by a dotted partition
+    // line, so the empty 1k-15k zone doesn't waste 90% of the plot width.
+    const TOKEN_BREAK = 5000;                                       // any value in the empty 1k-15k gap works
+    const LO_DOMAIN = [0, 0.70];
+    const HI_DOMAIN = [0.75, 1.0];
+    const LO_RANGE  = [100, 1100];                                  // start at 100 — clips 8 minimum-cost points (~48-52 tokens) but avoids the visually-shifted look caused by their leftward bunching
+    const HI_RANGE  = [15000, 16000];                               // 15-16k outlier cluster
     const traces = [];
     activeModels().forEach((model) => {
       const rows = llm.filter((r) => r.model === model && r.metrics.avg_llm_token_usage != null);
@@ -1004,33 +1066,72 @@
           `<b>Strategy:</b> ${r.strategy}`,
           `<b>Family:</b> ${FAM_LABEL[fam] || fam}`,
           `<b>Model:</b> ${modelDisplay(model)}${isReasoning(model) ? ' ✦' : ''}`,
+          `<b>Machine:</b> ${hoverMachine}`,                                  /* added for consistency with tier / per-family / modifier per-row / heatmap hovers */
           `<b>Accuracy:</b> <b>${(r.metrics.accuracy * 100).toFixed(2)}%</b>`,
           `<b>Tokens:</b> ${Math.round(r.metrics.avg_llm_token_usage).toLocaleString()}`,
         ].join('<br>');
       };
-      traces.push({
-        name: modelDisplay(model), type: 'scatter', mode: 'markers',
-        x: rows.map((r) => r.metrics.avg_llm_token_usage),
-        y: rows.map((r) => r.metrics.accuracy * 100),
-        marker: { color: modelColor(model), size: 9, opacity: 0.8 },
-        hovertext: rows.map(paretoHover), hoverinfo: 'text',
-      });
-      // Per-model Pareto frontier: walk lowest cost → keep accuracy improvers.
-      const sorted = [...rows].sort((a, b) => a.metrics.avg_llm_token_usage - b.metrics.avg_llm_token_usage);
+      const lowRows  = rows.filter((r) => r.metrics.avg_llm_token_usage <  TOKEN_BREAK);
+      const highRows = rows.filter((r) => r.metrics.avg_llm_token_usage >= TOKEN_BREAK);
+      if (lowRows.length) {
+        traces.push({
+          name: modelDisplay(model), type: 'scatter', mode: 'markers',
+          x: lowRows.map((r) => r.metrics.avg_llm_token_usage),
+          y: lowRows.map((r) => r.metrics.accuracy * 100),
+          marker: { color: modelColor(model), size: 9, opacity: 0.8 },
+          hovertext: lowRows.map(paretoHover), hoverinfo: 'text',
+          xaxis: 'x', yaxis: 'y',
+        });
+      }
+      if (highRows.length) {
+        traces.push({
+          name: modelDisplay(model), type: 'scatter', mode: 'markers',
+          x: highRows.map((r) => r.metrics.avg_llm_token_usage),
+          y: highRows.map((r) => r.metrics.accuracy * 100),
+          marker: { color: modelColor(model), size: 9, opacity: 0.8 },
+          hovertext: highRows.map(paretoHover), hoverinfo: 'text',
+          xaxis: 'x2', yaxis: 'y',
+        });
+      }
+      // Per-model Pareto frontier, restricted to the LEFT subplot where the bulk of points
+      // live; drawing the frontier line across the axis break would be visually misleading
+      // (the line would render as straight across the gap even though it crosses 14k of
+      // unrepresented x-space).
+      const sortedLow = [...lowRows].sort((a, b) => a.metrics.avg_llm_token_usage - b.metrics.avg_llm_token_usage);
       const frontier = []; let maxAcc = -1;
-      sorted.forEach((r) => { if (r.metrics.accuracy > maxAcc) { frontier.push(r); maxAcc = r.metrics.accuracy; } });
+      sortedLow.forEach((r) => { if (r.metrics.accuracy > maxAcc) { frontier.push(r); maxAcc = r.metrics.accuracy; } });
       if (frontier.length > 1) {
         traces.push({
           name: modelDisplay(model) + ' frontier', type: 'scatter', mode: 'lines',
           x: frontier.map((r) => r.metrics.avg_llm_token_usage), y: frontier.map((r) => r.metrics.accuracy * 100),
           line: { color: modelColor(model), width: 1, dash: 'dot' }, showlegend: false, hoverinfo: 'skip',
+          xaxis: 'x', yaxis: 'y',
         });
       }
     });
     const layout = {
-      height: 440, margin: { t: 30, b: 50, l: 50, r: 20 },
-      xaxis: { title: { text: 'Avg Tokens/Sample (cost proxy)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick },
+      height: 440, margin: { t: 30, b: 95, l: 50, r: 20 },          /* b=95 so the centered x-title annotation sits fully inside the chart (the previous b=70 + y=-0.15 put the text within ~1 px of the bottom edge → clipped) */
+      xaxis: {
+        tickfont: CHART_FONTS.axisTick,
+        domain: LO_DOMAIN, range: LO_RANGE,
+        zeroline: false,                                            /* no showline — broken-axis subplots otherwise draw two separate bottom segments that read as a "double" x-axis */
+      },
+      xaxis2: {
+        tickfont: CHART_FONTS.axisTick,
+        domain: HI_DOMAIN, range: HI_RANGE,
+        zeroline: false, anchor: 'y',
+      },
       yaxis: { title: { text: 'Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick },
+      annotations: [                                                /* single x-axis title centered across both subplots */
+        { text: 'Avg Tokens/Sample (cost proxy)', xref: 'paper', yref: 'paper',
+          x: 0.5, y: -0.15, xanchor: 'center', yanchor: 'top', showarrow: false,
+          font: CHART_FONTS.axisTitle },
+      ],
+      shapes: [                                                     /* dotted vertical partition at the axis break — bold dark-slate so it reads as a deliberate axis-break, not a faint guide */
+        { type: 'line', xref: 'paper', yref: 'paper',
+          x0: 0.725, x1: 0.725, y0: 0, y1: 1,
+          line: { color: '#37474f', width: 4, dash: 'dot' } },
+      ],
       showlegend: false,   /* models keyed by the LLM legend chips */
       font: { family: 'Manrope, sans-serif' },
       hoverlabel: {                                                          /* white tooltip card, consistent Manrope */

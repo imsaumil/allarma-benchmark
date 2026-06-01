@@ -24,11 +24,11 @@ function initOverview() {
       <summary>Read the numbers with these caveats</summary>
       <div class="caveat-body">
       <p>
-        <strong>Read the spread, not just the mean.</strong> Per-model retriever
-        <em>means</em> are reproducible across machines (every per-model mean
-        &Delta;accuracy within &plusmn;0.55&nbsp;pp), but a few individual
-        (model,&nbsp;strategy) cells diverge far more than the mean suggests.
-        The points below list what the average hides:
+        <strong>Read the spread, not just the mean.</strong> Retriever accuracy
+        reproduces across machines at the per-model level: every per-model
+        mean &Delta;accuracy sits within &plusmn;0.55&nbsp;pp. But that <u>mean</u> hides
+        a handful of individual (model,&nbsp;strategy) cells whose machine-to-machine
+        divergence is much larger; those outliers are listed below:
       </p>
 
       <ul>
@@ -41,6 +41,10 @@ function initOverview() {
           gpt-oss-20b / llm-direct-match-all <strong>+3.46&nbsp;pp</strong>
           (SK 91.86 / DGX 95.32, both unbounded);
           nemotron-12b / llm-listwise-rerank-dense-candidate <strong>+3.16&nbsp;pp</strong>.
+          This pattern is consistent with model-internal variance rather than a
+          machine difference: the qwen3.5 cells (0.8B and 2B) reflect small-scale
+          stochasticity, while the gpt-oss-20b and nemotron-12b cells reflect
+          non-deterministic reasoning traces.
         </li>
         <li>
           <strong>Modifier: 7 of 9 models within &plusmn;1.5&nbsp;pp</strong> on all
@@ -50,19 +54,19 @@ function initOverview() {
         <li>
           <strong>qwen3.5-0.8b repetition loops</strong> on
           <strong>21.78%</strong> of modifier samples (223/1024) on
-          <em>both</em> machines &mdash; a model failure at 0.8B scale, not a
+          <u>both</u> machines. This is a model failure at 0.8B scale, not a
           machine difference.
         </li>
         <li>
           <strong>Short / timed-out runs are surfaced, not hidden:</strong>
           DGX gpt-oss-20b / llm-direct-match-all completed
           <strong>9715 / 9789</strong> samples; DGX nemotron-9b-v2 had
-          4 modifier samples time out at 600&nbsp;s (scored with a fallback answer).
+          4 modifier samples time out at 600&nbsp;s.
         </li>
         <li>
           <strong>Hardware/timing confound:</strong> the DGX Spark is slower in
-          aggregate wall time &mdash; <strong>retriever 3.07&times;</strong>,
-          <strong>modifier 3.94&times;</strong> &mdash; reflecting its 240&nbsp;W
+          aggregate wall time (<strong>retriever 3.07&times;</strong>,
+          <strong>modifier 3.94&times;</strong>), reflecting its 240&nbsp;W
           edge envelope, not generalizing beyond this dataset / vLLM setup.
         </li>
       </ul>

@@ -57,7 +57,7 @@ body {
     font-family: inherit; transition: all 0.2s;
 }
 .btn-small {
-    padding: 0.35rem 0.75rem; font-size: var(--fs-small);
+    padding: 0.4rem 0.75rem; font-size: var(--fs-ui);                  /* match search/pageLength height in the DataTables toolbars */
     background: #1565c0; color: #fff; border: 1px solid #1565c0; border-radius: 6px;
 }
 .btn-small:hover { background: #1558A0; }
@@ -114,6 +114,182 @@ table.summary-table th {
 table.summary-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid #e9ecef; }
 table.summary-table tr:hover { background: #e3f2fd; }
 table.summary-table a { color: #1565c0; font-weight: 600; }
+
+/* === Retrieval + Modifier DataTables — clean column alignment ============
+   Goal: name columns don't wrap (long strategy names like
+   rrf_llm_listwise_rerank_dense_candidate stay on one line); numeric
+   columns right-align with tabular-nums so digits sit on a vertical grid;
+   monospace on the code-like name cells matches the chart's y-tick style.
+   Selectors target the four data tables by id. */
+table#modifier-table,
+table#retrieval-table,
+table[id^="retrieval-table-"] {
+    font-variant-numeric: tabular-nums;
+    /* No forced width: scrollX:true wraps the table in .dt-scroll-body and
+       handles horizontal overflow when the nowrap cells push the natural
+       table width past the container. Forcing width:100%!important here
+       suppresses that overflow and breaks the in-table horizontal scroll. */
+}
+/* Column 1 (the row identifier — Strategy in retrieval per-family, Model elsewhere):
+   left-aligned, nowrap, monospace for code-like names. */
+table#modifier-table tbody td:nth-child(1),
+table#retrieval-table tbody td:nth-child(1),
+table[id^="retrieval-table-"] tbody td:nth-child(1) {
+    white-space: nowrap;
+    text-align: left;
+    font-family: ui-monospace, monospace;
+}
+/* Columns 2+ — all other columns center-align (consistent across all four tables). */
+table#modifier-table tbody td:nth-child(n+2),
+table#retrieval-table tbody td:nth-child(n+2),
+table[id^="retrieval-table-"] tbody td:nth-child(n+2) {
+    white-space: nowrap;
+    text-align: center;
+}
+/* Retrieval tables col 2 still carries a code-like name (Model in per-family, Strategy in Compare)
+   so we keep monospace there for readability — only alignment changes to center per the above. */
+table#retrieval-table tbody td:nth-child(2),
+table#retrieval-table thead th:nth-child(2),
+table[id^="retrieval-table-"] tbody td:nth-child(2),
+table[id^="retrieval-table-"] thead th:nth-child(2) {
+    font-family: ui-monospace, monospace;
+}
+/* Header alignment — match the data alignment in each column. */
+table#modifier-table thead th:nth-child(1),
+table#retrieval-table thead th:nth-child(1),
+table[id^="retrieval-table-"] thead th:nth-child(1) {
+    text-align: left;
+    white-space: nowrap;
+}
+table#modifier-table thead th:nth-child(n+2),
+table#retrieval-table thead th:nth-child(n+2),
+table[id^="retrieval-table-"] thead th:nth-child(n+2) {
+    text-align: center;
+    white-space: nowrap;
+    /* DT 2.x adds padding-right:30px on sortable headers (for the absolute-positioned
+       ▲/▼ sort indicator at right:12px, width:12px). That asymmetric padding shifts
+       centered text ~10 px LEFT of the column's true center, so the header no longer
+       lines up with the centered body cells underneath. Force balanced 1.5rem padding
+       on both sides (with !important so it beats DT's higher-specificity per-family
+       rule); 1.5rem leaves enough room on the right for the sort arrow to sit inside
+       the padding without overlapping the centered header text. */
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
+/* Cell padding so the dense numeric grid breathes. */
+table#modifier-table tbody td,
+table#retrieval-table tbody td,
+table[id^="retrieval-table-"] tbody td {
+    padding: 0.45rem 0.7rem;
+}
+table#modifier-table thead th,
+table#retrieval-table thead th,
+table[id^="retrieval-table-"] thead th {
+    padding: 0.5rem 0.7rem;
+}
+
+/* Unified retrieval toolbar — Export CSV (left) + single Search (right) on one row,
+   above the three family tables. The search input wires to all 3 DataTables via dt.search(). */
+.ret-table-toolbar {
+    display: flex; justify-content: space-between; align-items: center;
+    margin: 0 0 0.6rem; gap: 1rem;
+}
+.ret-search-input {
+    font-family: inherit; font-weight: 500; font-size: var(--fs-ui);
+    color: #1C1C1C; padding: 0.4rem 0.7rem;
+    border: 1px solid #CBD5E1; border-radius: 7px;
+    background-color: #fff;
+    min-width: 220px; outline: none;                                  /* matches the DT 2.x .dt-input min-width so all four search bars are the same width */
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+.ret-search-input:hover { border-color: #1565c0; }
+.ret-search-input:focus {
+    border-color: #1565c0; box-shadow: 0 0 0 3px rgba(21,101,192,0.15);
+}
+
+/* === DataTables UI — works for both DT 2.x (.dt-*) and legacy 1.x (.dataTables_*) ====
+   Restyles every DataTables-rendered control to match the dashboard's
+   .ctl / .lbl / .seg idiom: same border, same focus ring, same Manrope
+   weight and size, same uppercase Manrope label for the "Search:" caption. */
+.dt-container, .dataTables_wrapper { margin-bottom: 0.5rem; }
+
+.dt-search, .dataTables_filter { margin: 0; }                          /* zero margin: DT's layout-cell is flex with align-items:center, so any vertical margin (e.g. the old 0 0 0.5rem) shifts the search wrapper off-center relative to siblings (legend, pageLength, CSV button) */
+.dt-search label, .dataTables_filter label {
+    font-family: inherit; font-weight: 700; font-size: var(--fs-ui);
+    text-transform: uppercase; letter-spacing: 0.04em; color: #495057;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+}
+/* !important on the visual props because DataTables' bundled CSS uses higher
+   specificity (div.dt-container input.dt-input) than any reasonable
+   user-stylesheet selector — `!important` is the cleanest cross-library override. */
+.dt-container .dt-search input,
+.dt-container .dt-input,
+.dt-container .dataTables_filter input,
+.dataTables_wrapper .dataTables_filter input {
+    font-family: inherit !important;
+    font-weight: 500 !important;
+    font-size: var(--fs-ui) !important;
+    color: #1C1C1C !important;
+    padding: 0.4rem 0.7rem !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 7px !important;
+    background-color: #fff !important;
+    min-width: 220px !important;
+    outline: none !important;
+    transition: border-color 0.15s, box-shadow 0.15s !important;
+}
+.dt-container .dt-search input:hover,
+.dt-container .dt-input:hover,
+.dt-container .dataTables_filter input:hover,
+.dataTables_wrapper .dataTables_filter input:hover {
+    border-color: #1565c0 !important;
+}
+.dt-container .dt-search input:focus,
+.dt-container .dt-input:focus,
+.dt-container .dataTables_filter input:focus,
+.dataTables_wrapper .dataTables_filter input:focus {
+    border-color: #1565c0 !important;
+    box-shadow: 0 0 0 3px rgba(21,101,192,0.15) !important;
+}
+/* Compact entries-per-page select (DT 2.x) — narrower than the 220-px search input
+   that shares the .dt-input class, but with the same vertical padding so heights
+   align. min-width 80 px fits "100" + native OS dropdown arrow comfortably.
+   .dt-length .dt-input has 0,3,0 specificity which wins over the .dt-container
+   .dt-input (0,2,0) rule. */
+.dt-container .dt-length .dt-input,
+.dt-container .dt-length select,
+.dt-container .dataTables_length select {
+    min-width: 80px !important;
+    width: auto !important;
+    padding: 0.4rem 0.7rem !important;
+}
+
+/* Info + paging (only render on tables that keep paging:true; styled to match anyway) */
+.dt-info, .dataTables_info {
+    font-size: var(--fs-small); color: #6c757d; font-weight: 600;
+    padding-top: 0.5rem;
+}
+.dt-paging, .dataTables_paginate { padding-top: 0.5rem; }
+.dt-paging .dt-paging-button,
+.dataTables_paginate .paginate_button {
+    font-family: inherit; font-size: var(--fs-small); padding: 0.25rem 0.7rem;
+    border: 1px solid #CBD5E1; border-radius: 6px; margin: 0 0.15rem;
+    background: #fff; color: #495057; cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+.dt-paging .dt-paging-button:hover,
+.dataTables_paginate .paginate_button:hover {
+    border-color: #1565c0; color: #1565c0; background: #e3f2fd;
+}
+.dt-paging .dt-paging-button.current, .dt-paging .dt-paging-button.current:hover,
+.dataTables_paginate .paginate_button.current, .dataTables_paginate .paginate_button.current:hover {
+    background: #1565c0; color: #fff !important; border-color: #1565c0;
+}
+.dt-paging .dt-paging-button.disabled, .dt-paging .dt-paging-button.disabled:hover,
+.dataTables_paginate .paginate_button.disabled, .dataTables_paginate .paginate_button.disabled:hover {
+    color: #c5c9cf !important; cursor: default;
+    background: #fff; border-color: #e9ecef;
+}
 
 /* === Chart containers === */
 #retrieval-chart-container, #tier-chart-container, #pareto-chart-container,
@@ -209,8 +385,17 @@ section[id] { scroll-margin-top: 72px; }
     overflow-y: auto;
     border: 1px solid #e9ecef; border-radius: 8px;
 }
-.fam-scroll.chart-scroll { max-height: 450px; }       /* ~7-8 strategy groups, then scroll */
-.fam-scroll.table-scroll { max-height: 250px; }       /* DataTables header + ~5 rows, then scroll */
+.fam-scroll.chart-scroll {
+    max-height: 450px;                                    /* ~7-8 strategy groups, then vertical scroll */
+    overflow-x: hidden;                                   /* charts auto-fit container via Plotly responsive:true — no h-scroll */
+}
+.fam-scroll.table-scroll {
+    /* DataTables manages its own scrollY/scrollX viewport via scrollY:'250px' on
+       each per-family DataTable. Opt out of the outer cap + overflow so the
+       h-scrollbar at the dt-scroll-body bottom is visible (same UX as modifier). */
+    max-height: none;
+    overflow: visible;
+}
 .fam-scroll.expanded { max-height: none; overflow: visible; }
 
 /* Dropdown category (optgroup) + option label fonts — consistent/readable */
@@ -222,6 +407,21 @@ select option { font-weight: 500; color: #1C1C1C; font-size: var(--fs-ui); }
 .d.good { color: #1a8c5a; background: #e7f6ee; }
 .d.warn { color: #b7791f; background: #fbf3e2; }
 .d.bad  { color: #c5384a; background: #fdecef; }
+
+/* |Δ| color-key chips, rendered inside the DataTables top-right toolbar via DT 2.x layout.
+   Sits inline with the search input — keeps the chips on the same row as the controls.
+   A thin border + 7-px radius + white background draws a small "card" around the chips so the
+   legend reads as a distinct UI element rather than free-floating coloured text. */
+.delta-legend {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-right: 0.9rem;
+    padding: 0.35rem 0.5rem;                                         /* vertical padding tuned so the legend box height matches the search input / pageLength dropdown / Export CSV button (~28-29 px total) */
+    border: 1px solid #CBD5E1;
+    border-radius: 7px;
+    background-color: #fff;
+}
 
 /* Per-row log drawer + scrim */
 #log-scrim {

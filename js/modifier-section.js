@@ -132,6 +132,7 @@
         <div class="legend" id="mod-legend"></div>
       </div>
 
+      <p class="chart-sub" style="margin:.7rem 0 0">&#9432; <b>Chart view:</b> click any bar to open the metrics drawer. <b>Table view:</b> click any accuracy value to open the eval in the InspectAI viewer.</p>
       <div id="mod-body" style="margin-top:1rem"></div>
       <p class="hint" id="mod-foot" style="font-size:var(--fs-small);color:#979797;font-weight:600;margin-top:.6rem"></p>
 
@@ -198,12 +199,7 @@
   function updateFoot() {
     const foot = document.getElementById('mod-foot');
     if (!foot) return;
-    if (state.machine === 'cmp') {
-      foot.innerHTML = 'Compare Δ = DGX − SKORGE (pp) per scorer. Cells |Δ|&gt;1.5 pp drawn red, ≤1.5 amber, ≤1 green. ' +
-        'Legend filters models. The <b>[sk ↗] [dgx ↗]</b> links on each row open the per-machine eval in the InspectAI viewer.';
-    } else {
-      foot.innerHTML = '';   /* control bar already conveys machine/view — no narrative footer needed */
-    }
+    foot.innerHTML = '';   /* control bar + per-section subtitles convey machine/view — no narrative footer needed (parallel to retrieval) */
   }
 
   // =========================================================================
@@ -217,8 +213,7 @@
       return `<optgroup label="${g.group}">${inner}</optgroup>`;
     }).join('');
     return `<div class="fg" style="margin-bottom:.7rem"><span class="lbl">View metric</span>` +
-      `<select class="ctl" id="mod-metric">${opts}</select>` +
-      `<span class="chart-sub" style="margin-left:.8rem">&#9432; Click any bar or model name to open the detailed InspectAI eval log.</span></div>`;
+      `<select class="ctl" id="mod-metric">${opts}</select></div>`;
   }
 
   // Value for a summary row under the selected metric; pct metrics scaled ×100.
@@ -241,7 +236,7 @@
 
     const models = activeModels();
     if (!models.length) {
-      chartDiv.innerHTML = '<p class="hint" style="padding:1rem">No models selected — enable a legend chip.</p>';
+      chartDiv.innerHTML = '<p class="hint" style="padding:1rem">No models selected. Enable a legend chip.</p>';
       return;
     }
 
@@ -292,7 +287,7 @@
       if (key !== 'avg_total' && r.tokens && r.tokens.avg_total != null) {
         ctx.push(`<b>Tokens:</b> ${Math.round(r.tokens.avg_total).toLocaleString()}`);
       }
-      if (ctx.length) lines.push(ctx.join(' · '));
+      if (ctx.length) lines.push(...ctx);                                  /* each context metric on its own line — uniform layout across every selected metric (no middot pack) */
       const completedVal = r.completed_samples != null ? r.completed_samples : r.samples;
       if (r.samples != null && completedVal != null && completedVal < r.samples) {
         lines.push(`<i>${completedVal.toLocaleString()} / ${r.samples.toLocaleString()} completed</i>`);
@@ -309,7 +304,7 @@
     const layout = {
       height: 460, margin: { l: 60, r: 30, t: 30, b: 90 },
       xaxis: { tickfont: CHART_FONTS.axisTick, tickangle: -35, automargin: true },
-      yaxis: { title: { text: def.label, font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, automargin: true, zeroline: true, rangemode: 'tozero' },
+      yaxis: { title: { text: def.label, font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, automargin: true, zeroline: true, rangemode: 'tozero', range: key === 'truncation_rate' ? [0, 25] : undefined },
       font: { family: 'Manrope, sans-serif' },
       hoverlabel: {                                                          /* white tooltip card, consistent Manrope */
         bgcolor: '#ffffff', bordercolor: '#CBD5E1',
@@ -366,7 +361,7 @@
     ];
 
     window.openLogDrawer({
-      title: modelDisplay(model) + (isReasoning(model) ? ' ✦' : '') + ' — modification benchmark',
+      title: modelDisplay(model) + (isReasoning(model) ? ' ✦' : '') + ' (modification benchmark)',
       machine: machineLabel,
       groups: [
         { group: 'Quality', rows: quality },
@@ -396,8 +391,9 @@
 
   function renderTable(body) {
     if (modDataTable) { try { modDataTable.destroy(); } catch (e) {} modDataTable = null; }
+    // Export CSV button is injected into the DataTables top-left slot (layout.topStart) so it
+    // sits inline with the Search input on the same row above the table.
     body.innerHTML =
-      '<div style="margin-bottom:.6rem"><button class="btn-small" id="mod-csv">Export CSV</button></div>' +
       '<div class="tablewrap"><table id="modifier-table" class="display" style="width:100%"></table></div>';
 
     const entries = tableEntries();
@@ -406,10 +402,10 @@
       const me = r.metrics || {};
       const tk = r.tokens || {};
       const url = buildLogUrl(r.model_folder, r.eval_file, 'modifier');
-      const modelCell = `<a href="${url}" target="_blank" rel="noopener" title="Open eval in InspectAI viewer">${modelDisplay(entry.model)}</a>` +
-        (isReasoning(entry.model) ? ' ✦' : '');
+      const modelCell = `${modelDisplay(entry.model)}${isReasoning(entry.model) ? ' ✦' : ''}`;     /* plain text — link moves to the Accuracy cell */
       const ma = me.Modification_Accuracy || {};
-      const accSE = `${pct(ma.value, 2)} ± ${ma.se != null ? (ma.se * 100).toFixed(2) : '—'}`;
+      const accSEText = `${pct(ma.value, 2)} ± ${ma.se != null ? (ma.se * 100).toFixed(2) : '—'}`;
+      const accSE = `<a href="${url}" target="_blank" rel="noopener" title="Open eval in InspectAI viewer">${accSEText}</a>`;
       const tok = tk.avg_total != null ? Math.round(tk.avg_total).toLocaleString() : '—';
       const tmean = r.timing && r.timing.mean != null ? r.timing.mean.toFixed(2) : '—';
       const thr = r.throughput != null ? r.throughput : '—';
@@ -440,9 +436,22 @@
         { title: 'Trunc %' }, { title: 'Completed / Total' },
       ],
       order: [[1, 'desc']],
-      pageLength: 25,
+      paging: false,                                       /* only 9 model rows — no pagination needed */
+      info: false,
+      searching: true,                                     /* search box (styled via .dataTables_filter CSS) */
       scrollX: true,
       deferRender: true,
+      language: { search: '', searchPlaceholder: 'Search…' }, /* hide DT's "Search:" label; placeholder matches the other three search bars for uniform look */
+      layout: {                                            /* Export CSV (left) inline with Search (right) on the same row */
+        topStart: () => {                                  /* DT 2.x requires a function returning a DOM node — raw HTML strings are rejected as "unknown feature" */
+          const b = document.createElement('button');
+          b.id = 'mod-csv';
+          b.className = 'btn-small';
+          b.textContent = 'Export CSV';
+          return b;
+        },
+        topEnd: 'search',
+      },
     });
     // The Model column hyperlinks to the InspectAI viewer — no drilldown logbtn needed.
 
@@ -506,7 +515,7 @@
     const pairs = comparePairs();
     const div = document.getElementById('modifier-chart');
     if (!pairs.length) {
-      div.innerHTML = '<p class="hint" style="padding:1rem">No models selected — enable a legend chip.</p>';
+      div.innerHTML = '<p class="hint" style="padding:1rem">No models selected. Enable a legend chip.</p>';
       return;
     }
 
@@ -531,11 +540,11 @@
     };
 
     const allv = withDelta.flatMap((d) => [d.sk, d.dgx]);
-    const lo = Math.max(0, Math.floor(Math.min(...allv) - 3));
-    const hi = Math.min(100, Math.ceil(Math.max(...allv) + 3));
+    const lo = Math.max(0, Math.floor(Math.min(...allv) - 5));               /* ±5 pp padding (matches retrieval Compare) so outlier points + labels sit comfortably inside the plot edges */
+    const hi = Math.min(100, Math.ceil(Math.max(...allv) + 5));
 
     const traces = [
-      { name: 'y = x (identical)', type: 'scatter', mode: 'lines', x: [lo, hi], y: [lo, hi],
+      { name: 'y = x (identical)', type: 'scatter', mode: 'lines', x: [0, 100], y: [0, 100],   /* full 0-100 diagonal; Plotly clips to visible y-range */
         line: { color: '#1565c0', dash: 'dash', width: 1.5 }, hoverinfo: 'skip' },
       { name: '|Δ| ≤ 1.5 pp', type: 'scatter', mode: 'markers',
         x: onDiag.map((d) => d.sk), y: onDiag.map((d) => d.dgx),
@@ -549,11 +558,11 @@
         hovertext: off.map(hover), hoverinfo: 'text' },
     ];
     const layout = {
-      height: 520, margin: { l: 60, r: 40, t: 30, b: 55 },
-      title: { text: 'Modification Accuracy — SKORGE vs DGX Spark', font: CHART_FONTS.axisTitle },
-      xaxis: { title: { text: 'SKORGE Modification Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, range: [lo, hi], zeroline: false },
-      yaxis: { title: { text: 'DGX Spark Modification Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, range: [lo, hi], zeroline: false, scaleanchor: 'x', scaleratio: 1 },
-      legend: { orientation: 'h', y: 1.08, font: { size: 10 } },
+      height: 520, margin: { l: 60, r: 40, t: 55, b: 55 },                  /* t=55 fits centered chart title; legend now lives inside the plot so no extra top room needed (matches retrieval Compare) */
+      title: { text: 'Modification Accuracy: SKORGE vs DGX Spark', font: CHART_FONTS.axisTitle, x: 0.5, xanchor: 'center' },
+      xaxis: { title: { text: 'SKORGE Modification Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, range: [0, 100], zeroline: false },   /* fixed full 0-100 spectrum on x */
+      yaxis: { title: { text: 'DGX Spark Modification Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, range: [lo, hi], zeroline: false },  /* dynamic y; scaleanchor removed so plot fills container width */
+      legend: { orientation: 'v', x: 0.02, y: 0.98, xanchor: 'left', yanchor: 'top', font: CHART_FONTS.legend, bgcolor: 'rgba(255,255,255,0.85)', bordercolor: '#CBD5E1', borderwidth: 1 },   /* vertical pill, top-left inside plot */
       font: { family: 'Manrope, sans-serif' },
       hoverlabel: {                                                          /* white tooltip card, consistent Manrope */
         bgcolor: '#ffffff', bordercolor: '#CBD5E1',
@@ -576,8 +585,6 @@
   function renderCompareTable(body) {
     if (modDataTable) { try { modDataTable.destroy(); } catch (e) {} modDataTable = null; }
     body.innerHTML =
-      '<div style="margin-bottom:.6rem"><button class="btn-small" id="mod-csv">Export CSV</button>' +
-      '<span style="margin-left:1rem;font-size:var(--fs-small)"><span class="d good">|Δ|≤1</span> <span class="d warn">≤1.5</span> <span class="d bad">&gt;1.5 pp</span></span></div>' +
       '<div class="tablewrap"><table id="modifier-table" class="display" style="width:100%"></table></div>';
 
     const pairs = comparePairs();
@@ -595,10 +602,10 @@
       const skUrl = buildLogUrl(d.p.sk.model_folder, d.p.sk.eval_file, 'modifier');
       const dgxUrl = buildLogUrl(d.p.dg.model_folder, d.p.dg.eval_file, 'modifier');
       const dCell = `<span class="d ${deltaClass(d.delta)}">${d.delta >= 0 ? '+' : ''}${d.delta.toFixed(2)}</span>`;
-      const modelCell = `${modelDisplay(d.p.model)}${isReasoning(d.p.model) ? ' ✦' : ''} ` +
-        `<a href="${skUrl}" target="_blank" rel="noopener" title="SKORGE eval" style="font-size:var(--fs-small)">[sk ↗]</a> ` +
-        `<a href="${dgxUrl}" target="_blank" rel="noopener" title="DGX eval" style="font-size:var(--fs-small)">[dgx ↗]</a>`;
-      return [modelCell, d.scorer.label, d.sk.toFixed(2), d.dgx.toFixed(2),
+      const modelCell = `${modelDisplay(d.p.model)}${isReasoning(d.p.model) ? ' ✦' : ''}`;   /* plain text — links move to the SK and DGX value cells */
+      const skLink = `<a href="${skUrl}" target="_blank" rel="noopener" title="Open SKORGE eval in InspectAI viewer">${d.sk.toFixed(2)}</a>`;
+      const dgxLink = `<a href="${dgxUrl}" target="_blank" rel="noopener" title="Open DGX Spark eval in InspectAI viewer">${d.dgx.toFixed(2)}</a>`;
+      return [modelCell, d.scorer.label, skLink, dgxLink,
         { html: dCell, abs: Math.abs(d.delta), raw: d.delta }];
     });
 
@@ -617,10 +624,30 @@
       ],
       order: [[4, 'desc']],
       pageLength: 27, scrollX: true, deferRender: true,
+      language: { search: '', searchPlaceholder: 'Search…' },            /* hide DT's "Search:" label; placeholder matches the other three search bars for uniform look */
+      layout: {                                                          /* one-row toolbar: CSV + pageLength (left) | legend + search (right) — same shape as retrieval Compare */
+        topStart: [
+          () => {
+            const btn = document.createElement('button');
+            btn.id = 'mod-csv';
+            btn.className = 'btn-small';
+            btn.textContent = 'Export CSV';
+            btn.addEventListener('click', () => exportCompareCSV(sorted));
+            return btn;
+          },
+          'pageLength',                                                  /* entries-per-page selector sits beside the Export CSV button on the left */
+        ],
+        topEnd: [
+          () => {                                                        /* |Δ| color-key chips — modifier thresholds are ≤1 / ≤1.5 / >1.5 (tighter than retrieval's ≤1 / ≤3 / >3) */
+            const legend = document.createElement('span');
+            legend.className = 'delta-legend';
+            legend.innerHTML = '<span class="d good">|Δ|&le;1</span> <span class="d warn">&le;1.5</span> <span class="d bad">&gt;1.5&nbsp;pp</span>';
+            return legend;
+          },
+          'search',
+        ],
+      },
     });
-
-    const csvBtn = document.getElementById('mod-csv');
-    if (csvBtn) csvBtn.addEventListener('click', () => exportCompareCSV(sorted));
   }
 
   function exportCompareCSV(sorted) {
@@ -693,8 +720,8 @@
               `<b>Model:</b> ${modelDisplay(m)}${isReasoning(m) ? ' ✦' : ''}`,
               `<b>Machine:</b> ${heatMachineLabel}`,
               `<b>Template:</b> ${tid}`,
+              `<b>${def.label}:</b> <b>${(v * 100).toFixed(2)}%</b>`,                /* metric value before Samples — matches the tier hover ordering (Accuracy then Samples) */
               `<b>Samples:</b> ${row.count}`,
-              `<b>${def.label}:</b> <b>${(v * 100).toFixed(2)}%</b>`,
             ].join('<br>')
           : [
               `<b>Model:</b> ${modelDisplay(m)}${isReasoning(m) ? ' ✦' : ''}`,
@@ -711,7 +738,11 @@
       y: models.map((m) => modelDisplay(m) + (isReasoning(m) ? ' ✦' : '')),
       z, hovertext, hoverinfo: 'text',
       colorscale: [[0, '#c5384a'], [0.5, '#ffd166'], [1, '#1a8c5a']],
-      zmin: 0, zmax: 100, colorbar: { title: '%', titleside: 'right' },
+      zmin: 0, zmax: 100,
+      colorbar: {
+        title: { text: '%', side: 'right', font: CHART_FONTS.axisTitle },    /* match every other axis title in the dashboard */
+        tickfont: CHART_FONTS.axisTick,                                       /* match every other tick font */
+      },
       xgap: 1, ygap: 1,
     };
     const layout = {

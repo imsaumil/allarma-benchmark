@@ -107,10 +107,11 @@ function exportJSONToCSV(data, columns, filename) {
 // so annotation labels and axis title/tick fonts are identical across the dashboard.
 const CHART_FONTS = {
   annotation:     { family: 'Manrope, sans-serif',   size: 15, color: '#1C1C1C' },  /* % labels / bar value text */
-  annotationWarn: { family: 'Manrope, sans-serif',   size: 10, color: '#c5384a' },  /* off-diagonal scatter warnings (kept small + red per design) */
+  annotationWarn: { family: 'Manrope, sans-serif',   size: 12, color: '#c5384a' },  /* off-diagonal Compare-Δ outlier labels (red) */
   axisTitle:      { family: 'Manrope, sans-serif',   size: 15, color: '#1C1C1C' },  /* xaxis/yaxis title */
   axisTick:       { family: 'Manrope, sans-serif',   size: 15, color: '#37474f' },  /* default tick labels */
   axisTickMono:   { family: 'ui-monospace, monospace', size: 15, color: '#1C1C1C' },/* strategy-name ticks on family bars */
+  legend:         { family: 'Manrope, sans-serif',   size: 13, color: '#1C1C1C' },  /* in-chart horizontal legend (Compare-Δ scatters) */
 };
 
 // Margin for the three retrieval family-bar charts (long strategy names at 15px monospace y-tick).
