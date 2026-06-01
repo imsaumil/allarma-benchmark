@@ -121,6 +121,10 @@
             <button data-m="cmp">Compare Δ</button>
           </div>
         </div>
+        <!-- Right-side spacer: mirrors retrieval's Families slot so Machine sits at the true
+             container centre instead of drifting right. Modifier has no families dimension,
+             so the slot stays intentionally empty (visibility:hidden preserves layout space). -->
+        <div class="fg" aria-hidden="true" style="visibility:hidden;min-width:32rem"></div>
       </div>
 
       <div class="fg" style="align-items:flex-start">
@@ -129,7 +133,7 @@
       </div>
 
       <div id="mod-body" style="margin-top:1rem"></div>
-      <p class="hint" id="mod-foot" style="font-size:.8rem;color:#979797;font-weight:600;margin-top:.6rem"></p>
+      <p class="hint" id="mod-foot" style="font-size:var(--fs-small);color:#979797;font-weight:600;margin-top:.6rem"></p>
 
       <div id="mod-subcharts" style="margin-top:1.6rem"></div>
     `;
@@ -194,14 +198,11 @@
   function updateFoot() {
     const foot = document.getElementById('mod-foot');
     if (!foot) return;
-    const nMod = activeModels().length;
     if (state.machine === 'cmp') {
       foot.innerHTML = 'Compare Δ = DGX − SKORGE (pp) per scorer. Cells |Δ|&gt;1.5 pp drawn red, ≤1.5 amber, ≤1 green. ' +
         'Legend filters models. The <b>[sk ↗] [dgx ↗]</b> links on each row open the per-machine eval in the InspectAI viewer.';
     } else {
-      foot.innerHTML = `Machine <b>${MACHINE_LABEL[state.machine]}</b> · <b>${nMod}</b> of 9 LLMs · ` +
-        'grouped bars, one per model; the metric selector (Chart view) switches the plotted scorer. ' +
-        'Click any model name in Table view to open its eval in the InspectAI viewer, or any bar to open the drawer.';
+      foot.innerHTML = '';   /* control bar already conveys machine/view — no narrative footer needed */
     }
   }
 
@@ -216,7 +217,8 @@
       return `<optgroup label="${g.group}">${inner}</optgroup>`;
     }).join('');
     return `<div class="fg" style="margin-bottom:.7rem"><span class="lbl">View metric</span>` +
-      `<select class="ctl" id="mod-metric">${opts}</select></div>`;
+      `<select class="ctl" id="mod-metric">${opts}</select>` +
+      `<span class="chart-sub" style="margin-left:.8rem">&#9432; Click any bar or model name to open the detailed InspectAI eval log.</span></div>`;
   }
 
   // Value for a summary row under the selected metric; pct metrics scaled ×100.
@@ -575,7 +577,7 @@
     if (modDataTable) { try { modDataTable.destroy(); } catch (e) {} modDataTable = null; }
     body.innerHTML =
       '<div style="margin-bottom:.6rem"><button class="btn-small" id="mod-csv">Export CSV</button>' +
-      '<span style="margin-left:1rem;font-size:.8rem"><span class="d good">|Δ|≤1</span> <span class="d warn">≤1.5</span> <span class="d bad">&gt;1.5 pp</span></span></div>' +
+      '<span style="margin-left:1rem;font-size:var(--fs-small)"><span class="d good">|Δ|≤1</span> <span class="d warn">≤1.5</span> <span class="d bad">&gt;1.5 pp</span></span></div>' +
       '<div class="tablewrap"><table id="modifier-table" class="display" style="width:100%"></table></div>';
 
     const pairs = comparePairs();
@@ -594,8 +596,8 @@
       const dgxUrl = buildLogUrl(d.p.dg.model_folder, d.p.dg.eval_file, 'modifier');
       const dCell = `<span class="d ${deltaClass(d.delta)}">${d.delta >= 0 ? '+' : ''}${d.delta.toFixed(2)}</span>`;
       const modelCell = `${modelDisplay(d.p.model)}${isReasoning(d.p.model) ? ' ✦' : ''} ` +
-        `<a href="${skUrl}" target="_blank" rel="noopener" title="SKORGE eval" style="font-size:.8rem">[sk ↗]</a> ` +
-        `<a href="${dgxUrl}" target="_blank" rel="noopener" title="DGX eval" style="font-size:.8rem">[dgx ↗]</a>`;
+        `<a href="${skUrl}" target="_blank" rel="noopener" title="SKORGE eval" style="font-size:var(--fs-small)">[sk ↗]</a> ` +
+        `<a href="${dgxUrl}" target="_blank" rel="noopener" title="DGX eval" style="font-size:var(--fs-small)">[dgx ↗]</a>`;
       return [modelCell, d.scorer.label, d.sk.toFixed(2), d.dgx.toFixed(2),
         { html: dCell, abs: Math.abs(d.delta), raw: d.delta }];
     });
@@ -656,7 +658,7 @@
         <h3 style="color:#1565c0">2.4 · Per-template breakdown</h3>
         <div class="fg" style="margin:.3rem 0 .6rem"><span class="lbl">View metric</span>
           <select class="ctl" id="mod-heat-metric">${opts}</select>
-          <span class="hint" id="mod-heat-note" style="margin-left:.6rem"></span>
+          <span class="chart-sub" id="mod-heat-note" style="margin-left:.6rem"></span>
         </div>
         <div id="mod-heat-chart" style="min-height:420px"></div>`;
       const sel = document.getElementById('mod-heat-metric');

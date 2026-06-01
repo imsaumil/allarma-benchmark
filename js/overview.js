@@ -8,9 +8,6 @@ function initOverview() {
   const root = document.getElementById('overview-container');
   if (!root) return;
 
-  const RETR_DOC = 'docs/cross_machine_retriever_comparison.md';
-  const MOD_DOC = 'docs/cross_machine_modifier_comparison.md';
-
   root.innerHTML = `
     <figure class="overview-diagram">
       <img src="assets/process_diagram.png"
@@ -18,7 +15,7 @@ function initOverview() {
            width="1600" height="661" loading="lazy">
       <figcaption class="fig-cap">
         <strong>Figure 1.</strong> The aLLarMa two-stage constrained GraphRAG pipeline:
-        <span class="stage1">Stage 1</span> retrieves a pre-validated query template;
+        <span class="stage1">Stage 1</span> retrieves a pre-validated query template;<br>
         <span class="stage2">Stage 2</span> modifies it within marked boundaries.
       </figcaption>
     </figure>
@@ -31,7 +28,7 @@ function initOverview() {
         <em>means</em> are reproducible across machines (every per-model mean
         &Delta;accuracy within &plusmn;0.55&nbsp;pp), but a few individual
         (model,&nbsp;strategy) cells diverge far more than the mean suggests.
-        The points below list what the averages hide.
+        The points below list what the average hides:
       </p>
 
       <ul>
@@ -44,13 +41,11 @@ function initOverview() {
           gpt-oss-20b / llm-direct-match-all <strong>+3.46&nbsp;pp</strong>
           (SK 91.86 / DGX 95.32, both unbounded);
           nemotron-12b / llm-listwise-rerank-dense-candidate <strong>+3.16&nbsp;pp</strong>.
-          <a href="${RETR_DOC}">Retriever audit &rarr;</a>
         </li>
         <li>
           <strong>Modifier: 7 of 9 models within &plusmn;1.5&nbsp;pp</strong> on all
           three scorers; the two Nemotron reasoning models diverge up to
           <strong>&plusmn;3.12&nbsp;pp</strong> on Execution Success / Answer Yield.
-          <a href="${MOD_DOC}">Modifier audit &rarr;</a>
         </li>
         <li>
           <strong>qwen3.5-0.8b repetition loops</strong> on
@@ -70,16 +65,7 @@ function initOverview() {
           <strong>modifier 3.94&times;</strong> &mdash; reflecting its 240&nbsp;W
           edge envelope, not generalizing beyond this dataset / vLLM setup.
         </li>
-        <li>
-          llama-3.1-8b ran on the DGX only and is excluded from cross-machine comparisons.
-        </li>
       </ul>
-
-      <p class="caveat-foot">
-        Authoritative full lists:
-        <a href="${RETR_DOC}">retriever comparison</a> &middot;
-        <a href="${MOD_DOC}">modifier comparison</a>.
-      </p>
       </div>
     </details>
   `;

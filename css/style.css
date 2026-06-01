@@ -1,8 +1,22 @@
+/* === Typographic scale (Major Third, 1.25× modular) ===
+   Single source of truth for every font-size in the dashboard. Six steps cover
+   every UI surface; change any token here and the whole dashboard updates. */
+:root {
+    --fs-h2:    1.5rem;      /* 24 px — section titles                            */
+    --fs-h3:    1.25rem;     /* 20 px — subsection titles + nav brand             */
+    --fs-h4:    1.125rem;    /* 18 px — caveat header / log-drawer title          */
+    --fs-body:  1rem;        /* 16 px — body, section description, list items     */
+    --fs-ui:    0.875rem;    /* 14 px — form controls / labels / chips / buttons  */
+    --fs-small: 0.8125rem;   /* 13 px — hints / notes / btn-small / delta chips   */
+    --fs-tiny:  0.75rem;     /* 12 px — counters / micro-labels / ✦ badge         */
+}
+
 /* === Reset & Base === */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
     font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: #1C1C1C;
+    font-size: var(--fs-body);
     line-height: 1.6;
     background: #F3F3F3;
 }
@@ -17,36 +31,38 @@ body {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 }
 .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
-.nav-title { font-weight: 700; font-size: 1.28rem; letter-spacing: 0.5px; }
+.nav-title { font-weight: 700; font-size: var(--fs-h3); letter-spacing: 0.5px; }
 .nav-links { display: flex; align-items: center; gap: 0.3rem; }
 .nav-links a {
-    color: #fff; text-decoration: none; font-size: 1rem;
+    color: #fff; text-decoration: none; font-size: var(--fs-body);
     padding: 0.4rem 0.75rem; border-radius: 6px;
     opacity: 0.85; transition: all 0.2s;
 }
 .nav-links a:hover { opacity: 1; background: rgba(255,255,255,0.15); }
-/* Live Dashboard — clean white pill (CIGRE style; no shadow/animation) */
-.nav-pill {
+/* Live Dashboard — clean white pill (CIGRE style; no shadow/animation).
+   Specificity raised via `.nav-links .nav-pill` so the pill's font-size wins
+   over `.nav-links a`'s body size. */
+.nav-links .nav-pill {
     background: #fff; color: #1565c0 !important;
     padding: 0.35rem 1rem; border-radius: 20px; font-weight: 600;
-    font-size: 0.9rem; letter-spacing: 0.2px; opacity: 1 !important;
+    font-size: var(--fs-ui); letter-spacing: 0.2px; opacity: 1 !important;
     margin-right: 0.5rem;
 }
-.nav-pill:hover { background: #e3f2fd !important; }
+.nav-links .nav-pill:hover { background: #e3f2fd !important; }
 
 /* === Buttons (EPRI style) === */
 .btn {
     display: inline-block; padding: 0.5rem 1rem; border-radius: 6px;
-    text-decoration: none; font-weight: 600; font-size: 0.9rem; cursor: pointer;
+    text-decoration: none; font-weight: 600; font-size: var(--fs-ui); cursor: pointer;
     font-family: inherit; transition: all 0.2s;
 }
 .btn-small {
-    padding: 0.35rem 0.75rem; font-size: 0.85rem;
+    padding: 0.35rem 0.75rem; font-size: var(--fs-small);
     background: #1565c0; color: #fff; border: 1px solid #1565c0; border-radius: 6px;
 }
 .btn-small:hover { background: #1558A0; }
 .btn-large {
-    padding: 0.6rem 1.5rem; font-size: 1rem;
+    padding: 0.6rem 1.5rem; font-size: var(--fs-body);
     background: #1565c0; color: #fff; border: 2px solid #1565c0; border-radius: 6px;
 }
 .btn-large:hover { background: #1558A0; }
@@ -59,18 +75,23 @@ section {
 }
 section:first-of-type { margin-top: 72px; }
 section h2 {
-    font-size: 1.5rem; color: #1565c0; font-weight: 700;
+    font-size: var(--fs-h2); color: #1565c0; font-weight: 700;
     border-bottom: 2px solid #1565c0; padding-bottom: 0.5rem; margin-bottom: 0.75rem;
 }
-section h3 { font-size: 1.1rem; color: #1C1C1C; font-weight: 600; margin: 1rem 0 0.5rem; }
-.section-desc { color: #495057; margin-bottom: 0.75rem; font-size: 0.95rem; line-height: 1.55; }
+section h3 { font-size: var(--fs-h3); color: #1C1C1C; font-weight: 600; margin: 1rem 0 0.5rem; }
+.section-desc { color: #495057; margin-bottom: 0.75rem; font-size: var(--fs-body); line-height: 1.55; }
 /* Uniform small / hint / footnote text */
-.hint { font-size: 0.8rem; color: #6c757d; font-weight: 600; }
+.hint { font-size: var(--fs-small); color: #6c757d; font-weight: 600; }
+
+/* Uniform chart subtitle — used by every subchart description and the
+   "click bar / row name" tip beside each Metric dropdown. Body-size for
+   readability; charcoal for contrast without competing with section h3. */
+.chart-sub { font-size: var(--fs-body); color: #495057; font-weight: 400; line-height: 1.5; }
 
 /* === Controls === */
 .control-group { display: inline-flex; align-items: center; gap: 0.5rem; margin: 0.5rem 1rem 0.5rem 0; }
 select, .ctl {
-    font-family: inherit; font-weight: 600; font-size: 0.88rem; color: #1C1C1C;
+    font-family: inherit; font-weight: 600; font-size: var(--fs-ui); color: #1C1C1C;
     padding: 0.4rem 1.9rem 0.4rem 0.7rem; border: 1px solid #CBD5E1; border-radius: 7px;
     background-color: #fff; cursor: pointer;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' fill='none' stroke='%23495057' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
@@ -79,13 +100,13 @@ select, .ctl {
 }
 select:hover, .ctl:hover { border-color: #1565c0; }
 select:focus, .ctl:focus { outline: none; border-color: #1565c0; box-shadow: 0 0 0 3px rgba(21,101,192,0.15); }
-label { font-weight: 600; font-size: 0.9rem; color: #495057; }
+label { font-weight: 600; font-size: var(--fs-ui); color: #495057; }
 
 /* === Tables === */
 .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 .about-content ul { list-style: disc; padding-left: 1.5rem; }
-.about-content li { margin-bottom: 0.3rem; font-size: 0.95rem; color: #495057; }
-table.summary-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+.about-content li { margin-bottom: 0.3rem; font-size: var(--fs-body); color: #495057; }
+table.summary-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: var(--fs-ui); }
 table.summary-table th {
     background: #1565c0; color: #fff; padding: 0.6rem 0.75rem;
     text-align: left; font-weight: 600;
@@ -104,7 +125,7 @@ section[id] { scroll-margin-top: 72px; }
 
 /* === Logs === */
 #logs { text-align: center; }
-.note { font-size: 0.85rem; color: #979797; margin-top: 1rem; }
+.note { font-size: var(--fs-small); color: #979797; margin-top: 1rem; }
 
 /* === About === */
 #about h3 { color: #1565c0; }
@@ -130,7 +151,7 @@ section[id] { scroll-margin-top: 72px; }
 }
 .fg { display: flex; align-items: center; gap: 0.6rem; }
 .lbl {
-    font-weight: 700; font-size: 0.85rem; text-transform: uppercase;
+    font-weight: 700; font-size: var(--fs-ui); text-transform: uppercase;
     letter-spacing: 0.04em; color: #495057;
 }
 /* (.ctl shares the unified select style above) */
@@ -139,31 +160,31 @@ section[id] { scroll-margin-top: 72px; }
 .seg { display: inline-flex; background: #e7ecf3; border-radius: 7px; padding: 3px; }
 .seg button {
     border: 0; background: transparent; font-family: inherit; font-weight: 700;
-    font-size: 0.88rem; color: #495057; padding: 6px 14px; border-radius: 6px; cursor: pointer;
+    font-size: var(--fs-ui); color: #495057; padding: 6px 14px; border-radius: 6px; cursor: pointer;
 }
 .seg button.on { background: #1565c0; color: #fff; }
 .seg.alt button.on { background: #37474f; }
 
 /* Family checkboxes */
 .fam {
-    display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.92rem;
+    display: inline-flex; align-items: center; gap: 0.4rem; font-size: var(--fs-ui);
     font-weight: 600; cursor: pointer; user-select: none;
     border: 1px solid #CBD5E1; border-radius: 7px; padding: 6px 12px; background: #fff;
 }
 .fam.on { background: #e3f2fd; border-color: #9bc1ee; color: #1565c0; }
-.fam .cnt { font-size: 0.8rem; color: #979797; font-weight: 700; }
+.fam .cnt { font-size: var(--fs-ui); color: #979797; font-weight: 700; }     /* unified with .fam name + .lbl + .seg button — all 14 px across the View / Machine / Families cards */
 .fam.on .cnt { color: #1565c0; }
 .fam input { accent-color: #1565c0; }
 
 /* LLM legend chips (color key + model filter) */
 .legend { display: flex; gap: 0.45rem; flex-wrap: wrap; align-items: center; flex: 1; }
 .lgbox {
-    display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 0.9rem;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: var(--fs-ui);
     font-weight: 600; border: 1px solid #CBD5E1; border-radius: 20px;
     padding: 5px 12px; cursor: pointer; background: #fff; user-select: none; flex: 1 1 auto;
 }
 .lgbox .sw { display: inline-block; width: 11px; height: 11px; border-radius: 3px; }
-.lgbox .rz { font-size: 0.6rem; }
+.lgbox .rz { font-size: var(--fs-tiny); }
 .lgbox.off { opacity: 0.32; text-decoration: line-through; }
 
 /* Chart container box */
@@ -178,7 +199,7 @@ section[id] { scroll-margin-top: 72px; }
 .fam-sub-head h3 { margin: 0; }                       /* reuse section h3 type, drop its margins */
 .expand-btn {
     border: 1px solid #CBD5E1; background: #fff; color: #1565c0;
-    font-family: inherit; font-weight: 700; font-size: 0.8rem;
+    font-family: inherit; font-weight: 700; font-size: var(--fs-small);
     padding: 4px 12px; border-radius: 6px; cursor: pointer; transition: all 0.15s;
 }
 .expand-btn:hover { border-color: #1565c0; background: #e3f2fd; }
@@ -188,16 +209,16 @@ section[id] { scroll-margin-top: 72px; }
     overflow-y: auto;
     border: 1px solid #e9ecef; border-radius: 8px;
 }
-.fam-scroll.chart-scroll { max-height: 300px; }       /* ~5 strategy groups, then scroll */
+.fam-scroll.chart-scroll { max-height: 450px; }       /* ~7-8 strategy groups, then scroll */
 .fam-scroll.table-scroll { max-height: 250px; }       /* DataTables header + ~5 rows, then scroll */
 .fam-scroll.expanded { max-height: none; overflow: visible; }
 
 /* Dropdown category (optgroup) + option label fonts — consistent/readable */
-select optgroup { font-weight: 700; font-style: normal; color: #1565c0; font-size: 0.85rem; }
-select option { font-weight: 500; color: #1C1C1C; font-size: 0.9rem; }
+select optgroup { font-weight: 700; font-style: normal; color: #1565c0; font-size: var(--fs-small); }
+select option { font-weight: 500; color: #1C1C1C; font-size: var(--fs-ui); }
 
 /* Delta cells (Compare view): green good / amber warn / red bad */
-.d { font-weight: 700; border-radius: 5px; padding: 1px 6px; font-size: 0.82rem; }
+.d { font-weight: 700; border-radius: 5px; padding: 1px 6px; font-size: var(--fs-small); }
 .d.good { color: #1a8c5a; background: #e7f6ee; }
 .d.warn { color: #b7791f; background: #fbf3e2; }
 .d.bad  { color: #c5384a; background: #fdecef; }
@@ -209,7 +230,12 @@ select option { font-weight: 500; color: #1C1C1C; font-size: 0.9rem; }
 }
 #log-scrim.on { opacity: 1; pointer-events: auto; }
 #log-drawer {
-    position: fixed; top: 0; right: 0; height: 100vh; width: 390px; background: #fff;
+    /* Anchor below the fixed nav (height varies by viewport — see --nav-h set by
+       log-drawer.js) so the drawer header (title + × close) sits in its own band
+       instead of being covered by the nav (z-index 100). */
+    position: fixed; top: var(--nav-h, 56px); right: 0;
+    height: calc(100vh - var(--nav-h, 56px));
+    width: 390px; background: #fff;
     box-shadow: -12px 0 40px rgba(0,0,0,0.18); transform: translateX(100%);
     transition: 0.22s; z-index: 95; display: flex; flex-direction: column;
 }
@@ -218,16 +244,16 @@ select option { font-weight: 500; color: #1C1C1C; font-size: 0.9rem; }
     background: #1565c0; color: #fff; padding: 1rem 1.1rem;
     display: flex; justify-content: space-between; align-items: center;
 }
-#log-drawer .dh h4 { font-size: 1rem; }
-#log-drawer .dh .x { cursor: pointer; font-size: 1.4rem; }
+#log-drawer .dh h4 { font-size: var(--fs-h4); }
+#log-drawer .dh .x { cursor: pointer; font-size: var(--fs-h3); }
 #log-drawer .db { padding: 1.1rem; overflow: auto; }
 #log-drawer .db .kv {
     display: flex; justify-content: space-between; padding: 0.5rem 0;
-    border-bottom: 1px dashed #e9ecef; font-size: 0.85rem;
+    border-bottom: 1px dashed #e9ecef; font-size: var(--fs-ui);
 }
 #log-drawer .db .kv span { color: #495057; }
 #log-drawer .db .sub {
-    color: #979797; font-size: 0.7rem; text-transform: uppercase;
+    color: #979797; font-size: var(--fs-tiny); text-transform: uppercase;
     letter-spacing: 0.05em; font-weight: 700; margin: 1rem 0 0.3rem;
 }
 #log-drawer .db .go {
@@ -242,7 +268,7 @@ select option { font-weight: 500; color: #1C1C1C; font-size: 0.9rem; }
     border-radius: 8px; background: #fff; padding: 0.4rem;
 }
 .fig-cap {
-    margin: 0.65rem auto 0; max-width: 940px; font-size: 0.95rem; line-height: 1.5;
+    margin: 0.65rem auto 0; max-width: 940px; font-size: var(--fs-body); line-height: 1.5;
     color: #495057; text-align: center;
 }
 .fig-cap strong { color: #1565c0; }
@@ -256,16 +282,16 @@ select option { font-weight: 500; color: #1C1C1C; font-size: 0.9rem; }
     border-radius: 6px; padding: 0.55rem 1rem;
 }
 .caveat > summary {
-    cursor: pointer; font-weight: 600; font-size: 1.1rem; color: #1C1C1C;
+    cursor: pointer; font-weight: 600; font-size: var(--fs-h4); color: #1C1C1C;
     list-style: none; padding: 0.2rem 0;
 }
 .caveat > summary::-webkit-details-marker { display: none; }
 .caveat > summary::before { content: '\25B8\00a0'; color: #b7791f; }       /* ▸ */
 .caveat[open] > summary::before { content: '\25BE\00a0'; color: #b7791f; } /* ▾ */
-.caveat-body { color: #495057; font-size: 0.95rem; line-height: 1.6; padding-top: 0.3rem; }
+.caveat-body { color: #495057; font-size: var(--fs-body); line-height: 1.6; padding-top: 0.3rem; }
 .caveat-body p { margin: 0.5rem 0; }
 .caveat-body ul { margin: 0; padding-left: 1.25rem; }
 .caveat-body li { margin-bottom: 0.35rem; }
 .caveat-body strong { color: #1C1C1C; }
-.caveat-foot { font-size: 0.8rem; color: #6c757d; margin-top: 0.6rem; }
+.caveat-foot { font-size: var(--fs-small); color: #6c757d; margin-top: 0.6rem; }
 .caveat a { color: #1565c0; font-weight: 600; }

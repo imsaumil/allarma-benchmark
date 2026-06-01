@@ -40,9 +40,9 @@
     drawer.innerHTML =
       `<div class="dh"><h4>${esc(title)}</h4><span class="x" role="button" aria-label="Close">&times;</span></div>` +
       `<div class="db">` +
-        (machine ? `<div style="font-size:.8rem;color:#495057;margin-bottom:.6rem">Machine: <b style="color:#1C1C1C">${esc(machine)}</b></div>` : '') +
+        (machine ? `<div style="font-size:var(--fs-small);color:#495057;margin-bottom:.6rem">Machine: <b style="color:#1C1C1C">${esc(machine)}</b></div>` : '') +
         bodyHTML +
-        `<p style="font-size:.8rem;color:#979797;margin-top:1rem">Every metric is computed from this run's per-sample data.</p>` +
+        `<p style="font-size:var(--fs-small);color:#979797;margin-top:1rem">Every metric is computed from this run's per-sample data.</p>` +
         `<a class="go" href="${esc(logUrl)}" target="_blank" rel="noopener">Open in InspectAI viewer ↗</a>` +
       `</div>`;
 
@@ -67,7 +67,23 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLogDrawer(); });
   }
 
+  // Keep the drawer anchored below the live nav height — the nav wraps to a
+  // taller multi-line layout on narrow viewports (@media max-width:768px),
+  // so reading offsetHeight here makes the drawer position correct on every
+  // breakpoint without duplicating the height in CSS @media rules.
+  function syncNavHeightVar() {
+    const nav = document.getElementById('main-nav');
+    if (!nav) return;
+    document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
+  }
   if (typeof window !== 'undefined') {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', syncNavHeightVar);
+    } else {
+      syncNavHeightVar();
+    }
+    window.addEventListener('resize', syncNavHeightVar);
+
     window.openLogDrawer = openLogDrawer;
     window.closeLogDrawer = closeLogDrawer;
   }

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
-  <link rel="stylesheet" href="css/style.css?v=28">
+  <link rel="stylesheet" href="css/style.css?v=40">
 </head>
 <body>
   <nav id="main-nav">
@@ -52,22 +52,12 @@
         <h3>Citation</h3>
         <p><em>Benchmarking aLLarMa: A Constrained Two-Stage GraphRAG Framework for Power System Alarm, Network and Operational Data Analytics</em></p>
         <p><strong>Authors:</strong> Saumil Shah (NC State University; Electric Power Research Institute), Adrian Kelly (Electric Power Research Institute, Ireland), Wenyuan Tang (NC State University)</p>
-        <p>Predecessor (CIGRE 2026 Paris Session, Paper ID 12538):
-          <a href="https://imsaumil.github.io/allarma-benchmark-eval-dashboard/" target="_blank" rel="noopener">3-model subset dashboard</a></p>
-        <p class="note">Methodology: 548 audited production eval logs across 9 open-weight LLMs (0.8B&ndash;20B) and two machines.</p>
       </div>
       <div class="about-block">
         <h3>Hardware</h3>
         <ul>
-          <li><strong>SKORGE</strong> (consumer-grade workstation): AMD Ryzen 9 7950X CPU &middot; NVIDIA RTX 4090 GPU (24 GB) &middot; 128 GB RAM &middot; vLLM serving.</li>
-          <li><strong>NVIDIA DGX Spark</strong> (self-contained 240 W edge-class appliance): GB10 Grace&ndash;Blackwell superchip (20-core ARM CPU + 5th-gen Tensor-Core GPU, 128 GB unified memory) &middot; vLLM serving.</li>
-        </ul>
-        <h3>Datasets &amp; links</h3>
-        <ul>
-          <li>HF dataset: <a href="https://huggingface.co/datasets/imsaumil/allarma-benchmark" target="_blank" rel="noopener">imsaumil/allarma-benchmark</a></li>
-          <li>HF Space (InspectAI viewer): <a href="https://imsaumil-allarma-benchmark.hf.space" target="_blank" rel="noopener">imsaumil-allarma-benchmark.hf.space</a></li>
-          <li>Dashboard repo: <a href="https://github.com/imsaumil/allarma-benchmark" target="_blank" rel="noopener">imsaumil/allarma-benchmark</a></li>
-          <li>Cross-machine audit: <a href="docs/cross_machine_retriever_comparison.md">retriever comparison</a> &middot; <a href="docs/cross_machine_modifier_comparison.md">modifier comparison</a></li>
+          <li><strong>SKORGE</strong> (consumer-grade workstation): AMD Ryzen 9 7950X CPU, NVIDIA RTX 4090 GPU (24 GB), 128 GB RAM, vLLM serving.</li>
+          <li><strong>NVIDIA DGX Spark</strong> (self-contained 240 W edge-class appliance): GB10 Grace&ndash;Blackwell superchip (20-core ARM CPU + 5th-gen Tensor-Core GPU, 128 GB unified memory), vLLM serving.</li>
         </ul>
       </div>
     </div>
@@ -80,11 +70,11 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-  <script src="js/shared-utils.js?v=28"></script>
-  <script src="js/data-loader.js?v=28"></script>
-  <script src="js/retrieval-section.js?v=28"></script>
-  <script src="js/modifier-section.js?v=28"></script>
-  <script src="js/overview.js?v=28"></script>
-  <script src="js/log-drawer.js?v=28"></script>
+  <script src="js/shared-utils.js?v=40"></script>
+  <script src="js/data-loader.js?v=40"></script>
+  <script src="js/retrieval-section.js?v=40"></script>
+  <script src="js/modifier-section.js?v=40"></script>
+  <script src="js/overview.js?v=40"></script>
+  <script src="js/log-drawer.js?v=40"></script>
 </body>
 </html>

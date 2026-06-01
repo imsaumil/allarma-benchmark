@@ -132,7 +132,7 @@
       </div>
 
       <div id="ret-body" style="margin-top:1rem"></div>
-      <p class="hint" id="ret-foot" style="font-size:.8rem;color:#979797;font-weight:600;margin-top:.6rem"></p>
+      <p class="hint" id="ret-foot" style="font-size:var(--fs-small);color:#979797;font-weight:600;margin-top:.6rem"></p>
 
       <div id="ret-subcharts" style="margin-top:1.6rem"></div>
     `;
@@ -206,15 +206,11 @@
   function updateFoot() {
     const foot = document.getElementById('ret-foot');
     if (!foot) return;
-    const nMod = activeModels().length;
     if (state.machine === 'cmp') {
       foot.innerHTML = 'Compare Δ = DGX − SKORGE accuracy (pp). Cells off the diagonal by &gt;3 pp drawn red. ' +
         'Families + legend still filter. Click any strategy name to open the eval in the InspectAI viewer.';
     } else {
-      const fams = Object.keys(state.fams).filter((f) => state.fams[f]).map((f) => FAM_LABEL[f]).join(', ') || 'none';
-      foot.innerHTML = `Machine <b>${MACHINE_LABEL[state.machine]}</b> · families: ${fams} · ` +
-        `<b>${nMod}</b> of 9 LLMs · grouped bars (accuracy can’t be stacked); baselines have no LLM axis → single grey bar. ` +
-        'Click any strategy name in Table view to open its eval in the InspectAI viewer.';
+      foot.innerHTML = '';   /* control bar already conveys machine/family/view — no narrative footer needed */
     }
   }
 
@@ -229,7 +225,8 @@
       return `<optgroup label="${g.group}">${inner}</optgroup>`;
     }).join('');
     return `<div class="fg" style="margin-bottom:.7rem"><span class="lbl">View metric</span>` +
-      `<select class="ctl" id="ret-metric">${opts}</select></div>`;
+      `<select class="ctl" id="ret-metric">${opts}</select>` +
+      `<span class="chart-sub" style="margin-left:.8rem">&#9432; Click any bar or strategy name to open the detailed InspectAI eval log.</span></div>`;
   }
 
   // Value for (strategy, model, machine); pct metrics scaled ×100. null if missing.
@@ -845,7 +842,7 @@
     destroyTables();
     body.innerHTML =
       '<div style="margin-bottom:.6rem"><button class="btn-small" id="ret-csv">Export CSV</button>' +
-      '<span style="margin-left:1rem;font-size:.8rem"><span class="d good">|Δ|≤1</span> <span class="d warn">≤3</span> <span class="d bad">&gt;3 pp</span></span></div>' +
+      '<span style="margin-left:1rem;font-size:var(--fs-small)"><span class="d good">|Δ|≤1</span> <span class="d warn">≤3</span> <span class="d bad">&gt;3 pp</span></span></div>' +
       '<div class="tablewrap"><table id="retrieval-table" class="display" style="width:100%"></table></div>';
 
     const rows = compareRows();
@@ -859,7 +856,7 @@
       const tr = `${d.sk_truncation_count} → ${d.dgx_truncation_count}`;
       const stratCell = `${modelDisplay(d.model)}${isReasoning(d.model) ? ' ✦' : ''} / ` +
         `<a href="${skUrl}" target="_blank" rel="noopener" title="SKORGE eval">${d.strategy}</a> ` +
-        `<a href="${dgxUrl}" target="_blank" rel="noopener" title="DGX eval" style="font-size:.8rem">[dgx ↗]</a>`;
+        `<a href="${dgxUrl}" target="_blank" rel="noopener" title="DGX eval" style="font-size:var(--fs-small)">[dgx ↗]</a>`;
       // Column 3 carries the colored cell HTML plus the raw delta; a render fn
       // (below) shows the cell for display but sorts/filters on |Δ| so the table
       // is "sortable by |Δ|" via the built-in numeric sort.
@@ -921,17 +918,17 @@
         <h3 style="color:#1565c0">1.2 · Tier-stratified accuracy</h3>
         <div class="fg" style="margin:.3rem 0 .6rem"><span class="lbl">Strategy</span>
           <select class="ctl" id="ret-tier-strat"></select>
-          <span class="hint" style="margin-left:.6rem">Per-difficulty-tier accuracy for the chosen strategy${state.machine === 'cmp' ? ' · showing SKORGE (tiers are per-machine)' : ''}.</span>
+          <span class="chart-sub" style="margin-left:.6rem">Per-difficulty-tier accuracy for the chosen strategy${state.machine === 'cmp' ? ' · showing SKORGE (tiers are per-machine)' : ''}.</span>
         </div>
         <div id="ret-tier-chart" style="min-height:380px"></div>
         <h3 style="color:#1565c0;margin-top:1.4rem">1.3 · Pareto efficiency — accuracy vs token cost</h3>
-        <p class="hint" style="margin-bottom:.4rem">Accuracy vs avg tokens/sample (cost proxy); dotted line = per-model Pareto frontier.</p>
+        <p class="chart-sub" style="margin-bottom:.4rem">Accuracy vs avg tokens/sample (cost proxy); dotted line = per-model Pareto frontier.</p>
         <div id="ret-pareto-chart" style="min-height:440px"></div>`;
       populateTierDropdown();
       subchartsBuilt = true;
     } else {
       // Update the per-machine note when machine changes.
-      const note = host.querySelector('#ret-tier-strat')?.parentElement?.querySelector('.hint');
+      const note = host.querySelector('#ret-tier-strat')?.parentElement?.querySelector('.chart-sub');
       if (note) note.textContent = 'Per-difficulty-tier accuracy for the chosen strategy' +
         (state.machine === 'cmp' ? ' · showing SKORGE (tiers are per-machine).' : '.');
     }
