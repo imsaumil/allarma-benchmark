@@ -16,3 +16,19 @@ Space repo HEAD: 06e4051 (Dockerfile + start.sh + README pushed at 2026-06-02T21
 stage: RUNNING (transitioned from NO_APP_FILE -> BUILDING -> RUNNING in ~1m 38s; HF likely cached python:3.11-slim + inspect-ai wheel)
 domain: imsaumil-allarma-benchmark.hf.space stage=READY
 HTTP 200 confirmed pre-volume-mount (inspect view start does not crash on missing /data; serves empty corpus UI)
+
+=== Gate 3 (dataset volume mounted) — 2026-06-02T22:03:49Z ===
+hf spaces volumes ls imsaumil/allarma-benchmark:
+  type=dataset  source=imsaumil/allarma-benchmark  mount_path=/data  read_only=True
+Space restart: RUNNING -> RUNNING_APP_STARTING -> RUNNING (~20s)
+Note: HfApi.get_space_runtime() does not expose volumes in runtime payload (1.17.0);
+      'hf spaces volumes ls' is the canonical verification.
+
+=== Gate 4 (viewer responds) — 2026-06-02T22:03:49Z ===
+https://imsaumil-allarma-benchmark.hf.space/  HTTP 200 (also 200 pre-mount per Gate 2 record)
+
+=== Gate 5 (viewer sees corpus) — 2026-06-02T22:03:49Z ===
+GET /api/log-files returns response_type=full, files=548 entries.
+Breakdown: skorge=274 + dgx_spark=274 = 548.
+Per (machine, category): skorge/modifier=9 (9 model_folders) + skorge/retriever=265 (10 model_folders) + dgx_spark/modifier=9 (9 model_folders) + dgx_spark/retriever=265 (10 model_folders).
+Every name has the expected /data/<machine>/<category>/<model>/<file>.eval layout.
