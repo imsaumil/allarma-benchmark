@@ -429,7 +429,7 @@
     modDataTable = new DataTable('#modifier-table', {
       data: dataset,
       columns: [
-        { title: 'Model' },
+        { title: 'Model', className: 'mod-col-model' },                /* class on the Model column for class-based CSS (monospace, etc.) — independent of nth-child position, which can shift in Compare-Δ when Model cells are removed for rowspan grouping */
         { title: 'Mod Accuracy ± SE' }, { title: 'Exec Success' }, { title: 'Answer Yield' },
         { title: 'Presence' }, { title: 'Removal' },
         { title: 'Avg Tokens' }, { title: 'Avg Time/Sample (s)' }, { title: 'Throughput (tok/s)' },
@@ -561,7 +561,7 @@
       height: 520, margin: { l: 60, r: 40, t: 55, b: 55 },                  /* t=55 fits centered chart title; legend now lives inside the plot so no extra top room needed (matches retrieval Compare) */
       title: { text: 'Modification Accuracy: SKORGE vs DGX Spark', font: CHART_FONTS.axisTitle, x: 0.5, xanchor: 'center' },
       xaxis: { title: { text: 'SKORGE Modification Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, range: [0, 100], zeroline: false },   /* fixed full 0-100 spectrum on x */
-      yaxis: { title: { text: 'DGX Spark Modification Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, range: [lo, hi], zeroline: false },  /* dynamic y; scaleanchor removed so plot fills container width */
+      yaxis: { title: { text: 'DGX Spark Modification Accuracy (%)', font: CHART_FONTS.axisTitle }, tickfont: CHART_FONTS.axisTick, range: [0, 100], zeroline: false },  /* fixed [0, 100] matching x — symmetric default zoom-out with the y=x diagonal at a true 45° */
       legend: { orientation: 'v', x: 0.02, y: 0.98, xanchor: 'left', yanchor: 'top', font: CHART_FONTS.legend, bgcolor: 'rgba(255,255,255,0.85)', bordercolor: '#CBD5E1', borderwidth: 1 },   /* vertical pill, top-left inside plot */
       font: { family: 'Manrope, sans-serif' },
       hoverlabel: {                                                          /* white tooltip card, consistent Manrope */
@@ -589,6 +589,8 @@
 
     const pairs = comparePairs();
     // One row per (model × scorer): SK / DGX / Δpp color-coded.
+    // Grouped order — kept in MODEL_ORDER × SCORERS so that consecutive same-model rows
+    // can be visually merged via rowspan on the Model column after each draw.
     const flat = [];
     pairs.forEach((p) => {
       SCORERS.forEach((s) => {
@@ -596,13 +598,13 @@
         flat.push({ p, scorer: s, sk, dgx, delta: preDelta(p.sk.model_folder, s.key) });
       });
     });
-    const sorted = [...flat].sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
+    const sorted = flat;                                                /* keep MODEL × SCORERS grouping; no |Δ| sort (would scatter rows of the same model and break the rowspan merging) */
 
     const dataset = sorted.map((d) => {
       const skUrl = buildLogUrl(d.p.sk.model_folder, d.p.sk.eval_file, 'modifier');
       const dgxUrl = buildLogUrl(d.p.dg.model_folder, d.p.dg.eval_file, 'modifier');
       const dCell = `<span class="d ${deltaClass(d.delta)}">${d.delta >= 0 ? '+' : ''}${d.delta.toFixed(2)}</span>`;
-      const modelCell = `${modelDisplay(d.p.model)}${isReasoning(d.p.model) ? ' ✦' : ''}`;   /* plain text — links move to the SK and DGX value cells */
+      const modelCell = `${modelDisplay(d.p.model)}${isReasoning(d.p.model) ? ' ✦' : ''}`;   /* plain text — links live on the SK and DGX value cells */
       const skLink = `<a href="${skUrl}" target="_blank" rel="noopener" title="Open SKORGE eval in InspectAI viewer">${d.sk.toFixed(2)}</a>`;
       const dgxLink = `<a href="${dgxUrl}" target="_blank" rel="noopener" title="Open DGX Spark eval in InspectAI viewer">${d.dgx.toFixed(2)}</a>`;
       return [modelCell, d.scorer.label, skLink, dgxLink,
@@ -612,7 +614,8 @@
     modDataTable = new DataTable('#modifier-table', {
       data: dataset,
       columns: [
-        { title: 'Model' }, { title: 'Scorer' }, { title: 'SK' }, { title: 'DGX' },
+        { title: 'Model', className: 'mod-col-model' },                  /* class on Model col so CSS targets it by class rather than nth-child(1); rowspan removal in this table shifts later cells into nth-child(1) and would otherwise pick up the Model column's monospace styling */
+        { title: 'Scorer' }, { title: 'SK' }, { title: 'DGX' },
         {
           title: 'Δ pp',
           render: function (data, type) {
@@ -622,21 +625,19 @@
           },
         },
       ],
-      order: [[4, 'desc']],
-      pageLength: 27, scrollX: true, deferRender: true,
+      order: [[0, 'asc']],                                               /* default sort by Model so consecutive same-model rows stay together and the rowspan merge renders on first paint; users can click any header to re-sort (sort indicators visible like every other dashboard table). When they re-sort by Δ pp the rowspan naturally vanishes — rows are scattered, no consecutive same-model duplicates to merge — and each row shows its own Model cell, behaving exactly like the per-row table */
+      paging: false, info: false,                                        /* 27 rows (9 models × 3 scorers) — short enough to render in one scroll. Pagination removed because pageLength changes were causing visible re-render glitches when a model group straddled the new page boundary; with all rows always on one page, the rowspan groups always render cleanly */
+      scrollX: true, deferRender: true,
       language: { search: '', searchPlaceholder: 'Search…' },            /* hide DT's "Search:" label; placeholder matches the other three search bars for uniform look */
-      layout: {                                                          /* one-row toolbar: CSV + pageLength (left) | legend + search (right) — same shape as retrieval Compare */
-        topStart: [
-          () => {
-            const btn = document.createElement('button');
-            btn.id = 'mod-csv';
-            btn.className = 'btn-small';
-            btn.textContent = 'Export CSV';
-            btn.addEventListener('click', () => exportCompareCSV(sorted));
-            return btn;
-          },
-          'pageLength',                                                  /* entries-per-page selector sits beside the Export CSV button on the left */
-        ],
+      layout: {                                                          /* one-row toolbar: CSV (left) | legend + search (right) — no pageLength dropdown since paging is off */
+        topStart: () => {
+          const btn = document.createElement('button');
+          btn.id = 'mod-csv';
+          btn.className = 'btn-small';
+          btn.textContent = 'Export CSV';
+          btn.addEventListener('click', () => exportCompareCSV(sorted));
+          return btn;
+        },
         topEnd: [
           () => {                                                        /* |Δ| color-key chips — modifier thresholds are ≤1 / ≤1.5 / >1.5 (tighter than retrieval's ≤1 / ≤3 / >3) */
             const legend = document.createElement('span');
@@ -647,6 +648,44 @@
           'search',
         ],
       },
+    });
+    // Re-apply Model-column rowspan after every draw (initial render + filter + page change),
+    // so consecutive same-model rows render as a single merged cell on the left edge.
+    modDataTable.on('draw', mergeModelRowspans);
+    mergeModelRowspans();
+  }
+
+  // Walk the rendered tbody and merge consecutive same-Model cells via rowspan.
+  // Operates on whatever rows DT has put in the DOM right now (current page / filter),
+  // so a model group that straddles a page boundary just shows the model label once per page.
+  //
+  // IMPORTANT: duplicate Model cells must be REMOVED from the DOM, not just hidden via
+  // display:none. With display:none on a <td>, the remaining cells in that row shift LEFT
+  // to fill the vacated column slot, breaking column alignment with the header and with
+  // the group-head row above (Scorer/SK/DGX/Δ pp would end up one column left of where
+  // they belong). A proper rowspan layout requires the row to literally have one fewer
+  // <td>, so the rowspan on the head cell absorbs the missing column.
+  function mergeModelRowspans() {
+    const tbody = document.querySelector('#modifier-table tbody');
+    if (!tbody) return;
+    const trs = Array.from(tbody.querySelectorAll('tr'));
+    let prevModel = null;
+    let groupHead = null;
+    let groupCount = 0;
+    trs.forEach((tr) => {
+      const cells = tr.cells;
+      if (!cells || !cells[0]) return;
+      const modelText = cells[0].textContent.trim();
+      if (modelText && modelText === prevModel && groupHead) {
+        cells[0].remove();                                              /* remove the cell entirely so the row has 4 cells (Scorer, SK, DGX, Δ pp) and the head's rowspan absorbs the missing column slot — keeps subsequent columns aligned with the header */
+        groupCount++;
+        groupHead.cells[0].rowSpan = groupCount + 1;
+      } else {
+        prevModel = modelText;
+        groupHead = tr;
+        groupCount = 0;
+        cells[0].rowSpan = 1;
+      }
     });
   }
 

@@ -891,6 +891,7 @@
       ],
       order: [[4, 'desc']], // sort by |Δ| descending (column index shifted: Model+Strategy split adds one column)
       pageLength: 25, scrollX: true, deferRender: true,
+      lengthMenu: [10, 25, 50, 100],                                   /* explicit menu values (same default DT would pick); guarantees the selector always renders its current value, matches modifier Compare */
       language: { search: '', searchPlaceholder: 'Search…' },          /* hide DT's "Search:" label; use placeholder for uniform look across all four search bars */
       layout: {                                                        /* one-row toolbar: CSV + pageLength (left) | legend + search (right) */
         topStart: [
@@ -1053,8 +1054,8 @@
     const TOKEN_BREAK = 5000;                                       // any value in the empty 1k-15k gap works
     const LO_DOMAIN = [0, 0.70];
     const HI_DOMAIN = [0.75, 1.0];
-    const LO_RANGE  = [100, 1100];                                  // start at 100 — clips 8 minimum-cost points (~48-52 tokens) but avoids the visually-shifted look caused by their leftward bunching
-    const HI_RANGE  = [15000, 16000];                               // 15-16k outlier cluster
+    const LO_RANGE  = [0, 1000];                                    // full 0-1k range — shows every point (including the 8 minimum-cost cells at ~48-52 tokens that the earlier [100, 1100] clipped on the left edge)
+    const HI_RANGE  = [15000, 15600];                               // hi-cluster range — covers SKORGE max (15591.77, 8 tokens of right padding) and 8 of 9 DGX points; DGX gpt-oss-20b at 14317 sits outside and is clipped on the DGX view (per-design)
     const traces = [];
     activeModels().forEach((model) => {
       const rows = llm.filter((r) => r.model === model && r.metrics.avg_llm_token_usage != null);

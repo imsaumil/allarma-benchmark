@@ -130,49 +130,53 @@ table[id^="retrieval-table-"] {
        table width past the container. Forcing width:100%!important here
        suppresses that overflow and breaks the in-table horizontal scroll. */
 }
-/* Column 1 (the row identifier — Strategy in retrieval per-family, Model elsewhere):
-   left-aligned, nowrap, monospace for code-like names. */
-table#modifier-table tbody td:nth-child(1),
-table#retrieval-table tbody td:nth-child(1),
-table[id^="retrieval-table-"] tbody td:nth-child(1) {
-    white-space: nowrap;
-    text-align: left;
-    font-family: ui-monospace, monospace;
-}
-/* Columns 2+ — all other columns center-align (consistent across all four tables). */
-table#modifier-table tbody td:nth-child(n+2),
-table#retrieval-table tbody td:nth-child(n+2),
-table[id^="retrieval-table-"] tbody td:nth-child(n+2) {
+/* Every body cell is centered + nowrap — uniform across all four tables (col 1 included). */
+table#modifier-table tbody td,
+table#retrieval-table tbody td,
+table[id^="retrieval-table-"] tbody td {
     white-space: nowrap;
     text-align: center;
 }
-/* Retrieval tables col 2 still carries a code-like name (Model in per-family, Strategy in Compare)
-   so we keep monospace there for readability — only alignment changes to center per the above. */
+/* Col 1 keeps monospace because it carries the code-like row identifier (Strategy in
+   retrieval per-family, Model elsewhere). Only the font changes; alignment is inherited
+   from the centered rule above.
+   IMPORTANT: modifier uses a class (.mod-col-model) instead of nth-child(1) because the
+   modifier Compare-Δ table removes Model cells from rows 2/3 of each rowspan group; that
+   shifts the Scorer cell into nth-child(1) position, and a positional rule would then
+   pick it up and render Scorer in monospace (different from row 1's Scorer in Manrope —
+   exactly the "different fonts in the Scorer column" bug). Class-based targeting follows
+   the actual Model cells regardless of their nth-child position. */
+table#modifier-table tbody td.mod-col-model,
+table#retrieval-table tbody td:nth-child(1),
+table[id^="retrieval-table-"] tbody td:nth-child(1) {
+    font-family: ui-monospace, monospace;
+}
+/* Retrieval tables col 2 also carries a code-like name (Model in per-family, Strategy in
+   Compare) so we keep monospace there for readability. We target both the (hidden) body
+   thead and the visible scroll-head clone DT creates when scrollX:true is set. */
 table#retrieval-table tbody td:nth-child(2),
 table#retrieval-table thead th:nth-child(2),
 table[id^="retrieval-table-"] tbody td:nth-child(2),
-table[id^="retrieval-table-"] thead th:nth-child(2) {
+table[id^="retrieval-table-"] thead th:nth-child(2),
+#retrieval-table_wrapper .dt-scroll-head th:nth-child(2),
+[id^="retrieval-table-"][id$="_wrapper"] .dt-scroll-head th:nth-child(2) {
     font-family: ui-monospace, monospace;
 }
-/* Header alignment — match the data alignment in each column. */
-table#modifier-table thead th:nth-child(1),
-table#retrieval-table thead th:nth-child(1),
-table[id^="retrieval-table-"] thead th:nth-child(1) {
-    text-align: left;
+/* Every header cell is centered + nowrap (matches the body). The 1.5rem balanced horizontal
+   padding neutralises DT 2.x's padding-right:30px on sortable headers (added for the absolute
+   ▲/▼ sort indicator) so centered text reads at the column's true center on every column —
+   col 1 included. !important so it beats DT's per-family rule.
+   IMPORTANT: when scrollX:true is set, DT 2.x hides the original table's thead (height:0)
+   and creates a CLONED <table> inside .dt-scroll-head that doesn't carry our table ID.
+   The ID-based selectors below only match the hidden original thead; the .dt-scroll-head
+   selector matches the VISIBLE floating header. Both must be styled or the visible header
+   stays left-aligned with DT's default styling. */
+table#modifier-table thead th,
+table#retrieval-table thead th,
+table[id^="retrieval-table-"] thead th,
+.dt-scroll-head table thead th {
+    text-align: center !important;                                    /* !important to beat any inline style DT 2.x may set on the cloned scroll-head th (without !important, an inline text-align would win regardless of CSS specificity) */
     white-space: nowrap;
-}
-table#modifier-table thead th:nth-child(n+2),
-table#retrieval-table thead th:nth-child(n+2),
-table[id^="retrieval-table-"] thead th:nth-child(n+2) {
-    text-align: center;
-    white-space: nowrap;
-    /* DT 2.x adds padding-right:30px on sortable headers (for the absolute-positioned
-       ▲/▼ sort indicator at right:12px, width:12px). That asymmetric padding shifts
-       centered text ~10 px LEFT of the column's true center, so the header no longer
-       lines up with the centered body cells underneath. Force balanced 1.5rem padding
-       on both sides (with !important so it beats DT's higher-specificity per-family
-       rule); 1.5rem leaves enough room on the right for the sort arrow to sit inside
-       the padding without overlapping the centered header text. */
     padding-left: 1.5rem !important;
     padding-right: 1.5rem !important;
 }
@@ -407,6 +411,33 @@ select option { font-weight: 500; color: #1C1C1C; font-size: var(--fs-ui); }
 .d.good { color: #1a8c5a; background: #e7f6ee; }
 .d.warn { color: #b7791f; background: #fbf3e2; }
 .d.bad  { color: #c5384a; background: #fdecef; }
+
+/* Modifier Compare-Δ table: the Model column is merged via rowspan after each DataTables
+   draw (one cell spans the 3 scorer rows for each model). Style that merged cell so it
+   reads as a "group header" sitting on the left edge: vertical-centered name, soft
+   background, and a clear right border separating the model column from the per-scorer
+   data columns. Only the merged cells have a rowspan attribute, so this rule only
+   affects the Compare-Δ view (per-row modifier table never sets rowspan). */
+table#modifier-table tbody td[rowspan] {
+    vertical-align: middle;
+    background-color: #f8f9fa;
+    border-right: 2px solid #e9ecef;
+}
+
+/* Non-sortable headers (e.g. modifier Compare-Δ with ordering:false): no sort indicator,
+   so the 1.5rem balanced padding I add for sortable headers (to compensate for DT's
+   padding-right:30px on .dt-orderable-* cells) just creates excess whitespace and visually
+   throws off the alignment with body cells underneath. Restore natural 0.7rem padding so
+   header text centers identically to the body cells. Specificity (0,1,4,2) wins over the
+   sortable-header rule (0,1,1,2). */
+table#modifier-table thead th:not(.dt-orderable-asc):not(.dt-orderable-desc):not(.dt-ordering-asc):not(.dt-ordering-desc),
+table#retrieval-table thead th:not(.dt-orderable-asc):not(.dt-orderable-desc):not(.dt-ordering-asc):not(.dt-ordering-desc),
+table[id^="retrieval-table-"] thead th:not(.dt-orderable-asc):not(.dt-orderable-desc):not(.dt-ordering-asc):not(.dt-ordering-desc) {
+    padding-left: 0.7rem !important;
+    padding-right: 0.7rem !important;
+}
+
+/* No custom min-widths on #modifier-table — auto-sizing matches the other tables. */
 
 /* |Δ| color-key chips, rendered inside the DataTables top-right toolbar via DT 2.x layout.
    Sits inline with the search input — keeps the chips on the same row as the controls.
