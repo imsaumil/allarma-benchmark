@@ -7,3 +7,6 @@ lastModified: 2026-04-12T19:45:53.000Z
 stage: RUNNING
 --- v1 GH Pages dashboard ---
 HTTP/2 200 
+
+=== Gate 1 (local smoke test) — 2026-06-02T21:10:48Z ===
+PASS: index 200, 7/7 JSONs 200, 5/5 deep-link URLs include machine segment
