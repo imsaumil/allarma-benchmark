@@ -368,7 +368,7 @@
         { group: 'Cost & efficiency', rows: cost },
         { group: 'Reliability', rows: reliability },
       ],
-      logUrl: buildLogUrl(row.model_folder, row.eval_file, 'modifier'),
+      logUrl: buildLogUrl(row.model_folder, row.eval_file, 'modifier', row.machine),
     });
   }
 
@@ -401,7 +401,7 @@
       const r = entry.src;
       const me = r.metrics || {};
       const tk = r.tokens || {};
-      const url = buildLogUrl(r.model_folder, r.eval_file, 'modifier');
+      const url = buildLogUrl(r.model_folder, r.eval_file, 'modifier', r.machine);
       const modelCell = `${modelDisplay(entry.model)}${isReasoning(entry.model) ? ' ✦' : ''}`;     /* plain text — link moves to the Accuracy cell */
       const ma = me.Modification_Accuracy || {};
       const accSEText = `${pct(ma.value, 2)} ± ${ma.se != null ? (ma.se * 100).toFixed(2) : '—'}`;
@@ -601,8 +601,8 @@
     const sorted = flat;                                                /* keep MODEL × SCORERS grouping; no |Δ| sort (would scatter rows of the same model and break the rowspan merging) */
 
     const dataset = sorted.map((d) => {
-      const skUrl = buildLogUrl(d.p.sk.model_folder, d.p.sk.eval_file, 'modifier');
-      const dgxUrl = buildLogUrl(d.p.dg.model_folder, d.p.dg.eval_file, 'modifier');
+      const skUrl = buildLogUrl(d.p.sk.model_folder, d.p.sk.eval_file, 'modifier', 'skorge');
+      const dgxUrl = buildLogUrl(d.p.dg.model_folder, d.p.dg.eval_file, 'modifier', 'dgx_spark');
       const dCell = `<span class="d ${deltaClass(d.delta)}">${d.delta >= 0 ? '+' : ''}${d.delta.toFixed(2)}</span>`;
       const modelCell = `${modelDisplay(d.p.model)}${isReasoning(d.p.model) ? ' ✦' : ''}`;   /* plain text — links live on the SK and DGX value cells */
       const skLink = `<a href="${skUrl}" target="_blank" rel="noopener" title="Open SKORGE eval in InspectAI viewer">${d.sk.toFixed(2)}</a>`;

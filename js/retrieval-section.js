@@ -601,7 +601,7 @@
         { group: 'Cost & efficiency', rows: cost },
         { group: 'Reliability', rows: reliability },
       ],
-      logUrl: buildLogUrl(row.model_folder, row.eval_file, row.benchmark),
+      logUrl: buildLogUrl(row.model_folder, row.eval_file, row.benchmark, row.machine),
     });
   }
 
@@ -655,7 +655,7 @@
   function tableRowCells(entry) {
     const r = entry.src;
     const me = r.metrics || {};
-    const url = buildLogUrl(r.model_folder, r.eval_file, r.benchmark);
+    const url = buildLogUrl(r.model_folder, r.eval_file, r.benchmark, r.machine);
     const stratCell = r.strategy;                                        /* plain text — link moves to the Accuracy cell so model/strategy stay clean */
     const modelCell = entry.model ? modelDisplay(entry.model) + (isReasoning(entry.model) ? ' ✦' : '')
       : '<span style="color:#607d8b;font-style:italic">no LLM</span>';
@@ -859,8 +859,8 @@
     // Sort by descending |Δ| so the largest divergences surface first.
     const sorted = [...rows].sort((a, b) => Math.abs(b.delta_pp) - Math.abs(a.delta_pp));
     const dataset = sorted.map((d) => {
-      const skUrl = buildLogUrl(d.model_folder, d.sk_eval_file, d.benchmark);
-      const dgxUrl = buildLogUrl(d.model_folder, d.dgx_eval_file, d.benchmark);
+      const skUrl = buildLogUrl(d.model_folder, d.sk_eval_file, d.benchmark, 'skorge');
+      const dgxUrl = buildLogUrl(d.model_folder, d.dgx_eval_file, d.benchmark, 'dgx_spark');
       const dCell = `<span class="d ${deltaClass(d.delta_pp)}">${d.delta_pp >= 0 ? '+' : ''}${d.delta_pp.toFixed(2)}</span>`;
       const mt = `${d.sk_max_tokens == null ? 'None' : d.sk_max_tokens} → ${d.dgx_max_tokens == null ? 'None' : d.dgx_max_tokens}`;
       const tr = `${d.sk_truncation_count} → ${d.dgx_truncation_count}`;
