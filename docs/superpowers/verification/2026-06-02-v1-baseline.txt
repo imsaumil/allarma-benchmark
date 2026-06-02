@@ -10,3 +10,9 @@ HTTP/2 200
 
 === Gate 1 (local smoke test) — 2026-06-02T21:10:48Z ===
 PASS: index 200, 7/7 JSONs 200, 5/5 deep-link URLs include machine segment
+
+=== Gate 2 (Space build) — 2026-06-02T21:55:35Z ===
+Space repo HEAD: 06e4051 (Dockerfile + start.sh + README pushed at 2026-06-02T21:52:43Z)
+stage: RUNNING (transitioned from NO_APP_FILE -> BUILDING -> RUNNING in ~1m 38s; HF likely cached python:3.11-slim + inspect-ai wheel)
+domain: imsaumil-allarma-benchmark.hf.space stage=READY
+HTTP 200 confirmed pre-volume-mount (inspect view start does not crash on missing /data; serves empty corpus UI)
