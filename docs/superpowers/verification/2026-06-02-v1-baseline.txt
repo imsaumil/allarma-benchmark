@@ -32,3 +32,13 @@ GET /api/log-files returns response_type=full, files=548 entries.
 Breakdown: skorge=274 + dgx_spark=274 = 548.
 Per (machine, category): skorge/modifier=9 (9 model_folders) + skorge/retriever=265 (10 model_folders) + dgx_spark/modifier=9 (9 model_folders) + dgx_spark/retriever=265 (10 model_folders).
 Every name has the expected /data/<machine>/<category>/<model>/<file>.eval layout.
+
+=== Gate 6 (Pages live + fix served) — 2026-06-02T22:43:27Z ===
+root: 200
+all 7 data/*.json: 200 (retrieval-llm-summary, retrieval-allarma-summary, retrieval-llm-tiers, modifier-summary, modifier-templates, modifier-deltas, cross-machine-deltas)
+all 6 js/*.js?v=100: 200 (shared-utils, data-loader, retrieval-section, modifier-section, overview, log-drawer)
+css/style.css?v=100: 200
+served shared-utils.js contains 'function buildLogUrl(modelFolder, evalFile, benchmark, machine)': 1 occurrence (the fix is live)
+?v=99 cache-stragglers in served index.html: 0
+?v=100 references in served index.html: 7 (1 css + 6 scripts)
+Pages build: commit=ae045eb status=built duration=23.4s
