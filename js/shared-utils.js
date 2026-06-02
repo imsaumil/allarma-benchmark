@@ -64,13 +64,15 @@ function STRATEGY_FAMILY(strategy, benchmark) {
 }
 
 // Deep-link to the exact eval in the full-corpus InspectAI viewer Space.
+//   path = /<machine>/<category>/<modelFolder>/<evalFile>
 //   category = 'modifier' when benchmark === 'modifier', else 'retriever'.
+//   machine = 'skorge' | 'dgx_spark' (matches the HF dataset top-level layout).
 //   '+' in the eval filename must be percent-encoded as %2B.
-function buildLogUrl(modelFolder, evalFile, benchmark) {
+function buildLogUrl(modelFolder, evalFile, benchmark, machine) {
   const category = benchmark === 'modifier' ? 'modifier' : 'retriever';
   const encodedFile = String(evalFile).replace(/\+/g, '%2B');
   return 'https://imsaumil-allarma-benchmark.hf.space/#/logs/' +
-    category + '/' + modelFolder + '/' + encodedFile;
+    machine + '/' + category + '/' + modelFolder + '/' + encodedFile;
 }
 
 // Human-readable runtime (copied verbatim from the CIGRE dashboard idiom).
