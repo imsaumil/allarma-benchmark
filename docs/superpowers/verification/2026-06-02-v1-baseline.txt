@@ -42,3 +42,13 @@ served shared-utils.js contains 'function buildLogUrl(modelFolder, evalFile, ben
 ?v=99 cache-stragglers in served index.html: 0
 ?v=100 references in served index.html: 7 (1 css + 6 scripts)
 Pages build: commit=ae045eb status=built duration=23.4s
+
+=== Gate 8 (v1 regression check) — 2026-06-02T22:49:51Z ===
+--- v1 dataset imsaumil/allarma-benchmark-eval-logs ---
+lastModified: 2026-04-12T19:44:23.000Z
+private: False
+--- v1 space imsaumil/allarma-benchmark-logs ---
+lastModified: 2026-04-12T19:45:53.000Z
+stage: RUNNING
+--- v1 GH Pages dashboard ---
+HTTP/2 200 
