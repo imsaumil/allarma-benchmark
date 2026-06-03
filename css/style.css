@@ -39,7 +39,7 @@ body {
     opacity: 0.85; transition: all 0.2s;
 }
 .nav-links a:hover { opacity: 1; background: rgba(255,255,255,0.15); }
-/* Live Dashboard — clean white pill (CIGRE style; no shadow/animation).
+/* Live Demo — clean white pill (CIGRE style; no shadow/animation).
    Specificity raised via `.nav-links .nav-pill` so the pill's font-size wins
    over `.nav-links a`'s body size. */
 .nav-links .nav-pill {
