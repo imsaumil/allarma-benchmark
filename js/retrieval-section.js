@@ -131,7 +131,7 @@
         <div class="legend" id="ret-legend"></div>
       </div>
 
-      <p class="chart-sub" style="margin:.7rem 0 0">&#9432; <b>Chart view:</b> click any bar to open the metrics drawer. <b>Table view:</b> click any accuracy value to open the eval in the InspectAI viewer.</p>
+      <p class="chart-sub" style="margin:.7rem 0 0;padding:.55rem 1rem;border-left:4px solid #b7791f;background:#fbf9f0;border-radius:6px">&#9432; <b>Chart view:</b> click any bar to open the metrics drawer. <b>Table view:</b> click any accuracy value to open the eval in the InspectAI viewer. <b style="text-decoration:underline">Note:</b> loading logs may take several seconds.</p>
       <div id="ret-body" style="margin-top:1rem"></div>
       <p class="hint" id="ret-foot" style="font-size:var(--fs-small);color:#979797;font-weight:600;margin-top:.6rem"></p>
 
