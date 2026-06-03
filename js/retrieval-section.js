@@ -301,7 +301,7 @@
       const btn = state.expanded[fam] ? 'Collapse' : 'Expand';
       html += `<div class="fam-sub" data-fam="${fam}">
         <div class="fam-sub-head">
-          <h3>${FAM_LABEL[fam]} (${n})</h3>
+          <h3>${FAM_LABEL[fam]} (${n}) <button class="info-btn" type="button" data-family="${fam}" aria-label="View ${FAM_LABEL[fam]} strategy reference" aria-haspopup="dialog">&#9432;</button></h3>
           <button class="expand-btn" data-expfam="${fam}">${btn}</button>
         </div>
         <div class="fam-scroll chart-scroll${expCls}" data-famscroll="${fam}">
@@ -705,7 +705,7 @@
       const btn = state.expanded[fam] ? 'Collapse' : 'Expand';
       html += `<div class="fam-sub" data-fam="${fam}">
         <div class="fam-sub-head">
-          <h3>${FAM_LABEL[fam]} (${n})</h3>
+          <h3>${FAM_LABEL[fam]} (${n}) <button class="info-btn" type="button" data-family="${fam}" aria-label="View ${FAM_LABEL[fam]} strategy reference" aria-haspopup="dialog">&#9432;</button></h3>
           <button class="expand-btn" data-expfam="${fam}">${btn}</button>
         </div>
         <div class="fam-scroll table-scroll${expCls}" data-famscroll="${fam}">

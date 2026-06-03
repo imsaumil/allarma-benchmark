@@ -1,0 +1,488 @@
+[
+  {
+    "name": "llm_direct_match_all",
+    "family": "pure-llm",
+    "category": "retriever-llm",
+    "description": "No retriever stage — the LLM receives all manually written template questions in a single prompt and selects the single best match for the user query, replicating the production batch-matching approach."
+  },
+  {
+    "name": "llm_direct_match_candidate",
+    "family": "pure-llm",
+    "category": "retriever-llm",
+    "description": "No retriever stage — the LLM receives only the 21 canonical candidate questions (one per template) in a single prompt and selects the single best match. Same as llm_direct_match_all but with the smaller 21-question candidate set."
+  },
+  {
+    "name": "bm25_llm_rerank_all",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Retrieves the top 10 candidates from a BM25 in-memory retriever over the full question library, then calls an LLM to select the single best semantic match from those candidates."
+  },
+  {
+    "name": "dense_llm_rerank_all",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Retrieves the top 10 candidates from a dense vector retriever (multi-qa-mpnet-base-dot-v1) over the full question library, then calls an LLM to select the single best semantic match from those candidates."
+  },
+  {
+    "name": "sparse_llm_rerank_all",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Retrieves the top 10 candidates from a sparse vector retriever (Qdrant/bm25 sparse embeddings) over the full question library, then calls an LLM to select the single best semantic match from those candidates."
+  },
+  {
+    "name": "fast_selective_dense_all",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Retrieves the top 5 candidates from a dense vector retriever over the full library with real Qdrant similarity scores; if the relative score margin between rank-1 and rank-2 is below 0.30, an LLM picks the best candidate, otherwise the top dense result is returned directly."
+  },
+  {
+    "name": "llm_listwise_rerank_dense_all",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Retrieves the top 5 candidates from a dense vector retriever over the full question library, then applies LangChain's LLMListwiseRerank (listwise LLM reranking) to select the top result."
+  },
+  {
+    "name": "llm_listwise_rerank_dense_candidate",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Same as llm_listwise_rerank_dense_all but searches only the 21-question candidate pool. Retrieves top 5 from a dense retriever then applies LangChain LLMListwiseRerank to select the top result."
+  },
+  {
+    "name": "rrf_llm_rerank_k3_all",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Reciprocal Rank Fusion over dense, sparse, and BM25 retrievers (k=3 each, full library); an LLM then picks the single best match from the top 3 RRF-ranked candidates."
+  },
+  {
+    "name": "rrf_llm_rerank_k5_all",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Same as rrf_llm_rerank_k3_all but with k=5 from each retriever; an LLM picks the single best match from the top 5 RRF-ranked candidates."
+  },
+  {
+    "name": "rrf_llm_rerank_k7_all",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Same as rrf_llm_rerank_k3_all but with k=7 from each retriever; an LLM picks the single best match from the top 7 RRF-ranked candidates."
+  },
+  {
+    "name": "rrf_llm_rerank_k10_all",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Same as rrf_llm_rerank_k3_all but with k=10 from each retriever; an LLM picks the single best match from the top 10 RRF-ranked candidates."
+  },
+  {
+    "name": "rrf_llm_rerank_k15_all",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Same as rrf_llm_rerank_k3_all but with k=15 from each retriever; an LLM picks the single best match from the top 15 RRF-ranked candidates."
+  },
+  {
+    "name": "rrf_selective_llm_agree2_all",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Runs dense, sparse, and BM25 retrievers (k=10 each, full library) and checks how many agree on their top-1 result; if at least 2 of 3 agree, the consensus result is returned directly, otherwise an LLM picks the best match from the top 10 RRF-ranked candidates."
+  },
+  {
+    "name": "rrf_selective_llm_agree3_all",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Same as rrf_selective_llm_agree2_all but requires all 3 retrievers to agree on their top-1 result before skipping the LLM; if any retriever disagrees, an LLM picks the best match from the top 10 RRF-ranked candidates."
+  },
+  {
+    "name": "rrf_selective_llm_scoregap_all",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Applies RRF over dense, sparse, and BM25 retrievers (k=10 each, full library) and computes a confidence score from the RRF score gap between rank-1 and rank-2; if confidence is below 0.15, an LLM reranks the top 5 candidates, otherwise the top RRF result is returned directly."
+  },
+  {
+    "name": "cascade_rrf_ce_llm_all",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Applies RRF over dense, sparse, and BM25 retrievers (k=10 each, full library), then routes by confidence: high (≥0.25) returns the top result directly; medium (0.10–0.25) reranks with the BAAI/bge-reranker-base cross-encoder; low (<0.10) falls back to an LLM reranking the top 5."
+  },
+  {
+    "name": "persona_filter_rrf_all",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "An LLM first classifies the query into one of four power-grid persona categories (steady_state, emergency, offline, topology), then runs dense and sparse retrievers (k=15 each) over the full library, applies RRF fusion, and filters results to templates belonging to the classified persona."
+  },
+  {
+    "name": "query_expand_rrf_all",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "An LLM generates 2 paraphrases of the user query; dense and sparse retrievers (k=5 each) are run in parallel over the full library for the original query and each paraphrase, and all results are combined via RRF fusion to select the top match."
+  },
+  {
+    "name": "rrf_llm_oos_k3_candidate",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Retrieves k=10 candidates each from dense, sparse, and hybrid retrievers over the candidate pool, fuses them with RRF, and presents the top 3 RRF-ranked candidates to an LLM that either selects the best matching template or classifies the query as out-of-scope."
+  },
+  {
+    "name": "rrf_llm_oos_k7_candidate",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Same as rrf_llm_oos_k3_candidate but retrieves k=15 candidates per retriever and presents the top 7 RRF-ranked candidates to an LLM for the match-or-out-of-scope decision."
+  },
+  {
+    "name": "rrf_llm_oos_k10_candidate",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Same as rrf_llm_oos_k3_candidate but retrieves k=10 candidates per retriever and presents the top 10 RRF-ranked candidates to an LLM for the match-or-out-of-scope decision."
+  },
+  {
+    "name": "rrf_selective_llm_agree3_oos_all",
+    "family": "llm-augmented",
+    "category": "retriever-llm",
+    "description": "Same as rrf_selective_llm_agree3_all but when the LLM is invoked on retriever disagreement, it can also classify the query as out-of-scope in addition to selecting a best-matching template."
+  },
+  {
+    "name": "baseline_dense_all",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Single-stage dense vector retrieval using multi-qa-mpnet-base-dot-v1 embeddings with dot-product similarity, searching the full library of all manually written template questions (top-1)."
+  },
+  {
+    "name": "baseline_dense_candidate",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as baseline_dense_all but searches only the 21-question candidate pool (one canonical question per template)."
+  },
+  {
+    "name": "baseline_sparse_all",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Single-stage sparse vector retrieval using Qdrant/bm25 sparse embeddings over the full question library (top-1)."
+  },
+  {
+    "name": "baseline_sparse_candidate",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as baseline_sparse_all but searches only the 21-question candidate pool."
+  },
+  {
+    "name": "baseline_hybrid_all",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Single-stage hybrid retrieval combining dense (multi-qa-mpnet-base-dot-v1) and sparse (Qdrant/bm25) vectors in a single Qdrant query over the full question library (top-1)."
+  },
+  {
+    "name": "baseline_hybrid_candidate",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as baseline_hybrid_all but searches only the 21-question candidate pool."
+  },
+  {
+    "name": "bm25_all",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Pure BM25 term-frequency retrieval (LangChain in-memory BM25Retriever) over the full library of all manually written template questions (top-1)."
+  },
+  {
+    "name": "bm25_candidate",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as bm25_all but searches only the 21-question candidate pool."
+  },
+  {
+    "name": "bm25_dense_all_w30_70",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "LangChain EnsembleRetriever combining BM25 (weight 0.30) and dense vector retrieval (weight 0.70) over the full question library, using weighted score interpolation rather than rank fusion."
+  },
+  {
+    "name": "bm25_dense_all_w50_50",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as bm25_dense_all_w30_70 but with equal weights: BM25 (0.50) and dense retrieval (0.50) over the full question library."
+  },
+  {
+    "name": "bm25_dense_all_w70_30",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as bm25_dense_all_w30_70 but with BM25 weighted higher (0.70) and dense retrieval lower (0.30) over the full question library."
+  },
+  {
+    "name": "bm25_dense_candidate_w30_70",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "EnsembleRetriever combining BM25 (weight 0.30) and dense vector retrieval (weight 0.70) over the 21-question candidate pool."
+  },
+  {
+    "name": "bm25_dense_candidate_w50_50",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as bm25_dense_candidate_w30_70 but with equal weights: BM25 (0.50) and dense retrieval (0.50) over the candidate pool."
+  },
+  {
+    "name": "bm25_dense_candidate_w70_30",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as bm25_dense_candidate_w30_70 but with BM25 weighted higher (0.70) and dense retrieval lower (0.30) over the candidate pool."
+  },
+  {
+    "name": "bm25_sparse_all_w30_70",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "EnsembleRetriever combining BM25 (weight 0.30) and Qdrant sparse vector retrieval (weight 0.70) over the full question library."
+  },
+  {
+    "name": "bm25_sparse_all_w50_50",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as bm25_sparse_all_w30_70 but with equal weights: BM25 (0.50) and sparse retrieval (0.50) over the full library."
+  },
+  {
+    "name": "bm25_sparse_all_w70_30",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as bm25_sparse_all_w30_70 but with BM25 weighted higher (0.70) and sparse retrieval lower (0.30) over the full library."
+  },
+  {
+    "name": "bm25_sparse_candidate_w30_70",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "EnsembleRetriever combining BM25 (weight 0.30) and Qdrant sparse vector retrieval (weight 0.70) over the 21-question candidate pool."
+  },
+  {
+    "name": "bm25_sparse_candidate_w50_50",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as bm25_sparse_candidate_w30_70 but with equal weights: BM25 (0.50) and sparse retrieval (0.50) over the candidate pool."
+  },
+  {
+    "name": "bm25_sparse_candidate_w70_30",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as bm25_sparse_candidate_w30_70 but with BM25 weighted higher (0.70) and sparse retrieval lower (0.30) over the candidate pool."
+  },
+  {
+    "name": "bm25_hybrid_all_w30_70",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "EnsembleRetriever combining BM25 (weight 0.30) and hybrid (dense+sparse) vector retrieval (weight 0.70) over the full question library."
+  },
+  {
+    "name": "bm25_hybrid_all_w50_50",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as bm25_hybrid_all_w30_70 but with equal weights: BM25 (0.50) and hybrid retrieval (0.50) over the full library."
+  },
+  {
+    "name": "bm25_hybrid_all_w70_30",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as bm25_hybrid_all_w30_70 but with BM25 weighted higher (0.70) and hybrid retrieval lower (0.30) over the full library."
+  },
+  {
+    "name": "bm25_hybrid_candidate_w30_70",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "EnsembleRetriever combining BM25 (weight 0.30) and hybrid (dense+sparse) vector retrieval (weight 0.70) over the 21-question candidate pool."
+  },
+  {
+    "name": "bm25_hybrid_candidate_w50_50",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as bm25_hybrid_candidate_w30_70 but with equal weights: BM25 (0.50) and hybrid retrieval (0.50) over the candidate pool."
+  },
+  {
+    "name": "bm25_hybrid_candidate_w70_30",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as bm25_hybrid_candidate_w30_70 but with BM25 weighted higher (0.70) and hybrid retrieval lower (0.30) over the candidate pool."
+  },
+  {
+    "name": "colbert_all",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Late-interaction ColBERT retrieval using a pre-built index over the full question library; ColBERT scores query-document token interactions at inference time to return the top result."
+  },
+  {
+    "name": "colbert_candidate",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as colbert_all but uses a separate pre-built ColBERT index over the 21-question candidate pool."
+  },
+  {
+    "name": "minicoil_all",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Hybrid late-interaction retrieval using MiniCOIL: a Qdrant prefetch fetches up to 20 candidates each from GTE-large dense and minicoil-v1 sparse indexes over the full library, then a final dense re-score selects the top result."
+  },
+  {
+    "name": "minicoil_candidate",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as minicoil_all but operates on the candidate-pool Qdrant collection instead of the full library."
+  },
+  {
+    "name": "ce_rerank_bge_base_dense_all",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Retrieves the top 10 candidates from a dense vector retriever over the full question library, then reranks them with the BAAI/bge-reranker-base cross-encoder to select the top result."
+  },
+  {
+    "name": "ce_rerank_bge_base_dense_candidate",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as ce_rerank_bge_base_dense_all but retrieves from the 21-question candidate pool. Top 10 dense candidates reranked by BAAI/bge-reranker-base."
+  },
+  {
+    "name": "ce_rerank_bge_base_hybrid_candidate",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Retrieves the top 10 candidates from a hybrid (dense+sparse) retriever over the candidate pool, then reranks them with the BAAI/bge-reranker-base cross-encoder."
+  },
+  {
+    "name": "ce_rerank_bge_v2m3_dense_candidate",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Retrieves the top 10 candidates from a dense retriever over the candidate pool, then reranks them with the BAAI/bge-reranker-v2-m3 cross-encoder."
+  },
+  {
+    "name": "ce_rerank_bge_v2m3_hybrid_candidate",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Retrieves the top 10 candidates from a hybrid retriever over the candidate pool, then reranks them with the BAAI/bge-reranker-v2-m3 cross-encoder."
+  },
+  {
+    "name": "rrf_ce_rerank_bge_base_all",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Applies RRF over dense, sparse, and BM25 retrievers (k=10 each, full library), then reranks the top 10 RRF-ranked candidates with the BAAI/bge-reranker-base cross-encoder."
+  },
+  {
+    "name": "rrf_ce_rerank_bge_base_candidate",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Applies RRF over dense and hybrid retrievers (k=10 each) over the candidate pool, then reranks the top 10 RRF-ranked candidates with the BAAI/bge-reranker-base cross-encoder."
+  },
+  {
+    "name": "rrf_ce_rerank_bge_large_all",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as rrf_ce_rerank_bge_base_all but uses the BAAI/bge-reranker-large cross-encoder over the full library."
+  },
+  {
+    "name": "rrf_ce_rerank_bge_v2m3_all",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as rrf_ce_rerank_bge_base_all but uses the BAAI/bge-reranker-v2-m3 multilingual cross-encoder for reranking over the full library."
+  },
+  {
+    "name": "rrf_dense_sparse_all",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Reciprocal Rank Fusion (RRF, k=60) combining dense and sparse (Qdrant/bm25) retrievers (k=5 each) over the full question library; no reranking stage."
+  },
+  {
+    "name": "rrf_dense_sparse_candidate",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "RRF (k=60) combining dense and sparse retrievers (k=5 each) over the 21-question candidate pool; no reranking stage."
+  },
+  {
+    "name": "rrf_dense_sparse_bm25_all",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "RRF (k=60) combining three retrievers — dense, sparse (Qdrant/bm25), and in-memory BM25 — (k=5 each) over the full question library; no reranking stage."
+  },
+  {
+    "name": "rrf_dense_sparse_bm25_candidate",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as rrf_dense_sparse_bm25_all but all three retrievers search the 21-question candidate pool."
+  },
+  {
+    "name": "parentdoc_dense",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "LangChain ParentDocumentRetriever (with identity splitter) using a dense child vector store: child-level similarity search retrieves candidates, and the corresponding full parent documents are returned from the SQLite store."
+  },
+  {
+    "name": "parentdoc_sparse",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as parentdoc_dense but uses a sparse child vector store for child-level candidate retrieval."
+  },
+  {
+    "name": "parentdoc_hybrid",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as parentdoc_dense but uses a hybrid (dense+sparse) child vector store for child-level candidate retrieval."
+  },
+  {
+    "name": "parentchild_manual_dense",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Manual parent-child retrieval: fetches the top 8 children from a dense child vector store, deduplicates by parent document ID, then retrieves the corresponding parent documents."
+  },
+  {
+    "name": "parentchild_manual_sparse",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as parentchild_manual_dense but uses a sparse child vector store for the initial k=8 child retrieval."
+  },
+  {
+    "name": "parentchild_manual_hybrid",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as parentchild_manual_dense but uses a hybrid (dense+sparse) child vector store for the initial k=8 child retrieval."
+  },
+  {
+    "name": "parentchild_ce_rerank_gte_dense",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Retrieves the top 5 child documents from a dense child vector store, reranks them with the Alibaba-NLP/gte-multilingual-reranker-base cross-encoder, then fetches the corresponding parent documents."
+  },
+  {
+    "name": "parentchild_ce_rerank_gte_sparse",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as parentchild_ce_rerank_gte_dense but uses a sparse child vector store for the initial k=5 child retrieval before GTE cross-encoder reranking."
+  },
+  {
+    "name": "parentchild_ce_rerank_gte_hybrid",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as parentchild_ce_rerank_gte_dense but uses a hybrid (dense+sparse) child vector store for the initial k=5 child retrieval before GTE cross-encoder reranking."
+  },
+  {
+    "name": "multivector_dense",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "LangChain MultiVectorRetriever that searches a dense child-document vector store (k=25) and returns the corresponding parent documents from a SQLite store, enabling parent-granularity retrieval from dense child embeddings."
+  },
+  {
+    "name": "multivector_sparse",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as multivector_dense but uses a sparse child vector store (k=25) to retrieve child candidates before fetching parent documents."
+  },
+  {
+    "name": "multivector_hybrid",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as multivector_dense but uses a hybrid (dense+sparse) child vector store (k=25) to retrieve child candidates before fetching parent documents."
+  },
+  {
+    "name": "two_stage_dense_colbert_all",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Two-stage pipeline: dense retrieval (multi-qa-mpnet-base-dot-v1) over the full library retrieves the top 20 candidates, which are then reranked by a ColBERT model using late-interaction token-level scoring."
+  },
+  {
+    "name": "two_stage_dense_colbert_candidate",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "Same as two_stage_dense_colbert_all but the dense first stage searches only the 21-question candidate pool, followed by ColBERT reranking."
+  },
+  {
+    "name": "setfit_classifier",
+    "family": "non-llm",
+    "category": "retriever-allarma",
+    "description": "A SetFit few-shot text classifier (BAAI/bge-large-en-v1.5 base, trained on all manually written template questions across 21 template classes) that directly predicts the matching template label for the user query without any retrieval or LLM call."
+  }
+]

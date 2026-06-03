@@ -13,6 +13,12 @@
 
 /* === Reset & Base === */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Reserve the vertical scrollbar's gutter at the root so toggling
+   `body.sim-locked { overflow: hidden }` (when the strategy-info modal
+   opens) does not cause the dashboard underneath to shift sideways. */
+html { scrollbar-gutter: stable; }
+
 body {
     font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: #1C1C1C;
@@ -526,3 +532,103 @@ table[id^="retrieval-table-"] thead th:not(.dt-orderable-asc):not(.dt-orderable-
 .caveat-body strong { color: #1C1C1C; }
 .caveat-foot { font-size: var(--fs-small); color: #6c757d; margin-top: 0.6rem; }
 .caveat a { color: #1565c0; font-weight: 600; }
+
+/* ============================================================
+   Strategy Info Modal — info button (header-inline) + dialog
+   Pattern mirrors #log-drawer (same blue header bar, same X)
+   but centered as a dialog rather than slide-from-right.
+   ============================================================ */
+
+/* Inline info button next to a section h2 */
+.info-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-left: 0.55rem;
+    background: none; border: none; padding: 0;
+    color: #1565c0; cursor: pointer;
+    font-size: 1.3rem; line-height: 1; vertical-align: 0.06em;
+    opacity: 0.85; transition: opacity 0.15s, transform 0.15s;
+}
+.info-btn:hover  { opacity: 1; transform: scale(1.08); }
+.info-btn:focus  { outline: 2px solid #1565c0; outline-offset: 3px; border-radius: 4px; }
+
+/* Scrim under the modal */
+#sim-scrim {
+    position: fixed; inset: 0; background: rgba(20,30,60,0.4);
+    opacity: 0; pointer-events: none; transition: 0.2s; z-index: 110;
+}
+#sim-scrim.on { opacity: 1; pointer-events: auto; }
+
+/* Modal dialog — centered, capped width + height, body scrolls inside */
+#sim-modal {
+    position: fixed; top: 50%; left: 50%;
+    transform: translate(-50%, -48%) scale(0.98);
+    width: min(720px, calc(100vw - 2rem));
+    max-height: 80vh;
+    background: #fff; border-radius: 10px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+    opacity: 0; pointer-events: none; transition: 0.18s;
+    z-index: 115; display: flex; flex-direction: column;
+}
+#sim-modal[hidden] { display: none; }
+#sim-modal.open {
+    opacity: 1; pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Lock body scroll when modal is open */
+body.sim-locked { overflow: hidden; }
+
+/* Modal header — blue bar matching #log-drawer .dh */
+#sim-modal .sim-dh {
+    background: #1565c0; color: #fff;
+    padding: 0.85rem 1.1rem;
+    border-radius: 10px 10px 0 0;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-shrink: 0;
+}
+#sim-modal .sim-dh h3 {
+    font-size: var(--fs-h4); margin: 0; color: #fff; font-weight: 700;
+}
+#sim-modal .sim-dh .sim-x {
+    cursor: pointer; background: none; border: none; color: #fff;
+    font-size: var(--fs-h3); line-height: 1; padding: 0 0.25rem;
+}
+#sim-modal .sim-dh .sim-x:hover  { opacity: 0.75; }
+#sim-modal .sim-dh .sim-x:focus  { outline: 2px solid #fff; outline-offset: 2px; border-radius: 4px; }
+
+/* Modal body — scrollable */
+#sim-modal .sim-db {
+    padding: 1rem 1.2rem 1.2rem; overflow: auto; flex: 1 1 auto;
+}
+
+/* One section per family */
+#sim-modal .sim-family { margin-bottom: 1.4rem; }
+#sim-modal .sim-family:last-child { margin-bottom: 0.4rem; }
+#sim-modal .sim-family h4 {
+    font-size: var(--fs-h4); margin: 0 0 0.25rem; color: #1C1C1C;
+    border-bottom: 1px solid #e9ecef; padding-bottom: 0.3rem;
+}
+#sim-modal .sim-count {
+    color: #6c757d; font-size: var(--fs-small); font-weight: 500;
+}
+#sim-modal .sim-family-blurb {
+    color: #495057; font-size: var(--fs-small); margin: 0.35rem 0 0.65rem;
+    line-height: 1.5;
+}
+
+/* Definition list — name + description */
+#sim-modal dl { margin: 0; }
+#sim-modal dt {
+    margin-top: 0.55rem;
+}
+#sim-modal dt code {
+    background: #f1f3f5; color: #1565c0;
+    padding: 0.1rem 0.4rem; border-radius: 4px;
+    font-size: var(--fs-small);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    word-break: break-all;
+}
+#sim-modal dd {
+    margin: 0.2rem 0 0 0;
+    color: #1C1C1C; font-size: var(--fs-ui); line-height: 1.5;
+}
